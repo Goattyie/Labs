@@ -25,7 +25,7 @@ namespace ConsoleApp1
             size[1] = Convert.ToInt32(Console.ReadLine());
             return size;
         }
-        public void Plus(float v, ref Matr mat) 
+        public virtual void Plus(float v, ref Matr mat) 
         {
                 for(int i = 0; i < mat.height; i++)
                 {
@@ -35,7 +35,7 @@ namespace ConsoleApp1
                     }
                 }
         }
-        public void Plus2(ref Matr mat1,ref Matr mat2)
+        public virtual void Plus2(ref Matr mat1,ref Matr mat2)
         {
             if (mat1.height == mat2.height && mat1.width == mat2.width)
             {
@@ -48,7 +48,7 @@ namespace ConsoleApp1
                 }
             }
         }//сложение
-        public void Diff(float v,ref  Matr mat)
+        public virtual void Diff(float v,ref  Matr mat)
         {
             for (int i = 0; i < mat.height; i++)
             {
@@ -58,7 +58,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        public void Diff2(ref Matr mat1,ref  Matr mat2)
+        public virtual void Diff2(ref Matr mat1,ref  Matr mat2)
         {
             if (mat1.height == mat2.height && mat1.width == mat2.width)
             {
@@ -71,7 +71,7 @@ namespace ConsoleApp1
                 }
             }
         }//сложение
-        public void Mult(float v,ref  Matr mat)
+        public virtual void Mult(float v,ref  Matr mat)
         {
             for (int i = 0; i < mat.height; i++)
             {
@@ -81,7 +81,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        public void Mult2(ref Matr mat1, ref Matr mat2)
+        public virtual void Mult2(ref Matr mat1, ref Matr mat2)
         {
 
             if (mat1.width == mat2.height)
@@ -109,7 +109,7 @@ namespace ConsoleApp1
                 mat1.width = width2;
             }
         }
-        public void Comprasion(ref Matr mat1, ref  Matr mat2) 
+        public virtual void Comprasion(ref Matr mat1, ref  Matr mat2) 
         {
            
             if(mat1.height == mat2.height && mat1.width == mat2.width)
@@ -131,7 +131,7 @@ namespace ConsoleApp1
             Console.WriteLine("\nМатрицы не равны.");
 
         }//Сравнение
-        public void Reverse(ref Matr mat) 
+        public virtual void Reverse(ref Matr mat) 
         {
             float det = Determ(mat);
             if (mat.height != mat.width)
@@ -154,7 +154,7 @@ namespace ConsoleApp1
 
                
         }//Перевод в обратную
-        public float[][] Trans(ref Matr mat) 
+        public virtual float[][] Trans(ref Matr mat) 
         {
             float[][] matrix2 = new float[mat.width][];
             for(int i = 0; i < mat.width; i++)
@@ -175,7 +175,7 @@ namespace ConsoleApp1
             mat.height = temp;
             return mat.matrix;
         }//Перевод в транспонированную 
-        public float Determ(Matr mat) 
+        public virtual float Determ(Matr mat) 
         {
             if (mat.height != mat.width)
             {
@@ -234,7 +234,7 @@ namespace ConsoleApp1
             Console.WriteLine("Определитель: " + det.ToString());
             return det;
         }//Детерминанта матрицы
-        public float Norm(Matr mat) 
+        public virtual float Norm(Matr mat) 
         {
             
                 float max = float.MinValue;
@@ -253,7 +253,7 @@ namespace ConsoleApp1
             return max;
             
         }//Норма матрицы
-        public void Type(Matr mat) 
+        public virtual void Type(Matr mat) 
         {
             if (mat.height == mat.width)
                 Console.WriteLine("Матрица квадратная");

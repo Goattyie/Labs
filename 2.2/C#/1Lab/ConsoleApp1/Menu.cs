@@ -34,11 +34,11 @@ namespace ConsoleApp1
                 switch (key)
                 {
                     case '1':
-                        Matrix mat1 = new Matrix();
+                        ZagMatrix mat1 = new ZagMatrix(1);
                         View(mat1);
                         break;
                     case '2':
-                        Matrix mat2 = new Matrix("Вызван конструктор по умолчанию");
+                        ZagMatrix mat2 = new ZagMatrix(2);
                         View(mat2);
                         break;
                 }
@@ -99,7 +99,7 @@ namespace ConsoleApp1
             }
             return matrix;
         }
-        public void View(Matrix matrix) 
+        public void View(ZagMatrix matrix) 
         {
             char key = '0';
             int[] size = GiveSize();
