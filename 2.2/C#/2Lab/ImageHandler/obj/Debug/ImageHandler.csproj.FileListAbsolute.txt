@@ -1,0 +1,4 @@
+D:\labs\4\C#\2\ImageHandler\bin\Debug\ImageHandler.dll
+D:\labs\4\C#\2\ImageHandler\bin\Debug\ImageHandler.pdb
+D:\labs\4\C#\2\ImageHandler\obj\Debug\ImageHandler.dll
+D:\labs\4\C#\2\ImageHandler\obj\Debug\ImageHandler.pdb
