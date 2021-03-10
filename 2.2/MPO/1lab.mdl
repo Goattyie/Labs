@@ -282,107 +282,7 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object UseCaseView "Use Case View::Включение кондиционера" @1
-			location   	(1122, 312)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@1
-			    location   	(1122, 450)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	630
-			    justify    	0
-			    label      	"Включение кондиционера")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"603E85C30382"
-			height     	118)
-		    (object UseCaseView "Use Case View::Выключение кондиционера" @2
-			location   	(1175, 618)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@2
-			    location   	(1175, 756)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	630
-			    justify    	0
-			    label      	"Выключение кондиционера")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"603E85D5035A"
-			height     	118)
-		    (object UseCaseView "Use Case View::Подача холодногого воздуха" @3
-			location   	(1748, 731)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@3
-			    location   	(1748, 869)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	630
-			    justify    	0
-			    label      	"Подача холодногого воздуха")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"603E88440228"
-			height     	118)
-		    (object UseCaseView "Use Case View::Подача горячего воздуха" @4
-			location   	(1779, 481)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@4
-			    location   	(1779, 619)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	630
-			    justify    	0
-			    label      	"Подача горячего воздуха")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"603E85F0009C"
-			height     	118)
-		    (object UseCaseView "Use Case View::Поломка механизма" @5
+		    (object UseCaseView "Use Case View::Поломка механизма" @1
 			location   	(1263, 1265)
 			font       	(object Font
 			    size       	10
@@ -395,7 +295,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@5
+			    Parent_View 	@1
 			    location   	(1263, 1403)
 			    anchor_loc 	1
 			    nlines     	2
@@ -407,8 +307,8 @@
 			fill_color 	13434879
 			quidu      	"603E9DB40367"
 			height     	118)
-		    (object UseCaseView "Use Case View::Чистка деталей" @6
-			location   	(1097, 1006)
+		    (object UseCaseView "Use Case View::Подача холодногого воздуха" @2
+			location   	(1748, 731)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -420,20 +320,20 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@6
-			    location   	(1097, 1144)
+			    Parent_View 	@2
+			    location   	(1748, 869)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Чистка деталей")
+			    label      	"Подача холодногого воздуха")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"603EA3F70163"
+			quidu      	"603E88440228"
 			height     	118)
-		    (object UseCaseView "Use Case View::Смена фильтров" @7
-			location   	(747, 231)
+		    (object UseCaseView "Use Case View::Подача горячего воздуха" @3
+			location   	(1779, 481)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -445,19 +345,19 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@7
-			    location   	(747, 369)
+			    Parent_View 	@3
+			    location   	(1779, 619)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"Смена фильтров")
+			    label      	"Подача горячего воздуха")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"603EA40E01FB"
+			quidu      	"603E85F0009C"
 			height     	118)
-		    (object UseCaseView "Use Case View::Режим осушения" @8
+		    (object UseCaseView "Use Case View::Режим осушения" @4
 			location   	(1898, 247)
 			font       	(object Font
 			    size       	10
@@ -470,7 +370,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@8
+			    Parent_View 	@4
 			    location   	(1898, 385)
 			    anchor_loc 	1
 			    nlines     	2
@@ -482,7 +382,32 @@
 			fill_color 	13434879
 			quidu      	"603EA46402D3"
 			height     	118)
-		    (object ClassView "Class" "Use Case View::Кондиционер" @9
+		    (object UseCaseView "Use Case View::Режим вентиляции" @5
+			location   	(2282, 162)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@5
+			    location   	(2282, 300)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Режим вентиляции")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"603EA4740352"
+			height     	118)
+		    (object ClassView "Class" "Use Case View::Кондиционер" @6
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -498,7 +423,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@9
+			    Parent_View 	@6
 			    location   	(2246, 938)
 			    anchor_loc 	1
 			    nlines     	2
@@ -513,7 +438,7 @@
 			height     	362
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$12" @10
+		    (object AssociationViewNew "$UNNAMED$12" @7
 			location   	(1989, 702)
 			font       	(object Font
 			    size       	10
@@ -529,31 +454,31 @@
 			line_color 	3342489
 			quidu      	"603E887103C9"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$13" @11
-				Parent_View 	@10
+			    (object RoleView "$UNNAMED$13" @8
+				Parent_View 	@7
 				location   	(-239, 24)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603E88740162"
-				client     	@10
-				supplier   	@3
+				client     	@7
+				supplier   	@2
 				vertices   	(list Points
 				    (1989, 702)
-				    (1856, 717))
+				    (1856, 714))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$14" @12
-				Parent_View 	@10
+			    (object RoleView "$UNNAMED$14" @9
+				Parent_View 	@7
 				location   	(-239, 24)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603E88740164"
-				client     	@10
-				supplier   	@9
+				client     	@7
+				supplier   	@6
 				vertices   	(list Points
 				    (1989, 702)
-				    (2122, 687))
+				    (2125, 684))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$18" @13
+		    (object AssociationViewNew "$UNNAMED$18" @10
 			location   	(2071, 601)
 			font       	(object Font
 			    size       	10
@@ -569,31 +494,31 @@
 			line_color 	3342489
 			quidu      	"603E9C200309"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$19" @14
-				Parent_View 	@13
+			    (object RoleView "$UNNAMED$19" @11
+				Parent_View 	@10
 				location   	(-157, -77)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603E9C2101C6"
-				client     	@13
-				supplier   	@4
+				client     	@10
+				supplier   	@3
 				vertices   	(list Points
 				    (2071, 601)
-				    (2017, 579))
+				    (1779, 481))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$20" @15
-				Parent_View 	@13
+			    (object RoleView "$UNNAMED$20" @12
+				Parent_View 	@10
 				location   	(-157, -77)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603E9C2101C8"
-				client     	@13
-				supplier   	@9
+				client     	@10
+				supplier   	@6
 				vertices   	(list Points
 				    (2071, 601)
-				    (2125, 623))
+				    (2246, 678))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$27" @16
+		    (object AssociationViewNew "$UNNAMED$27" @13
 			location   	(2077, 468)
 			font       	(object Font
 			    size       	10
@@ -609,56 +534,31 @@
 			line_color 	3342489
 			quidu      	"603EA48301F4"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$28" @17
-				Parent_View 	@16
+			    (object RoleView "$UNNAMED$28" @14
+				Parent_View 	@13
 				location   	(-151, -210)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603EA48303D7"
-				client     	@16
-				supplier   	@8
+				client     	@13
+				supplier   	@4
 				vertices   	(list Points
 				    (2077, 468)
-				    (2029, 410))
+				    (2030, 410))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$29" @18
-				Parent_View 	@16
+			    (object RoleView "$UNNAMED$29" @15
+				Parent_View 	@13
 				location   	(-151, -210)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603EA48303D9"
-				client     	@16
-				supplier   	@9
+				client     	@13
+				supplier   	@6
 				vertices   	(list Points
 				    (2077, 468)
-				    (2125, 527))
+				    (2120, 522))
 				line_style 	0)))
-		    (object UseCaseView "Use Case View::Режим вентиляции" @19
-			location   	(2282, 162)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@19
-			    location   	(2282, 300)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	630
-			    justify    	0
-			    label      	"Режим вентиляции")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"603EA4740352"
-			height     	118)
-		    (object AssociationViewNew "$UNNAMED$30" @20
+		    (object AssociationViewNew "$UNNAMED$30" @16
 			location   	(2260, 414)
 			font       	(object Font
 			    size       	10
@@ -674,31 +574,184 @@
 			line_color 	3342489
 			quidu      	"603EA487025A"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$31" @21
-				Parent_View 	@20
+			    (object RoleView "$UNNAMED$31" @17
+				Parent_View 	@16
 				location   	(42, -267)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603EA4880090"
-				client     	@20
-				supplier   	@19
+				client     	@16
+				supplier   	@5
 				vertices   	(list Points
 				    (2260, 414)
-				    (2266, 325))
+				    (2265, 325))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$32" @22
-				Parent_View 	@20
+			    (object RoleView "$UNNAMED$32" @18
+				Parent_View 	@16
 				location   	(42, -267)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603EA4880092"
-				client     	@20
-				supplier   	@9
+				client     	@16
+				supplier   	@6
 				vertices   	(list Points
 				    (2260, 414)
-				    (2254, 504))
+				    (2252, 502))
 				line_style 	0)))
-		    (object ClassView "Class" "Use Case View::Жилец дома" @23
+		    (object UseCaseView "Use Case View::Включение кондиционера" @19
+			location   	(1122, 312)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@19
+			    location   	(1122, 450)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Включение кондиционера")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"603E85C30382"
+			height     	118)
+		    (object UseCaseView "Use Case View::Выключение кондиционера" @20
+			location   	(1175, 618)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@20
+			    location   	(1175, 756)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Выключение кондиционера")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"603E85D5035A"
+			height     	118)
+		    (object UseCaseView "Use Case View::Чистка деталей" @21
+			location   	(1097, 1006)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@21
+			    location   	(1097, 1144)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Чистка деталей")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"603EA3F70163"
+			height     	118)
+		    (object UseCaseView "Use Case View::Смена фильтров" @22
+			location   	(747, 231)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@22
+			    location   	(747, 369)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Смена фильтров")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"603EA40E01FB"
+			height     	118)
+		    (object UseCaseView "Use Case View::Переключение между режимами кондиционера" @23
+			location   	(578, 1221)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@23
+			    location   	(578, 1359)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Переключение между режимами кондиционера")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"603E885C03D9"
+			height     	118)
+		    (object DependencyView "extends" @24
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@24
+			    location   	(919, 1239)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	144
+			    justify    	0
+			    label      	"extends")
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"603E9DBD007B"
+			client     	@23
+			supplier   	@1
+			vertices   	(list Points
+			    (686, 1224)
+			    (1151, 1254))
+			line_style 	0)
+		    (object ClassView "Class" "Use Case View::Жилец дома" @25
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -714,7 +767,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@23
+			    Parent_View 	@25
 			    location   	(659, 1019)
 			    anchor_loc 	1
 			    nlines     	2
@@ -729,7 +782,7 @@
 			height     	419
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$0" @24
+		    (object AssociationViewNew "$UNNAMED$0" @26
 			location   	(869, 536)
 			font       	(object Font
 			    size       	10
@@ -745,31 +798,31 @@
 			line_color 	3342489
 			quidu      	"603E87D60255"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$1" @25
-				Parent_View 	@24
+			    (object RoleView "$UNNAMED$1" @27
+				Parent_View 	@26
 				location   	(147, -184)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603E87D70381"
-				client     	@24
-				supplier   	@1
+				client     	@26
+				supplier   	@19
 				vertices   	(list Points
 				    (869, 536)
-				    (941, 475))
+				    (937, 475))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$2" @26
-				Parent_View 	@24
+			    (object RoleView "$UNNAMED$2" @28
+				Parent_View 	@26
 				location   	(147, -184)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603E87D70383"
-				client     	@24
-				supplier   	@23
+				client     	@26
+				supplier   	@25
 				vertices   	(list Points
 				    (869, 536)
-				    (797, 597))
+				    (797, 589))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$3" @27
+		    (object AssociationViewNew "$UNNAMED$3" @29
 			location   	(930, 665)
 			font       	(object Font
 			    size       	10
@@ -785,31 +838,31 @@
 			line_color 	3342489
 			quidu      	"603E87DB0391"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$4" @28
-				Parent_View 	@27
+			    (object RoleView "$UNNAMED$4" @30
+				Parent_View 	@29
 				location   	(208, -55)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603E87DE0041"
-				client     	@27
-				supplier   	@2
+				client     	@29
+				supplier   	@20
 				vertices   	(list Points
 				    (930, 665)
-				    (1063, 640))
+				    (1064, 636))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$5" @29
-				Parent_View 	@27
+			    (object RoleView "$UNNAMED$5" @31
+				Parent_View 	@29
 				location   	(208, -55)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603E87DE0043"
-				client     	@27
-				supplier   	@23
+				client     	@29
+				supplier   	@25
 				vertices   	(list Points
 				    (930, 665)
 				    (797, 690))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$21" @30
+		    (object AssociationViewNew "$UNNAMED$21" @32
 			location   	(900, 880)
 			font       	(object Font
 			    size       	10
@@ -825,31 +878,31 @@
 			line_color 	3342489
 			quidu      	"603EA40203CE"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$22" @31
-				Parent_View 	@30
+			    (object RoleView "$UNNAMED$22" @33
+				Parent_View 	@32
 				location   	(241, 150)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603EA4040026"
-				client     	@30
-				supplier   	@6
+				client     	@32
+				supplier   	@21
 				vertices   	(list Points
 				    (900, 880)
-				    (1004, 947))
+				    (1006, 948))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$23" @32
-				Parent_View 	@30
+			    (object RoleView "$UNNAMED$23" @34
+				Parent_View 	@32
 				location   	(241, 150)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603EA4040028"
-				client     	@30
-				supplier   	@23
+				client     	@32
+				supplier   	@25
 				vertices   	(list Points
 				    (900, 880)
-				    (797, 814))
+				    (797, 817))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$24" @33
+		    (object AssociationViewNew "$UNNAMED$24" @35
 			location   	(702, 458)
 			font       	(object Font
 			    size       	10
@@ -865,83 +918,30 @@
 			line_color 	3342489
 			quidu      	"603EA416002B"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$25" @34
-				Parent_View 	@33
+			    (object RoleView "$UNNAMED$25" @36
+				Parent_View 	@35
 				location   	(43, -272)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603EA41602B0"
-				client     	@33
-				supplier   	@7
+				client     	@35
+				supplier   	@22
 				vertices   	(list Points
 				    (702, 458)
-				    (715, 394))
+				    (712, 394))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$26" @35
-				Parent_View 	@33
+			    (object RoleView "$UNNAMED$26" @37
+				Parent_View 	@35
 				location   	(43, -272)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603EA41602B2"
-				client     	@33
-				supplier   	@23
+				client     	@35
+				supplier   	@25
 				vertices   	(list Points
 				    (702, 458)
-				    (689, 523))
+				    (687, 529))
 				line_style 	0)))
-		    (object UseCaseView "Use Case View::Переключение между режимами кондиционера" @36
-			location   	(578, 1221)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@36
-			    location   	(578, 1359)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	630
-			    justify    	0
-			    label      	"Переключение между режимами кондиционера")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"603E885C03D9"
-			height     	118)
-		    (object DependencyView "extends" @37
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@37
-			    location   	(919, 1239)
-			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	144
-			    justify    	0
-			    label      	"extends")
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"603E9DBD007B"
-			client     	@36
-			supplier   	@5
-			vertices   	(list Points
-			    (686, 1224)
-			    (1151, 1254))
-			line_style 	0)
 		    (object AssociationViewNew "$UNNAMED$33" @38
 			location   	(593, 1103)
 			font       	(object Font
@@ -965,10 +965,10 @@
 				line_color 	3342489
 				quidu      	"603EA5920166"
 				client     	@38
-				supplier   	@36
+				supplier   	@23
 				vertices   	(list Points
 				    (593, 1103)
-				    (584, 1162))
+				    (578, 1221))
 				line_style 	0)
 			    (object RoleView "$UNNAMED$35" @40
 				Parent_View 	@38
@@ -977,10 +977,10 @@
 				line_color 	3342489
 				quidu      	"603EA5920168"
 				client     	@38
-				supplier   	@23
+				supplier   	@25
 				vertices   	(list Points
 				    (593, 1103)
-				    (602, 1044))
+				    (659, 730))
 				line_style 	0)))))))
     root_category 	(object Class_Category "Logical View"
 	quid       	"603E833401CD"
@@ -1017,6 +1017,77 @@
     process_structure 	(object Processes
 	quid       	"603E833401D0"
 	ProcsNDevs 	(list
+	    (object Processor "Сервер системы контроля климата"
+		quid       	"6047C8F10156"
+		connections 	(list connection_list
+		    (object Connection_Relationship
+			quid       	"6047CCC90382"
+			supplier   	"Кондиционер"
+			quidu      	"6047CCB200BB"
+			supplier_is_device 	FALSE))
+		characteristics 	""
+		scheduling 	"Preemptive"
+		processes  	(list processes))
+	    (object Processor "Сервер системы экономии ресурсов"
+		quid       	"6047CB14016A"
+		connections 	(list connection_list
+		    (object Connection_Relationship
+			quid       	"6047CCC3012B"
+			supplier   	"Кондиционер"
+			quidu      	"6047CCB200BB"
+			supplier_is_device 	FALSE))
+		characteristics 	""
+		scheduling 	"Preemptive"
+		processes  	(list processes))
+	    (object Processor "Сервер онлайн контроллера кондиционера"
+		quid       	"6047CB4D01CD"
+		connections 	(list connection_list
+		    (object Connection_Relationship
+			quid       	"6047CCDD03D6"
+			supplier   	"Пульт"
+			quidu      	"6047CCAB02EC"
+			supplier_is_device 	FALSE))
+		characteristics 	""
+		scheduling 	"Preemptive"
+		processes  	(list processes))
+	    (object Processor "Сервер системы направления воздуха"
+		quid       	"6047CC480180"
+		connections 	(list connection_list
+		    (object Connection_Relationship
+			quid       	"6047CCE10278"
+			supplier   	"Пульт"
+			quidu      	"6047CCAB02EC"
+			supplier_is_device 	FALSE))
+		characteristics 	""
+		scheduling 	"Preemptive"
+		processes  	(list processes))
+	    (object Processor "Сервер системы управления временем"
+		quid       	"6047CC8301D7"
+		connections 	(list connection_list
+		    (object Connection_Relationship
+			quid       	"6047CCE602E1"
+			supplier   	"Пульт"
+			quidu      	"6047CCAB02EC"
+			supplier_is_device 	FALSE))
+		characteristics 	""
+		scheduling 	"Preemptive"
+		processes  	(list processes))
+	    (object Processor "Пульт"
+		quid       	"6047CCAB02EC"
+		connections 	(list connection_list
+		    (object Connection_Relationship
+			quid       	"6047CCE900A9"
+			supplier   	"Кондиционер"
+			quidu      	"6047CCB200BB"
+			supplier_is_device 	FALSE))
+		characteristics 	""
+		scheduling 	"Preemptive"
+		processes  	(list processes))
+	    (object Processor "Кондиционер"
+		quid       	"6047CCB200BB"
+		characteristics 	""
+		scheduling 	"Preemptive"
+		processes  	(list processes))
 	    (object Process_Diagram "Deployment View"
 		quid       	"603E833401D2"
 		title      	"Deployment View"
@@ -1025,7 +1096,242 @@
 		max_width  	21600
 		origin_x   	0
 		origin_y   	0
-		items      	(list diagram_item_list))))
+		items      	(list diagram_item_list
+		    (object ProcessorView "Сервер системы контроля климата" @41
+			location   	(2007, 1175)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@41
+			    location   	(1778, 1026)
+			    nlines     	2
+			    max_width  	387
+			    justify    	0
+			    label      	"Сервер системы контроля климата")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"6047C8F10156"
+			width      	462
+			height     	368
+			annotation 	0)
+		    (object ProcessorView "Сервер системы экономии ресурсов" @42
+			location   	(2832, 572)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@42
+			    location   	(2562, 388)
+			    nlines     	2
+			    max_width  	469
+			    justify    	0
+			    label      	"Сервер системы экономии ресурсов")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"6047CB14016A"
+			width      	544
+			height     	437
+			annotation 	0)
+		    (object ProcessorView "Сервер онлайн контроллера кондиционера" @43
+			location   	(1356, 1034)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@43
+			    location   	(1024, 800)
+			    nlines     	2
+			    max_width  	593
+			    justify    	0
+			    label      	"Сервер онлайн контроллера кондиционера")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"6047CB4D01CD"
+			width      	668
+			height     	537
+			annotation 	0)
+		    (object ProcessorView "Сервер системы направления воздуха" @44
+			location   	(730, 372)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@44
+			    location   	(447, 182)
+			    nlines     	2
+			    max_width  	494
+			    justify    	0
+			    label      	"Сервер системы направления воздуха")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"6047CC480180"
+			width      	569
+			height     	450
+			annotation 	0)
+		    (object ProcessorView "Сервер системы управления временем" @45
+			location   	(534, 947)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@45
+			    location   	(255, 757)
+			    nlines     	2
+			    max_width  	487
+			    justify    	0
+			    label      	"Сервер системы управления временем")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"6047CC8301D7"
+			width      	562
+			height     	450
+			annotation 	0)
+		    (object ProcessorView "Пульт" @46
+			location   	(1579, 431)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@46
+			    location   	(1468, 376)
+			    nlines     	2
+			    max_width  	150
+			    justify    	0
+			    label      	"Пульт")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"6047CCAB02EC"
+			width      	225
+			height     	180
+			annotation 	0)
+		    (object ProcessorView "Кондиционер" @47
+			location   	(2030, 434)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@47
+			    location   	(1844, 319)
+			    nlines     	2
+			    max_width  	300
+			    justify    	0
+			    label      	"Кондиционер")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"6047CCB200BB"
+			width      	375
+			height     	300
+			annotation 	0)
+		    (object ConnectionView "" @48
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"6047CCC3012B"
+			client     	@42
+			supplier   	@47
+			vertices   	(list Points
+			    (2560, 572)
+			    (2186, 434))
+			line_style 	0)
+		    (object ConnectionView "" @49
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"6047CCC90382"
+			client     	@41
+			supplier   	@47
+			vertices   	(list Points
+			    (2007, 1006)
+			    (2030, 584))
+			line_style 	0)
+		    (object ConnectionView "" @50
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"6047CCDD03D6"
+			client     	@43
+			supplier   	@46
+			vertices   	(list Points
+			    (1356, 781)
+			    (1579, 521))
+			line_style 	0)
+		    (object ConnectionView "" @51
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"6047CCE10278"
+			client     	@44
+			supplier   	@46
+			vertices   	(list Points
+			    (983, 372)
+			    (1467, 431))
+			line_style 	0)
+		    (object ConnectionView "" @52
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"6047CCE602E1"
+			client     	@45
+			supplier   	@46
+			vertices   	(list Points
+			    (784, 947)
+			    (1467, 431))
+			line_style 	0)
+		    (object ConnectionView "" @53
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"6047CCE900A9"
+			client     	@46
+			supplier   	@47
+			vertices   	(list Points
+			    (1660, 431)
+			    (1843, 434))
+			line_style 	0)))))
     properties 	(object Properties
 	attributes 	(list Attribute_Set
 	    (object Attribute

@@ -252,7 +252,6 @@ namespace _2
         {
             if(thread != null)
                 thread.Abort();
-            close = true;
         }
     }
 }
