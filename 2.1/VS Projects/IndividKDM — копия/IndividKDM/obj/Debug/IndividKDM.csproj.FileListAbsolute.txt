@@ -1,0 +1,21 @@
+D:\VS Projects\IndividKDM\IndividKDM\bin\Debug\IndividKDM.exe.config
+D:\VS Projects\IndividKDM\IndividKDM\bin\Debug\IndividKDM.exe
+D:\VS Projects\IndividKDM\IndividKDM\bin\Debug\IndividKDM.pdb
+D:\VS Projects\IndividKDM\IndividKDM\obj\Debug\IndividKDM.csprojAssemblyReference.cache
+D:\VS Projects\IndividKDM\IndividKDM\obj\Debug\IndividKDM.Form1.resources
+D:\VS Projects\IndividKDM\IndividKDM\obj\Debug\IndividKDM.Properties.Resources.resources
+D:\VS Projects\IndividKDM\IndividKDM\obj\Debug\IndividKDM.csproj.GenerateResource.cache
+D:\VS Projects\IndividKDM\IndividKDM\obj\Debug\IndividKDM.csproj.CoreCompileInputs.cache
+D:\VS Projects\IndividKDM\IndividKDM\obj\Debug\IndividKDM.exe
+D:\VS Projects\IndividKDM\IndividKDM\obj\Debug\IndividKDM.pdb
+D:\VS Projects\IndividKDM — копия\IndividKDM\bin\Debug\IndividKDM.exe.config
+D:\VS Projects\IndividKDM — копия\IndividKDM\bin\Debug\IndividKDM.exe
+D:\VS Projects\IndividKDM — копия\IndividKDM\bin\Debug\IndividKDM.pdb
+D:\VS Projects\IndividKDM — копия\IndividKDM\obj\Debug\IndividKDM.csprojAssemblyReference.cache
+D:\VS Projects\IndividKDM — копия\IndividKDM\obj\Debug\IndividKDM.Form1.resources
+D:\VS Projects\IndividKDM — копия\IndividKDM\obj\Debug\IndividKDM.Properties.Resources.resources
+D:\VS Projects\IndividKDM — копия\IndividKDM\obj\Debug\IndividKDM.csproj.GenerateResource.cache
+D:\VS Projects\IndividKDM — копия\IndividKDM\obj\Debug\IndividKDM.csproj.CoreCompileInputs.cache
+D:\VS Projects\IndividKDM — копия\IndividKDM\obj\Debug\IndividKDM.exe
+D:\VS Projects\IndividKDM — копия\IndividKDM\obj\Debug\IndividKDM.pdb
+D:\VS Projects\IndividKDM — копия\IndividKDM\obj\Debug\IndividKDM.Matrix.resources

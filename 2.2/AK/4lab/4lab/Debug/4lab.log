@@ -1,0 +1,3 @@
+﻿  4lab.cpp
+D:\Labs\2.2\AK\4lab\4lab\4lab.cpp(32,15): warning C4101: S: неиспользованная локальная переменная
+  4lab.vcxproj -> D:\Labs\2.2\AK\4lab\Debug\4lab.exe

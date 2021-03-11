@@ -1,0 +1,10 @@
+D:\VS Projects\TaiFYA\TaiFYA\bin\Release\TaiFYA.exe.config
+D:\VS Projects\TaiFYA\TaiFYA\bin\Release\TaiFYA.exe
+D:\VS Projects\TaiFYA\TaiFYA\bin\Release\TaiFYA.pdb
+D:\VS Projects\TaiFYA\TaiFYA\obj\Release\TaiFYA.csprojAssemblyReference.cache
+D:\VS Projects\TaiFYA\TaiFYA\obj\Release\TaiFYA.Form1.resources
+D:\VS Projects\TaiFYA\TaiFYA\obj\Release\TaiFYA.Properties.Resources.resources
+D:\VS Projects\TaiFYA\TaiFYA\obj\Release\TaiFYA.csproj.GenerateResource.cache
+D:\VS Projects\TaiFYA\TaiFYA\obj\Release\TaiFYA.csproj.CoreCompileInputs.cache
+D:\VS Projects\TaiFYA\TaiFYA\obj\Release\TaiFYA.exe
+D:\VS Projects\TaiFYA\TaiFYA\obj\Release\TaiFYA.pdb
