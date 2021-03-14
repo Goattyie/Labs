@@ -1,0 +1,96 @@
+Папка: \ 
+1_fut.txt
+Папка: \Folder1\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder2\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder3\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \ 
+1_fut.txt
+Папка: \Folder1\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder2\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder3\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder2\4\ 
+sss_fut.txt
+Папка: \Folder1\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder2\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder3\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder2\4\ 
+sss_fut.txt
+Папка: \Folder2\4\ 
+sss_fut.txt
+Папка: \ 
+1_fut.txt
+Папка: \Folder1\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder2\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder3\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder2\4\ 
+sss_fut.txt
+Папка: \Folder1\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder2\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder3\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder2\4\ 
+sss_fut.txt
+Папка: \Folder2\4\ 
+sss_fut.txt
+Папка: \Folder1\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder2\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder3\ 
+file1.txt.txt
+file2.txt.txt
+png1.png.txt
+Папка: \Folder2\4\ 
+sss_fut.txt
+Папка: \Folder2\4\ 
+sss_fut.txt
+Папка: \Folder2\4\ 
+sss_fut.txt
