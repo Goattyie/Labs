@@ -30,12 +30,19 @@ namespace _4lab
                 this.path = fbd.SelectedPath;
                 catalog = new Catalog();
                 label1.Text += catalog.GetTime();
+                button1.Enabled = true;
             }   
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             catalog.FindFolders(this.path);
+            button2.Enabled = false;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            button2.Enabled = false;
         }
     }
 }

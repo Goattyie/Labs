@@ -17,49 +17,39 @@ namespace _4lab
         {
             this.time = DateTime.Now;
         }
-
-        
+        private StreamWriter sw = new StreamWriter("log.txt");
+        private string main_path;
         public void FindFolders(string path)
         {
-            StreamWriter sw = new StreamWriter("log.txt");
+            this.main_path = path;
             tree_catalogs.Add(path);
-            int count = 0;
-            while (count < tree_catalogs.Count())
-            {
-                for (int i = 0; i < Directory.GetDirectories(tree_catalogs[count]).Length; i++)
-                {
-                    tree_catalogs.Add(Directory.GetDirectories(tree_catalogs[count])[i]);
-                }
-                for (int j = 0; j < Directory.GetFiles(tree_catalogs[count]).Length; j++)
-                {
-                    if(j == 0)
-                    {
-                        string Folder = Directory.GetFiles(tree_catalogs[count])[j].Split(path)
-                            [Directory.GetFiles(tree_catalogs[count])[j].Split(path).Length-1];
-                        string path2 = Path.GetFileName(Directory.GetFiles(tree_catalogs[count])[j]);
-                        Folder = Folder.Replace(path2, " ");
-                        sw.WriteLine("Папка: " + Folder);
-                    }
-                    string path3 = Path.GetFileName(Directory.GetFiles(tree_catalogs[count])[j]);
-                    sw.WriteLine(path3);
-                    files.Add(Directory.GetFiles(tree_catalogs[count])[j]);
-                }
-                count++;
-            }
-            FileProcess();
+            Recursion(path);
             sw.Close();
         }
-        private void FileProcess()
+        private void Recursion(string path)
         {
-            for(int i = 0; i < files.Count(); i++)
+            string[] files = Directory.GetFiles(path);
+            string[] Folder = path.Split(main_path);
+            sw.WriteLine("Папка: " + Folder[Folder.Length-1]);
+            for (int j = 0; j < files.Length; j++)
             {
-                fi = new FileInfo(files[i]);
+                FileProcess(files[j]);
+            }
+            for (int i = 0; i < Directory.GetDirectories(path).Length; i++)
+            {
+                Recursion(Directory.GetDirectories(path)[i]);
+            }
+        }
+        private void FileProcess(string filename)
+        {
+                fi = new FileInfo(filename);
                 if (this.time <= fi.CreationTime)
                 {
                     try {
                         string name = fi.Name;
-                        name = name.Insert(name.Length - fi.Extension.Length, "_fut");
-                        File.Move(files[i], fi.Directory + "\\" + name);
+                        File.SetLastWriteTime(fi.Directory + "\\" + name, DateTime.Now);
+                        File.SetCreationTime(fi.Directory + "\\" + name, DateTime.Now);
+                       
 
                         var attr = File.GetAttributes(fi.Directory + "\\" + name);
                         if (fi.IsReadOnly == true)
@@ -72,17 +62,17 @@ namespace _4lab
                             attr = attr | FileAttributes.ReadOnly;
                             File.SetAttributes(fi.Directory + "\\" + name, attr);
                         }
-
-                        File.SetCreationTime(fi.Directory + "\\" + name, DateTime.Now);
-                        File.SetLastWriteTime(fi.Directory + "\\" + name, DateTime.Now);
+                    string new_name = name.Insert(name.Length - fi.Extension.Length, "_fut");
+                    File.Move(filename, fi.Directory + "\\" + new_name);
+                    sw.WriteLine(new_name + "\t True");
                         
-                    } catch (Exception e)
-                    {
-                        continue;
-                    }
+                    } catch (Exception e) { 
+                    sw.WriteLine(fi.Name + "\t False \t Файл с новым именем уже существует"); 
                 }
-            }
+                return;
+                }
             
+            sw.WriteLine(fi.Name + "\t False \t Файл из прошлого");
         }
         public DateTime GetTime() { return this.time; }
     }
