@@ -10,11 +10,11 @@
         "projectUniqueName": "D:\\Labs\\2.2\\C#\\1Lab\\ConsoleApp1\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
         "projectPath": "D:\\Labs\\2.2\\C#\\1Lab\\ConsoleApp1\\ConsoleApp1.csproj",
-        "packagesPath": "C:\\Users\\Chiaroscuro\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Goattyie\\.nuget\\packages\\",
         "outputPath": "D:\\Labs\\2.2\\C#\\1Lab\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Chiaroscuro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Goattyie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

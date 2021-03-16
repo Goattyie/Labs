@@ -96,7 +96,7 @@ namespace _2
                     0.71414 * (double)(this.Cr - 128));
                 int b = Convert.ToInt32((double)this.Y +
                     1.772 * (double)(this.Cb - 128));
-                /*if (r < 0)
+                if (r < 0)
                     r = 0;
                 if (g < 0)
                     g = 0;
@@ -108,7 +108,7 @@ namespace _2
                     g = 255;
                 if (b > 255)
                     b = 255;
-                */
+                
                 return Color.FromArgb(r, g, b);
             }
 
@@ -148,6 +148,11 @@ namespace _2
                 pictureBox2.Image = (Image)bmp;
                 
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -30,7 +30,7 @@ namespace _4lab
                 this.path = fbd.SelectedPath;
                 catalog = new Catalog();
                 label1.Text += catalog.GetTime();
-                button1.Enabled = true;
+                button2.Enabled = true;
             }   
         }
 

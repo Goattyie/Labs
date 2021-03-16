@@ -1,9 +1,20 @@
 Папка: 
-1_fut.bmp	 True
-1_fut.txt	 True
-Новый текстовый документ.txt	 False 	 Файл из прошлого
+1.txt	 False 	 Файл из прошлого
+фб2_fut.txt	 True
+фб3_fut.txt	 True
 Папка: \Folder1
+2.txt	 False 	 Файл из прошлого
+файл из будущего5_fut.txt	 True
 Папка: \Folder1\Папка11
 Папка: \Folder2
+3.txt	 False 	 Файл из прошлого
+файл из будущего2_fut.txt	 True
 Папка: \Folder2\4
+44.txt	 False 	 Файл из прошлого
+файл из будущего 3_fut.txt	 True
 Папка: \Folder3
+1.txt	 False 	 Файл из прошлого
+2.txt	 False 	 Файл из прошлого
+3.txt	 False 	 Файл из прошлого
+4.txt	 False 	 Файл из прошлого
+файл из будущего_fut.txt	 True
