@@ -82,7 +82,7 @@
 	    (object Class "Жилец дома"
 		quid       	"603E85300206"
 		stereotype 	"Actor")
-	    (object Class "Кондиционер"
+	    (object Class "$UNNAMED$0"
 		quid       	"603E8541003E"
 		stereotype 	"Actor"
 		visible_modules 	(list dependency_list
@@ -128,147 +128,147 @@
 		quid       	"603EA46402D3")
 	    (object UseCase "Режим вентиляции"
 		quid       	"603EA4740352")
-	    (object Association "$UNNAMED$0"
+	    (object Association "$UNNAMED$1"
 		quid       	"603E87D60255"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$1"
+		    (object Role "$UNNAMED$2"
 			quid       	"603E87D70381"
 			supplier   	"Use Case View::Включение кондиционера"
 			quidu      	"603E85C30382"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$2"
+		    (object Role "$UNNAMED$3"
 			quid       	"603E87D70383"
 			supplier   	"Use Case View::Жилец дома"
 			quidu      	"603E85300206")))
-	    (object Association "$UNNAMED$3"
+	    (object Association "$UNNAMED$4"
 		quid       	"603E87DB0391"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$4"
+		    (object Role "$UNNAMED$5"
 			quid       	"603E87DE0041"
 			supplier   	"Use Case View::Выключение кондиционера"
 			quidu      	"603E85D5035A"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$5"
+		    (object Role "$UNNAMED$6"
 			quid       	"603E87DE0043"
 			supplier   	"Use Case View::Жилец дома"
 			quidu      	"603E85300206")))
-	    (object Association "$UNNAMED$6"
+	    (object Association "$UNNAMED$7"
 		quid       	"603E87F3020D"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$7"
+		    (object Role "$UNNAMED$8"
 			quid       	"603E87F40398"
 			supplier   	"Use Case View::Замена деталей"
 			quidu      	"603E87A90182"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$8"
+		    (object Role "$UNNAMED$9"
 			quid       	"603E87F4039A"
 			supplier   	"Use Case View::Жилец дома"
 			quidu      	"603E85300206")))
-	    (object Association "$UNNAMED$9"
+	    (object Association "$UNNAMED$10"
 		quid       	"603E87F801A0"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$10"
+		    (object Role "$UNNAMED$11"
 			quid       	"603E87F90240"
 			supplier   	"Use Case View::Чистка кондиционера"
 			quidu      	"603E87B900B2"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$11"
+		    (object Role "$UNNAMED$12"
 			quid       	"603E87F90242"
 			supplier   	"Use Case View::Жилец дома"
 			quidu      	"603E85300206")))
-	    (object Association "$UNNAMED$12"
+	    (object Association "$UNNAMED$13"
 		quid       	"603E887103C9"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$13"
+		    (object Role "$UNNAMED$14"
 			quid       	"603E88740162"
 			supplier   	"Use Case View::Подача холодногого воздуха"
 			quidu      	"603E88440228"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$14"
+		    (object Role "$UNNAMED$15"
 			quid       	"603E88740164"
-			supplier   	"Use Case View::Кондиционер"
+			supplier   	"$UNNAMED$0"
 			quidu      	"603E8541003E")))
-	    (object Association "$UNNAMED$15"
+	    (object Association "$UNNAMED$16"
 		quid       	"603E887A00F1"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$16"
+		    (object Role "$UNNAMED$17"
 			quid       	"603E887B0369"
 			supplier   	"Use Case View::Переключение между режимами кондиционера"
 			quidu      	"603E885C03D9"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$17"
+		    (object Role "$UNNAMED$18"
 			quid       	"603E887B036B"
-			supplier   	"Use Case View::Кондиционер"
+			supplier   	"$UNNAMED$0"
 			quidu      	"603E8541003E")))
-	    (object Association "$UNNAMED$18"
+	    (object Association "$UNNAMED$19"
 		quid       	"603E9C200309"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$19"
+		    (object Role "$UNNAMED$20"
 			quid       	"603E9C2101C6"
 			supplier   	"Use Case View::Подача горячего воздуха"
 			quidu      	"603E85F0009C"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$20"
+		    (object Role "$UNNAMED$21"
 			quid       	"603E9C2101C8"
-			supplier   	"Use Case View::Кондиционер"
+			supplier   	"$UNNAMED$0"
 			quidu      	"603E8541003E")))
-	    (object Association "$UNNAMED$21"
+	    (object Association "$UNNAMED$22"
 		quid       	"603EA40203CE"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$22"
+		    (object Role "$UNNAMED$23"
 			quid       	"603EA4040026"
 			supplier   	"Use Case View::Чистка деталей"
 			quidu      	"603EA3F70163"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$23"
+		    (object Role "$UNNAMED$24"
 			quid       	"603EA4040028"
 			supplier   	"Use Case View::Жилец дома"
 			quidu      	"603E85300206")))
-	    (object Association "$UNNAMED$24"
+	    (object Association "$UNNAMED$25"
 		quid       	"603EA416002B"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$25"
+		    (object Role "$UNNAMED$26"
 			quid       	"603EA41602B0"
 			supplier   	"Use Case View::Смена фильтров"
 			quidu      	"603EA40E01FB"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$26"
+		    (object Role "$UNNAMED$27"
 			quid       	"603EA41602B2"
 			supplier   	"Use Case View::Жилец дома"
 			quidu      	"603E85300206")))
-	    (object Association "$UNNAMED$27"
+	    (object Association "$UNNAMED$28"
 		quid       	"603EA48301F4"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$28"
+		    (object Role "$UNNAMED$29"
 			quid       	"603EA48303D7"
 			supplier   	"Use Case View::Режим осушения"
 			quidu      	"603EA46402D3"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$29"
+		    (object Role "$UNNAMED$30"
 			quid       	"603EA48303D9"
-			supplier   	"Use Case View::Кондиционер"
+			supplier   	"$UNNAMED$0"
 			quidu      	"603E8541003E")))
-	    (object Association "$UNNAMED$30"
+	    (object Association "$UNNAMED$31"
 		quid       	"603EA487025A"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$31"
+		    (object Role "$UNNAMED$32"
 			quid       	"603EA4880090"
 			supplier   	"Use Case View::Режим вентиляции"
 			quidu      	"603EA4740352"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$32"
+		    (object Role "$UNNAMED$33"
 			quid       	"603EA4880092"
-			supplier   	"Use Case View::Кондиционер"
+			supplier   	"$UNNAMED$0"
 			quidu      	"603E8541003E")))
-	    (object Association "$UNNAMED$33"
+	    (object Association "$UNNAMED$34"
 		quid       	"603EA58F0389"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$34"
+		    (object Role "$UNNAMED$35"
 			quid       	"603EA5920166"
 			supplier   	"Use Case View::Переключение между режимами кондиционера"
 			quidu      	"603E885C03D9"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$35"
+		    (object Role "$UNNAMED$36"
 			quid       	"603EA5920168"
 			supplier   	"Use Case View::Жилец дома"
 			quidu      	"603E85300206"))))
@@ -407,7 +407,7 @@
 			fill_color 	13434879
 			quidu      	"603EA4740352"
 			height     	118)
-		    (object ClassView "Class" "Use Case View::Кондиционер" @6
+		    (object ClassView "Class" "$UNNAMED$0" @6
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -424,22 +424,20 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@6
-			    location   	(2246, 938)
+			    location   	(2246, 838)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	325
 			    justify    	0
-			    label      	"Кондиционер")
+			    label      	"")
 			icon       	"Actor"
 			icon_style 	"Icon"
 			line_color 	3342489
 			quidu      	"603E8541003E"
-			width      	256
-			height     	362
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$12" @7
-			location   	(1989, 702)
+		    (object AssociationViewNew "$UNNAMED$13" @7
+			location   	(2020, 699)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -454,32 +452,32 @@
 			line_color 	3342489
 			quidu      	"603E887103C9"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$13" @8
+			    (object RoleView "$UNNAMED$14" @8
 				Parent_View 	@7
-				location   	(-239, 24)
+				location   	(-208, 21)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603E88740162"
 				client     	@7
 				supplier   	@2
 				vertices   	(list Points
-				    (1989, 702)
-				    (1856, 714))
+				    (2020, 699)
+				    (1856, 715))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$14" @9
+			    (object RoleView "$UNNAMED$15" @9
 				Parent_View 	@7
-				location   	(-239, 24)
+				location   	(-208, 21)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603E88740164"
 				client     	@7
 				supplier   	@6
 				vertices   	(list Points
-				    (1989, 702)
-				    (2125, 684))
+				    (2020, 699)
+				    (2187, 682))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$18" @10
-			location   	(2071, 601)
+		    (object AssociationViewNew "$UNNAMED$19" @10
+			location   	(2142, 632)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -494,32 +492,32 @@
 			line_color 	3342489
 			quidu      	"603E9C200309"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$19" @11
+			    (object RoleView "$UNNAMED$20" @11
 				Parent_View 	@10
-				location   	(-157, -77)
+				location   	(-86, -46)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603E9C2101C6"
 				client     	@10
 				supplier   	@3
 				vertices   	(list Points
-				    (2071, 601)
+				    (2142, 632)
 				    (1779, 481))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$20" @12
+			    (object RoleView "$UNNAMED$21" @12
 				Parent_View 	@10
-				location   	(-157, -77)
+				location   	(-86, -46)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603E9C2101C8"
 				client     	@10
 				supplier   	@6
 				vertices   	(list Points
-				    (2071, 601)
+				    (2142, 632)
 				    (2246, 678))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$27" @13
-			location   	(2077, 468)
+		    (object AssociationViewNew "$UNNAMED$28" @13
+			location   	(2107, 506)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -534,32 +532,32 @@
 			line_color 	3342489
 			quidu      	"603EA48301F4"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$28" @14
+			    (object RoleView "$UNNAMED$29" @14
 				Parent_View 	@13
-				location   	(-151, -210)
+				location   	(-121, -172)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603EA48303D7"
 				client     	@13
 				supplier   	@4
 				vertices   	(list Points
-				    (2077, 468)
-				    (2030, 410))
+				    (2107, 506)
+				    (2028, 410))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$29" @15
+			    (object RoleView "$UNNAMED$30" @15
 				Parent_View 	@13
-				location   	(-151, -210)
+				location   	(-121, -172)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603EA48303D9"
 				client     	@13
 				supplier   	@6
 				vertices   	(list Points
-				    (2077, 468)
-				    (2120, 522))
+				    (2107, 506)
+				    (2185, 602))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$30" @16
-			location   	(2260, 414)
+		    (object AssociationViewNew "$UNNAMED$31" @16
+			location   	(2257, 460)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -574,29 +572,29 @@
 			line_color 	3342489
 			quidu      	"603EA487025A"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$31" @17
+			    (object RoleView "$UNNAMED$32" @17
 				Parent_View 	@16
-				location   	(42, -267)
+				location   	(39, -221)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603EA4880090"
 				client     	@16
 				supplier   	@5
 				vertices   	(list Points
-				    (2260, 414)
-				    (2265, 325))
+				    (2257, 460)
+				    (2266, 325))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$32" @18
+			    (object RoleView "$UNNAMED$33" @18
 				Parent_View 	@16
-				location   	(42, -267)
+				location   	(39, -221)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"603EA4880092"
 				client     	@16
 				supplier   	@6
 				vertices   	(list Points
-				    (2260, 414)
-				    (2252, 502))
+				    (2257, 460)
+				    (2248, 596))
 				line_style 	0)))
 		    (object UseCaseView "Use Case View::Включение кондиционера" @19
 			location   	(1122, 312)
@@ -782,7 +780,7 @@
 			height     	419
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$0" @26
+		    (object AssociationViewNew "$UNNAMED$1" @26
 			location   	(869, 536)
 			font       	(object Font
 			    size       	10
@@ -798,7 +796,7 @@
 			line_color 	3342489
 			quidu      	"603E87D60255"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$1" @27
+			    (object RoleView "$UNNAMED$2" @27
 				Parent_View 	@26
 				location   	(147, -184)
 				stereotype 	TRUE
@@ -810,7 +808,7 @@
 				    (869, 536)
 				    (937, 475))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$2" @28
+			    (object RoleView "$UNNAMED$3" @28
 				Parent_View 	@26
 				location   	(147, -184)
 				stereotype 	TRUE
@@ -822,7 +820,7 @@
 				    (869, 536)
 				    (797, 589))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$3" @29
+		    (object AssociationViewNew "$UNNAMED$4" @29
 			location   	(930, 665)
 			font       	(object Font
 			    size       	10
@@ -838,7 +836,7 @@
 			line_color 	3342489
 			quidu      	"603E87DB0391"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$4" @30
+			    (object RoleView "$UNNAMED$5" @30
 				Parent_View 	@29
 				location   	(208, -55)
 				stereotype 	TRUE
@@ -850,7 +848,7 @@
 				    (930, 665)
 				    (1064, 636))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$5" @31
+			    (object RoleView "$UNNAMED$6" @31
 				Parent_View 	@29
 				location   	(208, -55)
 				stereotype 	TRUE
@@ -862,7 +860,7 @@
 				    (930, 665)
 				    (797, 690))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$21" @32
+		    (object AssociationViewNew "$UNNAMED$22" @32
 			location   	(900, 880)
 			font       	(object Font
 			    size       	10
@@ -878,7 +876,7 @@
 			line_color 	3342489
 			quidu      	"603EA40203CE"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$22" @33
+			    (object RoleView "$UNNAMED$23" @33
 				Parent_View 	@32
 				location   	(241, 150)
 				stereotype 	TRUE
@@ -890,7 +888,7 @@
 				    (900, 880)
 				    (1006, 948))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$23" @34
+			    (object RoleView "$UNNAMED$24" @34
 				Parent_View 	@32
 				location   	(241, 150)
 				stereotype 	TRUE
@@ -902,7 +900,7 @@
 				    (900, 880)
 				    (797, 817))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$24" @35
+		    (object AssociationViewNew "$UNNAMED$25" @35
 			location   	(702, 458)
 			font       	(object Font
 			    size       	10
@@ -918,7 +916,7 @@
 			line_color 	3342489
 			quidu      	"603EA416002B"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$25" @36
+			    (object RoleView "$UNNAMED$26" @36
 				Parent_View 	@35
 				location   	(43, -272)
 				stereotype 	TRUE
@@ -930,7 +928,7 @@
 				    (702, 458)
 				    (712, 394))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$26" @37
+			    (object RoleView "$UNNAMED$27" @37
 				Parent_View 	@35
 				location   	(43, -272)
 				stereotype 	TRUE
@@ -942,7 +940,7 @@
 				    (702, 458)
 				    (687, 529))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$33" @38
+		    (object AssociationViewNew "$UNNAMED$34" @38
 			location   	(593, 1103)
 			font       	(object Font
 			    size       	10
@@ -958,7 +956,7 @@
 			line_color 	3342489
 			quidu      	"603EA58F0389"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$34" @39
+			    (object RoleView "$UNNAMED$35" @39
 				Parent_View 	@38
 				location   	(-66, 373)
 				stereotype 	TRUE
@@ -970,7 +968,7 @@
 				    (593, 1103)
 				    (578, 1221))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$35" @40
+			    (object RoleView "$UNNAMED$36" @40
 				Parent_View 	@38
 				location   	(-66, 373)
 				stereotype 	TRUE
@@ -988,7 +986,320 @@
 	global     	TRUE
 	subsystem  	"Component View"
 	quidu      	"603E833401CF"
-	logical_models 	(list unit_reference_list)
+	logical_models 	(list unit_reference_list
+	    (object Class "NewClass"
+		quid       	"6050E60B02CB")
+	    (object Class "NewClass2"
+		quid       	"6050E6AC0399")
+	    (object Class "NewClass3"
+		quid       	"6050E6D60047")
+	    (object Class "Кондиционер"
+		quid       	"6050E73402B1"
+		documentation 	"фыв"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"6051298F013D"
+			supplier   	"Logical View::Стоимость"
+			quidu      	"6050E8FD00D3")
+		    (object Inheritance_Relationship
+			quid       	"605129930075"
+			supplier   	"Logical View::Функциональность"
+			quidu      	"6050E9E10284")
+		    (object Inheritance_Relationship
+			quid       	"60512996033E"
+			supplier   	"Logical View::Физические характеристики"
+			quidu      	"6050E9840181"))
+		used_nodes 	(list uses_relationship_list
+		    (object Uses_Relationship
+			quid       	"6050F06A0046"
+			supplier   	"Logical View::Стоимость"
+			quidu      	"6050E8FD00D3")
+		    (object Uses_Relationship
+			quid       	"6050F06E0159"
+			supplier   	"Logical View::Функциональность"
+			quidu      	"6050E9E10284")
+		    (object Uses_Relationship
+			quid       	"6050F0A00348"
+			supplier   	"Logical View::Физические характеристики"
+			quidu      	"6050E9840181"))
+		operations 	(list Operations
+		    (object Operation "Изменить оценку"
+			quid       	"6050EB0C03D5"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Модель"
+			quid       	"6050EA9401CE")
+		    (object ClassAttribute "Оценка"
+			quid       	"6050EAA902D2")
+		    (object ClassAttribute "Дата производства"
+			quid       	"6050ED350061")))
+	    (object Class "Пульт управления"
+		quid       	"6050E79E0158")
+	    (object Class "Фирма"
+		quid       	"6050E7E002EC"
+		used_nodes 	(list uses_relationship_list
+		    (object Uses_Relationship
+			quid       	"6050F07D0312"
+			supplier   	"Logical View::Отчёт"
+			quidu      	"6050EDF30316")
+		    (object Uses_Relationship
+			quid       	"6050F0CD0190"
+			supplier   	"Logical View::Завод"
+			quidu      	"6050E830024B"))
+		operations 	(list Operations
+		    (object Operation "Вернуть средства"
+			quid       	"6050EB8001A4"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Предоставить гарантию"
+			quid       	"6050EB8B01C2"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Название фирмы"
+			quid       	"6050EB280343")
+		    (object ClassAttribute "Адрес штаба"
+			quid       	"6050EB3800E2")
+		    (object ClassAttribute "Список предприятий"
+			quid       	"6050EB430187")))
+	    (object Class "Завод"
+		quid       	"6050E830024B"
+		used_nodes 	(list uses_relationship_list
+		    (object Uses_Relationship
+			quid       	"6050F09B0141"
+			supplier   	"Logical View::Отчёт"
+			quidu      	"6050EDF30316"))
+		operations 	(list Operations
+		    (object Operation "Принять звонок"
+			quid       	"6050ED8900D8"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Помочь с решением вопросов"
+			quid       	"6050ED910230"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Починить поломку"
+			quid       	"6050EDBA0100"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Название завода"
+			quid       	"6050ED1303D1")
+		    (object ClassAttribute "Адрес завода"
+			quid       	"6050ED1E00ED")
+		    (object ClassAttribute "Номер администрации"
+			quid       	"6050ED20027D")
+		    (object ClassAttribute "Список отчетов"
+			quid       	"6050ED260287")))
+	    (object Class "Дата производства"
+		quid       	"6050E87702D2")
+	    (object Class "Батарейки"
+		quid       	"6050E881019A")
+	    (object Class "Стоимость"
+		quid       	"6050E8FD00D3"
+		operations 	(list Operations
+		    (object Operation "Преобразовать валюту"
+			quid       	"6050EE9D0016"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Цена"
+			quid       	"6050EBB9024E")
+		    (object ClassAttribute "Валюта"
+			quid       	"6050EBBC019A")))
+	    (object Class "Физические характеристики"
+		quid       	"6050E9840181"
+		operations 	(list Operations
+		    (object Operation "Изменить высоту"
+			quid       	"6050EFB50054"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Изменить ширину"
+			quid       	"6050EFBB01A7"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Изменить массу"
+			quid       	"6050EFBE02AF"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Изменить толщину"
+			quid       	"6050EFC4009B"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Высота"
+			quid       	"6050EC3B01CB")
+		    (object ClassAttribute "Ширина"
+			quid       	"6050EC4203AB")
+		    (object ClassAttribute "Масса"
+			quid       	"6050EC4B027F")
+		    (object ClassAttribute "Толщина"
+			quid       	"6050EC6303D2")))
+	    (object Class "Функциональность"
+		quid       	"6050E9E10284"
+		operations 	(list Operations
+		    (object Operation "Редактировать функциональность"
+			quid       	"6050F0F90199"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Увлажнение"
+			quid       	"6050EC7D0253")
+		    (object ClassAttribute "Управление потоками воздуха"
+			quid       	"6050EC93008A")
+		    (object ClassAttribute "Система защиты от неправильной эксплуатации"
+			quid       	"6050ECA20062")
+		    (object ClassAttribute "Автоматический перезапуск"
+			quid       	"6050ECB0003E")
+		    (object ClassAttribute "Таймер"
+			quid       	"6050ECBB0274")
+		    (object ClassAttribute "Очистка воздуха"
+			quid       	"6050ECC20260")
+		    (object ClassAttribute "Ночной режим"
+			quid       	"6050ECE900D3")))
+	    (object Class "Отчёт"
+		quid       	"6050EDF30316"
+		operations 	(list Operations
+		    (object Operation "Создать отчет"
+			quid       	"6050EE70020F"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Отправить отчет"
+			quid       	"6050EE7400CC"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "opname"
+			quid       	"6050EE7902A7"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Номер отчета"
+			quid       	"6050EE050325")
+		    (object ClassAttribute "Количество продаж"
+			quid       	"6050EE0800BC")
+		    (object ClassAttribute "Сумма прибыли"
+			quid       	"6050EE10038E")
+		    (object ClassAttribute "Адрес получателя"
+			quid       	"6050EE1402DF")))
+	    (object Class "Контейнер классов"
+		quid       	"6050EE4302DF"
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Список фирм"
+			quid       	"6050EE4E0217")))
+	    (object Class "Гарантия"
+		quid       	"6050EF1A03A8"
+		operations 	(list Operations
+		    (object Operation "Добавить условие"
+			quid       	"6050EF67034D"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Удалить условие"
+			quid       	"6050EF6D012F"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Изменить название модели"
+			quid       	"6050EF70039B"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Изменить срок гарантии"
+			quid       	"6050EF790124"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Изменить дату выдачи"
+			quid       	"6050EF81010E"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Условия действительности"
+			quid       	"6050EF2102A1")
+		    (object ClassAttribute "Срок гарантии"
+			quid       	"6050EF27038D")
+		    (object ClassAttribute "Имя модели"
+			quid       	"6050EF2D0067")
+		    (object ClassAttribute "Дата выдачи гарантии"
+			quid       	"6050EF3B0161")))
+	    (object Class "Магазин"
+		quid       	"6050EFCE015C"
+		operations 	(list Operations
+		    (object Operation "Редактировать список заводов"
+			quid       	"6050F0050383"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Вернуть средства"
+			quid       	"6050F022030E"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Название магазина"
+			quid       	"6050EFD3039C")
+		    (object ClassAttribute "Адрес магазина"
+			quid       	"6050EFE70203")
+		    (object ClassAttribute "Список сотрудничающий заводов"
+			quid       	"6050EFF50384")))
+	    (object Association "$UNNAMED$37"
+		quid       	"6050F0A50302"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$38"
+			quid       	"6050F0A701E1"
+			supplier   	"Logical View::Гарантия"
+			quidu      	"6050EF1A03A8"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$39"
+			quid       	"6050F0A701E3"
+			supplier   	"Logical View::Магазин"
+			quidu      	"6050EFCE015C")))
+	    (object Association "$UNNAMED$40"
+		quid       	"6050F0A90203"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$41"
+			quid       	"6050F0A90384"
+			supplier   	"Logical View::Магазин"
+			quidu      	"6050EFCE015C"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$42"
+			quid       	"6050F0A90389"
+			supplier   	"Logical View::Кондиционер"
+			quidu      	"6050E73402B1")))
+	    (object Association "$UNNAMED$43"
+		quid       	"6050F0AB018C"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$44"
+			quid       	"6050F0AC0000"
+			supplier   	"Logical View::Магазин"
+			quidu      	"6050EFCE015C"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$45"
+			quid       	"6050F0AC0003"
+			supplier   	"Logical View::Завод"
+			quidu      	"6050E830024B")))
+	    (object Class_Category "Пульт"
+		quid       	"6050E772014D"
+		exportControl 	"Public"
+		logical_models 	(list unit_reference_list)
+		logical_presentations 	(list unit_reference_list)))
 	logical_presentations 	(list unit_reference_list
 	    (object ClassDiagram "Main"
 		quid       	"603E833401D3"
@@ -996,9 +1307,629 @@
 		zoom       	100
 		max_height 	28350
 		max_width  	21600
-		origin_x   	0
-		origin_y   	0
-		items      	(list diagram_item_list))))
+		origin_x   	1105
+		origin_y   	206
+		items      	(list diagram_item_list
+		    (object ClassView "Class" "Logical View::Фирма" @41
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1065, 487)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@41
+			    location   	(812, 306)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	506
+			    justify    	0
+			    label      	"Фирма")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6050E7E002EC"
+			compartment 	(object Compartment
+			    Parent_View 	@41
+			    location   	(812, 367)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	6
+			    max_width  	528
+			    justify    	1)
+			width      	524
+			height     	386
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Стоимость" @42
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1659, 1312)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@42
+			    location   	(1414, 1181)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	490
+			    justify    	0
+			    label      	"Стоимость")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6050E8FD00D3"
+			compartment 	(object Compartment
+			    Parent_View 	@42
+			    location   	(1414, 1242)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	4
+			    max_width  	512
+			    justify    	1)
+			width      	508
+			height     	286
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Физические характеристики" @43
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(647, 1556)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@43
+			    location   	(354, 1300)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	586
+			    justify    	0
+			    label      	"Физические характеристики")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6050E9840181"
+			compartment 	(object Compartment
+			    Parent_View 	@43
+			    location   	(354, 1361)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	9
+			    max_width  	437
+			    justify    	1)
+			width      	604
+			height     	536
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Функциональность" @44
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3434, 1135)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@44
+			    location   	(2887, 787)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	1094
+			    justify    	0
+			    label      	"Функциональность")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6050E9E10284"
+			compartment 	(object Compartment
+			    Parent_View 	@44
+			    location   	(2887, 848)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	9
+			    max_width  	965
+			    justify    	1)
+			width      	1112
+			height     	720
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Отчёт" @45
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(415, 962)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@45
+			    location   	(211, 731)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	408
+			    justify    	0
+			    label      	"Отчёт")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6050EDF30316"
+			compartment 	(object Compartment
+			    Parent_View 	@45
+			    location   	(211, 792)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	8
+			    max_width  	428
+			    justify    	1)
+			width      	426
+			height     	486
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Гарантия" @46
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2318, 1587)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@46
+			    location   	(1962, 1218)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	713
+			    justify    	0
+			    label      	"Гарантия")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6050EF1A03A8"
+			compartment 	(object Compartment
+			    Parent_View 	@46
+			    location   	(1962, 1279)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	10
+			    max_width  	600
+			    justify    	1)
+			width      	731
+			height     	763
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Кондиционер" @47
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1736, 678)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@47
+			    location   	(1538, 522)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	396
+			    justify    	0
+			    label      	"Кондиционер")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6050E73402B1"
+			compartment 	(object Compartment
+			    Parent_View 	@47
+			    location   	(1538, 583)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	5
+			    max_width  	415
+			    justify    	1)
+			width      	414
+			height     	336
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Магазин" @48
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3154, 228)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@48
+			    location   	(2818, 47)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	672
+			    justify    	0
+			    label      	"Магазин")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6050EFCE015C"
+			compartment 	(object Compartment
+			    Parent_View 	@48
+			    location   	(2818, 108)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	6
+			    max_width  	669
+			    justify    	1)
+			width      	690
+			height     	386
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$37" @49
+			location   	(2792, 813)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"6050F0A50302"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$38" @50
+				Parent_View 	@49
+				location   	(1301, -715)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"6050F0A701E1"
+				client     	@49
+				supplier   	@46
+				vertices   	(list Points
+				    (2792, 813)
+				    (2552, 1205))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$39" @51
+				Parent_View 	@49
+				location   	(1301, -715)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"6050F0A701E3"
+				client     	@49
+				supplier   	@48
+				vertices   	(list Points
+				    (2792, 813)
+				    (3033, 421))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$40" @52
+			location   	(2375, 473)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"6050F0A90203"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$41" @53
+				Parent_View 	@52
+				location   	(624, -352)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"6050F0A90384"
+				client     	@52
+				supplier   	@48
+				vertices   	(list Points
+				    (2375, 473)
+				    (2808, 336))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$42" @54
+				Parent_View 	@52
+				location   	(624, -352)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"6050F0A90389"
+				client     	@52
+				supplier   	@47
+				vertices   	(list Points
+				    (2375, 473)
+				    (1943, 611))
+				line_style 	0)))
+		    (object ClassView "Class" "Logical View::Завод" @55
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(363, 268)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@55
+			    location   	(48, 37)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	630
+			    justify    	0
+			    label      	"Завод")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"6050E830024B"
+			compartment 	(object Compartment
+			    Parent_View 	@55
+			    location   	(48, 98)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	8
+			    max_width  	656
+			    justify    	1)
+			width      	648
+			height     	486
+			annotation 	8
+			autoResize 	TRUE)
+		    (object UsesView "" @56
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"6050F09B0141"
+			client     	@55
+			supplier   	@45
+			vertices   	(list Points
+			    (380, 511)
+			    (395, 718))
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$43" @57
+			location   	(1747, 247)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"6050F0AB018C"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$44" @58
+				Parent_View 	@57
+				location   	(1384, -21)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"6050F0AC0000"
+				client     	@57
+				supplier   	@48
+				vertices   	(list Points
+				    (1747, 247)
+				    (2808, 232))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$45" @59
+				Parent_View 	@57
+				location   	(1384, -21)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"6050F0AC0003"
+				client     	@57
+				supplier   	@55
+				vertices   	(list Points
+				    (1747, 247)
+				    (687, 263))
+				line_style 	0)))
+		    (object UsesView "" @60
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"6050F0CD0190"
+			client     	@41
+			supplier   	@55
+			vertices   	(list Points
+			    (802, 404)
+			    (687, 368))
+			line_style 	0)
+		    (object InheritView "" @61
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"6051298F013D"
+			client     	@47
+			supplier   	@42
+			vertices   	(list Points
+			    (1713, 846)
+			    (1675, 1168))
+			line_style 	0)
+		    (object InheritView "" @62
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"605129930075"
+			client     	@47
+			supplier   	@44
+			vertices   	(list Points
+			    (1943, 733)
+			    (2877, 984))
+			line_style 	0)
+		    (object InheritView "" @63
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"60512996033E"
+			client     	@47
+			supplier   	@43
+			vertices   	(list Points
+			    (1528, 843)
+			    (949, 1310))
+			line_style 	0)))))
     root_subsystem 	(object SubSystem "Component View"
 	quid       	"603E833401CF"
 	physical_models 	(list unit_reference_list)
@@ -1097,7 +2028,7 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object ProcessorView "Сервер системы контроля климата" @41
+		    (object ProcessorView "Сервер системы контроля климата" @64
 			location   	(2007, 1175)
 			font       	(object Font
 			    size       	10
@@ -1110,7 +2041,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@41
+			    Parent_View 	@64
 			    location   	(1778, 1026)
 			    nlines     	2
 			    max_width  	387
@@ -1122,7 +2053,7 @@
 			width      	462
 			height     	368
 			annotation 	0)
-		    (object ProcessorView "Сервер системы экономии ресурсов" @42
+		    (object ProcessorView "Сервер системы экономии ресурсов" @65
 			location   	(2832, 572)
 			font       	(object Font
 			    size       	10
@@ -1135,7 +2066,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@42
+			    Parent_View 	@65
 			    location   	(2562, 388)
 			    nlines     	2
 			    max_width  	469
@@ -1147,7 +2078,7 @@
 			width      	544
 			height     	437
 			annotation 	0)
-		    (object ProcessorView "Сервер онлайн контроллера кондиционера" @43
+		    (object ProcessorView "Сервер онлайн контроллера кондиционера" @66
 			location   	(1356, 1034)
 			font       	(object Font
 			    size       	10
@@ -1160,7 +2091,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@43
+			    Parent_View 	@66
 			    location   	(1024, 800)
 			    nlines     	2
 			    max_width  	593
@@ -1172,7 +2103,7 @@
 			width      	668
 			height     	537
 			annotation 	0)
-		    (object ProcessorView "Сервер системы направления воздуха" @44
+		    (object ProcessorView "Сервер системы направления воздуха" @67
 			location   	(730, 372)
 			font       	(object Font
 			    size       	10
@@ -1185,7 +2116,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@44
+			    Parent_View 	@67
 			    location   	(447, 182)
 			    nlines     	2
 			    max_width  	494
@@ -1197,7 +2128,7 @@
 			width      	569
 			height     	450
 			annotation 	0)
-		    (object ProcessorView "Сервер системы управления временем" @45
+		    (object ProcessorView "Сервер системы управления временем" @68
 			location   	(534, 947)
 			font       	(object Font
 			    size       	10
@@ -1210,7 +2141,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@45
+			    Parent_View 	@68
 			    location   	(255, 757)
 			    nlines     	2
 			    max_width  	487
@@ -1222,7 +2153,7 @@
 			width      	562
 			height     	450
 			annotation 	0)
-		    (object ProcessorView "Пульт" @46
+		    (object ProcessorView "Пульт" @69
 			location   	(1579, 431)
 			font       	(object Font
 			    size       	10
@@ -1235,7 +2166,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@46
+			    Parent_View 	@69
 			    location   	(1468, 376)
 			    nlines     	2
 			    max_width  	150
@@ -1247,7 +2178,7 @@
 			width      	225
 			height     	180
 			annotation 	0)
-		    (object ProcessorView "Кондиционер" @47
+		    (object ProcessorView "Кондиционер" @70
 			location   	(2030, 434)
 			font       	(object Font
 			    size       	10
@@ -1260,7 +2191,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@47
+			    Parent_View 	@70
 			    location   	(1844, 319)
 			    nlines     	2
 			    max_width  	300
@@ -1272,62 +2203,62 @@
 			width      	375
 			height     	300
 			annotation 	0)
-		    (object ConnectionView "" @48
+		    (object ConnectionView "" @71
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"6047CCC3012B"
-			client     	@42
-			supplier   	@47
+			client     	@65
+			supplier   	@70
 			vertices   	(list Points
 			    (2560, 572)
 			    (2186, 434))
 			line_style 	0)
-		    (object ConnectionView "" @49
+		    (object ConnectionView "" @72
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"6047CCC90382"
-			client     	@41
-			supplier   	@47
+			client     	@64
+			supplier   	@70
 			vertices   	(list Points
 			    (2007, 1006)
 			    (2030, 584))
 			line_style 	0)
-		    (object ConnectionView "" @50
+		    (object ConnectionView "" @73
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"6047CCDD03D6"
-			client     	@43
-			supplier   	@46
+			client     	@66
+			supplier   	@69
 			vertices   	(list Points
 			    (1356, 781)
 			    (1579, 521))
 			line_style 	0)
-		    (object ConnectionView "" @51
+		    (object ConnectionView "" @74
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"6047CCE10278"
-			client     	@44
-			supplier   	@46
+			client     	@67
+			supplier   	@69
 			vertices   	(list Points
 			    (983, 372)
 			    (1467, 431))
 			line_style 	0)
-		    (object ConnectionView "" @52
+		    (object ConnectionView "" @75
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"6047CCE602E1"
-			client     	@45
-			supplier   	@46
+			client     	@68
+			supplier   	@69
 			vertices   	(list Points
 			    (784, 947)
 			    (1467, 431))
 			line_style 	0)
-		    (object ConnectionView "" @53
+		    (object ConnectionView "" @76
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"6047CCE900A9"
-			client     	@46
-			supplier   	@47
+			client     	@69
+			supplier   	@70
 			vertices   	(list Points
 			    (1660, 431)
 			    (1843, 434))

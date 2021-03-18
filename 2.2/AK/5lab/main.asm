@@ -13,14 +13,21 @@ section '.data' data readable writable
 section '.code' code readable writable
     start:
         
+        .col:
         cinvoke printf, <'%s', 0xA>, 'Input count colums of matrix: '
                 call int_input
+        cmp[buff], 0
+        jle .col
+        
         mov edi, [buff]; eax - размер матрицы
         mov ebp, edi
 
         mov ebx, 1
+        .row:
         invoke printf, <'%s', 0xA>, 'Input count rows of matrix: '
             call int_input
+        cmp [buff], 0
+        jle .row
         cinvoke printf, <'%s', 0xA>, 'Input matrix: '
         mov esi, [buff]
         mov ecx, esi
@@ -40,29 +47,39 @@ section '.code' code readable writable
         loop .for1; ebx < eax ebx < eax
 
         cinvoke printf, <'%s', 0xA>, 'Your matrix:'
-        mov ebx, 1
-        mov eax, [arr + 4*ebx]
-        
+        mov ebx, 1 
         mov ecx, esi
+        mov esi, [arr + 4*ebx]
+        mov eax, 100
          .for3:
+            push eax
             push ecx
             cinvoke printf, <'%s', 0xA>, ' '
             pop ecx
+            pop eax
             mov edi, ebp
+            mov esi, [arr + 4*ebx]
             .for4:
+                push eax
                 push ecx
                 cinvoke printf, <'%d '>, [arr + 4*ebx]
 
-                cmp eax, [arr + 4*ebx]
-                jl .cont
-                mov eax, [arr + 4*ebx]
+                cmp esi, [arr + 4*ebx]
+                jg .cont
+                mov esi, [arr + 4*ebx]
                 jmp .cont
                 .cont:
                 sub edi,1
                 inc ebx
                 pop ecx
+                pop eax
                 cmp edi, 0
             jnle .for4
+            cmp eax, esi
+            jle .cont2
+            mov eax, esi
+            jmp .cont2
+            .cont2:
         loop .for3; ebx < eax ebx < eax
         push eax
         cinvoke printf, <'%s', 0xA>, ' '
