@@ -50,7 +50,7 @@ section '.code' code readable writable
         mov ebx, 1 
         mov ecx, esi
         mov esi, [arr + 4*ebx]
-        mov eax, 100
+        mov eax, 2147483647
          .for3:
             push eax
             push ecx
