@@ -121,24 +121,27 @@ namespace Kursovaya
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.White;
             this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button2.Location = new System.Drawing.Point(754, 565);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(545, 47);
             this.button2.TabIndex = 3;
             this.button2.Text = "Добавить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.White;
             this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button1.Location = new System.Drawing.Point(188, 565);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(560, 47);
             this.button1.TabIndex = 2;
             this.button1.Text = "Редактировать";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // listBox1
             // 
@@ -195,22 +198,24 @@ namespace Kursovaya
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(763, 565);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(538, 47);
             this.button4.TabIndex = 3;
             this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(186, 565);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(570, 47);
             this.button3.TabIndex = 2;
             this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             // 
             // dataGridView2
             // 
@@ -257,12 +262,13 @@ namespace Kursovaya
             // 
             // button5
             // 
+            this.button5.BackColor = System.Drawing.Color.White;
             this.button5.Location = new System.Drawing.Point(179, 562);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(1118, 44);
             this.button5.TabIndex = 4;
             this.button5.Text = "Выполнить";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label5

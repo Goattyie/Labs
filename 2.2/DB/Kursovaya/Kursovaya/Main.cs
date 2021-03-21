@@ -63,6 +63,7 @@ namespace Kursovaya
             listBox4.Location = dataGridView1.Location;
 
             button5.Location = button1.Location;
+            button5.Font = button1.Font;
 
         }
         private void Main_Load(object sender, EventArgs e)
@@ -117,6 +118,12 @@ namespace Kursovaya
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EditCountry EditContry = new EditCountry();
+            EditContry.Show();
         }
     }
 }
