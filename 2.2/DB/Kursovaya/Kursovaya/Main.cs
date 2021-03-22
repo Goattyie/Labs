@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Npgsql;
 
 namespace Kursovaya
 {
@@ -79,7 +80,7 @@ namespace Kursovaya
         private void AddTables() 
         {
             listBox1.Items.Add("Магазин");
-            listBox1.Items.Add("Район");
+            listBox2.Items.Add("Район");
         }
         private void tagPage1_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -96,63 +97,63 @@ namespace Kursovaya
                 //Открыть форму Request
             }
         }
-
         private void tagPage1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             EditShop Shop = new EditShop();
             Shop.Show();
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
-            EditSup AddCountry = new EditSup();
+            EditSup AddCountry = new EditSup(listBox2.SelectedItem.ToString());
             AddCountry.Show();
         }
-
         private void button5_Click(object sender, EventArgs e)
         {
             RequersResult RR = new RequersResult();
             RR.Show();
         }
-
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             EditCountry EditContry = new EditCountry();
             EditContry.Show();
         }
 
+        string list1Item, list2Item;
+        
         private void listBox1_MouseClick(object sender, MouseEventArgs e)
         {
             if (listBox1.SelectedItem == null) return;
-            else if (listBox1.SelectedItem.ToString() == "Магазин")
+            else if (list1Item !=listBox1.SelectedItem.ToString() && listBox1.SelectedItem.ToString() == "Магазин")
             {
-                ShopCreateColumns();
+                list1Item = listBox1.SelectedItem.ToString();
+                DataTable dt = new DataTable();
+
+                using(NpgsqlConnection connect = new SQL().GetConnection())
+                {
+                    connect.Open();
+
+                    //NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM shop;", connect);
+                    //NpgsqlDataReader reader = command.ExecuteReader();
+                    NpgsqlDataAdapter sda = new NpgsqlDataAdapter("SELECT shop.shop_name AS Название," +
+                        "shop.date_open AS \"Дата открытия\"," +
+                        "area.name_area AS Район," +
+                        "shop.address AS Адресс," +
+                        "own.name_own AS \"Тип собственности\"" +
+                        "FROM shop," +
+                        "area, own WHERE shop.id_area = area.id_area AND shop.id_own = own.id_own", connect);
+                    sda.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                    connect.Close();
+                }
             }
-            else if (listBox1.SelectedItem.ToString() == "Район")
-            {
-                AreaCreateColumns();
-            }
-        }
-        private void ShopCreateColumns()
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("id");
-            dt.Columns.Add("Название");
-            dt.Columns.Add("Дата открытия");
-            dt.Columns.Add("Район");
-            dt.Columns.Add("Адресс");
-            dt.Columns.Add("Тип собственности");
-            dataGridView1.DataSource = dt;
         }
         private void AreaCreateColumns()
         {
@@ -160,6 +161,14 @@ namespace Kursovaya
             dt.Columns.Add("id");
             dt.Columns.Add("Адресс");
             dataGridView1.DataSource = dt;
+        }
+        private void tabPage2_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (listBox2.SelectedItem == null) return;
+            else if (listBox2.SelectedItem.ToString() == "Район")
+            {
+                AreaCreateColumns();
+            }
         }
     }
 }
