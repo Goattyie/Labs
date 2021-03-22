@@ -16,7 +16,6 @@ namespace Kursovaya
         {
             InitializeComponent();
         }
-
         private void SetTagPage2()
         {
             listBox2.Size = listBox1.Size;
@@ -74,8 +73,14 @@ namespace Kursovaya
 
             SetTagPage2();
             SetTagPage3();
-        }
 
+            AddTables();
+        }
+        private void AddTables() 
+        {
+            listBox1.Items.Add("Магазин");
+            listBox1.Items.Add("Район");
+        }
         private void tagPage1_Selecting(object sender, TabControlCancelEventArgs e)
         {
             if (e.TabPage.Text == "Основные таблицы")
@@ -99,13 +104,13 @@ namespace Kursovaya
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AddNoteCountry AddCountry = new AddNoteCountry();
-            AddCountry.Show();
+            EditShop Shop = new EditShop();
+            Shop.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            AddNoteCountry AddCountry = new AddNoteCountry();
+            EditSup AddCountry = new EditSup();
             AddCountry.Show();
         }
 
@@ -124,6 +129,37 @@ namespace Kursovaya
         {
             EditCountry EditContry = new EditCountry();
             EditContry.Show();
+        }
+
+        private void listBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (listBox1.SelectedItem == null) return;
+            else if (listBox1.SelectedItem.ToString() == "Магазин")
+            {
+                ShopCreateColumns();
+            }
+            else if (listBox1.SelectedItem.ToString() == "Район")
+            {
+                AreaCreateColumns();
+            }
+        }
+        private void ShopCreateColumns()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id");
+            dt.Columns.Add("Название");
+            dt.Columns.Add("Дата открытия");
+            dt.Columns.Add("Район");
+            dt.Columns.Add("Адресс");
+            dt.Columns.Add("Тип собственности");
+            dataGridView1.DataSource = dt;
+        }
+        private void AreaCreateColumns()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id");
+            dt.Columns.Add("Адресс");
+            dataGridView1.DataSource = dt;
         }
     }
 }

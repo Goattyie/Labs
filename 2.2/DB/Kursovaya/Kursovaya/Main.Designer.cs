@@ -139,7 +139,7 @@ namespace Kursovaya
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(560, 47);
             this.button1.TabIndex = 2;
-            this.button1.Text = "Редактировать";
+            this.button1.Text = "Удалить";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -151,9 +151,14 @@ namespace Kursovaya
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(168, 571);
             this.listBox1.TabIndex = 1;
+            this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowDrop = true;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(188, 41);

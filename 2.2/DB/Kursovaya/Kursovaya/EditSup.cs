@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Kursovaya
 {
-    public partial class AddNoteCountry : Form
+    public partial class EditSup : Form
     {
-        public AddNoteCountry()
+        public EditSup()
         {
             InitializeComponent();
         }
