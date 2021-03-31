@@ -26,17 +26,15 @@ namespace Kursovaya
             if (edit == "Создание")
             button1.Text = "Создать";
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != null)
+            if (textBox1.Text != null && textBox1.Text != "")
             {
-                if(edit == "Создание")
-                {
+                if (edit == "Создание")
                     AddNode();
-                }
-                this.Hide();
+                
             }
+            else MessageBox.Show("Поле не должно быть пустым.", "Error 007", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         string table;
         private void AddNode()
@@ -45,13 +43,28 @@ namespace Kursovaya
                 table = "area";
             else if (type == "Тип собственности")
                 table = "own";
+            else if (type == "Язык")
+                table = "lang";
+            else if (type == "Город")
+                table = "city";
+            else if (type == "Жанр")
+                table = "style";
+            else if (type == "Тип переплета")
+                table = "binding";
 
-            using (NpgsqlConnection connect = new SQL().GetConnection())
+            using (NpgsqlConnection connect = SQL.GetConnection())
             {
-                connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("INSERT INTO " + table + " (name_" + table + ")  VALUES ('"+textBox1.Text+"');", connect);
-                command.ExecuteNonQuery();
-                connect.Close();
+                try
+                {
+                    connect.Open();
+                    NpgsqlCommand command = new NpgsqlCommand("INSERT INTO " + table + " (name_" + table + ")  VALUES ('" + textBox1.Text + "');", connect);
+                    command.ExecuteNonQuery();
+                    connect.Close();
+                    SQL.Success();
+                    
+                }
+                catch(Npgsql.PostgresException ex){    SQL.SQLErrors(ex.ConstraintName);   }
+                textBox1.Clear();
             }
         }
         private void EditSup_FormClosing(object sender, FormClosingEventArgs e)

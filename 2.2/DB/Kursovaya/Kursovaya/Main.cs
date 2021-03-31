@@ -84,13 +84,12 @@ namespace Kursovaya
             listBox1.Items.Add("Книги");
             listBox1.Items.Add("Издательства");
 
-            listBox2.Items.Add("Районы");
-            listBox2.Items.Add("Города");
-            listBox2.Items.Add("Языки");
-            listBox2.Items.Add("Типы собственности");
-            listBox2.Items.Add("Жанры");
-            listBox2.Items.Add("Книги-авторы");
-            listBox2.Items.Add("Типы переплета");
+            listBox2.Items.Add("Район");
+            listBox2.Items.Add("Город");
+            listBox2.Items.Add("Язык");
+            listBox2.Items.Add("Тип собственности");
+            listBox2.Items.Add("Жанр");
+            listBox2.Items.Add("Тип переплета");
         }
         private void tagPage1_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -118,8 +117,11 @@ namespace Kursovaya
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            EditSup AddCountry = new EditSup(listBox2.SelectedItem.ToString());
-            AddCountry.Show();
+            if (listBox2.SelectedItem != null)
+            {
+                EditSup AddSup = new EditSup(listBox2.SelectedItem.ToString());
+                AddSup.Show();
+            }
         }
         private void button5_Click(object sender, EventArgs e)
         {
@@ -136,34 +138,22 @@ namespace Kursovaya
             EditContry.Show();
         }
 
-        string list1Item, list2Item;
         
         private void listBox1_MouseClick(object sender, MouseEventArgs e)
         {
             if (listBox1.SelectedItem == null) return;
-            else if (list1Item !=listBox1.SelectedItem.ToString() && listBox1.SelectedItem.ToString() == "Магазины")
+            else
             {
-                list1Item = listBox1.SelectedItem.ToString();
                 DataTable dt = new DataTable();
-
-                using(NpgsqlConnection connect = new SQL().GetConnection())
+                using (NpgsqlConnection connect = SQL.GetConnection())
                 {
                     connect.Open();
-
-                    //NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM shop;", connect);
-                    //NpgsqlDataReader reader = command.ExecuteReader();
-                    NpgsqlDataAdapter sda = new NpgsqlDataAdapter("SELECT shop.shop_id as ID," +
-                        "shop.shop_name AS Название," +
-                        "shop.date_open AS \"Дата открытия\"," +
-                        "area.name_area AS Район," +
-                        "shop.address AS Адресс," +
-                        "own.name_own AS \"Тип собственности\"" +
-                        "FROM shop," +
-                        "area, own WHERE shop.id_area = area.id_area AND shop.id_own = own.id_own", connect);
-                    sda.Fill(dt);
+                    if (listBox1.SelectedItem.ToString() == "Магазины")
+                    SQL.ViewShop().Fill(dt);
                     dataGridView1.DataSource = dt;
                     connect.Close();
                 }
+                
             }
         }
         private void AreaCreateColumns()
@@ -176,6 +166,34 @@ namespace Kursovaya
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void listBox2_Click(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedItem == null) return;
+            else
+            {
+                DataTable dt = new DataTable();
+                using (NpgsqlConnection connect = SQL.GetConnection())
+                {
+                    connect.Open();
+                    if (listBox2.SelectedItem.ToString() == "Район")
+                        SQL.ViewSup("area", "Район").Fill(dt);
+                    else if (listBox2.SelectedItem.ToString() == "Тип собственности")
+                        SQL.ViewSup("own", "Собственность").Fill(dt);
+                    else if (listBox2.SelectedItem.ToString() == "Город")
+                        SQL.ViewSup("city", "Город").Fill(dt);
+                    else if (listBox2.SelectedItem.ToString() == "Язык")
+                        SQL.ViewSup("lang", "Язык").Fill(dt);
+                    else if (listBox2.SelectedItem.ToString() == "Жанр")
+                        SQL.ViewSup("style", "Жанр").Fill(dt);
+                    else if (listBox2.SelectedItem.ToString() == "Тип переплета")
+                        SQL.ViewSup("binding", "Переплет").Fill(dt);
+                    dataGridView2.DataSource = dt;
+                    connect.Close();
+                }
+
+            }
         }
 
         private void tabPage2_MouseClick(object sender, MouseEventArgs e)

@@ -220,14 +220,18 @@ namespace Kursovaya
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(570, 47);
             this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
+            this.button3.Text = "Удалить";
             this.button3.UseVisualStyleBackColor = false;
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView2.Location = new System.Drawing.Point(187, 41);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 5);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 25;
             this.dataGridView2.Size = new System.Drawing.Size(1114, 518);
@@ -241,6 +245,7 @@ namespace Kursovaya
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(167, 571);
             this.listBox2.TabIndex = 0;
+            this.listBox2.Click += new System.EventHandler(this.listBox2_Click);
             // 
             // tabPage3
             // 

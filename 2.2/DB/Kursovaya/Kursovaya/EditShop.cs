@@ -17,12 +17,9 @@ namespace Kursovaya
         {
             InitializeComponent();
         }
-
-        //NpgsqlConnection connect = sql.GetConnection();
-        static SQL sql = new SQL();
         private void button1_Click(object sender, EventArgs e)
         {
-            using (NpgsqlConnection connect = sql.GetConnection())
+            using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 contextMenuStrip1.Items.Clear();
                 contextMenuStrip1.Items.Add("Добавить");
@@ -38,10 +35,9 @@ namespace Kursovaya
                 connect.Close();
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            using (NpgsqlConnection connect = sql.GetConnection())
+            using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 contextMenuStrip2.Items.Clear();
                 contextMenuStrip2.Items.Add("Добавить");
@@ -93,7 +89,7 @@ namespace Kursovaya
                 return;
             }
             
-            using (NpgsqlConnection connect = new SQL().GetConnection())
+            using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 connect.Open();
                 try
@@ -103,7 +99,7 @@ namespace Kursovaya
                         "(SELECT area.id_area FROM area WHERE area.name_area = '" + area + "'), " +
                         "'" + textBox2.Text + "', (SELECT own.id_own FROM own WHERE own.name_own = '" + own + "'))", connect);
                     command.ExecuteNonQuery();
-                    MessageBox.Show("Запись добавлена", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SQL.Success();
                     this.Clear();
                 }
                 catch(Npgsql.PostgresException ex)
@@ -113,9 +109,7 @@ namespace Kursovaya
                 connect.Close();
             }
         }
-
         string area, own;
-
         private void contextMenuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem.Text == "Добавить")
@@ -132,7 +126,6 @@ namespace Kursovaya
                 button2.Text = own;
             }
         }
-
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem.Text == "Добавить")

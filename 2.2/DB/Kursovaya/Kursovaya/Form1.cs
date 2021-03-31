@@ -24,7 +24,7 @@ namespace Kursovaya
         private void button1_Click(object sender, EventArgs e)
         {
             sql = new SQL(textBox1.Text, textBox2.Text);
-            using (NpgsqlConnection connect = sql.GetConnection())
+            using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 try
                 {
@@ -44,6 +44,11 @@ namespace Kursovaya
                     MessageBox.Show("Неверный логин или пароль.", "Ошибка 000", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
