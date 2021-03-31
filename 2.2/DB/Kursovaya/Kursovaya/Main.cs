@@ -16,6 +16,17 @@ namespace Kursovaya
         public Main()
         {
             InitializeComponent();
+            tabPage1.Text = "Основные таблицы";
+            tabPage2.Text = "Справочники";
+            tabPage3.Text = "Запросы";
+
+            SetTagPage2();
+            SetTagPage3();
+
+            AddTables();
+
+            dataGridView1.ReadOnly = true;
+            dataGridView2.ReadOnly = true;
         }
         private void SetTagPage2()
         {
@@ -66,21 +77,20 @@ namespace Kursovaya
             button5.Font = button1.Font;
 
         }
-        private void Main_Load(object sender, EventArgs e)
-        {
-            tabPage1.Text = "Основные таблицы";
-            tabPage2.Text = "Справочники";
-            tabPage3.Text = "Запросы";
-
-            SetTagPage2();
-            SetTagPage3();
-
-            AddTables();
-        }
         private void AddTables() 
         {
-            listBox1.Items.Add("Магазин");
-            listBox2.Items.Add("Район");
+            listBox1.Items.Add("Магазины");
+            listBox1.Items.Add("Поставки");
+            listBox1.Items.Add("Книги");
+            listBox1.Items.Add("Издательства");
+
+            listBox2.Items.Add("Районы");
+            listBox2.Items.Add("Города");
+            listBox2.Items.Add("Языки");
+            listBox2.Items.Add("Типы собственности");
+            listBox2.Items.Add("Жанры");
+            listBox2.Items.Add("Книги-авторы");
+            listBox2.Items.Add("Типы переплета");
         }
         private void tagPage1_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -131,7 +141,7 @@ namespace Kursovaya
         private void listBox1_MouseClick(object sender, MouseEventArgs e)
         {
             if (listBox1.SelectedItem == null) return;
-            else if (list1Item !=listBox1.SelectedItem.ToString() && listBox1.SelectedItem.ToString() == "Магазин")
+            else if (list1Item !=listBox1.SelectedItem.ToString() && listBox1.SelectedItem.ToString() == "Магазины")
             {
                 list1Item = listBox1.SelectedItem.ToString();
                 DataTable dt = new DataTable();
@@ -142,7 +152,8 @@ namespace Kursovaya
 
                     //NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM shop;", connect);
                     //NpgsqlDataReader reader = command.ExecuteReader();
-                    NpgsqlDataAdapter sda = new NpgsqlDataAdapter("SELECT shop.shop_name AS Название," +
+                    NpgsqlDataAdapter sda = new NpgsqlDataAdapter("SELECT shop.shop_id as ID," +
+                        "shop.shop_name AS Название," +
                         "shop.date_open AS \"Дата открытия\"," +
                         "area.name_area AS Район," +
                         "shop.address AS Адресс," +
@@ -162,6 +173,11 @@ namespace Kursovaya
             dt.Columns.Add("Адресс");
             dataGridView1.DataSource = dt;
         }
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void tabPage2_MouseClick(object sender, MouseEventArgs e)
         {
             if (listBox2.SelectedItem == null) return;

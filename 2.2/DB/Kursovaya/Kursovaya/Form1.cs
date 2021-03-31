@@ -16,29 +16,34 @@ namespace Kursovaya
         public Form1()
         {
             InitializeComponent();
+            textBox1.Text = "postgres";
+            textBox2.Text = "123321";
         }
         SQL sql;
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            sql = new SQL();
-            using(NpgsqlConnection connect = sql.GetConnection())
-            {
-                connect.Open();
-                if (connect.State != ConnectionState.Open)
-                {
-                    MessageBox.Show("Невозможно подключиться к базе данных", "Ошибка 001", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Application.Exit();
-                }
-                connect.Close();
-            }
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Main main = new Main();
-            main.Show();
-            this.Hide();
-
+            sql = new SQL(textBox1.Text, textBox2.Text);
+            using (NpgsqlConnection connect = sql.GetConnection())
+            {
+                try
+                {
+                    connect.Open();
+                    if (connect.State != ConnectionState.Open)
+                    {
+                        MessageBox.Show("Невозможно подключиться к базе данных", "Ошибка 001", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Application.Exit();
+                    }
+                    connect.Close();
+                    Main main = new Main();
+                    main.Show();
+                    this.Hide();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Неверный логин или пароль.", "Ошибка 000", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

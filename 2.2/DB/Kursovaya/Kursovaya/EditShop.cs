@@ -58,12 +58,23 @@ namespace Kursovaya
             }
             
         }
-
+        private void Clear()
+        {
+            this.textBox1.Clear();
+            this.textBox2.Clear();
+            this.contextMenuStrip1.Items.Clear();
+            this.contextMenuStrip2.Items.Clear();
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             if (area == null) //Не заполнены поля
             {
                 MessageBox.Show("Район не был указан", "Ошибка 002", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (dateTimePicker1.Value > DateTime.Now)
+            {
+                MessageBox.Show("Неверная дата", "Ошибка 006", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (own == null)
@@ -81,10 +92,25 @@ namespace Kursovaya
                 MessageBox.Show("Адресс не был указан", "Ошибка 005", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            using (NpgsqlConnection connect = sql.GetConnection())
+            
+            using (NpgsqlConnection connect = new SQL().GetConnection())
             {
-                //connect.Open();
-                //NpgsqlCommand command = new NpgsqlCommand("INSERT INTO shop (sh", connect);
+                connect.Open();
+                try
+                {
+                    NpgsqlCommand command = new NpgsqlCommand("INSERT INTO shop (shop_name, date_open, id_area, address, id_own) VALUES " +
+                        "('" + textBox1.Text + "', '" + dateTimePicker1.Value.Date.ToShortDateString() + "', " +
+                        "(SELECT area.id_area FROM area WHERE area.name_area = '" + area + "'), " +
+                        "'" + textBox2.Text + "', (SELECT own.id_own FROM own WHERE own.name_own = '" + own + "'))", connect);
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Запись добавлена", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Clear();
+                }
+                catch(Npgsql.PostgresException ex)
+                {
+                    SQL.SQLErrors(ex.ConstraintName);
+                }
+                connect.Close();
             }
         }
 
@@ -100,12 +126,11 @@ namespace Kursovaya
                 if (own == "")
                     own = null;
             }
-            else area = e.ClickedItem.Text;
-        }
-
-        private void EditShop_Load(object sender, EventArgs e)
-        {
-
+            else
+            {
+                own = e.ClickedItem.Text;
+                button2.Text = own;
+            }
         }
 
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -118,7 +143,11 @@ namespace Kursovaya
                 if (area == "")
                     area = null;
             }
-            else area = e.ClickedItem.Text;
+            else
+            {
+                area = e.ClickedItem.Text;
+                button1.Text = area;
+            }
         }
     }
 }
