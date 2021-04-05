@@ -32,6 +32,7 @@ namespace Kursovaya
             this.label1 = new System.Windows.Forms.Label();
             this.tagPage1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -39,6 +40,7 @@ namespace Kursovaya
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
@@ -85,6 +87,7 @@ namespace Kursovaya
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.button2);
@@ -99,6 +102,15 @@ namespace Kursovaya
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(950, 7);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(0, 25);
+            this.label8.TabIndex = 5;
             // 
             // label6
             // 
@@ -164,11 +176,13 @@ namespace Kursovaya
             this.dataGridView1.Location = new System.Drawing.Point(188, 41);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1111, 517);
             this.dataGridView1.TabIndex = 0;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.button4);
@@ -183,6 +197,16 @@ namespace Kursovaya
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabPage2_MouseClick);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(1061, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(63, 25);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "label9";
             // 
             // label7
             // 
@@ -222,6 +246,7 @@ namespace Kursovaya
             this.button3.TabIndex = 2;
             this.button3.Text = "Удалить";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // dataGridView2
             // 
@@ -234,6 +259,7 @@ namespace Kursovaya
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 5);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 25;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(1114, 518);
             this.dataGridView2.TabIndex = 1;
             // 
@@ -318,7 +344,7 @@ namespace Kursovaya
             this.Controls.Add(this.label1);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Main";
+            this.Text = "Главное меню";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.tagPage1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -358,5 +384,7 @@ namespace Kursovaya
         private System.Windows.Forms.ListBox listBox4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }

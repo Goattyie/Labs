@@ -18,7 +18,6 @@ D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\ref\Kursovaya.dll
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.pdb
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.genruntimeconfig.cache
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.RequersResult.resources
-D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditCountry.resources
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\bin\Debug\net5.0-windows\Npgsql.dll
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.csproj.CopyComplete
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditSup.resources

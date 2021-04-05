@@ -55,6 +55,9 @@ namespace Kursovaya
             label7.Location = label6.Location;
             label7.Size = label6.Size;
             label7.Font = label6.Font;
+
+            label9.Location = label8.Location;
+            label9.Text = " ";
         }
         private void SetTagPage3()
         {
@@ -134,11 +137,35 @@ namespace Kursovaya
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            EditCountry EditContry = new EditCountry();
-            EditContry.Show();
+            if (listBox2.SelectedItem == null) return;
+            else
+            {
+                string table = null;
+                DataTable dt = new DataTable();
+                if (listBox2.SelectedItem.ToString() == "Магазины")
+                    table = "shop";
+                else if (listBox2.SelectedItem.ToString() == "Поставки")
+                    table = "deliveries";
+                else if (listBox2.SelectedItem.ToString() == "Книги")
+                    table = "book";
+                else if (listBox2.SelectedItem.ToString() == "Издательства")
+                    table = "publisher";
+
+                /*
+                using (NpgsqlConnection connect = SQL.GetConnection())
+                {
+                    if (SQL.DeleteWarning() == DialogResult.OK)
+                    {
+                        connect.Open();
+                        for (int i = 0; i < dataGridView2.SelectedRows.Count; i++)
+                            SQL.DeleteSup(table, dataGridView2[1, dataGridView2.SelectedRows[i].Index].Value.ToString(), connect);
+                        connect.Close();
+                    }
+                }
+                */
+            }
         }
 
-        
         private void listBox1_MouseClick(object sender, MouseEventArgs e)
         {
             if (listBox1.SelectedItem == null) return;
@@ -151,6 +178,7 @@ namespace Kursovaya
                     if (listBox1.SelectedItem.ToString() == "Магазины")
                     SQL.ViewShop().Fill(dt);
                     dataGridView1.DataSource = dt;
+                    label8.Text = "Количество записей: " + dataGridView1.Rows.Count;
                     connect.Close();
                 }
                 
@@ -190,6 +218,8 @@ namespace Kursovaya
                     else if (listBox2.SelectedItem.ToString() == "Тип переплета")
                         SQL.ViewSup("binding", "Переплет").Fill(dt);
                     dataGridView2.DataSource = dt;
+                    dataGridView2.ColumnHeadersHeight = 30;
+                    label9.Text = "Количество записей: " + dataGridView2.Rows.Count;
                     connect.Close();
                 }
 
@@ -202,6 +232,40 @@ namespace Kursovaya
             else if (listBox2.SelectedItem.ToString() == "Район")
             {
                 AreaCreateColumns();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedItem == null) return;
+            else
+            {
+                string table = null;
+                DataTable dt = new DataTable();
+                if (listBox2.SelectedItem.ToString() == "Район")
+                    table = "area";
+                else if (listBox2.SelectedItem.ToString() == "Тип собственности")
+                    table = "own";
+                else if (listBox2.SelectedItem.ToString() == "Город")
+                    table = "city";
+                else if (listBox2.SelectedItem.ToString() == "Язык")
+                    table = "lang";
+                else if (listBox2.SelectedItem.ToString() == "Жанр")
+                    table = "style";
+                else if (listBox2.SelectedItem.ToString() == "Тип переплета")
+                    table = "binding";
+
+
+                using (NpgsqlConnection connect = SQL.GetConnection())
+                {
+                    if (SQL.DeleteWarning() == DialogResult.OK) 
+                    {
+                        connect.Open();
+                        for (int i = 0; i < dataGridView2.SelectedRows.Count; i++)
+                            SQL.DeleteSup(table, dataGridView2[1, dataGridView2.SelectedRows[i].Index].Value.ToString(), connect);
+                        connect.Close();
+                    }
+                }
             }
         }
     }

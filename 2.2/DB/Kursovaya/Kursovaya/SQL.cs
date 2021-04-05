@@ -63,5 +63,17 @@ namespace Kursovaya
         {
             return new NpgsqlDataAdapter("SELECT id_" + table +" AS ID, name_" + table + " AS " + name +" FROM " + table, GetConnection());
         }
+        public static DialogResult DeleteWarning()
+        {
+            return MessageBox.Show("ВНИМЕНИЕ! Все записи из других таблиц, которые связаны с этой записью будут удалены. Хотите удалить?", "Успех", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+        }
+        public static void DeleteSup(string table, string name, NpgsqlConnection connect)
+        {
+            try
+            {
+                new NpgsqlCommand("DELETE FROM " + table + " WHERE name_" + table + " = '" + name + "'", connect).ExecuteNonQuery();
+            }
+            catch { MessageBox.Show("Невозможно удалить запись с именем '" +name+"'.", "Ошибка011", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
     }
 }

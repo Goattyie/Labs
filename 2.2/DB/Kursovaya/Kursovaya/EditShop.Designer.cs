@@ -182,7 +182,7 @@ namespace Kursovaya
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "EditShop";
-            this.Text = "EditShop";
+            this.Text = "Таблица магазин";
             this.ResumeLayout(false);
             this.PerformLayout();
 

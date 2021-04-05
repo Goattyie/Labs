@@ -84,7 +84,7 @@ namespace Kursovaya
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "EditSup";
-            this.Text = "EditSup";
+            this.Text = "Справочная запись";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditSup_FormClosing);
             this.Load += new System.EventHandler(this.EditSup_Load);
             this.ResumeLayout(false);
