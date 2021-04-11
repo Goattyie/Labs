@@ -22,3 +22,6 @@ D:\Labs\2.2\DB\Kursovaya\Kursovaya\bin\Debug\net5.0-windows\Npgsql.dll
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.csproj.CopyComplete
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditSup.resources
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditShop.resources
+D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditDeliveries.resources
+D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditBook.resources
+D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditPublisher.resources

@@ -86,6 +86,7 @@ namespace Kursovaya
             listBox1.Items.Add("Поставки");
             listBox1.Items.Add("Книги");
             listBox1.Items.Add("Издательства");
+            listBox1.Items.Add("Книги-авторы");
 
             listBox2.Items.Add("Район");
             listBox2.Items.Add("Город");
@@ -115,8 +116,17 @@ namespace Kursovaya
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            EditShop Shop = new EditShop();
-            Shop.Show();
+            if (listBox1.SelectedItem == null)
+                return;
+
+            if (listBox1.SelectedItem.ToString() == "Магазины")
+                new EditShop().Show();
+            else if (listBox1.SelectedItem.ToString() == "Поставки")
+                new EditDeliveries().Show();
+            else if (listBox1.SelectedItem.ToString() == "Книги")
+                new EditBook().Show();
+            else if (listBox1.SelectedItem.ToString() == "Издательства")
+                new EditPublisher().Show();
         }
         private void button4_Click(object sender, EventArgs e)
         {
