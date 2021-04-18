@@ -31,7 +31,7 @@ namespace Kursovaya
                     connect.Open();
                     if (connect.State != ConnectionState.Open)
                     {
-                        MessageBox.Show("Невозможно подключиться к базе данных", "Ошибка 001", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Message.AutorizationError();
                         Application.Exit();
                     }
                     connect.Close();

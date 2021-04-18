@@ -25,3 +25,4 @@ D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditShop.r
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditDeliveries.resources
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditBook.resources
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditPublisher.resources
+D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditAuthor.resources

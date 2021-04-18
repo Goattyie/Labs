@@ -63,31 +63,16 @@ namespace Kursovaya
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            if (area == null) //Не заполнены поля
-            {
-                MessageBox.Show("Район не был указан", "Ошибка 002", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (!InputData.CheckString(area, "\"Район\"")) //Не заполнены поля
                 return;
-            }
-            else if (dateTimePicker1.Value > DateTime.Now)
-            {
-                MessageBox.Show("Неверная дата", "Ошибка 006", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (!InputData.CheckInt(textBox3.Text, "\"Дата открытия\"", 0, 2021))
                 return;
-            }
-            else if (own == null)
-            {
-                MessageBox.Show("Тип собственности не был указан", "Ошибка 003", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (!InputData.CheckString(own, "\"Тип собственности\""))
                 return;
-            }
-            else if (textBox1.Text == null)
-            {
-                MessageBox.Show("Название магазина не было указано", "Ошибка 004", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (!InputData.CheckString(textBox1.Text, "\"Название магазина\""))
                 return;
-            }
-            else if (textBox2.Text == null)
-            {
-                MessageBox.Show("Адресс не был указан", "Ошибка 005", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (!InputData.CheckString(textBox2.Text, "\"Адресс\""))
                 return;
-            }
             
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
@@ -95,7 +80,7 @@ namespace Kursovaya
                 try
                 {
                     NpgsqlCommand command = new NpgsqlCommand("INSERT INTO shop (shop_name, date_open, id_area, address, id_own) VALUES " +
-                        "('" + textBox1.Text + "', '" + dateTimePicker1.Value.Date.ToShortDateString() + "', " +
+                        "('" + textBox1.Text + "', '" + textBox3.Text + "', " +
                         "(SELECT area.id_area FROM area WHERE area.name_area = '" + area + "'), " +
                         "'" + textBox2.Text + "', (SELECT own.id_own FROM own WHERE own.name_own = '" + own + "'))", connect);
                     command.ExecuteNonQuery();
