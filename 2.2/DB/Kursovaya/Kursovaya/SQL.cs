@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
 
@@ -12,6 +7,14 @@ namespace Kursovaya
     class SQL
     {
         static string login, password;//postgres, 123321
+        static string[][] regex = new string[6][]
+        { new string[2]{ "name", "\"Название\"" },
+            new string[2] { "date_open", "\"Дата открытия\"" },
+            new string[2] {"area", "\"Район\""},
+        new string[2] {"own", "\"Тип собственности\""},
+        new string[2] {"city", "\"Город\""},
+        new string[2] {"phone", "\"Телефон\""}};
+
         public SQL() { }
         public SQL(string login, string password) 
         {
@@ -23,47 +26,60 @@ namespace Kursovaya
             //return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id="+login+";Password="+password+";Database=Kursovaya;");
             return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123321;Database=Kursovaya;");
         }
-        
-        public static void SQLErrors(string error)
+        public static void ErrorShow(string msg) { MessageBox.Show(msg, "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        private static void ConstraintError(string error)
         {
             if (error == "shop_uniq")
-                MessageBox.Show("Данный магазин уже существует", "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorShow("Данный магазин уже существует");
             else if (error == "area_name")
-                MessageBox.Show("Данный район уже существует", "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorShow("Данный район уже существует");
             else if (error == "fio_uniq")
-                MessageBox.Show("Данный автор уже существует", "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorShow("Данный автор уже существует");
             else if (error == "binding_name")
-                MessageBox.Show("Данный переплет уже существует", "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorShow("Данный переплет уже существует");
+
             else if (error == "book_uniq")
-                MessageBox.Show("Данная книга уже существует", "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorShow("Данная книга уже существует");
             else if (error == "book_author_uniq")
-                MessageBox.Show("Данная запись уже существует", "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorShow("Данная запись уже существует");
+
             else if (error == "city_name")
-                MessageBox.Show("Данный город уже существует", "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorShow("Данный город уже существует");
+
             else if (error == "lang_name")
-                MessageBox.Show("Данный язык уже существует", "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorShow("Данный язык уже существует");
+
             else if (error == "own_name")
-                MessageBox.Show("Данный тип собственности уже существует", "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorShow("Данный тип собственности уже существует");
             else if (error == "style_name")
-                MessageBox.Show("Данный жанр уже существует", "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                ErrorShow("Данный жанр уже существует");
+        }
+        private static void ColumnError(string error)
+        {
+            foreach(string[] temp in regex)
+            {
+                if (error.Contains(temp[0]))
+                {
+                    ErrorShow($"Неверно указано поле {temp[1]}.");
+                    break;
+                }
+            }
+        }
+        public static void SQLErrors(Npgsql.PostgresException ex)
+        {
+            string error;
+            if (ex.ConstraintName != null)
+                ConstraintError(ex.ConstraintName);
+            else if (ex.ColumnName != null)
+                ColumnError(ex.ColumnName);
+            else ErrorShow("Значение одного из полей слишком велико");
+
         }
         public static void Success() { MessageBox.Show("Запись добавлена", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information); }
 
-        public static NpgsqlDataAdapter ViewShop() 
-        {
-            return new NpgsqlDataAdapter("SELECT shop.shop_id as ID," +
-                    "shop.shop_name AS Название," +
-                    "shop.date_open AS \"Дата открытия\"," +
-                    "area.name_area AS Район," +
-                    "shop.address AS Адресс," +
-                    "own.name_own AS \"Тип собственности\"" +
-                    "FROM shop," +
-                    "area, own WHERE shop.id_area = area.id_area AND shop.id_own = own.id_own", GetConnection());
-        }
-        public static NpgsqlDataAdapter ViewSup(string table, string name)
-        {
-            return new NpgsqlDataAdapter("SELECT id_" + table +" AS ID, name_" + table + " AS " + name +" FROM " + table, GetConnection());
-        }
+        
+        
         public static DialogResult DeleteWarning()
         {
             return MessageBox.Show("ВНИМЕНИЕ! Все записи из других таблиц, которые связаны с этой записью будут удалены. Хотите удалить?", "Успех", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);

@@ -8,40 +8,24 @@ namespace Kursovaya
 {
     static class InputData
     {
-        public static bool CheckString(string line, string name)
+        public static string CheckString(string line)
         {
-            if (line == null || line.Length == 0)
-            {
-                Message.FieldError(name);
-                return false;
-            }
-            return true;
+            if (line == null || line == "")
+                return "NULL";
+                
+            return line.Insert(0, "'").Insert(line.Length + 1, "'");
         }
-        public static bool CheckInt(int value, string name, int minValue, int maxValue)
-        {
-            if (value < minValue || value > maxValue)
-            {
-                Message.FieldError(name);
-                return false;
-            }
-            return true;
-        }
-        public static bool CheckInt(string value, string name, int minValue, int maxValue)
+        public static bool CheckInt(string value, string column)
         {
             try
             {
-                if (Convert.ToInt32(value) < minValue || Convert.ToInt32(value) > maxValue)
-                {
-                    Message.FieldError(name);
-                    return false;
-                }
+                Convert.ToInt32(value);
                 return true;
             }
-            catch 
-            {
-                Message.FieldError(name);
+            catch {
+                SQL.ErrorShow($"Поле {column} должно быть числом.");
                 return false; 
-            }
+            };
         }
     }
 }

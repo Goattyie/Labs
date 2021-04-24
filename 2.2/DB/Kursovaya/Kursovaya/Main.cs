@@ -185,8 +185,7 @@ namespace Kursovaya
                 using (NpgsqlConnection connect = SQL.GetConnection())
                 {
                     connect.Open();
-                    if (listBox1.SelectedItem.ToString() == "Магазины")
-                    SQL.ViewShop().Fill(dt);
+                    Command.ViewMain(listBox1.SelectedItem.ToString()).Fill(dt);
                     dataGridView1.DataSource = dt;
                     label8.Text = "Количество записей: " + dataGridView1.Rows.Count;
                     connect.Close();
@@ -216,17 +215,17 @@ namespace Kursovaya
                 {
                     connect.Open();
                     if (listBox2.SelectedItem.ToString() == "Район")
-                        SQL.ViewSup("area", "Район").Fill(dt);
+                        Command.ViewSup("area", "Район").Fill(dt);
                     else if (listBox2.SelectedItem.ToString() == "Тип собственности")
-                        SQL.ViewSup("own", "Собственность").Fill(dt);
+                        Command.ViewSup("own", "Собственность").Fill(dt);
                     else if (listBox2.SelectedItem.ToString() == "Город")
-                        SQL.ViewSup("city", "Город").Fill(dt);
+                        Command.ViewSup("city", "Город").Fill(dt);
                     else if (listBox2.SelectedItem.ToString() == "Язык")
-                        SQL.ViewSup("lang", "Язык").Fill(dt);
+                        Command.ViewSup("lang", "Язык").Fill(dt);
                     else if (listBox2.SelectedItem.ToString() == "Жанр")
-                        SQL.ViewSup("style", "Жанр").Fill(dt);
+                        Command.ViewSup("style", "Жанр").Fill(dt);
                     else if (listBox2.SelectedItem.ToString() == "Тип переплета")
-                        SQL.ViewSup("binding", "Переплет").Fill(dt);
+                        Command.ViewSup("binding", "Переплет").Fill(dt);
                     dataGridView2.DataSource = dt;
                     dataGridView2.ColumnHeadersHeight = 30;
                     label9.Text = "Количество записей: " + dataGridView2.Rows.Count;

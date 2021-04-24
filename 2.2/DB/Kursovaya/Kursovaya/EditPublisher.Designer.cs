@@ -59,9 +59,9 @@ namespace Kursovaya
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(50, 72);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 21);
+            this.label2.Size = new System.Drawing.Size(81, 21);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Имя издательства:";
+            this.label2.Text = "Название:";
             // 
             // label3
             // 

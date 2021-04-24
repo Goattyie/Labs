@@ -35,6 +35,7 @@ namespace Kursovaya
                 
             }
             else MessageBox.Show("Поле не должно быть пустым.", "Error 007", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
         }
         string table;
         private void AddNode()
@@ -52,18 +53,21 @@ namespace Kursovaya
             else if (type == "Тип переплета")
                 table = "binding";
 
+            if (textBox1.Text.Length == 0)
+                textBox1.Text = "NULL";
+
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 try
                 {
                     connect.Open();
-                    NpgsqlCommand command = new NpgsqlCommand("INSERT INTO " + table + " (name_" + table + ")  VALUES ('" + textBox1.Text + "');", connect);
+                    NpgsqlCommand command = new NpgsqlCommand($"INSERT INTO {table}  (name_{table})  VALUES ('{textBox1.Text }');", connect);
                     command.ExecuteNonQuery();
                     connect.Close();
                     SQL.Success();
                     
                 }
-                catch(Npgsql.PostgresException ex){    SQL.SQLErrors(ex.ConstraintName);   }
+                catch(Npgsql.PostgresException ex){    SQL.SQLErrors(ex);   }
                 textBox1.Clear();
             }
         }

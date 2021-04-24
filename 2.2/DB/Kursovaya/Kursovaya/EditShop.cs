@@ -63,34 +63,28 @@ namespace Kursovaya
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            if (!InputData.CheckString(area, "\"Район\"")) //Не заполнены поля
-                return;
-            else if (!InputData.CheckInt(textBox3.Text, "\"Дата открытия\"", 0, 2021))
-                return;
-            else if (!InputData.CheckString(own, "\"Тип собственности\""))
-                return;
-            else if (!InputData.CheckString(textBox1.Text, "\"Название магазина\""))
-                return;
-            else if (!InputData.CheckString(textBox2.Text, "\"Адресс\""))
-                return;
-            
+            own = InputData.CheckString(own);
+            area = InputData.CheckString(area);
+            textBox1.Text = InputData.CheckString(textBox1.Text);
+            textBox3.Text = InputData.CheckString(textBox3.Text);
+            textBox2.Text = InputData.CheckString(textBox2.Text);
+
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 connect.Open();
                 try
                 {
-                    NpgsqlCommand command = new NpgsqlCommand("INSERT INTO shop (shop_name, date_open, id_area, address, id_own) VALUES " +
-                        "('" + textBox1.Text + "', '" + textBox3.Text + "', " +
-                        "(SELECT area.id_area FROM area WHERE area.name_area = '" + area + "'), " +
-                        "'" + textBox2.Text + "', (SELECT own.id_own FROM own WHERE own.name_own = '" + own + "'))", connect);
+                    string request = $"INSERT INTO shop (shop_name, date_open, id_area, address, id_own) VALUES " +
+                        $"({textBox1.Text}, {textBox3.Text}, " +
+                        $"(SELECT area.id_area FROM area WHERE area.name_area = {area}), " +
+                        $"{textBox2.Text}, (SELECT own.id_own FROM own WHERE own.name_own = {own}))";
+
+                    NpgsqlCommand command = new NpgsqlCommand(request, connect);
                     command.ExecuteNonQuery();
                     SQL.Success();
                     this.Clear();
                 }
-                catch(Npgsql.PostgresException ex)
-                {
-                    SQL.SQLErrors(ex.ConstraintName);
-                }
+                catch(Npgsql.PostgresException ex){ SQL.SQLErrors(ex);  }
                 connect.Close();
             }
         }

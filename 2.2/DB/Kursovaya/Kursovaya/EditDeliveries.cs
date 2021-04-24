@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,6 +26,24 @@ namespace Kursovaya
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = InputData.CheckString(textBox1.Text);
+            using (NpgsqlConnection connect = SQL.GetConnection())
+            {
+                connect.Open();
+                try
+                {
+                    //Добавление записи в книгу
+                    NpgsqlCommand command = new NpgsqlCommand("", connect);
+                    command.ExecuteNonQuery();
+                    SQL.Success();
+                }
+                catch (Npgsql.PostgresException ex) { SQL.SQLErrors(ex); }
+                connect.Close();
+            }
         }
     }
 }

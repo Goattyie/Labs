@@ -182,19 +182,16 @@ namespace Kursovaya
         //Добавление записи
         private void button7_Click(object sender, EventArgs e)
         {
-            name = textBox1.Text;
+            name = InputData.CheckString(textBox1.Text);
             photo = 0;
-            description = textBox2.Text;
-            if (!InputData.CheckString(name, "\"Название\""))
+            description = InputData.CheckString(textBox2.Text);
+            if (!InputData.CheckInt(textBox4.Text, "Дата создания"))
                 return;
-            else if (!InputData.CheckInt(textBox4.Text, "\"Дата создания\"", 0, 2021))
-                return;
-            else if (!InputData.CheckString(description, "\"Описание\""))
-                return;
-            else if (!InputData.CheckInt(textBox3.Text, "\"Дата издания\"", 0, 2021))
+            if (!InputData.CheckInt(textBox3.Text, "Дата публикации"))
                 return;
             else if (listBox1.Items.Count == 0)
-                InputData.CheckString(null, "\"Авторы\"");
+                SQL.ErrorShow("У книги должны быть авторы");
+
             date = Convert.ToInt32(textBox4.Text);
             publish_date = Convert.ToInt32(textBox3.Text);
 
@@ -222,7 +219,7 @@ namespace Kursovaya
                         command.ExecuteNonQuery();
                     }
                     SQL.Success();
-                }catch (Npgsql.PostgresException ex) {  SQL.SQLErrors(ex.ConstraintName);   }
+                }catch (Npgsql.PostgresException ex) {  SQL.SQLErrors(ex);   }
                 connect.Close();
             }
         }
