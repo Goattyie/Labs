@@ -94,6 +94,9 @@ namespace Kursovaya
             listBox2.Items.Add("Тип собственности");
             listBox2.Items.Add("Жанр");
             listBox2.Items.Add("Тип переплета");
+            listBox2.Items.Add("Автор");
+
+            dataGridView2.ColumnHeadersHeight = 30;
         }
         private void tagPage1_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -182,15 +185,8 @@ namespace Kursovaya
             else
             {
                 DataTable dt = new DataTable();
-                using (NpgsqlConnection connect = SQL.GetConnection())
-                {
-                    connect.Open();
-                    Command.ViewMain(listBox1.SelectedItem.ToString()).Fill(dt);
-                    dataGridView1.DataSource = dt;
-                    label8.Text = "Количество записей: " + dataGridView1.Rows.Count;
-                    connect.Close();
-                }
-                
+                Table.ReturnTable(listBox1.SelectedItem.ToString()).Select().Fill(dt);
+                dataGridView1.DataSource = dt; 
             }
         }
         private void AreaCreateColumns()
@@ -204,34 +200,15 @@ namespace Kursovaya
         {
 
         }
-
         private void listBox2_Click(object sender, EventArgs e)
         {
             if (listBox2.SelectedItem == null) return;
             else
             {
                 DataTable dt = new DataTable();
-                using (NpgsqlConnection connect = SQL.GetConnection())
-                {
-                    connect.Open();
-                    if (listBox2.SelectedItem.ToString() == "Район")
-                        Command.ViewSup("area", "Район").Fill(dt);
-                    else if (listBox2.SelectedItem.ToString() == "Тип собственности")
-                        Command.ViewSup("own", "Собственность").Fill(dt);
-                    else if (listBox2.SelectedItem.ToString() == "Город")
-                        Command.ViewSup("city", "Город").Fill(dt);
-                    else if (listBox2.SelectedItem.ToString() == "Язык")
-                        Command.ViewSup("lang", "Язык").Fill(dt);
-                    else if (listBox2.SelectedItem.ToString() == "Жанр")
-                        Command.ViewSup("style", "Жанр").Fill(dt);
-                    else if (listBox2.SelectedItem.ToString() == "Тип переплета")
-                        Command.ViewSup("binding", "Переплет").Fill(dt);
-                    dataGridView2.DataSource = dt;
-                    dataGridView2.ColumnHeadersHeight = 30;
-                    label9.Text = "Количество записей: " + dataGridView2.Rows.Count;
-                    connect.Close();
-                }
-
+                Table.ReturnTable(listBox2.SelectedItem.ToString()).Select().Fill(dt);
+                dataGridView2.DataSource = dt;
+                
             }
         }
 

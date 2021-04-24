@@ -58,37 +58,38 @@ namespace Kursovaya
         {
             this.textBox1.Clear();
             this.textBox2.Clear();
+            this.textBox3.Clear();
             this.contextMenuStrip1.Items.Clear();
             this.contextMenuStrip2.Items.Clear();
+            own = null;
+            address = null;
+            name = null;
+            area = null;
+            button1.Text = "Выбрать";
+            button2.Text = "Выбрать";
         }
         private void button3_Click(object sender, EventArgs e)
         {
+            bool success;
+            if (!InputData.CheckInt(textBox3.Text, "\"Дата открытия\""))
+                return;
+
             own = InputData.CheckString(own);
             area = InputData.CheckString(area);
-            textBox1.Text = InputData.CheckString(textBox1.Text);
-            textBox3.Text = InputData.CheckString(textBox3.Text);
-            textBox2.Text = InputData.CheckString(textBox2.Text);
+            name = InputData.CheckString(textBox1.Text);
+            address = InputData.CheckString(textBox2.Text);
 
-            using (NpgsqlConnection connect = SQL.GetConnection())
+            success = new Shop(name, Convert.ToInt32(textBox3.Text), area, address, own).Insert();
+
+            if (!success)
             {
-                connect.Open();
-                try
-                {
-                    string request = $"INSERT INTO shop (shop_name, date_open, id_area, address, id_own) VALUES " +
-                        $"({textBox1.Text}, {textBox3.Text}, " +
-                        $"(SELECT area.id_area FROM area WHERE area.name_area = {area}), " +
-                        $"{textBox2.Text}, (SELECT own.id_own FROM own WHERE own.name_own = {own}))";
-
-                    NpgsqlCommand command = new NpgsqlCommand(request, connect);
-                    command.ExecuteNonQuery();
-                    SQL.Success();
-                    this.Clear();
-                }
-                catch(Npgsql.PostgresException ex){ SQL.SQLErrors(ex);  }
-                connect.Close();
+                own = InputData.RemoveSymbols(own);
+                area = InputData.RemoveSymbols(area);
+                return;
             }
+            this.Clear();
         }
-        string area, own;
+        string area, own, name, address;
         private void contextMenuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem.Text == "Добавить")

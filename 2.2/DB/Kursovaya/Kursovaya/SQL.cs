@@ -15,6 +15,7 @@ namespace Kursovaya
         new string[2] {"city", "\"Город\""},
         new string[2] {"phone", "\"Телефон\""}};
 
+        private static string rewrite = "Невозможно создать запись. Похожая запись уже существует.";
         public SQL() { }
         public SQL(string login, string password) 
         {
@@ -29,12 +30,12 @@ namespace Kursovaya
         public static void ErrorShow(string msg) { MessageBox.Show(msg, "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         private static void ConstraintError(string error)
         {
+
+            //shop
             if (error == "shop_uniq")
-                ErrorShow("Данный магазин уже существует");
-            else if (error == "area_name")
-                ErrorShow("Данный район уже существует");
-            else if (error == "fio_uniq")
-                ErrorShow("Данный автор уже существует");
+                ErrorShow(rewrite);
+
+            
             else if (error == "binding_name")
                 ErrorShow("Данный переплет уже существует");
 
@@ -43,17 +44,32 @@ namespace Kursovaya
             else if (error == "book_author_uniq")
                 ErrorShow("Данная запись уже существует");
 
+            //city
             else if (error == "city_name")
                 ErrorShow("Данный город уже существует");
 
+            //lang
             else if (error == "lang_name")
                 ErrorShow("Данный язык уже существует");
 
+            //own
             else if (error == "own_name")
                 ErrorShow("Данный тип собственности уже существует");
-            else if (error == "style_name")
 
+            //style
+            else if (error == "style_name")
                 ErrorShow("Данный жанр уже существует");
+
+            //publisher
+
+
+            //area
+            else if (error == "uniq_name")
+                ErrorShow(rewrite);
+
+            //authors
+            else if (error == "fio_uniq")
+                ErrorShow("Данный автор уже существует");
         }
         private static void ColumnError(string error)
         {

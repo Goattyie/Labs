@@ -27,5 +27,9 @@ namespace Kursovaya
                 return false; 
             };
         }
+        public static string RemoveSymbols(string line)
+        {
+            return line.Trim('\'');
+        }
     }
 }

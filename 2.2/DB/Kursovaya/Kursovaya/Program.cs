@@ -17,7 +17,7 @@ namespace Kursovaya
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new EditPublisher());
+            Application.Run(new Main());
         }
     }
 }
