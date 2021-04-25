@@ -22,5 +22,13 @@ namespace Kursovaya
         {
             MessageBox.Show($"Поле {type} указано неверно.", "Ошибка 002", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        public static void ErrorShow(string msg) { MessageBox.Show(msg, "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
+
+        public static void Success() { MessageBox.Show("Операция выполнена.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+        public static DialogResult DeleteWarning()
+        {
+            return MessageBox.Show("ВНИМЕНИЕ! Все записи из других таблиц, которые связаны с этой записью будут удалены. Хотите удалить?", "Успех", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+        }
     }
 }

@@ -16,5 +16,20 @@ namespace Kursovaya
         {
             InitializeComponent();
         }
+        string Name, SecondName, LastName;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Name = InputData.CheckString(textBox1.Text);
+            SecondName = InputData.CheckString(textBox2.Text);
+            LastName = InputData.CheckString(textBox3.Text);
+
+            if (new Author(Name, SecondName, LastName).Insert())
+            {
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+            }
+                
+        }
     }
 }

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
 
@@ -74,8 +68,6 @@ namespace Kursovaya
             if (!InputData.CheckInt(textBox3.Text, "\"Дата открытия\""))
                 return;
 
-            own = InputData.CheckString(own);
-            area = InputData.CheckString(area);
             name = InputData.CheckString(textBox1.Text);
             address = InputData.CheckString(textBox2.Text);
 
@@ -89,7 +81,7 @@ namespace Kursovaya
             }
             this.Clear();
         }
-        string area, own, name, address;
+        string area = "NULL", own = "NULL", name, address;
         private void contextMenuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem.Text == "Добавить")
@@ -102,8 +94,8 @@ namespace Kursovaya
             }
             else
             {
-                own = e.ClickedItem.Text;
-                button2.Text = own;
+                button2.Text = e.ClickedItem.Text;
+                own = InputData.CheckString(button2.Text);
             }
         }
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -118,8 +110,8 @@ namespace Kursovaya
             }
             else
             {
-                area = e.ClickedItem.Text;
-                button1.Text = area;
+                button1.Text = e.ClickedItem.Text;
+                area = InputData.CheckString(button1.Text);
             }
         }
     }

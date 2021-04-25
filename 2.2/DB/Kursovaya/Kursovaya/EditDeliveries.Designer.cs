@@ -29,6 +29,7 @@ namespace Kursovaya
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,6 +51,9 @@ namespace Kursovaya
             this.button4 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,7 +66,6 @@ namespace Kursovaya
             this.label1.Size = new System.Drawing.Size(196, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Таблица поставщики";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -153,6 +156,7 @@ namespace Kursovaya
             this.button1.TabIndex = 9;
             this.button1.Text = "Выбрать";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -163,14 +167,25 @@ namespace Kursovaya
             this.button2.TabIndex = 10;
             this.button2.Text = "Выбрать";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // numericUpDown1
             // 
             this.numericUpDown1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.numericUpDown1.Location = new System.Drawing.Point(304, 123);
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(216, 33);
             this.numericUpDown1.TabIndex = 11;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // dateTimePicker1
             // 
@@ -191,17 +206,18 @@ namespace Kursovaya
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(304, 273);
+            this.button3.Location = new System.Drawing.Point(303, 311);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(216, 33);
             this.button3.TabIndex = 14;
             this.button3.Text = "Выбрать";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(303, 312);
+            this.textBox2.Location = new System.Drawing.Point(303, 272);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(216, 33);
             this.textBox2.TabIndex = 15;
@@ -221,6 +237,7 @@ namespace Kursovaya
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
             this.radioButton2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.radioButton2.Location = new System.Drawing.Point(458, 351);
             this.radioButton2.Name = "radioButton2";
@@ -259,6 +276,24 @@ namespace Kursovaya
             this.textBox3.Size = new System.Drawing.Size(216, 33);
             this.textBox3.TabIndex = 20;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip2_ItemClicked);
+            // 
+            // contextMenuStrip3
+            // 
+            this.contextMenuStrip3.Name = "contextMenuStrip3";
+            this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuStrip3.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip3_ItemClicked);
+            // 
             // EditDeliveries
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -287,7 +322,6 @@ namespace Kursovaya
             this.Controls.Add(this.label1);
             this.Name = "EditDeliveries";
             this.Text = "Поставщики";
-            this.Load += new System.EventHandler(this.EditDeliveries_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -317,5 +351,8 @@ namespace Kursovaya
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
     }
 }

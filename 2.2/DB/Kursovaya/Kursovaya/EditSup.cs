@@ -28,49 +28,24 @@ namespace Kursovaya
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != null && textBox1.Text != "")
-            {
-                if (edit == "Создание")
-                    AddNode();
-                
-            }
-            else MessageBox.Show("Поле не должно быть пустым.", "Error 007", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
-        }
-        string table;
-        private void AddNode()
-        {
+            string text = InputData.CheckString(textBox1.Text);
+            Table sup = Table.ReturnTable(type);
             if (type == "Район")
-                table = "area";
+                sup = new Area(text);
             else if (type == "Тип собственности")
-                table = "own";
+                sup = new Own(text);
             else if (type == "Язык")
-                table = "lang";
+                sup = new Lang(text);
             else if (type == "Город")
-                table = "city";
+                sup = new City(text);
             else if (type == "Жанр")
-                table = "style";
+                sup = new Style(text);
             else if (type == "Тип переплета")
-                table = "binding";
+                sup = new Binding(text);
 
-            if (textBox1.Text.Length == 0)
-                textBox1.Text = "NULL";
-
-            using (NpgsqlConnection connect = SQL.GetConnection())
-            {
-                try
-                {
-                    connect.Open();
-                    NpgsqlCommand command = new NpgsqlCommand($"INSERT INTO {table}  (name_{table})  VALUES ('{textBox1.Text }');", connect);
-                    command.ExecuteNonQuery();
-                    connect.Close();
-                    SQL.Success();
-                    
-                }
-                catch(Npgsql.PostgresException ex){    SQL.SQLErrors(ex);   }
-                textBox1.Clear();
-            }
-        }
+            if (sup.Insert())
+                textBox1.Text = "";
+        }     
         private void EditSup_FormClosing(object sender, FormClosingEventArgs e)
         {
             if(e.CloseReason != new CloseReason())

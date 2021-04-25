@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
 
@@ -97,16 +92,19 @@ namespace Kursovaya
             listBox2.Items.Add("Автор");
 
             dataGridView2.ColumnHeadersHeight = 30;
+            label1.Location = label9.Location;
+            label1.Font = label9.Font;
+            label9.Size = label9.Size;
         }
         private void tagPage1_Selecting(object sender, TabControlCancelEventArgs e)
         {
             if (e.TabPage.Text == "Основные таблицы")
             {
-                //Открыть форму Request
+                UpdateDatagrid(dataGridView1, listBox1, label1);
             }
             else if (e.TabPage.Text == "Справочники")
             {
-                //Открыть форму Request
+                UpdateDatagrid(dataGridView2, listBox2, label9);
             }
             else if (e.TabPage.Text == "Запросы")
             {
@@ -123,20 +121,31 @@ namespace Kursovaya
                 return;
 
             if (listBox1.SelectedItem.ToString() == "Магазины")
-                new EditShop().Show();
+                new EditShop().ShowDialog(this);
             else if (listBox1.SelectedItem.ToString() == "Поставки")
-                new EditDeliveries().Show();
+                new EditDeliveries().ShowDialog(this);
             else if (listBox1.SelectedItem.ToString() == "Книги")
-                new EditBook().Show();
+                new EditBook().ShowDialog(this);
             else if (listBox1.SelectedItem.ToString() == "Издательства")
-                new EditPublisher().Show();
+                new EditPublisher().ShowDialog(this);
+
+            UpdateDatagrid(dataGridView1, listBox1, label1);
         }
         private void button4_Click(object sender, EventArgs e)
         {
             if (listBox2.SelectedItem != null)
             {
-                EditSup AddSup = new EditSup(listBox2.SelectedItem.ToString());
-                AddSup.Show();
+                if (listBox2.SelectedItem.ToString() == "Автор") 
+                {
+                    EditAuthor AddAuthor = new EditAuthor();
+                    AddAuthor.ShowDialog(this);
+                }
+                else
+                {
+                    EditSup AddSup = new EditSup(listBox2.SelectedItem.ToString());
+                    AddSup.ShowDialog(this);
+                }
+                UpdateDatagrid(dataGridView2, listBox2, label9);
             }
         }
         private void button5_Click(object sender, EventArgs e)
@@ -150,44 +159,36 @@ namespace Kursovaya
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (listBox2.SelectedItem == null) return;
-            else
-            {
-                string table = null;
-                DataTable dt = new DataTable();
-                if (listBox2.SelectedItem.ToString() == "Магазины")
-                    table = "shop";
-                else if (listBox2.SelectedItem.ToString() == "Поставки")
-                    table = "deliveries";
-                else if (listBox2.SelectedItem.ToString() == "Книги")
-                    table = "book";
-                else if (listBox2.SelectedItem.ToString() == "Издательства")
-                    table = "publisher";
-
-                /*
-                using (NpgsqlConnection connect = SQL.GetConnection())
-                {
-                    if (SQL.DeleteWarning() == DialogResult.OK)
-                    {
-                        connect.Open();
-                        for (int i = 0; i < dataGridView2.SelectedRows.Count; i++)
-                            SQL.DeleteSup(table, dataGridView2[1, dataGridView2.SelectedRows[i].Index].Value.ToString(), connect);
-                        connect.Close();
-                    }
-                }
-                */
-            }
-        }
-
-        private void listBox1_MouseClick(object sender, MouseEventArgs e)
-        {
             if (listBox1.SelectedItem == null) return;
             else
             {
-                DataTable dt = new DataTable();
-                Table.ReturnTable(listBox1.SelectedItem.ToString()).Select().Fill(dt);
-                dataGridView1.DataSource = dt; 
+                List<int> Id = new List<int>();
+                foreach(DataGridViewRow row in dataGridView1.SelectedRows)
+                {
+                    Id.Add(Convert.ToInt32(dataGridView1[0, row.Index].Value.ToString()));
+                }
+                Table.ReturnTable(listBox1.SelectedItem.ToString()).Delete(Id.ToArray());
+                UpdateDatagrid(dataGridView1, listBox1, label1);
             }
+        }
+
+        void UpdateDatagrid(DataGridView dgv, ListBox lb, Label count_nodes)
+        {
+            if (lb.SelectedItem == null) return;
+            else
+            {
+                DataTable dt = new DataTable();
+                Table.ReturnTable(lb.SelectedItem.ToString()).Select().Fill(dt);
+                dgv.DataSource = dt;
+                count_nodes.Text = "Количество записей: " + dataGridView2.Rows.Count;
+            }
+        }
+        private void listBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (listBox1.SelectedItem.ToString() == "Книги-авторы")
+                button2.Enabled = false;
+            else button2.Enabled = true;
+            UpdateDatagrid(dataGridView1, listBox1, label1);
         }
         private void AreaCreateColumns()
         {
@@ -202,56 +203,28 @@ namespace Kursovaya
         }
         private void listBox2_Click(object sender, EventArgs e)
         {
-            if (listBox2.SelectedItem == null) return;
-            else
-            {
-                DataTable dt = new DataTable();
-                Table.ReturnTable(listBox2.SelectedItem.ToString()).Select().Fill(dt);
-                dataGridView2.DataSource = dt;
-                
-            }
+            UpdateDatagrid(dataGridView2, listBox2, label9);
+            
         }
 
         private void tabPage2_MouseClick(object sender, MouseEventArgs e)
         {
-            if (listBox2.SelectedItem == null) return;
-            else if (listBox2.SelectedItem.ToString() == "Район")
-            {
-                AreaCreateColumns();
-            }
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             if (listBox2.SelectedItem == null) return;
-            else
+            if (Message.DeleteWarning() == DialogResult.OK)
             {
-                string table = null;
-                DataTable dt = new DataTable();
-                if (listBox2.SelectedItem.ToString() == "Район")
-                    table = "area";
-                else if (listBox2.SelectedItem.ToString() == "Тип собственности")
-                    table = "own";
-                else if (listBox2.SelectedItem.ToString() == "Город")
-                    table = "city";
-                else if (listBox2.SelectedItem.ToString() == "Язык")
-                    table = "lang";
-                else if (listBox2.SelectedItem.ToString() == "Жанр")
-                    table = "style";
-                else if (listBox2.SelectedItem.ToString() == "Тип переплета")
-                    table = "binding";
-
-
-                using (NpgsqlConnection connect = SQL.GetConnection())
-                {
-                    if (SQL.DeleteWarning() == DialogResult.OK) 
+                    List<int> Id = new List<int>();
+                    foreach (DataGridViewRow row in dataGridView2.SelectedRows)
                     {
-                        connect.Open();
-                        for (int i = 0; i < dataGridView2.SelectedRows.Count; i++)
-                            SQL.DeleteSup(table, dataGridView2[1, dataGridView2.SelectedRows[i].Index].Value.ToString(), connect);
-                        connect.Close();
+                        Id.Add(Convert.ToInt32(dataGridView2[0, row.Index].Value.ToString()));
                     }
-                }
+                    Table.ReturnTable(listBox2.SelectedItem.ToString()).Delete(Id.ToArray());
+
+                    UpdateDatagrid(dataGridView2, listBox2, label9);
             }
         }
     }

@@ -1,9 +1,5 @@
 ﻿using Npgsql;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kursovaya
@@ -11,9 +7,11 @@ namespace Kursovaya
     abstract class Table
     {
         protected abstract string ClassName { get; }
+        protected abstract string PrimaryKey { get; }
         protected abstract string InsertQuery { get; }
         protected abstract string SelectQuery { get; }
         protected abstract string UpdateQuery { get; }
+        protected  string DeleteQuery => $"DELETE FROM {ClassName} WHERE {PrimaryKey} = ";
         protected abstract List<string[]> Constraint { get; }
         protected abstract List<string[]> ColumnError { get; }
         public NpgsqlDataAdapter Select()
@@ -26,7 +24,7 @@ namespace Kursovaya
                 return nda;
             }
         }
-        public bool Insert() {
+        public virtual bool Insert() {
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 bool result;
@@ -35,7 +33,7 @@ namespace Kursovaya
                 {
                     NpgsqlCommand command = new NpgsqlCommand(InsertQuery, connect);
                     command.ExecuteNonQuery();
-                    SQL.Success();
+                    Message.Success();
                     result = true;
                 }
                 catch (Npgsql.PostgresException ex) { SQLError(ex); result = false; }
@@ -44,9 +42,35 @@ namespace Kursovaya
             }
         }
         public void  Update() { }
-        public void  Delete() { }
+        public void  Delete(int[] id) 
+        {
+            using (NpgsqlConnection connect = SQL.GetConnection())
+            {
+                connect.Open();
+                foreach (int ID in id) {
+                    try
+                    {
+                        NpgsqlCommand command = new NpgsqlCommand(DeleteQuery + ID, connect);
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Npgsql.PostgresException ex) { SQLError(ex); }
+                }
+                connect.Close();
+                Message.Success();
+            }
+        }
         protected void ValidateError(Npgsql.PostgresException ex) { }
-        protected void ValidateConstraint(string error) { }
+        protected void ValidateConstraint(string error) 
+        {
+            foreach (string[] temp in Constraint)
+            {
+                if (error.Contains(temp[0]))
+                {
+                    ErrorShow($"Неверно указано поле {temp[1]}.");
+                    break;
+                }
+            }
+        }
         protected void ValidateColumn(string error)
         {
             foreach (string[] temp in ColumnError)
@@ -75,8 +99,12 @@ namespace Kursovaya
                 return new Shop();
             else if (name == "Издательства")
                 return new Publisher();
+            else if (name == "Поставки")
+                return new Deliveries();
             else if (name == "Книги")
                 return new Book();
+            else if (name == "Книги-авторы")
+                return new BookAuthor();
             //Справочники
             else if (name == "Район")
                 return new Area();
@@ -88,7 +116,7 @@ namespace Kursovaya
                 return new Own();
             else if (name == "Жанр")
                 return new Style();
-            else if (name == "Тип собственности")
+            else if (name == "Тип переплета")
                 return new Binding();
             else return new Author();
         }

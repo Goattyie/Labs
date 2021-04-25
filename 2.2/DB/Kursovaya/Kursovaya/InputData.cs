@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Kursovaya
 {
@@ -23,8 +20,21 @@ namespace Kursovaya
                 return true;
             }
             catch {
-                SQL.ErrorShow($"Поле {column} должно быть числом.");
+                Message.ErrorShow($"Поле {column} должно быть числом.");
                 return false; 
+            };
+        }
+        public static bool CheckDouble(string value, string column)
+        {
+            try
+            {
+                Convert.ToDouble(value);
+                return true;
+            }
+            catch
+            {
+                Message.ErrorShow($"Поле {column} должно быть вещественным числом.");
+                return false;
             };
         }
         public static string RemoveSymbols(string line)

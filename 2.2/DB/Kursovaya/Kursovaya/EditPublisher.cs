@@ -19,36 +19,28 @@ namespace Kursovaya
         }
         private string name;
         private string telephone;
-        private string city;
+        private string city = "NULL";
         private int date;
         private void button2_Click(object sender, EventArgs e)
         {
             name = InputData.CheckString(textBox1.Text);
-            city = InputData.CheckString(city);
             telephone = InputData.CheckString(textBox3.Text);
 
 
             if (!InputData.CheckInt(textBox2.Text, "\"Дата создания\""))
                 return;
             date = Convert.ToInt32(textBox2.Text);
-
-            using (NpgsqlConnection connect = SQL.GetConnection())
+            
+            bool success = new Publisher(name, city, telephone, date).Insert();
+            if (success)
             {
-                try
-                {
-                    connect.Open();
-                    string request = $"INSERT INTO publisher (publisher_name, city_id, phone, create_date) VALUES " +
-                            $"({name}, (SELECT id_city FROM city WHERE name_city = {city}), {telephone} , {date})";
-
-                    NpgsqlCommand command = new NpgsqlCommand(request, connect);
-                    command.ExecuteNonQuery();
-                    SQL.Success();
-                    this.Clear();
-                    connect.Close();
-                }catch (Npgsql.PostgresException ex) { SQL.SQLErrors(ex); return; }
-                SQL.Success();
-
+                button1.Text = "Выбрать";
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
             }
+
+            
         }
         private void Clear()
         {
@@ -88,8 +80,8 @@ namespace Kursovaya
             }
             else
             {
-                city = e.ClickedItem.Text;
-                button1.Text = city;
+                button1.Text = e.ClickedItem.Text;
+                city = InputData.CheckString(button1.Text);
             }
         }
         public string GetResult() { return this.name; }

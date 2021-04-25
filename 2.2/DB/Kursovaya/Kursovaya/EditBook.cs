@@ -17,14 +17,14 @@ namespace Kursovaya
         {
             InitializeComponent();
         }
-        private string name;
+        private string name = "NULL";
         private byte photo;
-        private string description;
-        private string lang;
+        private string description = "NULL";
+        private string lang = "NULL";
         private int date;
-        private string style;
-        private string publisher;
-        private string binding;
+        private string style = "NULL";
+        private string publisher = "NULL";
+        private string binding = "NULL";
         private int publish_date;
 
         //Обложка
@@ -185,43 +185,42 @@ namespace Kursovaya
             name = InputData.CheckString(textBox1.Text);
             photo = 0;
             description = InputData.CheckString(textBox2.Text);
-            if (!InputData.CheckInt(textBox4.Text, "Дата создания"))
+            if (!InputData.CheckInt(textBox3.Text, "\"Год создания\""))
                 return;
-            if (!InputData.CheckInt(textBox3.Text, "Дата публикации"))
+            if (!InputData.CheckInt(textBox4.Text, "\"Дата публикации\""))
                 return;
             else if (listBox1.Items.Count == 0)
-                SQL.ErrorShow("У книги должны быть авторы");
+            {
+                Message.ErrorShow("У книги должны быть авторы");
+                return;
+            }
 
             date = Convert.ToInt32(textBox4.Text);
             publish_date = Convert.ToInt32(textBox3.Text);
 
-            //Добавление в таблицу книги-авторы
-            using (NpgsqlConnection connect = SQL.GetConnection())
-            {
-                connect.Open();
-                try
-                {
-                    //Добавление записи в книгу
-                    NpgsqlCommand command = new NpgsqlCommand($"INSERT INTO book (book_name, book_photo, book_description, book_lang_id, book_date, book_publisher_id, book_style_id, book_binding_id, book_date_public) VALUES " +
-                        $"('{name}', '{photo}', '{description}', " +
-                        $"(SELECT id_lang FROM lang WHERE name_lang = '{lang}'), {date}, " +
-                        $"(SELECT publisher_id FROM publisher WHERE publisher_name = '{publisher}')," +
-                        $"(SELECT id_style FROM style WHERE name_style = '{style}')," +
-                        $"(SELECT id_binding FROM binding WHERE name_binding = '{binding}'), {publish_date})", connect);
-                    command.ExecuteNonQuery();
-                    //Добавление авторов в книгу
-                    foreach(string author in listBox1.Items)
-                    {
-                        string[] FIO = author.Split(" ");
-                        command = new NpgsqlCommand($"INSERT INTO book_author (id_book, id_author) VALUES " +
-                            $"( (SELECT book_id FROM book WHERE book_name = '{name}')," +
-                            $" ( SELECT id_author FROM author WHERE name_author = '{FIO[1]}' AND second_name_author = '{FIO[0]}' AND last_name_author = '{FIO[2]}'))", connect);
-                        command.ExecuteNonQuery();
-                    }
-                    SQL.Success();
-                }catch (Npgsql.PostgresException ex) {  SQL.SQLErrors(ex);   }
-                connect.Close();
-            }
+            bool success_authors = false;
+            bool success_book = new Book(name, photo, description, lang, date, publisher, style, binding, publish_date).Insert();
+            if (!success_book)
+                return;
+
+            success_authors = new BookAuthor(name, listBox1.Items.Cast<String>().ToArray()).Insert();
+
+            if (!success_authors) Message.ErrorShow("Не все авторы были добавлены в базу данных.");
+
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";//14635
+                button1.Text = "Выбрать";
+                button4.Text = "Выбрать";
+                button6.Text = "Выбрать";
+                button3.Text = "Выбрать";
+                button5.Text = "Выбрать";
+                photo = 0;
+                lang = null;
+                style = null;
+                binding = null;
+                publisher = null;
         }
 
 
@@ -237,8 +236,8 @@ namespace Kursovaya
             }
             else
             {
-                style = e.ClickedItem.Text;
-                button5.Text = style;
+                button5.Text = e.ClickedItem.Text;
+                style = InputData.CheckString(button5.Text);
             }
         }
 
@@ -254,8 +253,8 @@ namespace Kursovaya
             }
             else
             {
-                lang = e.ClickedItem.Text;
-                button3.Text = lang;
+                button3.Text = e.ClickedItem.Text;
+                lang = InputData.CheckString(button3.Text);
             }
         }
 
@@ -271,8 +270,8 @@ namespace Kursovaya
             }
             else
             {
-                publisher = e.ClickedItem.Text;
-                button4.Text = publisher;
+                button4.Text = e.ClickedItem.Text;
+                publisher = InputData.CheckString(button4.Text);
             }
         }
 
@@ -288,8 +287,8 @@ namespace Kursovaya
             }
             else
             {
-                binding = e.ClickedItem.Text;
-                button6.Text = binding;
+                button6.Text = e.ClickedItem.Text;
+                binding = InputData.CheckString(button6.Text);
             }
         }
     }
