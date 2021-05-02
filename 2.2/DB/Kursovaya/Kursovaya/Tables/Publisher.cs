@@ -42,6 +42,12 @@ namespace Kursovaya
             new string[]{"city", "\"Город\""}
         };
 
-
+        protected override void GenerateNode()
+        {
+            Name = GenerateLine(FileGeneratorPath[0]);
+            City = GetNodeFromOtherTable(2);
+            Date = new Random().Next(1900, 2021);
+            Telephone = InputData.CheckString(new Random().Next(100, 9999).ToString() + new Random().Next(100, 9999).ToString() + new Random().Next(100, 9999).ToString() + new Random().Next(100, 9999).ToString());
+        }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Kursovaya
 {
     class Area : Table
     {
+
         protected override string ClassName => "area";
         protected override string PrimaryKey => "id_area";
         string Value;
@@ -25,6 +27,9 @@ namespace Kursovaya
             new string[]{"name","\"Район\""},
             };
 
-        
+        protected override void GenerateNode()
+        {
+            Value = GenerateLine(FileGeneratorPath[0]);
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace Kursovaya
         protected override string PrimaryKey => "deliveries_id";
 
         protected override string InsertQuery => $"INSERT INTO deliveries (shop_id, book_id, book_count, date_come, cost, lang_id, size, pre_order, def_cost) VALUES (" +
-            $"(SELECT shop.shop_id FROM shop WHERE shop.shop_name = {Shop}), (SELECT book.book_id FROM book WHERE book.book_name = {Book})," +
+            $"(SELECT shop.shop_id FROM shop WHERE shop.shop_name = {Shop} LIMIT 1), (SELECT book.book_id FROM book WHERE book.book_name = {Book} LIMIT 1)," +
             $"{Count}, {Date}, {Cost}, (SELECT lang.id_lang FROM lang WHERE lang.name_lang = {Lang}), {Size}, {PreOrder}, {DefCost})";
 
         protected override string SelectQuery => "SELECT deliveries_id AS ID, (SELECT shop_name FROM shop WHERE shop_id = deliveries.shop_id) AS Магазин," +
@@ -56,5 +56,18 @@ namespace Kursovaya
             new string[]{"book","\"Книга\""},
             new string[]{"lang", "\"Язык\""},
         };
+        protected override string[] FileGeneratorPath => new string[]{"book/book.txt"};
+        protected override void GenerateNode()
+        {
+            Shop = GetNodeFromOtherTable(9);
+            Book = GetNodeFromOtherTable(8);
+            Lang = GetNodeFromOtherTable(3);
+            Date = $"'{new Random().Next(1,30)}-{new Random().Next(1,12)}-{new Random().Next(2005, 2021)}'";
+            Cost = (double)new Random().Next(50, 1000);
+            Size = (double)new Random().Next(50, 1000);
+            DefCost = (double)new Random().Next(10, 1000);
+            Count = new Random().Next(10, 100);
+            PreOrder = (new Random().Next(10, 100) % 2 == 0);
+        }
     }
 }

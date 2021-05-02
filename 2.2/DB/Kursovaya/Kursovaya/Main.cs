@@ -180,7 +180,7 @@ namespace Kursovaya
                 DataTable dt = new DataTable();
                 Table.ReturnTable(lb.SelectedItem.ToString()).Select().Fill(dt);
                 dgv.DataSource = dt;
-                count_nodes.Text = "Количество записей: " + dataGridView2.Rows.Count;
+                count_nodes.Text = "Количество записей: " + dgv.Rows.Count;
             }
         }
         private void listBox1_MouseClick(object sender, MouseEventArgs e)
@@ -226,6 +226,20 @@ namespace Kursovaya
 
                     UpdateDatagrid(dataGridView2, listBox2, label9);
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Table.Generate();
+            UpdateDatagrid(dataGridView2, listBox2, label9);
+            UpdateDatagrid(dataGridView1, listBox1, label1);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Table.TruncateAll();
+            UpdateDatagrid(dataGridView2, listBox2, label9);
+            UpdateDatagrid(dataGridView1, listBox1, label1);
         }
     }
 }

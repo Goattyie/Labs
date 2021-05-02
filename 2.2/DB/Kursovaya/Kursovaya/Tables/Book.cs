@@ -8,6 +8,7 @@ namespace Kursovaya
 {
     class Book : Table
     {
+        
         protected override string ClassName => "book";
         protected override string PrimaryKey => "book_id";
         string Name, Description, Lang, Publisher, Style, Binding;
@@ -29,7 +30,7 @@ namespace Kursovaya
         protected override string InsertQuery => $"INSERT INTO book (book_name, book_photo, book_description, book_lang_id, book_date, book_publisher_id, book_style_id, book_binding_id, book_date_public) VALUES " +
                         $"({Name}, '{0}', {Description}, " +
                         $"(SELECT id_lang FROM lang WHERE name_lang = {this.Lang}), {Date}, " +
-                        $"(SELECT publisher_id FROM publisher WHERE publisher_name = {this.Publisher})," +
+                        $"(SELECT publisher_id FROM publisher WHERE publisher_name = {this.Publisher} LIMIT 1)," +
                         $"(SELECT id_style FROM style WHERE name_style = {this.Style})," +
                         $"(SELECT id_binding FROM binding WHERE name_binding = {this.Binding}), {PublishDate})";
 
@@ -47,7 +48,7 @@ namespace Kursovaya
             $"WHERE {ClassName}.{ClassName}_lang_id = lang.id_lang AND " +
             $"{ClassName}.{ClassName}_publisher_id = publisher.publisher_id AND " +
             $"{ClassName}.{ClassName}_style_id = style.id_style AND " +
-            $"{ClassName}.{ClassName}_binding_id = binding.id_binding";
+            $"{ClassName}.{ClassName}_binding_id = binding.id_binding  ORDER BY book.book_id";
 
         protected override string UpdateQuery => throw new NotImplementedException();
 
@@ -65,8 +66,16 @@ namespace Kursovaya
             new string[]{"binding", "\"Тип переплета\""}
         };
 
-
-
-
+        protected override void GenerateNode()
+        {
+            Name = GenerateLine(FileGeneratorPath[0]);
+            Lang = GetNodeFromOtherTable(3);
+            Publisher = GetNodeFromOtherTable(4);
+            Style = GetNodeFromOtherTable(5);
+            Binding = GetNodeFromOtherTable(6);
+            Description = GenerateLine($"{ClassName}/description.txt");
+            Date = new Random().Next(2000, 2021);
+            PublishDate = new Random().Next(1800, 2021);
+        }
     }
 }

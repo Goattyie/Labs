@@ -27,5 +27,10 @@ namespace Kursovaya
         protected override List<string[]> ColumnError => new List<string[]> {
             new string[]{"name","\"Жанр\""},
             };
+
+        protected override void GenerateNode()
+        {
+            Value = GenerateLine(FileGeneratorPath[0]);
+        }
     }
 }

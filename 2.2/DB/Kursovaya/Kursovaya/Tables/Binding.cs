@@ -28,8 +28,9 @@ namespace Kursovaya
             new string[]{"name","\"Тип переплета\""},
             };
 
-
-
-
+        protected override void GenerateNode()
+        {
+            Value = GenerateLine(FileGeneratorPath[0]);
+        }
     }
 }
