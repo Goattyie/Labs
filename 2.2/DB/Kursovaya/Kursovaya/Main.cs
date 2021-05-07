@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading;
 using System.Windows.Forms;
 using Npgsql;
 
@@ -230,7 +231,11 @@ namespace Kursovaya
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Table.Generate();
+            new Thread(() =>
+            {
+                Table.Generate();
+               
+            }).Start();
             UpdateDatagrid(dataGridView2, listBox2, label9);
             UpdateDatagrid(dataGridView1, listBox1, label1);
         }

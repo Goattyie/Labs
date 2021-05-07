@@ -15,8 +15,8 @@ namespace Kursovaya
         }
         public static NpgsqlConnection GetConnection()
         {
-            //return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id="+login+";Password="+password+";Database=Kursovaya;");
-            return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123321;Database=Kursovaya;");
+            return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id="+login+";Password="+password+";Database=Kursovaya;");
+            return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=1956;Database=Kursovaya;");
         }
 
     }

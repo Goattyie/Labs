@@ -10,11 +10,11 @@
         "projectUniqueName": "D:\\Labs\\2.2\\DB\\Kursovaya\\Kursovaya\\Kursovaya.csproj",
         "projectName": "Kursovaya",
         "projectPath": "D:\\Labs\\2.2\\DB\\Kursovaya\\Kursovaya\\Kursovaya.csproj",
-        "packagesPath": "C:\\Users\\Goattyie\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\goattye\\.nuget\\packages\\",
         "outputPath": "D:\\Labs\\2.2\\DB\\Kursovaya\\Kursovaya\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Goattyie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\goattye\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

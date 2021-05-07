@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using System;
+using System.Threading;
 
 namespace Kursovaya
 {
@@ -58,6 +59,7 @@ namespace Kursovaya
             new Book().Truncate();
             new BookAuthor().Truncate();
             new Deliveries().Truncate();
+            Message.Success();
         }
         public NpgsqlDataAdapter Select()
         {
@@ -81,7 +83,8 @@ namespace Kursovaya
                     Message.Success();
                     result = true;
                 }
-                catch (Npgsql.PostgresException ex) { SQLError(ex); result = false; }
+                catch (Npgsql.PostgresException ex) { 
+                    SQLError(ex); result = false; }
                 connect.Close();
                 return result;
             }
@@ -133,7 +136,7 @@ namespace Kursovaya
                 ValidateConstraint(ex.ConstraintName);
             else if (ex.ColumnName != null)
                 ValidateColumn(ex.ColumnName);
-            else ErrorShow("Значение одного из полей слишком велико");
+            else ErrorShow("Не все поля заполнены верно.");
 
         }
         public static void ErrorShow(string msg) { MessageBox.Show(msg, "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -174,21 +177,24 @@ namespace Kursovaya
             }
             return true;
         }
+        delegate void Something(int count);
+        void ss(int count) { }
         public static void Generate()
         {
+            Message.OperationStart();
             new Area().GenerateTable(100);
             new Lang().GenerateTable(100);
             new Own().GenerateTable(100);
             new Binding().GenerateTable(100);
             new City().GenerateTable(100);
-            new Style().GenerateTable(100);
-            new Shop().GenerateTable(100);
-            new Publisher().GenerateTable(100);
-            new Book().GenerateTable(100);
-            new Author().GenerateTable(100);
-            new BookAuthor().GenerateTable(100);
-            new Deliveries().GenerateTable(100);
-
+            new Style().GenerateTable(10);
+            new Shop().GenerateTable(10);
+            new Publisher().GenerateTable(20);
+            new Book().GenerateTable(20);
+            new Author().GenerateTable(20);
+            new BookAuthor().GenerateTable(20);
+            new Deliveries().GenerateTable(20);
+            
         }
         protected void GenerateTable(int count)
         {
