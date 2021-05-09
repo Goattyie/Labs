@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 #ifndef НАСТРОЙКИ_КОНДИЦИОНЕРА_H_HEADER_INCLUDED_9F6E34A5
 #define НАСТРОЙКИ_КОНДИЦИОНЕРА_H_HEADER_INCLUDED_9F6E34A5
+=======
+#ifndef НАСТРОЙКИ_КОНДИЦИОНЕРА_H_HEADER_INCLUDED_9F70BFCB
+#define НАСТРОЙКИ_КОНДИЦИОНЕРА_H_HEADER_INCLUDED_9F70BFCB
+>>>>>>> a31445456be562718e98950e273d600d06a0267c
 
 //##ModelId=608F051D007A
 class Настройки кондиционера
@@ -24,4 +29,8 @@ class Настройки кондиционера
 
 
 
+<<<<<<< HEAD
 #endif /* НАСТРОЙКИ_КОНДИЦИОНЕРА_H_HEADER_INCLUDED_9F6E34A5 */
+=======
+#endif /* НАСТРОЙКИ_КОНДИЦИОНЕРА_H_HEADER_INCLUDED_9F70BFCB */
+>>>>>>> a31445456be562718e98950e273d600d06a0267c

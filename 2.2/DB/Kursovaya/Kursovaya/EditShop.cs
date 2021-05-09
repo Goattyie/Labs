@@ -72,14 +72,7 @@ namespace Kursovaya
             address = InputData.CheckString(textBox2.Text);
 
             success = new Shop(name, Convert.ToInt32(textBox3.Text), area, address, own).Insert();
-
-            if (!success)
-            {
-                own = InputData.RemoveSymbols(own);
-                area = InputData.RemoveSymbols(area);
-                return;
-            }
-            this.Clear();
+            if(success)this.Clear();
         }
         string area = "NULL", own = "NULL", name, address;
         private void contextMenuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

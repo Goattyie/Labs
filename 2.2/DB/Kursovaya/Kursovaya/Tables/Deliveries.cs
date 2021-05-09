@@ -49,6 +49,7 @@ namespace Kursovaya
             new string[]{"ck_size_value", "\"Объем\""},
             new string[]{"ck_defcost_value", "\"Цена (для поставщиков)\""},
             new string[]{"ck_date_come","\"Дата поступления\""},
+            new string[]{"deliver_uniq","\"Уникальность\""}
         };
 
         protected override List<string[]> ColumnError => new List<string[]> {

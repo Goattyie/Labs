@@ -26,9 +26,14 @@ namespace Kursovaya
 
         protected override string UpdateQuery => throw new NotImplementedException();
 
-        protected override List<string[]> Constraint => throw new NotImplementedException();
+        protected override List<string[]> Constraint => new List<string[]> {
+            new string[]{"fio_uniq","\"Уникальность\"" } };
 
-        protected override List<string[]> ColumnError => throw new NotImplementedException();
+        protected override List<string[]> ColumnError => new List<string[]> {
+            new string[]{"last_name","\"Отчество\"" },
+            new string[]{"second_name","\"Имя\""},
+            new string[]{"name","\"Фамилия\""}
+        };
 
         
 

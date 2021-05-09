@@ -39,7 +39,9 @@ namespace Kursovaya
         }
         public static string RemoveSymbols(string line)
         {
-            return line.Trim('\'');
+            if(line != null)
+                return line.Trim('\'');
+            return null;
         }
     }
 }

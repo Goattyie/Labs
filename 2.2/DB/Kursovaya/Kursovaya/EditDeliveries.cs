@@ -54,9 +54,9 @@ namespace Kursovaya
         {
             if(!InputData.CheckDouble(textBox1.Text, "Цена книги(для магазина)"))
                 return;
-            if (!InputData.CheckDouble(textBox3.Text, "Цена книги(поставщика)"))
+            if (!InputData.CheckDouble(textBox2.Text, "Цена книги(поставщика)"))
                 return;
-            if (!InputData.CheckDouble(textBox2.Text, "Объем"))
+            if (!InputData.CheckDouble(textBox3.Text, "Объем"))
                 return;
             if (radioButton1.Checked == true)
                 PreOder = true;

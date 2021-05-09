@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using System;
+using System.Threading;
 
 namespace Kursovaya
 {
@@ -52,7 +53,17 @@ namespace Kursovaya
             new City().Truncate();
             new Style().Truncate();
             new Author().Truncate();
+<<<<<<< HEAD
             new Lang().Truncate();
+=======
+            new BookAuthor().Truncate();
+            new Shop().Truncate();
+            new Publisher().Truncate();
+            new Book().Truncate();
+            new BookAuthor().Truncate();
+            new Deliveries().Truncate();
+            Message.Success();
+>>>>>>> a31445456be562718e98950e273d600d06a0267c
         }
         public NpgsqlDataAdapter Select()
         {
@@ -76,7 +87,8 @@ namespace Kursovaya
                     Message.Success();
                     result = true;
                 }
-                catch (Npgsql.PostgresException ex) { SQLError(ex); result = false; }
+                catch (Npgsql.PostgresException ex) { 
+                    SQLError(ex); result = false; }
                 connect.Close();
                 return result;
             }
@@ -128,7 +140,7 @@ namespace Kursovaya
                 ValidateConstraint(ex.ConstraintName);
             else if (ex.ColumnName != null)
                 ValidateColumn(ex.ColumnName);
-            else ErrorShow("Значение одного из полей слишком велико");
+            else ErrorShow("Не все поля заполнены верно.");
 
         }
         public static void ErrorShow(string msg) { MessageBox.Show(msg, "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -160,6 +172,7 @@ namespace Kursovaya
                 return new Binding();
             else return new Author();
         }
+<<<<<<< HEAD
         public static void Generate()
         {
             if (Message.Warning("Для генерации файлов нужно удалить все записи из базы данных. Удалить?") == DialogResult.Cancel)
@@ -167,6 +180,41 @@ namespace Kursovaya
 
             TruncateAll();
             if (!new Area().GenerateTable())
+=======
+        public bool FileExist()
+        {
+            foreach (string filename in FileGeneratorPath)
+            {
+                if (!File.Exists(filename))
+                    return false;
+            }
+            return true;
+        }
+        delegate void Something(int count);
+        void ss(int count) { }
+        public static void Generate()
+        {
+            Message.OperationStart();
+            new Area().GenerateTable(100);
+            new Lang().GenerateTable(100);
+            new Own().GenerateTable(100);
+            new Binding().GenerateTable(100);
+            new City().GenerateTable(100);
+            new Style().GenerateTable(10);
+            new Shop().GenerateTable(10);
+            new Publisher().GenerateTable(20);
+            new Book().GenerateTable(20);
+            new Author().GenerateTable(20);
+            new BookAuthor().GenerateTable(20);
+            new Deliveries().GenerateTable(20);
+            
+        }
+        protected void GenerateTable(int count)
+        {
+            if (!FileExist())
+            {
+                ErrorShow($"Ошибка создание записей таблицы \"{ClassName}\". Файла генерации не существует");
+>>>>>>> a31445456be562718e98950e273d600d06a0267c
                 return;
             if (!new Lang().GenerateTable())
                 return;
