@@ -28,7 +28,11 @@ namespace Kursovaya
         public static void Success() { MessageBox.Show("Операция выполнена.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information); }
         public static DialogResult DeleteWarning()
         {
-            return MessageBox.Show("ВНИМЕНИЕ! Все записи из других таблиц, которые связаны с этой записью будут удалены. Хотите удалить?", "Успех", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            return MessageBox.Show("ВНИМЕНИЕ! Все записи из других таблиц, которые связаны с этой записью будут удалены. Хотите удалить?", "Уведомление", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+        }
+        public static DialogResult Warning(string msg)
+        {
+            return MessageBox.Show(msg, "Уведомление", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
         }
     }
 }

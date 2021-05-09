@@ -50,13 +50,5 @@ namespace Kursovaya
             new string[]{ "UQ_shop", "\"Уникальность\"" }
         };
 
-        protected override void GenerateNode()
-        {
-            Name = GenerateLine($"{ClassName}/shop.txt");
-            Area = GetNodeFromOtherTable(0);
-            Own = GetNodeFromOtherTable(1);
-            Address = GenerateLine($"{ClassName}/address.txt");
-            Date = new Random().Next(2000, 2021);
-        }
     }
 }

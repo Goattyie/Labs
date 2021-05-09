@@ -56,18 +56,7 @@ namespace Kursovaya
             new string[]{"book","\"Книга\""},
             new string[]{"lang", "\"Язык\""},
         };
-        protected override string[] FileGeneratorPath => new string[]{"book/book.txt"};
-        protected override void GenerateNode()
-        {
-            Shop = GetNodeFromOtherTable(9);
-            Book = GetNodeFromOtherTable(8);
-            Lang = GetNodeFromOtherTable(3);
-            Date = $"'{new Random().Next(1,30)}-{new Random().Next(1,12)}-{new Random().Next(2005, 2021)}'";
-            Cost = (double)new Random().Next(50, 1000);
-            Size = (double)new Random().Next(50, 1000);
-            DefCost = (double)new Random().Next(10, 1000);
-            Count = new Random().Next(10, 100);
-            PreOrder = (new Random().Next(10, 100) % 2 == 0);
-        }
+      
+
     }
 }

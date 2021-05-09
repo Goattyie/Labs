@@ -48,75 +48,8 @@ namespace Kursovaya
             }
             return success;
         }
-        protected override string GetNodeFromOtherTable(int i)
-        {
-            if (i >= RandomNodeQuery.Length)
-                return "NULL";
 
-
-            using (NpgsqlConnection connect = SQL.GetConnection())
-            {
-                connect.Open();
-                try
-                {
-                    Author = new string[3];
-                    NpgsqlCommand command = new NpgsqlCommand(RandomNodeQuery[i], connect);
-                    command.ExecuteNonQuery().ToString();
-                    NpgsqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        try
-                        {
-                            Author[1] = reader.GetString(0);
-                            Author[0] = reader.GetString(1);
-                            Author[2] = reader.GetString(2);
-                        }
-                        catch { };
-                    }
-                }
-                catch { }
-                connect.Close();
-            }
-            return null;
-        }
-        protected string GetNodeFromOtherTable(int i, int s)
-        {
-            if (i >= RandomNodeQuery.Length)
-                return "NULL";
-
-
-            using (NpgsqlConnection connect = SQL.GetConnection())
-            {
-                string line = null;
-                connect.Open();
-                try
-                {
-                    NpgsqlCommand command = new NpgsqlCommand(RandomNodeQuery[i], connect);
-                    command.ExecuteNonQuery().ToString();
-                    NpgsqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        try
-                        {
-                            line = reader.GetString(0);
-                        }
-                        catch { };
-                    }
-                }
-                catch { }
-                connect.Close();
-                if (line != "NULL")
-                    return InputData.CheckString(line);
-                else return "NULL";
-            }
-        }
-        protected override void GenerateNode()
-        {
-            GetNodeFromOtherTable(7);
-            BookName = GetNodeFromOtherTable(8, 1);
-        }
-
-        protected override string[] FileGeneratorPath => new string[] { $"book/book.txt" };
+       
         protected override string SelectQuery => $"SELECT id_book_author AS ID, (SELECT book_name AS Книга FROM book WHERE book_id = book_author.id_book LIMIT 1), (SELECT second_name_author AS Фамилия FROM author WHERE id_author = book_author.id_author ), (SELECT name_author AS Имя FROM author WHERE id_author = book_author.id_author), (SELECT last_name_author AS Отчество FROM author WHERE id_author = book_author.id_author) FROM book_author";
 
         protected override string UpdateQuery => throw new NotImplementedException();

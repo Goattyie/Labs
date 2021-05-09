@@ -21,7 +21,7 @@ namespace Kursovaya
             "SELECT shop_name FROM shop ORDER BY RANDOM() LIMIT 1",
             };
         protected string TruncateQuery => $"TRUNCATE TABLE {ClassName} RESTART IDENTITY CASCADE";
-        protected virtual string[] FileGeneratorPath => new string[] { ($"{ClassName}/{ClassName}.txt") };
+        protected string FileGeneratorPath => $"sql/{ClassName}.sql";
         protected abstract string ClassName { get; }
         protected abstract string PrimaryKey { get; }
         protected abstract string InsertQuery { get; }
@@ -52,12 +52,7 @@ namespace Kursovaya
             new City().Truncate();
             new Style().Truncate();
             new Author().Truncate();
-            new BookAuthor().Truncate();
-            new Shop().Truncate();
-            new Publisher().Truncate();
-            new Book().Truncate();
-            new BookAuthor().Truncate();
-            new Deliveries().Truncate();
+            new Lang().Truncate();
         }
         public NpgsqlDataAdapter Select()
         {
@@ -165,107 +160,68 @@ namespace Kursovaya
                 return new Binding();
             else return new Author();
         }
-        public bool FileExist()
-        {
-            foreach (string filename in FileGeneratorPath)
-            {
-                if (!File.Exists(filename))
-                    return false;
-            }
-            return true;
-        }
         public static void Generate()
         {
-            new Area().GenerateTable(100);
-            new Lang().GenerateTable(100);
-            new Own().GenerateTable(100);
-            new Binding().GenerateTable(100);
-            new City().GenerateTable(100);
-            new Style().GenerateTable(100);
-            new Shop().GenerateTable(100);
-            new Publisher().GenerateTable(100);
-            new Book().GenerateTable(100);
-            new Author().GenerateTable(100);
-            new BookAuthor().GenerateTable(100);
-            new Deliveries().GenerateTable(100);
+            if (Message.Warning("Для генерации файлов нужно удалить все записи из базы данных. Удалить?") == DialogResult.Cancel)
+                return; 
 
-        }
-        protected void GenerateTable(int count)
-        {
-            if (!FileExist())
-            {
-                ErrorShow($"Ошибка создание записей таблицы \"{ClassName}\". Файла генерации не существует");
+            TruncateAll();
+            if (!new Area().GenerateTable())
                 return;
-            }
+            if (!new Lang().GenerateTable())
+                return;
+            if (!new Own().GenerateTable())
+                return;
+            if (!new Binding().GenerateTable())
+                return;
+            if (!new City().GenerateTable())
+                return;
+            if (!new Style().GenerateTable())
+                return;
+            if (!new Shop().GenerateTable())
+                return;
+            if (!new Publisher().GenerateTable())
+                return;
+            if (!new Book().GenerateTable())
+                return;
+            if (!new Author().GenerateTable())
+                return;
+            if (!new BookAuthor().GenerateTable())
+                return;
+            if (!new Deliveries().GenerateTable())
+                return;
+            Message.Success();
 
-            //Создание записей
-            for(int i = 0; i < count; i++)
-            {
-                GenerateNode();
-
-                //Добавление записи
-                using (NpgsqlConnection connect = SQL.GetConnection())
-                {
-                    connect.Open();
-                    try
-                    {
-                        NpgsqlCommand command = new NpgsqlCommand(InsertQuery, connect);
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Npgsql.PostgresException ex) { }
-                    connect.Close();
-                }
-            }
         }
-        protected abstract void GenerateNode(); // Создает из строчки параметры
-        protected virtual string GenerateLine(string path) //Выбирает строчку из файла
+        protected bool GenerateTable()
         {
-            StreamReader sr = new StreamReader(path);
-            try
+            if (!File.Exists(FileGeneratorPath))
             {
-                Random rand = new Random();
-                int i = rand.Next(File.ReadAllLines(path).Length);
-
-                while (i > 0)
-                {
-                    sr.ReadLine();
-                    i--;
-                }
+                Message.ErrorShow("Присутствуют не все файлы генерации.");
+                return false;
             }
-            catch { }
-            return InputData.CheckString(sr.ReadLine());
-        }
-        protected virtual string GetNodeFromOtherTable(int i)
-        {
-            if (i >= RandomNodeQuery.Length)
-                return "NULL";
+            string GenerateQuery = File.ReadAllText(FileGeneratorPath);
 
+            if(GenerateQuery == null)
+            {
+                Message.ErrorShow("Один из файлов генерации пуст.");
+                return false;
+            }
 
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
-                string line = null;
                 connect.Open();
                 try
                 {
-                    NpgsqlCommand command = new NpgsqlCommand(RandomNodeQuery[i], connect);
-                    command.ExecuteNonQuery().ToString();
-                    NpgsqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        try
-                        {
-                            line = reader.GetString(0);
-                        }
-                        catch {};
-                    }
+                    NpgsqlCommand command = new NpgsqlCommand(GenerateQuery, connect);
+                    command.ExecuteNonQuery();
                 }
-                catch { }
+                catch (Npgsql.PostgresException ex) { }
                 connect.Close();
-                if (line != "NULL")
-                    return InputData.CheckString(line);
-                else return "NULL";
             }
+            return true;
         }
+
 
     }
 }

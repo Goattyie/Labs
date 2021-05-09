@@ -274,7 +274,7 @@
 			quidu      	"603E85300206")))
 	    (object Mechanism @1
 		logical_models 	(list unit_reference_list
-		    (object Object "Устройство пользователя"
+		    (object Object "Пользователь"
 			quid       	"6063826A02A7"
 			collaborators 	(list link_list
 			    (object Link
@@ -339,16 +339,16 @@
 			multi      	FALSE)))
 	    (object Mechanism @2
 		logical_models 	(list unit_reference_list
-		    (object Object "Устройство пользователя"
+		    (object Object "Пользователь"
 			quid       	"60638BB402D4"
 			collaborators 	(list link_list
 			    (object Link
-				quid       	"60638C05015E"
-				supplier   	"Wifi"
-				quidu      	"60638BBE03B3"
+				quid       	"607F536B0391"
+				supplier   	"Пульт управления"
+				quidu      	"607F535C01A9"
 				messages   	(list Messages
-				    (object Message "Отправить запрос режима работы()"
-					quid       	"60638C070200"
+				    (object Message "Выбор режима работы"
+					quid       	"607F538E03C2"
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
@@ -356,13 +356,13 @@
 					ordinal    	0
 					quidu      	"000000000000"
 					creation   	FALSE)
-				    (object Message "Передать данные на устройство пользователя()"
-					quid       	"60638C3D0027"
+				    (object Message "Вывести данные на экран"
+					quid       	"607F53A300B9"
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"ToClientFromSupplier"
-					sequence   	"4"
-					ordinal    	3
+					sequence   	"8"
+					ordinal    	7
 					quidu      	"000000000000"
 					creation   	FALSE))))
 			persistence 	"Transient"
@@ -372,26 +372,26 @@
 			quid       	"60638BBE03B3"
 			collaborators 	(list link_list
 			    (object Link
-				quid       	"60638C270306"
+				quid       	"607F53700367"
 				supplier   	"Кондиционер"
 				quidu      	"60638BC7011B"
 				messages   	(list Messages
-				    (object Message "Передать запрос()"
-					quid       	"60638C300320"
+				    (object Message "Передать запрос"
+					quid       	"607F53950039"
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
-					sequence   	"2"
-					ordinal    	1
+					sequence   	"3"
+					ordinal    	2
 					quidu      	"000000000000"
 					creation   	FALSE)
-				    (object Message "Отправить результаты состояния текущей температуры и режима работы"
-					quid       	"60638C3702B0"
+				    (object Message "Отправить результаты состояния"
+					quid       	"607F539E03A9"
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"ToClientFromSupplier"
-					sequence   	"3"
-					ordinal    	2
+					sequence   	"6"
+					ordinal    	5
 					quidu      	"000000000000"
 					creation   	FALSE))))
 			persistence 	"Transient"
@@ -399,6 +399,71 @@
 			multi      	FALSE)
 		    (object Object "Кондиционер"
 			quid       	"60638BC7011B"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"607F5373010F"
+				supplier   	"Контроллер"
+				quidu      	"607F53630309"
+				messages   	(list Messages
+				    (object Message "Передать запрос"
+					quid       	"607F539700D6"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"4"
+					ordinal    	3
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Вернуть информацию о результате"
+					quid       	"607F539C0351"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"ToClientFromSupplier"
+					sequence   	"5"
+					ordinal    	4
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Пульт управления"
+			quid       	"607F535C01A9"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"607F536E0137"
+				supplier   	"Wifi"
+				quidu      	"60638BBE03B3"
+				messages   	(list Messages
+				    (object Message "Отправить запрос режима работы"
+					quid       	"607F539102E3"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"2"
+					ordinal    	1
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Передать данные на устройство"
+					quid       	"607F53A003DF"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"ToClientFromSupplier"
+					sequence   	"7"
+					ordinal    	6
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Контроллер"
+			quid       	"607F53630309"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"607F53990098"
+				label      	"Остановить работу кондиционера"
+				supplier   	"Контроллер"
+				quidu      	"607F53630309"
+				supplier_containment 	"By Value"))
 			persistence 	"Transient"
 			creationObj 	FALSE
 			multi      	FALSE))))
@@ -1484,7 +1549,7 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object InterObjView "Устройство пользователя" @61
+		    (object InterObjView "Пользователь" @61
 			location   	(603, 256)
 			font       	(object Font
 			    size       	10
@@ -1504,7 +1569,7 @@
 			    nlines     	2
 			    max_width  	282
 			    justify    	0
-			    label      	"Устройство пользователя")
+			    label      	"Пользователь")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
@@ -1797,7 +1862,7 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object ObjectView "Устройство пользователя" @78
+		    (object ObjectView "Пользователь" @78
 			location   	(412, 1025)
 			font       	(object Font
 			    size       	10
@@ -1811,25 +1876,25 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@78
-			    location   	(263, 973)
+			    location   	(215, 962)
 			    fill_color 	13434879
 			    nlines     	2
-			    max_width  	298
+			    max_width  	395
 			    justify    	0
-			    label      	"Устройство пользователя")
+			    label      	"Пользователь")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"60638BB402D4"
-			width      	316
-			height     	128
+			width      	413
+			height     	150
 			annotation 	4
 			autoResize 	TRUE
 			subobjects 	0
 			x_offset   	0.000000
 			y_offset   	0.000000)
 		    (object ObjectView "Wifi" @79
-			location   	(1397, 243)
+			location   	(1815, 990)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -1842,7 +1907,7 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@79
-			    location   	(1259, 186)
+			    location   	(1677, 933)
 			    fill_color 	13434879
 			    nlines     	2
 			    max_width  	276
@@ -1860,7 +1925,7 @@
 			x_offset   	0.000000
 			y_offset   	0.000000)
 		    (object ObjectView "Кондиционер" @80
-			location   	(3229, 247)
+			location   	(2558, 997)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -1873,7 +1938,7 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@80
-			    location   	(3020, 206)
+			    location   	(2349, 956)
 			    fill_color 	13434879
 			    nlines     	2
 			    max_width  	419
@@ -1890,18 +1955,109 @@
 			subobjects 	0
 			x_offset   	0.000000
 			y_offset   	0.000000)
-		    (object LinkView "" @81
+		    (object ObjectView "Пульт управления" @81
+			location   	(1155, 984)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@81
+			    location   	(1024, 933)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	262
+			    justify    	0
+			    label      	"Пульт управления")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"607F535C01A9"
+			width      	280
+			height     	126
+			annotation 	4
+			autoResize 	TRUE
+			subobjects 	0
+			x_offset   	0.000000
+			y_offset   	0.000000)
+		    (object ObjectView "Контроллер" @82
+			location   	(3229, 994)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@82
+			    location   	(3069, 934)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	320
+			    justify    	0
+			    label      	"Контроллер")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"607F53630309"
+			width      	338
+			height     	144
+			annotation 	4
+			autoResize 	TRUE
+			subobjects 	0
+			x_offset   	0.000000
+			y_offset   	0.000000)
+		    (object LinkSelfView "Остановить работу кондиционера" @83
+			location   	(3229, 772)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@83
+			    location   	(3229, 772)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	713
+			    justify    	0
+			    label      	"Остановить работу кондиционера")
 			stereotype 	TRUE
 			line_color 	3342489
-			quidu      	"60638C05015E"
-			client     	@78
-			supplier   	@79
+			quidu      	"607F53990098"
+			client     	@82
+			supplier   	@82
 			vertices   	(list Points
-			    (491, 960)
-			    (1307, 312))
+			    (3172, 922)
+			    (3286, 922))
+			line_style 	4)
+		    (object LinkView "" @84
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"607F536B0391"
+			client     	@78
+			supplier   	@81
+			vertices   	(list Points
+			    (618, 1012)
+			    (1014, 991))
 			line_style 	0)
-		    (object MessView "" @82
-			location   	(904, 577)
+		    (object MessView "" @85
+			location   	(763, 960)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -1913,9 +2069,9 @@
 			    color      	0
 			    default_color 	TRUE)
 			line_color 	3342489
-			label      	(object SegLabel @83
-			    Parent_View 	@82
-			    location   	(649, 401)
+			label      	(object SegLabel @86
+			    Parent_View 	@85
+			    location   	(763, 916)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -1926,76 +2082,24 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    quidu      	"60638C070200"
+			    quidu      	"607F538E03C2"
 			    anchor_loc 	1
 			    nlines     	1
-			    max_width  	691
+			    max_width  	466
 			    justify    	0
-			    label      	"Отправить запрос режима работы()"
-			    pctDist    	-0.319258
-			    height     	296
+			    label      	"Выбор режима работы"
+			    pctDist    	0.500000
+			    height     	45
 			    orientation 	0)
-			object_arc 	@81
-			pctDist    	0.539783
+			object_arc 	@84
+			pctDist    	0.369690
 			height     	45
 			orientation 	0
 			dir        	1
-			origin     	(857, 613)
-			terminus   	(951, 541))
-		    (object MessView "" @84
-			location   	(1005, 609)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			line_color 	3342489
-			label      	(object SegLabel @85
-			    Parent_View 	@84
-			    location   	(1493, 679)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				charSet    	204
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    quidu      	"60638C3D0027"
-			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	919
-			    justify    	0
-			    label      	"Передать данные на устройство пользователя()"
-			    pctDist    	-2.349067
-			    height     	361
-			    orientation 	0)
-			object_arc 	@81
-			pctDist    	0.597356
-			height     	45
-			orientation 	1
-			dir        	-1
-			origin     	(1051, 572)
-			terminus   	(959, 646))
-		    (object LinkView "" @86
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"60638C270306"
-			client     	@79
-			supplier   	@80
-			vertices   	(list Points
-			    (1544, 243)
-			    (3010, 246))
-			line_style 	0)
+			origin     	(703, 962)
+			terminus   	(823, 958))
 		    (object MessView "" @87
-			location   	(2161, 200)
+			location   	(819, 1046)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -2009,7 +2113,7 @@
 			line_color 	3342489
 			label      	(object SegLabel @88
 			    Parent_View 	@87
-			    location   	(2161, 156)
+			    location   	(821, 1091)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -2020,24 +2124,34 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    quidu      	"60638C300320"
+			    quidu      	"607F53A300B9"
 			    anchor_loc 	1
 			    nlines     	1
-			    max_width  	385
+			    max_width  	525
 			    justify    	0
-			    label      	"Передать запрос()"
-			    pctDist    	0.500000
+			    label      	"Вывести данные на экран"
+			    pctDist    	0.504448
 			    height     	45
 			    orientation 	0)
-			object_arc 	@86
-			pctDist    	0.421179
+			object_arc 	@84
+			pctDist    	0.501314
 			height     	45
-			orientation 	0
-			dir        	1
-			origin     	(2101, 200)
-			terminus   	(2221, 200))
-		    (object MessView "" @89
-			location   	(2175, 293)
+			orientation 	1
+			dir        	-1
+			origin     	(878, 1043)
+			terminus   	(760, 1049))
+		    (object LinkView "" @89
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"607F53700367"
+			client     	@79
+			supplier   	@80
+			vertices   	(list Points
+			    (1962, 990)
+			    (2339, 994))
+			line_style 	0)
+		    (object MessView "" @90
+			location   	(2177, 948)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -2049,9 +2163,9 @@
 			    color      	0
 			    default_color 	TRUE)
 			line_color 	3342489
-			label      	(object SegLabel @90
-			    Parent_View 	@89
-			    location   	(2385, 336)
+			label      	(object SegLabel @91
+			    Parent_View 	@90
+			    location   	(2178, 904)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -2062,22 +2176,252 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    quidu      	"60638C3702B0"
+			    quidu      	"607F53950039"
 			    anchor_loc 	1
 			    nlines     	1
-			    max_width  	1382
+			    max_width  	363
 			    justify    	0
-			    label      	"Отправить результаты состояния текущей температуры и режима работы"
-			    pctDist    	-1.279661
-			    height     	43
+			    label      	"Передать запрос"
+			    pctDist    	0.500000
+			    height     	45
 			    orientation 	0)
-			object_arc 	@86
-			pctDist    	0.431087
-			height     	49
+			object_arc 	@89
+			pctDist    	0.573770
+			height     	45
+			orientation 	0
+			dir        	1
+			origin     	(2117, 947)
+			terminus   	(2237, 949))
+		    (object MessView "" @92
+			location   	(2128, 1037)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			line_color 	3342489
+			label      	(object SegLabel @93
+			    Parent_View 	@92
+			    location   	(2128, 1082)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"607F539E03A9"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	647
+			    justify    	0
+			    label      	"Отправить результаты состояния"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			object_arc 	@89
+			pctDist    	0.442623
+			height     	45
 			orientation 	1
 			dir        	-1
-			origin     	(2234, 293)
-			terminus   	(2116, 293))))))
+			origin     	(2187, 1037)
+			terminus   	(2069, 1037))
+		    (object LinkView "" @94
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"607F5373010F"
+			client     	@80
+			supplier   	@82
+			vertices   	(list Points
+			    (2776, 995)
+			    (3059, 994))
+			line_style 	0)
+		    (object MessView "" @95
+			location   	(2868, 951)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			line_color 	3342489
+			label      	(object SegLabel @96
+			    Parent_View 	@95
+			    location   	(2868, 907)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"607F539700D6"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	363
+			    justify    	0
+			    label      	"Передать запрос"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			object_arc 	@94
+			pctDist    	0.329470
+			height     	45
+			orientation 	0
+			dir        	1
+			origin     	(2808, 951)
+			terminus   	(2928, 951))
+		    (object MessView "" @97
+			location   	(2905, 1040)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			line_color 	3342489
+			label      	(object SegLabel @98
+			    Parent_View 	@97
+			    location   	(2905, 1085)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"607F539C0351"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	685
+			    justify    	0
+			    label      	"Вернуть информацию о результате"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			object_arc 	@94
+			pctDist    	0.454660
+			height     	45
+			orientation 	1
+			dir        	-1
+			origin     	(2964, 1040)
+			terminus   	(2846, 1040))
+		    (object LinkView "" @99
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"607F536E0137"
+			client     	@81
+			supplier   	@79
+			vertices   	(list Points
+			    (1295, 984)
+			    (1667, 988))
+			line_style 	0)
+		    (object MessView "" @100
+			location   	(1561, 943)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			line_color 	3342489
+			label      	(object SegLabel @101
+			    Parent_View 	@100
+			    location   	(1562, 899)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"607F539102E3"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	669
+			    justify    	0
+			    label      	"Отправить запрос режима работы"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			object_arc 	@99
+			pctDist    	0.718420
+			height     	45
+			orientation 	0
+			dir        	1
+			origin     	(1501, 942)
+			terminus   	(1621, 944))
+		    (object MessView "" @102
+			location   	(1481, 1031)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			line_color 	3342489
+			label      	(object SegLabel @103
+			    Parent_View 	@102
+			    location   	(1481, 1076)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"607F53A003DF"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	638
+			    justify    	0
+			    label      	"Передать данные на устройство"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			object_arc 	@99
+			pctDist    	0.501505
+			height     	45
+			orientation 	1
+			dir        	-1
+			origin     	(1540, 1031)
+			terminus   	(1422, 1031))))))
     root_category 	(object Class_Category "Logical View"
 	quid       	"603E833401CD"
 	exportControl 	"Public"
@@ -2085,70 +2429,42 @@
 	subsystem  	"Component View"
 	quidu      	"603E833401CF"
 	logical_models 	(list unit_reference_list
-	    (object Class "NewClass"
-		quid       	"6050E60B02CB")
-	    (object Class "NewClass2"
-		quid       	"6050E6AC0399")
-	    (object Class "NewClass3"
-		quid       	"6050E6D60047")
-	    (object Class "Condition"
+	    (object Class "Кондиционер"
 		attributes 	(list Attribute_Set
 		    (object Attribute
 			tool       	"Cplusplus"
 			name       	"HeaderSourceFile"
-			value      	"Condition.h")
+			value      	"Кондиционер.h")
 		    (object Attribute
 			tool       	"Cplusplus"
 			name       	"BodySourceFile"
-			value      	"Condition.cpp"))
+			value      	"Кондиционер.cpp"))
 		quid       	"6050E73402B1"
 		documentation 	"фыв"
-		superclasses 	(list inheritance_relationship_list
-		    (object Inheritance_Relationship
-			quid       	"6051298F013D"
-			supplier   	"Logical View::Cost"
-			quidu      	"6050E8FD00D3")
-		    (object Inheritance_Relationship
-			quid       	"605129930075"
-			supplier   	"Logical View::Funcionality"
-			quidu      	"6050E9E10284")
-		    (object Inheritance_Relationship
-			quid       	"60512996033E"
-			supplier   	"Logical View::PhisicalSpecifiation"
-			quidu      	"6050E9840181"))
-		used_nodes 	(list uses_relationship_list
-		    (object Uses_Relationship
-			quid       	"6050F06A0046"
-			supplier   	"Logical View::Cost"
-			quidu      	"6050E8FD00D3")
-		    (object Uses_Relationship
-			quid       	"6050F06E0159"
-			supplier   	"Logical View::Funcionality"
-			quidu      	"6050E9E10284")
-		    (object Uses_Relationship
-			quid       	"6050F0A00348"
-			supplier   	"Logical View::PhisicalSpecifiation"
-			quidu      	"6050E9840181"))
 		operations 	(list Operations
-		    (object Operation "ChangeRate"
+		    (object Operation "Включить/Выключить"
 			quid       	"6050EB0C03D5"
+			result     	"void"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Изменить режим работы"
+			quid       	"608F047403B7"
 			result     	"void"
 			concurrency 	"Sequential"
 			opExportControl 	"Public"
 			uid        	0))
 		class_attributes 	(list class_attribute_list
-		    (object ClassAttribute "Model"
+		    (object ClassAttribute "Модель"
 			quid       	"6050EA9401CE"
-			type       	"string"
-			exportControl 	"Public")
-		    (object ClassAttribute "Rating"
+			type       	"string")
+		    (object ClassAttribute "Hастройки"
 			quid       	"6050EAA902D2"
-			type       	"byte"
-			exportControl 	"Public")
-		    (object ClassAttribute "DateCreation"
+			type       	"Настройки кондиционера"
+			quidu      	"608F051D007A")
+		    (object ClassAttribute "Питание"
 			quid       	"6050ED350061"
-			type       	"date"
-			exportControl 	"Public"))
+			type       	"int"))
 		statemachine 	(object State_Machine "State/Activity Model"
 		    quid       	"605A461802A2"
 		    states     	(list States
@@ -2209,7 +2525,7 @@
 		    transitions 	(list transition_list
 			(object State_Transition
 			    quid       	"605A48E700DA"
-			    supplier   	"Logical View::Condition::State/Activity Model::Кондиционер выключен"
+			    supplier   	"Logical View::Кондиционер::State/Activity Model::Кондиционер выключен"
 			    supplier_quidu 	"605A47D90212"
 			    client     	"$UNNAMED$41"
 			    client_quidu 	"605A463302D9"
@@ -2217,81 +2533,81 @@
 				quid       	"605A48E700DD"))
 			(object State_Transition
 			    quid       	"605A48EA02C6"
-			    supplier   	"Logical View::Condition::State/Activity Model::Кондиционер включен"
+			    supplier   	"Logical View::Кондиционер::State/Activity Model::Кондиционер включен"
 			    supplier_quidu 	"605A47E00212"
-			    client     	"Logical View::Condition::State/Activity Model::Кондиционер выключен"
+			    client     	"Logical View::Кондиционер::State/Activity Model::Кондиционер выключен"
 			    client_quidu 	"605A47D90212"
 			    sendEvent  	(object sendEvent
 				quid       	"605A48EA02C9"))
 			(object State_Transition
 			    quid       	"605A48F002B6"
-			    supplier   	"Logical View::Condition::State/Activity Model::Запуск системы охлаждения"
+			    supplier   	"Logical View::Кондиционер::State/Activity Model::Запуск системы охлаждения"
 			    supplier_quidu 	"605A47F502BA"
-			    client     	"Logical View::Condition::State/Activity Model::Кондиционер включен"
+			    client     	"Logical View::Кондиционер::State/Activity Model::Кондиционер включен"
 			    client_quidu 	"605A47E00212"
 			    sendEvent  	(object sendEvent
 				quid       	"605A48F002B9"))
 			(object State_Transition
 			    quid       	"605A48F30075"
-			    supplier   	"Logical View::Condition::State/Activity Model::Запуск системы обогрева"
+			    supplier   	"Logical View::Кондиционер::State/Activity Model::Запуск системы обогрева"
 			    supplier_quidu 	"605A47E90382"
-			    client     	"Logical View::Condition::State/Activity Model::Кондиционер включен"
+			    client     	"Logical View::Кондиционер::State/Activity Model::Кондиционер включен"
 			    client_quidu 	"605A47E00212"
 			    sendEvent  	(object sendEvent
 				quid       	"605A48F30078"))
 			(object State_Transition
 			    quid       	"605A48F7018E"
-			    supplier   	"Logical View::Condition::State/Activity Model::Кондиционер охлаждает помещение"
+			    supplier   	"Logical View::Кондиционер::State/Activity Model::Кондиционер охлаждает помещение"
 			    supplier_quidu 	"605A47FD0301"
-			    client     	"Logical View::Condition::State/Activity Model::Запуск системы охлаждения"
+			    client     	"Logical View::Кондиционер::State/Activity Model::Запуск системы охлаждения"
 			    client_quidu 	"605A47F502BA"
 			    sendEvent  	(object sendEvent
 				quid       	"605A48F70191"))
 			(object State_Transition
 			    quid       	"605A48FB02AE"
-			    supplier   	"Logical View::Condition::State/Activity Model::Кондиционер обогревает помещение"
+			    supplier   	"Logical View::Кондиционер::State/Activity Model::Кондиционер обогревает помещение"
 			    supplier_quidu 	"605A480601F9"
-			    client     	"Logical View::Condition::State/Activity Model::Запуск системы обогрева"
+			    client     	"Logical View::Кондиционер::State/Activity Model::Запуск системы обогрева"
 			    client_quidu 	"605A47E90382"
 			    sendEvent  	(object sendEvent
 				quid       	"605A48FB02B1"))
 			(object State_Transition
 			    quid       	"605A4900006B"
-			    supplier   	"Logical View::Condition::State/Activity Model::Проверка разности температур и загрязненности воздаху"
+			    supplier   	"Logical View::Кондиционер::State/Activity Model::Проверка разности температур и загрязненности воздаху"
 			    supplier_quidu 	"605A481003A9"
-			    client     	"Logical View::Condition::State/Activity Model::Кондиционер охлаждает помещение"
+			    client     	"Logical View::Кондиционер::State/Activity Model::Кондиционер охлаждает помещение"
 			    client_quidu 	"605A47FD0301"
 			    sendEvent  	(object sendEvent
 				quid       	"605A4900006E"))
 			(object State_Transition
 			    quid       	"605A49040336"
-			    supplier   	"Logical View::Condition::State/Activity Model::Проверка разности температур и загрязненности воздаху"
+			    supplier   	"Logical View::Кондиционер::State/Activity Model::Проверка разности температур и загрязненности воздаху"
 			    supplier_quidu 	"605A481003A9"
-			    client     	"Logical View::Condition::State/Activity Model::Кондиционер обогревает помещение"
+			    client     	"Logical View::Кондиционер::State/Activity Model::Кондиционер обогревает помещение"
 			    client_quidu 	"605A480601F9"
 			    sendEvent  	(object sendEvent
 				quid       	"605A49040339"))
 			(object State_Transition
 			    quid       	"605A49080381"
-			    supplier   	"Logical View::Condition::State/Activity Model::Запуск системы обогрева"
+			    supplier   	"Logical View::Кондиционер::State/Activity Model::Запуск системы обогрева"
 			    supplier_quidu 	"605A47E90382"
-			    client     	"Logical View::Condition::State/Activity Model::Проверка разности температур и загрязненности воздаху"
+			    client     	"Logical View::Кондиционер::State/Activity Model::Проверка разности температур и загрязненности воздаху"
 			    client_quidu 	"605A481003A9"
 			    sendEvent  	(object sendEvent
 				quid       	"605A49080384"))
 			(object State_Transition
 			    quid       	"605A493901BE"
-			    supplier   	"Logical View::Condition::State/Activity Model::Кондиционер выключен"
+			    supplier   	"Logical View::Кондиционер::State/Activity Model::Кондиционер выключен"
 			    supplier_quidu 	"605A47D90212"
-			    client     	"Logical View::Condition::State/Activity Model::Кондиционер выключен"
+			    client     	"Logical View::Кондиционер::State/Activity Model::Кондиционер выключен"
 			    client_quidu 	"605A47D90212"
 			    sendEvent  	(object sendEvent
 				quid       	"605A493901C1"))
 			(object State_Transition
 			    quid       	"605A498301F5"
-			    supplier   	"Logical View::Condition::State/Activity Model::Кондиционер выключен"
+			    supplier   	"Logical View::Кондиционер::State/Activity Model::Кондиционер выключен"
 			    supplier_quidu 	"605A47D90212"
-			    client     	"Logical View::Condition::State/Activity Model::Проверка разности температур и загрязненности воздаху"
+			    client     	"Logical View::Кондиционер::State/Activity Model::Проверка разности температур и загрязненности воздаху"
 			    client_quidu 	"605A481003A9"
 			    sendEvent  	(object sendEvent
 				quid       	"605A498301F8"))
@@ -2299,15 +2615,15 @@
 			    quid       	"605A49950006"
 			    supplier   	"$UNNAMED$42"
 			    supplier_quidu 	"605A46360027"
-			    client     	"Logical View::Condition::State/Activity Model::Кондиционер выключен"
+			    client     	"Logical View::Кондиционер::State/Activity Model::Кондиционер выключен"
 			    client_quidu 	"605A47D90212"
 			    sendEvent  	(object sendEvent
 				quid       	"605A49950009"))
 			(object State_Transition
 			    quid       	"605A4A3F0164"
-			    supplier   	"Logical View::Condition::State/Activity Model::Запуск системы охлаждения"
+			    supplier   	"Logical View::Кондиционер::State/Activity Model::Запуск системы охлаждения"
 			    supplier_quidu 	"605A47F502BA"
-			    client     	"Logical View::Condition::State/Activity Model::Проверка разности температур и загрязненности воздаху"
+			    client     	"Logical View::Кондиционер::State/Activity Model::Проверка разности температур и загрязненности воздаху"
 			    client_quidu 	"605A481003A9"
 			    sendEvent  	(object sendEvent
 				quid       	"605A4A3F0167"))
@@ -2315,7 +2631,7 @@
 			    quid       	"605A52AB00A0"
 			    supplier   	"$UNNAMED$42"
 			    supplier_quidu 	"605A46360027"
-			    client     	"Logical View::Condition::State/Activity Model::Проверка разности температур и загрязненности воздаху"
+			    client     	"Logical View::Кондиционер::State/Activity Model::Проверка разности температур и загрязненности воздаху"
 			    client_quidu 	"605A481003A9"
 			    sendEvent  	(object sendEvent
 				quid       	"605A52AB00A3")))
@@ -2330,19 +2646,19 @@
 			    origin_x   	587
 			    origin_y   	0
 			    items      	(list diagram_item_list
-				(object StateView "StartState" "$UNNAMED$41" @91
+				(object StateView "StartState" "$UNNAMED$41" @104
 				    location   	(1365, 178)
 				    icon_style 	"Icon"
 				    line_color 	3342489
 				    quidu      	"605A463302D9"
 				    autoResize 	TRUE)
-				(object StateView "EndState" "$UNNAMED$42" @92
+				(object StateView "EndState" "$UNNAMED$42" @105
 				    location   	(1354, 1370)
 				    icon_style 	"Icon"
 				    line_color 	3342489
 				    quidu      	"605A46360027"
 				    autoResize 	TRUE)
-				(object StateView "Normal" "Кондиционер включен" @93
+				(object StateView "Normal" "Кондиционер включен" @106
 				    location   	(1370, 555)
 				    font       	(object Font
 					size       	10
@@ -2355,7 +2671,7 @@
 					color      	0
 					default_color 	TRUE)
 				    label      	(object ItemLabel
-					Parent_View 	@93
+					Parent_View 	@106
 					location   	(1370, 544)
 					fill_color 	13434879
 					anchor_loc 	1
@@ -2370,7 +2686,7 @@
 				    width      	366
 				    height     	134
 				    autoResize 	TRUE)
-				(object StateView "Normal" "Запуск системы обогрева" @94
+				(object StateView "Normal" "Запуск системы обогрева" @107
 				    location   	(940, 773)
 				    font       	(object Font
 					size       	10
@@ -2383,7 +2699,7 @@
 					color      	0
 					default_color 	TRUE)
 				    label      	(object ItemLabel
-					Parent_View 	@94
+					Parent_View 	@107
 					location   	(940, 762)
 					fill_color 	13434879
 					anchor_loc 	1
@@ -2398,7 +2714,7 @@
 				    width      	444
 				    height     	134
 				    autoResize 	TRUE)
-				(object StateView "Normal" "Запуск системы охлаждения" @95
+				(object StateView "Normal" "Запуск системы охлаждения" @108
 				    location   	(1856, 776)
 				    font       	(object Font
 					size       	10
@@ -2411,7 +2727,7 @@
 					color      	0
 					default_color 	TRUE)
 				    label      	(object ItemLabel
-					Parent_View 	@95
+					Parent_View 	@108
 					location   	(1856, 765)
 					fill_color 	13434879
 					anchor_loc 	1
@@ -2426,7 +2742,7 @@
 				    width      	480
 				    height     	134
 				    autoResize 	TRUE)
-				(object StateView "Normal" "Кондиционер охлаждает помещение" @96
+				(object StateView "Normal" "Кондиционер охлаждает помещение" @109
 				    location   	(1850, 986)
 				    font       	(object Font
 					size       	10
@@ -2439,7 +2755,7 @@
 					color      	0
 					default_color 	TRUE)
 				    label      	(object ItemLabel
-					Parent_View 	@96
+					Parent_View 	@109
 					location   	(1850, 975)
 					fill_color 	13434879
 					anchor_loc 	1
@@ -2454,7 +2770,7 @@
 				    width      	564
 				    height     	134
 				    autoResize 	TRUE)
-				(object StateView "Normal" "Кондиционер обогревает помещение" @97
+				(object StateView "Normal" "Кондиционер обогревает помещение" @110
 				    location   	(943, 980)
 				    font       	(object Font
 					size       	10
@@ -2467,7 +2783,7 @@
 					color      	0
 					default_color 	TRUE)
 				    label      	(object ItemLabel
-					Parent_View 	@97
+					Parent_View 	@110
 					location   	(943, 969)
 					fill_color 	13434879
 					anchor_loc 	1
@@ -2482,7 +2798,7 @@
 				    width      	566
 				    height     	134
 				    autoResize 	TRUE)
-				(object StateView "Normal" "Проверка разности температур и загрязненности воздаху" @98
+				(object StateView "Normal" "Проверка разности температур и загрязненности воздаху" @111
 				    location   	(1355, 1167)
 				    font       	(object Font
 					size       	10
@@ -2495,7 +2811,7 @@
 					color      	0
 					default_color 	TRUE)
 				    label      	(object ItemLabel
-					Parent_View 	@98
+					Parent_View 	@111
 					location   	(1355, 1156)
 					fill_color 	13434879
 					anchor_loc 	1
@@ -2510,73 +2826,73 @@
 				    width      	784
 				    height     	134
 				    autoResize 	TRUE)
-				(object TransView "" @99
+				(object TransView "" @112
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"605A48F002B6"
-				    client     	@93
-				    supplier   	@95
+				    client     	@106
+				    supplier   	@108
 				    vertices   	(list Points
 					(1517, 621)
 					(1708, 709))
 				    line_style 	0
 				    x_offset   	FALSE)
-				(object TransView "" @100
+				(object TransView "" @113
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"605A48F30075"
-				    client     	@93
-				    supplier   	@94
+				    client     	@106
+				    supplier   	@107
 				    vertices   	(list Points
 					(1237, 622)
 					(1072, 706))
 				    line_style 	0
 				    x_offset   	FALSE)
-				(object TransView "" @101
+				(object TransView "" @114
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"605A48F7018E"
-				    client     	@95
-				    supplier   	@96
+				    client     	@108
+				    supplier   	@109
 				    vertices   	(list Points
 					(1854, 843)
 					(1851, 918))
 				    line_style 	0
 				    x_offset   	FALSE)
-				(object TransView "" @102
+				(object TransView "" @115
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"605A48FB02AE"
-				    client     	@94
-				    supplier   	@97
+				    client     	@107
+				    supplier   	@110
 				    vertices   	(list Points
 					(940, 839)
 					(942, 913))
 				    line_style 	0
 				    x_offset   	FALSE)
-				(object TransView "" @103
+				(object TransView "" @116
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"605A4900006B"
-				    client     	@96
-				    supplier   	@98
+				    client     	@109
+				    supplier   	@111
 				    vertices   	(list Points
 					(1666, 1053)
 					(1538, 1100))
 				    line_style 	0
 				    x_offset   	FALSE)
-				(object TransView "" @104
+				(object TransView "" @117
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"605A49040336"
-				    client     	@97
-				    supplier   	@98
+				    client     	@110
+				    supplier   	@111
 				    vertices   	(list Points
 					(1090, 1047)
 					(1207, 1099))
 				    line_style 	0
 				    x_offset   	FALSE)
-				(object Label @105
+				(object Label @118
 				    location   	(1645, 556)
 				    font       	(object Font
 					size       	10
@@ -2592,7 +2908,7 @@
 				    max_width  	600
 				    justify    	1
 				    label      	"подтверждение на охлаждение")
-				(object Label @106
+				(object Label @119
 				    location   	(584, 610)
 				    font       	(object Font
 					size       	10
@@ -2608,7 +2924,7 @@
 				    max_width  	600
 				    justify    	1
 				    label      	"подтверждение на обогрев")
-				(object Label @107
+				(object Label @120
 				    location   	(1965, 847)
 				    font       	(object Font
 					size       	10
@@ -2624,7 +2940,7 @@
 				    max_width  	724
 				    justify    	1
 				    label      	"Текущая температура > заданной")
-				(object Label @108
+				(object Label @121
 				    location   	(1000, 847)
 				    font       	(object Font
 					size       	10
@@ -2640,7 +2956,7 @@
 				    max_width  	756
 				    justify    	1
 				    label      	"Текущая температура < заданой")
-				(object Label @109
+				(object Label @122
 				    location   	(316, 1178)
 				    font       	(object Font
 					size       	10
@@ -2656,12 +2972,12 @@
 				    max_width  	656
 				    justify    	1
 				    label      	"Темп. все еще меньше заданной")
-				(object TransView "" @110
+				(object TransView "" @123
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"605A49080381"
-				    client     	@98
-				    supplier   	@94
+				    client     	@111
+				    supplier   	@107
 				    vertices   	(list Points
 					(963, 1162)
 					(441, 1156)
@@ -2669,12 +2985,12 @@
 					(718, 771))
 				    line_style 	0
 				    x_offset   	FALSE)
-				(object TransView "" @111
+				(object TransView "" @124
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"605A4A3F0164"
-				    client     	@98
-				    supplier   	@95
+				    client     	@111
+				    supplier   	@108
 				    vertices   	(list Points
 					(1747, 1165)
 					(2365, 1163)
@@ -2682,7 +2998,7 @@
 					(2096, 776))
 				    line_style 	0
 				    x_offset   	FALSE)
-				(object Label @112
+				(object Label @125
 				    location   	(1765, 1188)
 				    font       	(object Font
 					size       	10
@@ -2698,7 +3014,7 @@
 				    max_width  	638
 				    justify    	1
 				    label      	"Темп. все еще больше заданной")
-				(object Label @113
+				(object Label @126
 				    location   	(1384, 1238)
 				    font       	(object Font
 					size       	10
@@ -2714,7 +3030,7 @@
 				    max_width  	600
 				    justify    	1
 				    label      	"Температуры равны")
-				(object StateView "Normal" "Кондиционер выключен" @114
+				(object StateView "Normal" "Кондиционер выключен" @127
 				    location   	(1365, 330)
 				    font       	(object Font
 					size       	10
@@ -2727,7 +3043,7 @@
 					color      	0
 					default_color 	TRUE)
 				    label      	(object ItemLabel
-					Parent_View 	@114
+					Parent_View 	@127
 					location   	(1365, 319)
 					fill_color 	13434879
 					anchor_loc 	1
@@ -2742,464 +3058,253 @@
 				    width      	376
 				    height     	134
 				    autoResize 	TRUE)
-				(object TransView "" @115
+				(object TransView "" @128
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"605A48E700DA"
-				    client     	@91
-				    supplier   	@114
+				    client     	@104
+				    supplier   	@127
 				    vertices   	(list Points
 					(1365, 208)
 					(1365, 263))
 				    line_style 	0
 				    x_offset   	FALSE)
-				(object TransView "" @116
+				(object TransView "" @129
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"605A48EA02C6"
-				    client     	@114
-				    supplier   	@93
+				    client     	@127
+				    supplier   	@106
 				    vertices   	(list Points
 					(1366, 397)
 					(1368, 487))
 				    line_style 	0
 				    x_offset   	FALSE)
-				(object TransView "" @117
+				(object TransView "" @130
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"605A52AB00A0"
-				    client     	@98
-				    supplier   	@92
+				    client     	@111
+				    supplier   	@105
 				    vertices   	(list Points
 					(1354, 1234)
 					(1354, 1327))
 				    line_style 	0
 				    x_offset   	FALSE)))))
-		module     	"Component View::NewComponent"
-		quidu      	"607EF7030083"
+		module     	"Component View::Кондиционер"
+		quidu      	"608F0E2203D4"
+		language   	"ANSI C++")
+	    (object Class "Wifi"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"HeaderSourceFile"
+			value      	"Wifi.h")
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"BodySourceFile"
+			value      	"Wifi.cpp"))
+		quid       	"608F03E801BC"
+		operations 	(list Operations
+		    (object Operation "Передать/Принять данные"
+			quid       	"608F04490095"
+			result     	"void"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Включить/Выключить"
+			quid       	"608F04530204"
+			result     	"void"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Модель"
+			quid       	"608F0409030B"
+			type       	"string")
+		    (object ClassAttribute "Частота"
+			quid       	"608F0463037F"
+			type       	"int")
+		    (object ClassAttribute "Потребление питания"
+			quid       	"608F0C800180"
+			type       	"int"))
+		module     	"Component View::Wifi"
+		quidu      	"608F0E4E0057"
 		language   	"ANSI C++")
 	    (object Class "Пульт управления"
-		quid       	"6050E79E0158")
-	    (object Class "Firm"
 		attributes 	(list Attribute_Set
 		    (object Attribute
 			tool       	"Cplusplus"
 			name       	"HeaderSourceFile"
-			value      	"Firm.h")
+			value      	"Пульт управления.h")
 		    (object Attribute
 			tool       	"Cplusplus"
 			name       	"BodySourceFile"
-			value      	"Firm.cpp"))
-		quid       	"6050E7E002EC"
-		used_nodes 	(list uses_relationship_list
-		    (object Uses_Relationship
-			quid       	"6050F07D0312"
-			supplier   	"Logical View::Report"
-			quidu      	"6050EDF30316")
-		    (object Uses_Relationship
-			quid       	"6050F0CD0190"
-			supplier   	"Logical View::Factory"
-			quidu      	"6050E830024B"))
+			value      	"Пульт управления.cpp"))
+		quid       	"608F048600A7"
 		operations 	(list Operations
-		    (object Operation "ReturnMoney"
-			quid       	"6050EB8001A4"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)
-		    (object Operation "GiveGarant"
-			quid       	"6050EB8B01C2"
+		    (object Operation "Выбрать кнопку"
+			quid       	"608F04D001B2"
 			result     	"void"
 			concurrency 	"Sequential"
 			opExportControl 	"Public"
 			uid        	0))
 		class_attributes 	(list class_attribute_list
-		    (object ClassAttribute "name"
-			quid       	"6050EB280343"
-			type       	"string")
-		    (object ClassAttribute "adress"
-			quid       	"6050EB3800E2"
-			type       	"string")
-		    (object ClassAttribute "NameFactoryes"
-			quid       	"6050EB430187"
-			type       	"Factory*"
-			exportControl 	"Public"))
-		module     	"Component View::NewComponent"
-		quidu      	"607EF7030083"
-		language   	"ANSI C++")
-	    (object Class "Factory"
-		attributes 	(list Attribute_Set
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"HeaderSourceFile"
-			value      	"Factory.h")
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"BodySourceFile"
-			value      	"Factory.cpp"))
-		quid       	"6050E830024B"
-		used_nodes 	(list uses_relationship_list
-		    (object Uses_Relationship
-			quid       	"6050F09B0141"
-			supplier   	"Logical View::Report"
-			quidu      	"6050EDF30316"))
-		operations 	(list Operations
-		    (object Operation "AcceptBell"
-			quid       	"6050ED8900D8"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)
-		    (object Operation "GiveRecomendation"
-			quid       	"6050ED910230"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)
-		    (object Operation "FixProblem"
-			quid       	"6050EDBA0100"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0))
-		class_attributes 	(list class_attribute_list
-		    (object ClassAttribute "name"
-			quid       	"6050ED1303D1"
-			type       	"string"
-			exportControl 	"Public")
-		    (object ClassAttribute "adress"
-			quid       	"6050ED1E00ED"
-			type       	"string"
-			exportControl 	"Public")
-		    (object ClassAttribute "telephone"
-			quid       	"6050ED20027D"
-			type       	"string"
-			exportControl 	"Public")
-		    (object ClassAttribute "ReportList"
-			quid       	"6050ED260287"
-			type       	"Report*"
-			exportControl 	"Public"))
-		module     	"Component View::NewComponent"
-		quidu      	"607EF7030083"
-		language   	"ANSI C++")
-	    (object Class "Дата производства"
-		quid       	"6050E87702D2")
-	    (object Class "Батарейки"
-		quid       	"6050E881019A")
-	    (object Class "Cost"
-		attributes 	(list Attribute_Set
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"HeaderSourceFile"
-			value      	"Cost.h")
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"BodySourceFile"
-			value      	"Cost.cpp"))
-		quid       	"6050E8FD00D3"
-		operations 	(list Operations
-		    (object Operation "TransformValute"
-			quid       	"6050EE9D0016"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0))
-		class_attributes 	(list class_attribute_list
-		    (object ClassAttribute "Price"
-			quid       	"6050EBB9024E"
-			type       	"double"
-			exportControl 	"Public")
-		    (object ClassAttribute "TypeValute"
-			quid       	"6050EBBC019A"
-			type       	"int"
-			exportControl 	"Public"))
-		module     	"Component View::NewComponent"
-		quidu      	"607EF7030083"
-		language   	"ANSI C++")
-	    (object Class "PhisicalSpecifiation"
-		attributes 	(list Attribute_Set
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"HeaderSourceFile"
-			value      	"PhisicalSpecifiation.h")
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"BodySourceFile"
-			value      	"PhisicalSpecifiation.cpp"))
-		quid       	"6050E9840181"
-		operations 	(list Operations
-		    (object Operation "ChangeHeight"
-			quid       	"6050EFB50054"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)
-		    (object Operation "ChangeWeight"
-			quid       	"6050EFBB01A7"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)
-		    (object Operation "ChangeMass"
-			quid       	"6050EFBE02AF"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)
-		    (object Operation "ChangeThickness"
-			quid       	"6050EFC4009B"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0))
-		class_attributes 	(list class_attribute_list
-		    (object ClassAttribute "Height"
-			quid       	"6050EC3B01CB"
-			type       	"float"
-			exportControl 	"Public")
-		    (object ClassAttribute "Weight"
-			quid       	"6050EC4203AB"
-			type       	"float"
-			exportControl 	"Public")
-		    (object ClassAttribute "Mass"
-			quid       	"6050EC4B027F"
-			type       	"float"
-			exportControl 	"Public")
-		    (object ClassAttribute "Thrickness"
-			quid       	"6050EC6303D2"
-			type       	"float"
-			exportControl 	"Public"))
-		module     	"Component View::NewComponent"
-		quidu      	"607EF7030083"
-		language   	"ANSI C++")
-	    (object Class "Funcionality"
-		attributes 	(list Attribute_Set
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"HeaderSourceFile"
-			value      	"Funcionality.h")
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"BodySourceFile"
-			value      	"Funcionality.cpp"))
-		quid       	"6050E9E10284"
-		operations 	(list Operations
-		    (object Operation "ChangeFunctionality"
-			quid       	"6050F0F90199"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0))
-		class_attributes 	(list class_attribute_list
-		    (object ClassAttribute "humidification"
-			quid       	"6050EC7D0253"
-			type       	"bool")
-		    (object ClassAttribute "AirFlowControl"
-			quid       	"6050EC93008A"
-			type       	"bool")
-		    (object ClassAttribute "ProtectedSystem"
-			quid       	"6050ECA20062"
-			type       	"bool")
-		    (object ClassAttribute "AutoRestart"
-			quid       	"6050ECB0003E"
-			type       	"bool")
-		    (object ClassAttribute "Timer"
-			quid       	"6050ECBB0274"
-			type       	"bool")
-		    (object ClassAttribute "AirCleaning"
-			quid       	"6050ECC20260"
-			type       	"bool")
-		    (object ClassAttribute "NightMode"
-			quid       	"6050ECE900D3"
-			type       	"bool"))
-		module     	"Component View::NewComponent"
-		quidu      	"607EF7030083"
-		language   	"ANSI C++")
-	    (object Class "Report"
-		attributes 	(list Attribute_Set
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"HeaderSourceFile"
-			value      	"Report.h")
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"BodySourceFile"
-			value      	"Report.cpp"))
-		quid       	"6050EDF30316"
-		operations 	(list Operations
-		    (object Operation "CreateReport"
-			quid       	"6050EE70020F"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)
-		    (object Operation "SendReport"
-			quid       	"6050EE7400CC"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0))
-		class_attributes 	(list class_attribute_list
-		    (object ClassAttribute "Number"
-			quid       	"6050EE050325"
-			type       	"int"
-			exportControl 	"Public")
-		    (object ClassAttribute "SellCount"
-			quid       	"6050EE0800BC"
-			type       	"int"
-			exportControl 	"Public")
-		    (object ClassAttribute "Income"
-			quid       	"6050EE10038E"
-			type       	"double"
-			exportControl 	"Public")
-		    (object ClassAttribute "Adress"
-			quid       	"6050EE1402DF"
-			type       	"string"
-			exportControl 	"Public"))
-		module     	"Component View::NewComponent"
-		quidu      	"607EF7030083"
-		language   	"ANSI C++")
-	    (object Class "Контейнер классов"
-		quid       	"6050EE4302DF"
-		class_attributes 	(list class_attribute_list
-		    (object ClassAttribute "Список фирм"
-			quid       	"6050EE4E0217")))
-	    (object Class "Guarantee"
-		attributes 	(list Attribute_Set
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"HeaderSourceFile"
-			value      	"Guarantee.h")
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"BodySourceFile"
-			value      	"Guarantee.cpp"))
-		quid       	"6050EF1A03A8"
-		operations 	(list Operations
-		    (object Operation "AddCondition"
-			quid       	"6050EF67034D"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)
-		    (object Operation "RemoveCondition"
-			quid       	"6050EF6D012F"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)
-		    (object Operation "Rename"
-			quid       	"6050EF70039B"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)
-		    (object Operation "ChangeDate"
-			quid       	"6050EF790124"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)
-		    (object Operation "ChangeDateEnding"
-			quid       	"6050EF81010E"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0))
-		class_attributes 	(list class_attribute_list
-		    (object ClassAttribute "Condition"
-			quid       	"6050EF2102A1"
-			type       	"List<string>"
-			exportControl 	"Public")
-		    (object ClassAttribute "Term"
-			quid       	"6050EF27038D"
+		    (object ClassAttribute "Кнопки"
+			quid       	"608F049E0136"
+			type       	"string[]")
+		    (object ClassAttribute "Заряд"
+			quid       	"608F04A7018F"
 			type       	"int")
-		    (object ClassAttribute "Name"
-			quid       	"6050EF2D0067"
-			type       	"string"
-			exportControl 	"Public")
-		    (object ClassAttribute "DateGuarantee"
-			quid       	"6050EF3B0161"
-			type       	"date"
-			exportControl 	"Public"))
-		module     	"Component View::NewComponent"
-		quidu      	"607EF7030083"
+		    (object ClassAttribute "Тип подачи питания"
+			quid       	"608F04B00052"
+			type       	"int"))
+		module     	"Component View::Пульт управления"
+		quidu      	"608F0EA002D4"
 		language   	"ANSI C++")
-	    (object Class "Shop"
+	    (object Class "Пользователь"
 		attributes 	(list Attribute_Set
 		    (object Attribute
 			tool       	"Cplusplus"
 			name       	"HeaderSourceFile"
-			value      	"Shop.h")
+			value      	"Пользователь.h")
 		    (object Attribute
 			tool       	"Cplusplus"
 			name       	"BodySourceFile"
-			value      	"Shop.cpp"))
-		quid       	"6050EFCE015C"
+			value      	"Пользователь.cpp"))
+		quid       	"608F04E00368"
+		used_nodes 	(list uses_relationship_list
+		    (object Uses_Relationship
+			quid       	"608F0F4A0132"
+			supplier   	"Logical View::Wifi"
+			quidu      	"608F03E801BC"))
 		operations 	(list Operations
-		    (object Operation "ChangeFactoryList"
-			quid       	"6050F0050383"
-			result     	"void"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)
-		    (object Operation "ReturnMoney"
-			quid       	"6050F022030E"
+		    (object Operation "Выбрать режим работы"
+			quid       	"608F050902AA"
 			result     	"void"
 			concurrency 	"Sequential"
 			opExportControl 	"Public"
 			uid        	0))
 		class_attributes 	(list class_attribute_list
-		    (object ClassAttribute "Name"
-			quid       	"6050EFD3039C"
-			type       	"string"
-			exportControl 	"Public")
-		    (object ClassAttribute "Adress"
-			quid       	"6050EFE70203"
-			type       	"string"
-			exportControl 	"Public")
-		    (object ClassAttribute "FactoryList"
-			quid       	"6050EFF50384"
-			type       	"List<Factory>"
-			exportControl 	"Public"))
-		module     	"Component View::NewComponent"
-		quidu      	"607EF7030083"
+		    (object ClassAttribute "Пульт"
+			quid       	"608F04ED0340"
+			type       	"Пульт управления"
+			quidu      	"608F048600A7"))
+		module     	"Component View::Пользователь"
+		quidu      	"608F0E870036"
+		language   	"ANSI C++")
+	    (object Class "Настройки кондиционера"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"HeaderSourceFile"
+			value      	"Настройки кондиционера.h")
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"BodySourceFile"
+			value      	"Настройки кондиционера.cpp"))
+		quid       	"608F051D007A"
+		operations 	(list Operations
+		    (object Operation "Выбрать конфигурацию"
+			quid       	"608F0C6101CA"
+			result     	"void"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "Создать конфигурацию"
+			quid       	"608F0C6C00C3"
+			result     	"void"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "Охлаждение/Осушение"
+			quid       	"608F052601AC"
+			type       	"bool")
+		    (object ClassAttribute "Нагрев/Охлаждение"
+			quid       	"608F05890311"
+			type       	"bool")
+		    (object ClassAttribute "Вентиляция"
+			quid       	"608F0596004D"
+			type       	"bool")
+		    (object ClassAttribute "Ночной режим"
+			quid       	"608F05A9002B"
+			type       	"bool"))
+		module     	"Component View::Настройки кондиционера"
+		quidu      	"608F0E38016A"
 		language   	"ANSI C++")
 	    (object Association "$UNNAMED$44"
-		quid       	"6050F0A50302"
+		quid       	"608F05BF0230"
 		roles      	(list role_list
 		    (object Role "$UNNAMED$45"
-			quid       	"6050F0A701E1"
-			supplier   	"Logical View::Guarantee"
-			quidu      	"6050EF1A03A8"
+			quid       	"608F05C00043"
+			supplier   	"Logical View::Кондиционер"
+			quidu      	"6050E73402B1"
 			is_navigable 	TRUE)
 		    (object Role "$UNNAMED$46"
-			quid       	"6050F0A701E3"
-			supplier   	"Logical View::Shop"
-			quidu      	"6050EFCE015C")))
+			quid       	"608F05C00045"
+			supplier   	"Logical View::Настройки кондиционера"
+			quidu      	"608F051D007A")))
 	    (object Association "$UNNAMED$47"
-		quid       	"6050F0A90203"
+		quid       	"608F06040328"
 		roles      	(list role_list
 		    (object Role "$UNNAMED$48"
-			quid       	"6050F0A90384"
-			supplier   	"Logical View::Shop"
-			quidu      	"6050EFCE015C"
+			quid       	"608F0605016A"
+			supplier   	"Logical View::Пользователь"
+			quidu      	"608F04E00368"
 			is_navigable 	TRUE)
 		    (object Role "$UNNAMED$49"
-			quid       	"6050F0A90389"
-			supplier   	"Logical View::Condition"
-			quidu      	"6050E73402B1")))
+			quid       	"608F0605016E"
+			supplier   	"Logical View::Пульт управления"
+			quidu      	"608F048600A7")))
 	    (object Association "$UNNAMED$50"
-		quid       	"6050F0AB018C"
+		quid       	"608F06AA0089"
 		roles      	(list role_list
 		    (object Role "$UNNAMED$51"
-			quid       	"6050F0AC0000"
-			supplier   	"Logical View::Shop"
-			quidu      	"6050EFCE015C"
+			quid       	"608F06AB03CF"
+			supplier   	"Logical View::Пользователь"
+			quidu      	"608F04E00368"
 			is_navigable 	TRUE)
 		    (object Role "$UNNAMED$52"
-			quid       	"6050F0AC0003"
-			supplier   	"Logical View::Factory"
-			quidu      	"6050E830024B")))
+			quid       	"608F06AB03D6"
+			supplier   	"Logical View::Wifi"
+			quidu      	"608F03E801BC")))
+	    (object Association "$UNNAMED$53"
+		quid       	"608F06B200E3"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$54"
+			quid       	"608F06B203D8"
+			supplier   	"Logical View::Wifi"
+			quidu      	"608F03E801BC"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$55"
+			quid       	"608F06B203E4"
+			supplier   	"Logical View::Кондиционер"
+			quidu      	"6050E73402B1")))
+	    (object Association "$UNNAMED$56"
+		quid       	"608F0F5100EE"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$57"
+			quid       	"608F0F51030A"
+			supplier   	"Logical View::Кондиционер"
+			quidu      	"6050E73402B1"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$58"
+			quid       	"608F0F51031C"
+			supplier   	"Logical View::Wifi"
+			quidu      	"608F03E801BC")))
+	    (object Association "$UNNAMED$59"
+		quid       	"608F0F5B0024"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$60"
+			quid       	"608F0F5B02AE"
+			supplier   	"Logical View::Wifi"
+			quidu      	"608F03E801BC"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$61"
+			quid       	"608F0F5B02C8"
+			supplier   	"Logical View::Пользователь"
+			quidu      	"608F04E00368")))
 	    (object Class_Category "Пульт"
 		quid       	"6050E772014D"
 		exportControl 	"Public"
@@ -3209,17 +3314,17 @@
 	    (object ClassDiagram "Main"
 		quid       	"603E833401D3"
 		title      	"Main"
-		zoom       	100
+		zoom       	80
 		max_height 	28350
 		max_width  	21600
 		origin_x   	0
-		origin_y   	206
+		origin_y   	688
 		items      	(list diagram_item_list
-		    (object ClassView "Class" "Logical View::Firm" @118
+		    (object ClassView "Class" "Logical View::Настройки кондиционера" @131
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(1065, 487)
+			location   	(2735, 403)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -3231,220 +3336,20 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@118
-			    location   	(808, 306)
+			    Parent_View 	@131
+			    location   	(2429, 193)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	514
+			    max_width  	612
 			    justify    	0
-			    label      	"Firm")
+			    label      	"Настройки кондиционера")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"6050E7E002EC"
+			quidu      	"608F051D007A"
 			compartment 	(object Compartment
-			    Parent_View 	@118
-			    location   	(808, 367)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				charSet    	204
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    icon_style 	"Icon"
-			    fill_color 	13434879
-			    anchor     	2
-			    nlines     	6
-			    max_width  	513
-			    justify    	1)
-			width      	532
-			height     	386
-			annotation 	8
-			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::Cost" @119
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(1659, 1312)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@119
-			    location   	(1479, 1181)
-			    fill_color 	13434879
-			    nlines     	1
-			    max_width  	360
-			    justify    	0
-			    label      	"Cost")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"6050E8FD00D3"
-			compartment 	(object Compartment
-			    Parent_View 	@119
-			    location   	(1479, 1242)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				charSet    	204
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    icon_style 	"Icon"
-			    fill_color 	13434879
-			    anchor     	2
-			    nlines     	4
-			    max_width  	356
-			    justify    	1)
-			width      	378
-			height     	286
-			annotation 	8
-			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::PhisicalSpecifiation" @120
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(647, 1556)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@120
-			    location   	(450, 1300)
-			    fill_color 	13434879
-			    nlines     	1
-			    max_width  	394
-			    justify    	0
-			    label      	"PhisicalSpecifiation")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"6050E9840181"
-			compartment 	(object Compartment
-			    Parent_View 	@120
-			    location   	(450, 1361)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				charSet    	204
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    icon_style 	"Icon"
-			    fill_color 	13434879
-			    anchor     	2
-			    nlines     	9
-			    max_width  	384
-			    justify    	1)
-			width      	412
-			height     	536
-			annotation 	8
-			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::Funcionality" @121
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(3434, 1135)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@121
-			    location   	(3201, 879)
-			    fill_color 	13434879
-			    nlines     	1
-			    max_width  	466
-			    justify    	0
-			    label      	"Funcionality")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"6050E9E10284"
-			compartment 	(object Compartment
-			    Parent_View 	@121
-			    location   	(3201, 940)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				charSet    	204
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    icon_style 	"Icon"
-			    fill_color 	13434879
-			    anchor     	2
-			    nlines     	9
-			    max_width  	466
-			    justify    	1)
-			width      	484
-			height     	536
-			annotation 	8
-			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::Report" @122
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(415, 962)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@122
-			    location   	(249, 756)
-			    fill_color 	13434879
-			    nlines     	1
-			    max_width  	332
-			    justify    	0
-			    label      	"Report")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"6050EDF30316"
-			compartment 	(object Compartment
-			    Parent_View 	@122
-			    location   	(249, 817)
+			    Parent_View 	@131
+			    location   	(2429, 255)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3459,17 +3364,17 @@
 			    fill_color 	13434879
 			    anchor     	2
 			    nlines     	7
-			    max_width  	328
+			    max_width  	618
 			    justify    	1)
-			width      	350
-			height     	436
+			width      	630
+			height     	444
 			annotation 	8
 			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::Guarantee" @123
+		    (object ClassView "Class" "Logical View::Пульт управления" @132
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(2318, 1587)
+			location   	(859, 1186)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -3481,70 +3386,20 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@123
-			    location   	(2088, 1306)
+			    Parent_View 	@132
+			    location   	(596, 1027)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	460
+			    max_width  	526
 			    justify    	0
-			    label      	"Guarantee")
+			    label      	"Пульт управления")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"6050EF1A03A8"
+			quidu      	"608F048600A7"
 			compartment 	(object Compartment
-			    Parent_View 	@123
-			    location   	(2088, 1367)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				charSet    	204
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    icon_style 	"Icon"
-			    fill_color 	13434879
-			    anchor     	2
-			    nlines     	10
-			    max_width  	460
-			    justify    	1)
-			width      	478
-			height     	586
-			annotation 	8
-			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::Condition" @124
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(1736, 678)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@124
-			    location   	(1541, 522)
-			    fill_color 	13434879
-			    nlines     	1
-			    max_width  	390
-			    justify    	0
-			    label      	"Condition")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"6050E73402B1"
-			compartment 	(object Compartment
-			    Parent_View 	@124
-			    location   	(1541, 583)
+			    Parent_View 	@132
+			    location   	(596, 1089)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3559,17 +3414,17 @@
 			    fill_color 	13434879
 			    anchor     	2
 			    nlines     	5
-			    max_width  	388
+			    max_width  	524
 			    justify    	1)
-			width      	408
-			height     	336
+			width      	544
+			height     	342
 			annotation 	8
 			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::Shop" @125
+		    (object ClassView "Class" "Logical View::Кондиционер" @133
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(3154, 228)
+			location   	(1631, 365)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -3581,20 +3436,20 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@125
-			    location   	(2890, 47)
+			    Parent_View 	@133
+			    location   	(1238, 180)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	528
+			    max_width  	786
 			    justify    	0
-			    label      	"Shop")
+			    label      	"Кондиционер")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"6050EFCE015C"
+			quidu      	"6050E73402B1"
 			compartment 	(object Compartment
-			    Parent_View 	@125
-			    location   	(2890, 108)
+			    Parent_View 	@133
+			    location   	(1238, 242)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3609,14 +3464,14 @@
 			    fill_color 	13434879
 			    anchor     	2
 			    nlines     	6
-			    max_width  	528
+			    max_width  	786
 			    justify    	1)
-			width      	546
-			height     	386
+			width      	804
+			height     	394
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$44" @126
-			location   	(2764, 857)
+		    (object AssociationViewNew "$UNNAMED$44" @134
+			location   	(2226, 384)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -3629,77 +3484,37 @@
 			    default_color 	TRUE)
 			stereotype 	TRUE
 			line_color 	3342489
-			quidu      	"6050F0A50302"
+			quidu      	"608F05BF0230"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$45" @127
-				Parent_View 	@126
-				location   	(1273, -671)
+			    (object RoleView "$UNNAMED$45" @135
+				Parent_View 	@134
+				location   	(-446, -155)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"6050F0A701E1"
-				client     	@126
-				supplier   	@123
+				quidu      	"608F05C00043"
+				client     	@134
+				supplier   	@133
 				vertices   	(list Points
-				    (2764, 857)
-				    (2496, 1293))
+				    (2226, 384)
+				    (2033, 376))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$46" @128
-				Parent_View 	@126
-				location   	(1273, -671)
+			    (object RoleView "$UNNAMED$46" @136
+				Parent_View 	@134
+				location   	(-446, -155)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"6050F0A701E3"
-				client     	@126
-				supplier   	@125
+				quidu      	"608F05C00045"
+				client     	@134
+				supplier   	@131
 				vertices   	(list Points
-				    (2764, 857)
-				    (3033, 421))
+				    (2226, 384)
+				    (2419, 390))
 				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$47" @129
-			location   	(2410, 462)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    charSet    	204
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"6050F0A90203"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$48" @130
-				Parent_View 	@129
-				location   	(659, -363)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"6050F0A90384"
-				client     	@129
-				supplier   	@125
-				vertices   	(list Points
-				    (2410, 462)
-				    (2880, 313))
-				line_style 	0)
-			    (object RoleView "$UNNAMED$49" @131
-				Parent_View 	@129
-				location   	(659, -363)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"6050F0A90389"
-				client     	@129
-				supplier   	@124
-				vertices   	(list Points
-				    (2410, 462)
-				    (1940, 612))
-				line_style 	0)))
-		    (object ClassView "Class" "Logical View::Factory" @132
+		    (object ClassView "Class" "Logical View::Wifi" @137
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(363, 268)
+			location   	(629, 508)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -3711,20 +3526,20 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@132
-			    location   	(150, 37)
+			    Parent_View 	@137
+			    location   	(332, 324)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	426
+			    max_width  	594
 			    justify    	0
-			    label      	"Factory")
+			    label      	"Wifi")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"6050E830024B"
+			quidu      	"608F03E801BC"
 			compartment 	(object Compartment
-			    Parent_View 	@132
-			    location   	(150, 98)
+			    Parent_View 	@137
+			    location   	(332, 386)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3738,25 +3553,15 @@
 			    icon_style 	"Icon"
 			    fill_color 	13434879
 			    anchor     	2
-			    nlines     	8
-			    max_width  	443
+			    nlines     	6
+			    max_width  	591
 			    justify    	1)
-			width      	444
-			height     	486
+			width      	612
+			height     	392
 			annotation 	8
 			autoResize 	TRUE)
-		    (object UsesView "" @133
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"6050F09B0141"
-			client     	@132
-			supplier   	@122
-			vertices   	(list Points
-			    (380, 511)
-			    (397, 743))
-			line_style 	0)
-		    (object AssociationViewNew "$UNNAMED$50" @134
-			location   	(1732, 247)
+		    (object AssociationViewNew "$UNNAMED$56" @138
+			location   	(1081, 442)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -3769,174 +3574,37 @@
 			    default_color 	TRUE)
 			stereotype 	TRUE
 			line_color 	3342489
-			quidu      	"6050F0AB018C"
+			quidu      	"608F0F5100EE"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$51" @135
-				Parent_View 	@134
-				location   	(1369, -21)
+			    (object RoleView "$UNNAMED$57" @139
+				Parent_View 	@138
+				location   	(452, -66)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"6050F0AC0000"
-				client     	@134
-				supplier   	@125
+				quidu      	"608F0F51030A"
+				client     	@138
+				supplier   	@133
 				vertices   	(list Points
-				    (1732, 247)
-				    (2880, 231))
+				    (1081, 442)
+				    (1228, 419))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$52" @136
-				Parent_View 	@134
-				location   	(1369, -21)
+			    (object RoleView "$UNNAMED$58" @140
+				Parent_View 	@138
+				location   	(452, -66)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"6050F0AC0003"
-				client     	@134
-				supplier   	@132
+				quidu      	"608F0F51031C"
+				client     	@138
+				supplier   	@137
 				vertices   	(list Points
-				    (1732, 247)
-				    (585, 264))
+				    (1081, 442)
+				    (935, 462))
 				line_style 	0)))
-		    (object UsesView "" @137
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"6050F0CD0190"
-			client     	@118
-			supplier   	@132
-			vertices   	(list Points
-			    (798, 403)
-			    (585, 335))
-			line_style 	0)
-		    (object InheritView "" @138
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"6051298F013D"
-			client     	@124
-			supplier   	@119
-			vertices   	(list Points
-			    (1713, 846)
-			    (1675, 1168))
-			line_style 	0)
-		    (object InheritView "" @139
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"605129930075"
-			client     	@124
-			supplier   	@121
-			vertices   	(list Points
-			    (1940, 732)
-			    (3191, 1068))
-			line_style 	0)
-		    (object InheritView "" @140
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"60512996033E"
-			client     	@124
-			supplier   	@120
-			vertices   	(list Points
-			    (1531, 842)
-			    (853, 1389))
-			line_style 	0)))))
-    root_subsystem 	(object SubSystem "Component View"
-	quid       	"603E833401CF"
-	physical_models 	(list unit_reference_list
-	    (object module "NewComponent" "NotAModuleType" "NotAModulePart"
-		attributes 	(list Attribute_Set
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"RevEngRootDirectory"
-			value      	"D:\\LABS\\2.2\\MPO")
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"FilesEncoding"
-			value      	
-|v1:NCondition.cpp,607ef78f,A
-|LCondition.h,607ef78f,A
-|ICost.cpp,607ef78f,A
-|GCost.h,607ef78f,A
-|LFactory.cpp,607ef78f,A
-|JFactory.h,607ef78f,A
-|IFirm.cpp,607ef78f,A
-|GFirm.h,607ef78f,A
-|QFuncionality.cpp,607ef78f,A
-|OFuncionality.h,607ef78f,A
-|NGuarantee.cpp,607ef78f,A
-|LGuarantee.h,607ef78f,A
-|YPhisicalSpecifiation.cpp,607ef78f,A
-|WPhisicalSpecifiation.h,607ef78f,A
-|KReport.cpp,607ef78f,A
-|IReport.h,607ef78f,A
-|IShop.cpp,607ef78f,A
-|GShop.h,607ef78f,A
-|
-			)
-		    (object Attribute
-			tool       	"Cplusplus"
-			name       	"CodeItemsEncoding"
-			value      	
-|v3:Condition,t,C,6050E73402B1,A,a9,1ed
-|Condition::ChangeRate,f,B,6050EB0C03D5,A,18,51
-|Cost,t,E,6050E8FD00D3,A,51,11d
-|Cost::TransformValute,f,D,6050EE9D0016,A,13,4c
-|Factory,t,G,6050E830024B,A,65,206
-|Factory::AcceptBell,f,F,6050ED8900D8,A,2a,61
-|Factory::FixProblem,f,F,6050EDBA0100,A,a3,da
-|Factory::GiveRecomendation,f,F,6050ED910230,A,63,a1
-|Firm,t,I,6050E7E002EC,A,60,19f
-|Firm::GiveGarant,f,H,6050EB8B01C2,A,5f,93
-|Firm::ReturnMoney,f,H,6050EB8001A4,A,28,5d
-|Funcionality,t,K,6050E9E10284,A,61,24b
-|Funcionality::ChangeFunctionality,f,J,6050F0F90199,A,1b,60
-|Guarantee,t,M,6050EF1A03A8,A,5b,271
-|Guarantee::AddCondition,f,L,6050EF67034D,A,18,53
-|Guarantee::ChangeDate,f,L,6050EF790124,A,c7,100
-|Guarantee::ChangeDateEnding,f,L,6050EF81010E,A,102,141
-|Guarantee::RemoveCondition,f,L,6050EF6D012F,A,55,8e
-|Guarantee::Rename,f,L,6050EF70039B,A,90,c5
-|PhisicalSpecifiation,t,O,6050E9840181,A,71,24e
-|PhisicalSpecifiation::ChangeHeight,f,N,6050EFB50054,A,23,69
-|PhisicalSpecifiation::ChangeMass,f,N,6050EFBE02AF,A,b3,f7
-|PhisicalSpecifiation::ChangeThickness,f,N,6050EFC4009B,A,f9,142
-|PhisicalSpecifiation::ChangeWeight,f,N,6050EFBB01A7,A,6b,b1
-|Report,t,Q,6050EDF30316,A,55,1b2
-|Report::CreateReport,f,P,6050EE70020F,A,15,4d
-|Report::SendReport,f,P,6050EE7400CC,A,4f,85
-|Shop,t,S,6050EFCE015C,A,66,1a4
-|Shop::ChangeFactoryList,f,R,6050F0050383,A,13,4e
-|Shop::ReturnMoney,f,R,6050F022030E,A,50,85
-|
-			))
-		quid       	"607EF7030083"
-		stereotype 	""
-		language   	"ANSI C++"
-		class      	"Logical View::Factory"
-		quidu      	"6050E830024B"
-		class      	"Logical View::Condition"
-		quidu      	"6050E73402B1"
-		class      	"Logical View::Report"
-		quidu      	"6050EDF30316"
-		class      	"Logical View::Shop"
-		quidu      	"6050EFCE015C"
-		class      	"Logical View::Funcionality"
-		quidu      	"6050E9E10284"
-		class      	"Logical View::PhisicalSpecifiation"
-		quidu      	"6050E9840181"
-		class      	"Logical View::Cost"
-		quidu      	"6050E8FD00D3"
-		class      	"Logical View::Guarantee"
-		quidu      	"6050EF1A03A8"
-		class      	"Logical View::Firm"
-		quidu      	"6050E7E002EC"))
-	physical_presentations 	(list unit_reference_list
-	    (object Module_Diagram "Main"
-		quid       	"603E833401DF"
-		title      	"Main"
-		zoom       	100
-		max_height 	28350
-		max_width  	21600
-		origin_x   	0
-		origin_y   	0
-		items      	(list diagram_item_list
-		    (object ModView "Component View::NewComponent" "NotAModuleType" "NotAModulePart" @141
-			location   	(309, 216)
+		    (object ClassView "Class" "Logical View::Пользователь" @141
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2328, 1136)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -3949,21 +3617,471 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@141
-			    location   	(266, 191)
+			    location   	(2057, 1028)
 			    fill_color 	13434879
-			    anchor_loc 	3
-			    nlines     	2
-			    max_width  	159
-			    justify    	1
-			    label      	"NewComponent")
+			    nlines     	1
+			    max_width  	542
+			    justify    	0
+			    label      	"Пользователь")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"607EF7030083"
-			width      	286
+			quidu      	"608F04E00368"
+			compartment 	(object Compartment
+			    Parent_View 	@141
+			    location   	(2057, 1090)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	204
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	3
+			    max_width  	540
+			    justify    	1)
+			width      	560
+			height     	240
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$47" @142
+			location   	(1589, 1160)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"608F06040328"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$48" @143
+				Parent_View 	@142
+				location   	(499, -136)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"608F0605016A"
+				client     	@142
+				supplier   	@141
+				vertices   	(list Points
+				    (1589, 1160)
+				    (2047, 1145))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$49" @144
+				Parent_View 	@142
+				location   	(499, -136)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"608F0605016E"
+				client     	@142
+				supplier   	@132
+				vertices   	(list Points
+				    (1589, 1160)
+				    (1131, 1176))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$59" @145
+			location   	(1491, 825)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"608F0F5B0024"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$60" @146
+				Parent_View 	@145
+				location   	(-837, -311)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"608F0F5B02AE"
+				client     	@145
+				supplier   	@137
+				vertices   	(list Points
+				    (1491, 825)
+				    (935, 619))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$61" @147
+				Parent_View 	@145
+				location   	(-837, -311)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"608F0F5B02C8"
+				client     	@145
+				supplier   	@141
+				vertices   	(list Points
+				    (1491, 825)
+				    (2047, 1030))
+				line_style 	0)))))))
+    root_subsystem 	(object SubSystem "Component View"
+	quid       	"603E833401CF"
+	physical_models 	(list unit_reference_list
+	    (object module "Кондиционер" "NotAModuleType" "NotAModulePart"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"RevEngRootDirectory"
+			value      	"D:\\Labs\\2.2\\MPO\\Новая папка")
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"FilesEncoding"
+			value      	(value Text 
+|v1:PКондиционер.cpp,6091a117,A
+|NКондиционер.h,6091a117,A
+|
+			))
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"CodeItemsEncoding"
+			value      	"v3:"))
+		quid       	"608F0E2203D4"
+		stereotype 	""
+		visible_modules 	(list dependency_list
+		    (object Module_Visibility_Relationship
+			quid       	"608F0F18012B"
+			supplier   	"Component View::Wifi"
+			quidu      	"608F0E4E0057"
+			supplier_is_spec 	TRUE))
+		language   	"ANSI C++"
+		class      	"Logical View::Кондиционер"
+		quidu      	"6050E73402B1")
+	    (object module "Настройки кондиционера" "NotAModuleType" "NotAModulePart"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"RevEngRootDirectory"
+			value      	"D:\\Labs\\2.2\\MPO\\Новая папка")
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"FilesEncoding"
+			value      	(value Text 
+|v1:aНастройки кондиционера.cpp,6091a117,A
+|YНастройки кондиционера.h,6091a117,A
+|
+			))
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"CodeItemsEncoding"
+			value      	"v3:"))
+		quid       	"608F0E38016A"
+		stereotype 	""
+		visible_modules 	(list dependency_list
+		    (object Module_Visibility_Relationship
+			quid       	"608F0F0B0277"
+			supplier   	"Component View::Кондиционер"
+			quidu      	"608F0E2203D4"
+			supplier_is_spec 	TRUE))
+		language   	"ANSI C++"
+		class      	"Logical View::Настройки кондиционера"
+		quidu      	"608F051D007A")
+	    (object module "Wifi" "NotAModuleType" "NotAModulePart"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"RevEngRootDirectory"
+			value      	"D:\\Labs\\2.2\\MPO\\Новая папка")
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"FilesEncoding"
+			value      	(value Text 
+|v1:IWifi.cpp,6091a115,A
+|GWifi.h,6091a115,A
+|
+			))
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"CodeItemsEncoding"
+			value      	
+|v3:Wifi,t,C,608F03E801BC,A,51,1a5
+|Wifi::,f,B,,A,13,2b
+|Wifi::,f,B,,A,56,6e
+|
+			))
+		quid       	"608F0E4E0057"
+		stereotype 	""
+		visible_modules 	(list dependency_list
+		    (object Module_Visibility_Relationship
+			quid       	"608F0F750308"
+			supplier   	"Component View::Кондиционер"
+			quidu      	"608F0E2203D4"
+			supplier_is_spec 	TRUE))
+		language   	"ANSI C++"
+		class      	"Logical View::Wifi"
+		quidu      	"608F03E801BC")
+	    (object module "Пользователь" "NotAModuleType" "NotAModulePart"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"RevEngRootDirectory"
+			value      	"D:\\Labs\\2.2\\MPO\\Новая папка")
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"FilesEncoding"
+			value      	(value Text 
+|v1:QПользователь.cpp,6091a118,A
+|OПользователь.h,6091a118,A
+|
+			))
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"CodeItemsEncoding"
+			value      	"v3:"))
+		quid       	"608F0E870036"
+		stereotype 	""
+		visible_modules 	(list dependency_list
+		    (object Module_Visibility_Relationship
+			quid       	"608F0F7F013A"
+			supplier   	"Component View::Wifi"
+			quidu      	"608F0E4E0057"
+			supplier_is_spec 	TRUE))
+		language   	"ANSI C++"
+		class      	"Logical View::Пользователь"
+		quidu      	"608F04E00368")
+	    (object module "Пульт управления" "NotAModuleType" "NotAModulePart"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"RevEngRootDirectory"
+			value      	"D:\\Labs\\2.2\\MPO\\Новая папка")
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"FilesEncoding"
+			value      	(value Text 
+|v1:UПульт управления.cpp,6091a119,A
+|SПульт управления.h,6091a119,A
+|
+			))
+		    (object Attribute
+			tool       	"Cplusplus"
+			name       	"CodeItemsEncoding"
+			value      	"v3:"))
+		quid       	"608F0EA002D4"
+		stereotype 	""
+		visible_modules 	(list dependency_list
+		    (object Module_Visibility_Relationship
+			quid       	"608F0F7A02FA"
+			supplier   	"Component View::Пользователь"
+			quidu      	"608F0E870036"
+			supplier_is_spec 	TRUE))
+		language   	"ANSI C++"
+		class      	"Logical View::Пульт управления"
+		quidu      	"608F048600A7"))
+	physical_presentations 	(list unit_reference_list
+	    (object Module_Diagram "Main"
+		quid       	"603E833401DF"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object ModView "Component View::Кондиционер" "NotAModuleType" "NotAModulePart" @148
+			location   	(629, 248)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@148
+			    location   	(545, 220)
+			    fill_color 	13434879
+			    anchor_loc 	3
+			    nlines     	2
+			    max_width  	316
+			    justify    	1
+			    label      	"Кондиционер")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"608F0E2203D4"
+			width      	569
+			height     	188
 			autoResize 	TRUE
-			width      	286
-			height     	162))))
+			width      	569
+			height     	188)
+		    (object ModView "Component View::Настройки кондиционера" "NotAModuleType" "NotAModulePart" @149
+			location   	(1376, 367)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@149
+			    location   	(1306, 342)
+			    fill_color 	13434879
+			    anchor_loc 	3
+			    nlines     	2
+			    max_width  	264
+			    justify    	1
+			    label      	"Настройки кондиционера")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"608F0E38016A"
+			width      	476
+			height     	164
+			autoResize 	TRUE
+			width      	476
+			height     	164)
+		    (object ModView "Component View::Wifi" "NotAModuleType" "NotAModulePart" @150
+			location   	(363, 722)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@150
+			    location   	(318, 697)
+			    fill_color 	13434879
+			    anchor_loc 	3
+			    nlines     	2
+			    max_width  	166
+			    justify    	1
+			    label      	"Wifi")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"608F0E4E0057"
+			width      	298
+			autoResize 	TRUE
+			width      	298
+			height     	162)
+		    (object ModView "Component View::Пользователь" "NotAModuleType" "NotAModulePart" @151
+			location   	(1021, 844)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@151
+			    location   	(946, 806)
+			    fill_color 	13434879
+			    anchor_loc 	3
+			    nlines     	2
+			    max_width  	284
+			    justify    	1
+			    label      	"Пользователь")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"608F0E870036"
+			width      	512
+			height     	256
+			autoResize 	TRUE
+			width      	512
+			height     	256)
+		    (object ModView "Component View::Пульт управления" "NotAModuleType" "NotAModulePart" @152
+			location   	(1766, 694)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	204
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@152
+			    location   	(1693, 663)
+			    fill_color 	13434879
+			    anchor_loc 	3
+			    nlines     	2
+			    max_width  	274
+			    justify    	1
+			    label      	"Пульт управления")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"608F0EA002D4"
+			width      	494
+			height     	206
+			autoResize 	TRUE
+			width      	494
+			height     	206)
+		    (object ModVisView "" @153
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"608F0F750308"
+			client     	@150
+			supplier   	@148
+			vertices   	(list Points
+			    (404, 640)
+			    (569, 338))
+			line_style 	0)
+		    (object ModVisView "" @154
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"608F0F7A02FA"
+			client     	@152
+			supplier   	@151
+			vertices   	(list Points
+			    (1524, 740)
+			    (1266, 790))
+			line_style 	0)
+		    (object ModVisView "" @155
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"608F0F7F013A"
+			client     	@151
+			supplier   	@150
+			vertices   	(list Points
+			    (768, 793)
+			    (507, 748))
+			line_style 	0)
+		    (object ModVisView "" @156
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"608F0F0B0277"
+			client     	@149
+			supplier   	@148
+			vertices   	(list Points
+			    (1144, 328)
+			    (902, 289))
+			line_style 	0))))
 	category   	"Logical View"
 	quidu      	"603E833401CD")
     process_structure 	(object Processes
@@ -4049,7 +4167,7 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object ProcessorView "Сервер системы контроля климата" @142
+		    (object ProcessorView "Сервер системы контроля климата" @157
 			location   	(2007, 1175)
 			font       	(object Font
 			    size       	10
@@ -4062,7 +4180,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@142
+			    Parent_View 	@157
 			    location   	(1778, 1026)
 			    nlines     	2
 			    max_width  	387
@@ -4074,7 +4192,7 @@
 			width      	462
 			height     	368
 			annotation 	0)
-		    (object ProcessorView "Сервер системы экономии ресурсов" @143
+		    (object ProcessorView "Сервер системы экономии ресурсов" @158
 			location   	(2832, 572)
 			font       	(object Font
 			    size       	10
@@ -4087,7 +4205,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@143
+			    Parent_View 	@158
 			    location   	(2562, 388)
 			    nlines     	2
 			    max_width  	469
@@ -4099,7 +4217,7 @@
 			width      	544
 			height     	437
 			annotation 	0)
-		    (object ProcessorView "Сервер онлайн контроллера кондиционера" @144
+		    (object ProcessorView "Сервер онлайн контроллера кондиционера" @159
 			location   	(1356, 1034)
 			font       	(object Font
 			    size       	10
@@ -4112,7 +4230,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@144
+			    Parent_View 	@159
 			    location   	(1024, 800)
 			    nlines     	2
 			    max_width  	593
@@ -4124,7 +4242,7 @@
 			width      	668
 			height     	537
 			annotation 	0)
-		    (object ProcessorView "Сервер системы направления воздуха" @145
+		    (object ProcessorView "Сервер системы направления воздуха" @160
 			location   	(730, 372)
 			font       	(object Font
 			    size       	10
@@ -4137,7 +4255,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@145
+			    Parent_View 	@160
 			    location   	(447, 182)
 			    nlines     	2
 			    max_width  	494
@@ -4149,7 +4267,7 @@
 			width      	569
 			height     	450
 			annotation 	0)
-		    (object ProcessorView "Сервер системы управления временем" @146
+		    (object ProcessorView "Сервер системы управления временем" @161
 			location   	(534, 947)
 			font       	(object Font
 			    size       	10
@@ -4162,7 +4280,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@146
+			    Parent_View 	@161
 			    location   	(255, 757)
 			    nlines     	2
 			    max_width  	487
@@ -4174,7 +4292,7 @@
 			width      	562
 			height     	450
 			annotation 	0)
-		    (object ProcessorView "Пульт" @147
+		    (object ProcessorView "Пульт" @162
 			location   	(1579, 431)
 			font       	(object Font
 			    size       	10
@@ -4187,7 +4305,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@147
+			    Parent_View 	@162
 			    location   	(1468, 376)
 			    nlines     	2
 			    max_width  	150
@@ -4199,7 +4317,7 @@
 			width      	225
 			height     	180
 			annotation 	0)
-		    (object ProcessorView "Кондиционер" @148
+		    (object ProcessorView "Кондиционер" @163
 			location   	(2030, 434)
 			font       	(object Font
 			    size       	10
@@ -4212,7 +4330,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@148
+			    Parent_View 	@163
 			    location   	(1844, 319)
 			    nlines     	2
 			    max_width  	300
@@ -4224,62 +4342,62 @@
 			width      	375
 			height     	300
 			annotation 	0)
-		    (object ConnectionView "" @149
+		    (object ConnectionView "" @164
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"6047CCC3012B"
-			client     	@143
-			supplier   	@148
+			client     	@158
+			supplier   	@163
 			vertices   	(list Points
 			    (2560, 572)
 			    (2186, 434))
 			line_style 	0)
-		    (object ConnectionView "" @150
+		    (object ConnectionView "" @165
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"6047CCC90382"
-			client     	@142
-			supplier   	@148
+			client     	@157
+			supplier   	@163
 			vertices   	(list Points
 			    (2007, 1006)
 			    (2030, 584))
 			line_style 	0)
-		    (object ConnectionView "" @151
+		    (object ConnectionView "" @166
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"6047CCDD03D6"
-			client     	@144
-			supplier   	@147
+			client     	@159
+			supplier   	@162
 			vertices   	(list Points
 			    (1356, 781)
 			    (1579, 521))
 			line_style 	0)
-		    (object ConnectionView "" @152
+		    (object ConnectionView "" @167
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"6047CCE10278"
-			client     	@145
-			supplier   	@147
+			client     	@160
+			supplier   	@162
 			vertices   	(list Points
 			    (983, 372)
 			    (1467, 431))
 			line_style 	0)
-		    (object ConnectionView "" @153
+		    (object ConnectionView "" @168
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"6047CCE602E1"
-			client     	@146
-			supplier   	@147
+			client     	@161
+			supplier   	@162
 			vertices   	(list Points
 			    (784, 947)
 			    (1467, 431))
 			line_style 	0)
-		    (object ConnectionView "" @154
+		    (object ConnectionView "" @169
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"6047CCE900A9"
-			client     	@147
-			supplier   	@148
+			client     	@162
+			supplier   	@163
 			vertices   	(list Points
 			    (1660, 431)
 			    (1843, 434))

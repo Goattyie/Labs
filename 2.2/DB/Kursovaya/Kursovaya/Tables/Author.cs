@@ -30,17 +30,7 @@ namespace Kursovaya
 
         protected override List<string[]> ColumnError => throw new NotImplementedException();
 
-        protected override string[] FileGeneratorPath => new string[] { "author/Male/Name.txt", "author/Male/SName.txt", "author/Male/LName.txt",
-            "author/Female/Name.txt", "author/Female/SName.txt", "author/Female/LName.txt", };
-        protected override void GenerateNode()
-        {
-            Random rand = new Random();
-            int i = 0;
-            if (rand.Next(100) % 2 == 0)
-                i += 3;
-            Name = GenerateLine(FileGeneratorPath[i]);
-            SecondName = GenerateLine(FileGeneratorPath[i + 1]);
-            LastName = GenerateLine(FileGeneratorPath[i + 2]);
-        }
+        
+
     }
 }

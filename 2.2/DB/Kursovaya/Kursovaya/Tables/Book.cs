@@ -66,16 +66,5 @@ namespace Kursovaya
             new string[]{"binding", "\"Тип переплета\""}
         };
 
-        protected override void GenerateNode()
-        {
-            Name = GenerateLine(FileGeneratorPath[0]);
-            Lang = GetNodeFromOtherTable(3);
-            Publisher = GetNodeFromOtherTable(4);
-            Style = GetNodeFromOtherTable(5);
-            Binding = GetNodeFromOtherTable(6);
-            Description = GenerateLine($"{ClassName}/description.txt");
-            Date = new Random().Next(2000, 2021);
-            PublishDate = new Random().Next(1800, 2021);
-        }
     }
 }

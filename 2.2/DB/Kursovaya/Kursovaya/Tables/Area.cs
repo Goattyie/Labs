@@ -27,9 +27,5 @@ namespace Kursovaya
             new string[]{"name","\"Район\""},
             };
 
-        protected override void GenerateNode()
-        {
-            Value = GenerateLine(FileGeneratorPath[0]);
-        }
     }
 }

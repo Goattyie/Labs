@@ -28,9 +28,5 @@ namespace Kursovaya
             new string[]{"name","\"Тип собственности\""},
             };
 
-        protected override void GenerateNode()
-        {
-            Value = GenerateLine(FileGeneratorPath[0]);
-        }
     }
 }
