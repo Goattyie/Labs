@@ -287,5 +287,12 @@ namespace Kursovaya
 
             UpdateDatagrid(dataGridView1, listBox1, label1);
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem == null)
+                return;
+            new Searcher(dataGridView1, listBox1.SelectedItem.ToString()).Show();
+        }
     }
 }

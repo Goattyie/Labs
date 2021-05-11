@@ -27,3 +27,4 @@ D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditBook.r
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditPublisher.resources
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.EditAuthor.resources
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.PictureViewer.resources
+D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.Searcher.resources

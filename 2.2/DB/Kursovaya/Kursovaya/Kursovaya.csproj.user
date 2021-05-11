@@ -31,5 +31,8 @@
     <Compile Update="RequersResult.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Searcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
