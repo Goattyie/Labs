@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Labs\\2.2\\MPO\\7Lab\\7Lab\\7Lab\\7Lab.csproj": {}
+    "D:\\Labs\\2.2\\MPO\\7Lab\\7Lab\\7Lab.csproj": {}
   },
   "projects": {
-    "D:\\Labs\\2.2\\MPO\\7Lab\\7Lab\\7Lab\\7Lab.csproj": {
+    "D:\\Labs\\2.2\\MPO\\7Lab\\7Lab\\7Lab.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Labs\\2.2\\MPO\\7Lab\\7Lab\\7Lab\\7Lab.csproj",
+        "projectUniqueName": "D:\\Labs\\2.2\\MPO\\7Lab\\7Lab\\7Lab.csproj",
         "projectName": "7Lab",
-        "projectPath": "D:\\Labs\\2.2\\MPO\\7Lab\\7Lab\\7Lab\\7Lab.csproj",
+        "projectPath": "D:\\Labs\\2.2\\MPO\\7Lab\\7Lab\\7Lab.csproj",
         "packagesPath": "C:\\Users\\goattye\\.nuget\\packages\\",
-        "outputPath": "D:\\Labs\\2.2\\MPO\\7Lab\\7Lab\\7Lab\\obj\\",
+        "outputPath": "D:\\Labs\\2.2\\MPO\\7Lab\\7Lab\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\goattye\\AppData\\Roaming\\NuGet\\NuGet.Config",

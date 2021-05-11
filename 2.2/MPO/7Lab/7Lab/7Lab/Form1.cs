@@ -24,7 +24,7 @@ namespace _7Lab
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItems.Count != 3 || listBox2.SelectedItems.Count != 1)
+            if (listBox1.SelectedItems.Count < 3 || listBox2.SelectedItems.Count != 1)
                 return;
             foreach (string item in listBox1.SelectedItems) 
             {
