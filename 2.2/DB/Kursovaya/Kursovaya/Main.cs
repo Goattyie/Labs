@@ -292,7 +292,7 @@ namespace Kursovaya
         {
             if (listBox1.SelectedItem == null)
                 return;
-            new Searcher(dataGridView1, listBox1.SelectedItem.ToString()).Show();
+            new Searcher(dataGridView1);
         }
     }
 }

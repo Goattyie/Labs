@@ -44,7 +44,6 @@ namespace Kursovaya
                 button1.Text = ofd.FileName;
             }
         }
-
         //Удалить автора из списка
         private void button8_Click(object sender, EventArgs e)
         {
@@ -53,7 +52,6 @@ namespace Kursovaya
                 listBox1.Items.Remove(listBox1.SelectedItems[i]);
             }
         }
-
         //Добавление записи
         private void button7_Click(object sender, EventArgs e)
         {
@@ -108,13 +106,6 @@ namespace Kursovaya
             binding = null;
             publisher = null;
         }
-
-        
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void comboBox1_MouseClick(object sender, MouseEventArgs e)
         {
             using (NpgsqlConnection connect = SQL.GetConnection())
@@ -132,7 +123,6 @@ namespace Kursovaya
                 connect.Close();
             }
         }
-
         private void comboBox2_MouseClick(object sender, MouseEventArgs e)
         {
             using (NpgsqlConnection connect = SQL.GetConnection())
@@ -149,7 +139,6 @@ namespace Kursovaya
                 connect.Close();
             }
         }
-
         private void comboBox3_MouseClick(object sender, MouseEventArgs e)
         {
             using (NpgsqlConnection connect = SQL.GetConnection())
@@ -166,7 +155,6 @@ namespace Kursovaya
                 connect.Close();
             }
         }
-
         private void comboBox4_MouseClick(object sender, MouseEventArgs e)
         {
             using (NpgsqlConnection connect = SQL.GetConnection())
@@ -183,7 +171,6 @@ namespace Kursovaya
                 connect.Close();
             }
         }
-
         private void comboBox5_MouseClick(object sender, MouseEventArgs e)
         {
             using (NpgsqlConnection connect = SQL.GetConnection())
@@ -200,7 +187,6 @@ namespace Kursovaya
                 connect.Close();
             }
         }
-
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (string item in listBox1.Items)

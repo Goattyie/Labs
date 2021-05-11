@@ -12,7 +12,7 @@ namespace Kursovaya
 {
     public partial class Searcher : Form
     {
-        public Searcher(DataGridView dgv, string name)
+        public Searcher(DataGridView dgv)
         {
             InitializeComponent();
 
@@ -50,6 +50,7 @@ namespace Kursovaya
                 if(find)
                     ds.Tables[0].Rows.Add(CreateNode(node));
             }
+            label2.Text = "Количество записей: " + ds.Tables[0].Rows.Count;
         }
         private void SetIndexes()
         {

@@ -52,19 +52,14 @@ namespace _7Lab
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 15;
             this.listBox1.Items.AddRange(new object[] {
-            "Площадь",
-            "Объем",
-            "Высота",
-            "Площадь нижнего основания",
-            "Площадь верхнего основания",
-            "Периметр нижнего основания",
-            "Периметр верхнего основания",
-            "Площадь боковой поверхности",
-            "Сторона верхнего основания",
-            "Сторона нижнего основания"});
+            "Высота, H",
+            "Площадь нижнего основания, Sон",
+            "Площадь верхнего основания, Sов",
+            "Объем, V"});
             this.listBox1.Location = new System.Drawing.Point(12, 49);
             this.listBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox1.Name = "listBox1";
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox1.Size = new System.Drawing.Size(249, 139);
             this.listBox1.TabIndex = 1;
             // 
@@ -73,16 +68,10 @@ namespace _7Lab
             this.listBox2.FormattingEnabled = true;
             this.listBox2.ItemHeight = 15;
             this.listBox2.Items.AddRange(new object[] {
-            "Площадь",
-            "Объем",
-            "Высота",
-            "Площадь нижнего основания",
-            "Площадь верхнего основания",
-            "Периметр нижнего основания",
-            "Периметр верхнего основания",
-            "Площадь боковой поверхности",
-            "Сторона верхнего основания",
-            "Сторона нижнего основания"});
+            "Высота, H",
+            "Площадь нижнего основания, Sон",
+            "Площадь верхнего основания, Sов",
+            "Объем, V"});
             this.listBox2.Location = new System.Drawing.Point(12, 256);
             this.listBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox2.Name = "listBox2";

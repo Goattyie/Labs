@@ -43,11 +43,11 @@ namespace Kursovaya
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(29, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 15);
+            this.label1.Size = new System.Drawing.Size(106, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Поиск по таблице:";
+            this.label1.Text = "Укажите колонки:";
             // 
             // comboBox1
             // 
