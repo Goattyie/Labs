@@ -78,7 +78,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\goattye\\.nuget\\packages\\": {}
+    "C:\\Users\\Goattyie\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -86,11 +86,11 @@
       "projectUniqueName": "D:\\Labs\\2.2\\DB\\Kursovaya\\Kursovaya\\Kursovaya.csproj",
       "projectName": "Kursovaya",
       "projectPath": "D:\\Labs\\2.2\\DB\\Kursovaya\\Kursovaya\\Kursovaya.csproj",
-      "packagesPath": "C:\\Users\\goattye\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Goattyie\\.nuget\\packages\\",
       "outputPath": "D:\\Labs\\2.2\\DB\\Kursovaya\\Kursovaya\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\goattye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Goattyie\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

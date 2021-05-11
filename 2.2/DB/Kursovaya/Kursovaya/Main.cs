@@ -226,6 +226,7 @@ namespace Kursovaya
                     Table.ReturnTable(listBox2.SelectedItem.ToString()).Delete(Id.ToArray());
 
                     UpdateDatagrid(dataGridView2, listBox2, label9);
+                Message.Success();
             }
         }
 

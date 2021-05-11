@@ -127,9 +127,9 @@ namespace Kursovaya
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.Location = new System.Drawing.Point(51, 327);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(110, 21);
+            this.label7.Size = new System.Drawing.Size(206, 21);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Дата выпуска:";
+            this.label7.Text = "Дата издания книги(автор):";
             // 
             // label8
             // 
@@ -169,7 +169,7 @@ namespace Kursovaya
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(147, 21);
             this.label11.TabIndex = 10;
-            this.label11.Text = "Год издания книги:";
+            this.label11.Text = "Год выпуска книги:";
             // 
             // textBox1
             // 

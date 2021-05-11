@@ -53,17 +53,7 @@ namespace Kursovaya
             new City().Truncate();
             new Style().Truncate();
             new Author().Truncate();
-<<<<<<< HEAD
             new Lang().Truncate();
-=======
-            new BookAuthor().Truncate();
-            new Shop().Truncate();
-            new Publisher().Truncate();
-            new Book().Truncate();
-            new BookAuthor().Truncate();
-            new Deliveries().Truncate();
-            Message.Success();
->>>>>>> a31445456be562718e98950e273d600d06a0267c
         }
         public NpgsqlDataAdapter Select()
         {
@@ -172,74 +162,27 @@ namespace Kursovaya
                 return new Binding();
             else return new Author();
         }
-<<<<<<< HEAD
+
         public static void Generate()
         {
-            if (Message.Warning("Для генерации файлов нужно удалить все записи из базы данных. Удалить?") == DialogResult.Cancel)
-                return; 
+            if (Message.Warning("Для генерации данных все записи будут удалены. Продолжить?") == DialogResult.Cancel)
+                return;
 
             TruncateAll();
-            if (!new Area().GenerateTable())
-=======
-        public bool FileExist()
-        {
-            foreach (string filename in FileGeneratorPath)
-            {
-                if (!File.Exists(filename))
-                    return false;
-            }
-            return true;
-        }
-        delegate void Something(int count);
-        void ss(int count) { }
-        public static void Generate()
-        {
-            Message.OperationStart();
-            new Area().GenerateTable(100);
-            new Lang().GenerateTable(100);
-            new Own().GenerateTable(100);
-            new Binding().GenerateTable(100);
-            new City().GenerateTable(100);
-            new Style().GenerateTable(10);
-            new Shop().GenerateTable(10);
-            new Publisher().GenerateTable(20);
-            new Book().GenerateTable(20);
-            new Author().GenerateTable(20);
-            new BookAuthor().GenerateTable(20);
-            new Deliveries().GenerateTable(20);
-            
-        }
-        protected void GenerateTable(int count)
-        {
-            if (!FileExist())
-            {
-                ErrorShow($"Ошибка создание записей таблицы \"{ClassName}\". Файла генерации не существует");
->>>>>>> a31445456be562718e98950e273d600d06a0267c
-                return;
-            if (!new Lang().GenerateTable())
-                return;
-            if (!new Own().GenerateTable())
-                return;
-            if (!new Binding().GenerateTable())
-                return;
-            if (!new City().GenerateTable())
-                return;
-            if (!new Style().GenerateTable())
-                return;
-            if (!new Shop().GenerateTable())
-                return;
-            if (!new Publisher().GenerateTable())
-                return;
-            if (!new Book().GenerateTable())
-                return;
-            if (!new Author().GenerateTable())
-                return;
-            if (!new BookAuthor().GenerateTable())
-                return;
-            if (!new Deliveries().GenerateTable())
-                return;
+            new Area().GenerateTable();
+            new Lang().GenerateTable();
+            new Own().GenerateTable();
+            new Binding().GenerateTable();
+            new City().GenerateTable();
+            new Style().GenerateTable();
+            new Shop().GenerateTable();
+            new Publisher().GenerateTable();
+            new Book().GenerateTable();
+            new Author().GenerateTable();
+            new BookAuthor().GenerateTable();
+            new Deliveries().GenerateTable();
             Message.Success();
-
+            
         }
         protected bool GenerateTable()
         {

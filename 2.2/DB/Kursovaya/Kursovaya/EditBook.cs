@@ -18,7 +18,7 @@ namespace Kursovaya
             InitializeComponent();
         }
         private string name = "NULL";
-        private byte photo;
+        private string photo;
         private string description = "NULL";
         private string lang = "NULL";
         private int date;
@@ -40,7 +40,7 @@ namespace Kursovaya
 
             if (state == DialogResult.OK)
             {
-                photo = 0;
+                photo = "0";
                 button1.Text = ofd.FileName;
             }
         }
@@ -183,20 +183,26 @@ namespace Kursovaya
         private void button7_Click(object sender, EventArgs e)
         {
             name = InputData.CheckString(textBox1.Text);
-            photo = 0;
+            photo = "0";
             description = InputData.CheckString(textBox2.Text);
-            if (!InputData.CheckInt(textBox3.Text, "\"Год создания\""))
+            if (!InputData.CheckInt(textBox3.Text, "\"Год создания(автором)\""))
                 return;
-            if (!InputData.CheckInt(textBox4.Text, "\"Дата публикации\""))
+            if (!InputData.CheckInt(textBox4.Text, "\"Дата публикации(издательством)\""))
                 return;
             else if (listBox1.Items.Count == 0)
             {
                 Message.ErrorShow("У книги должны быть авторы");
                 return;
             }
+            
 
             date = Convert.ToInt32(textBox4.Text);
             publish_date = Convert.ToInt32(textBox3.Text);
+            if (date > publish_date)
+            {
+                Message.ErrorShow("Дата публикации не может быть больше даты созданияю.");
+                return;
+            }
 
             bool success_authors = false;
             bool success_book = new Book(name, photo, description, lang, date, publisher, style, binding, publish_date).Insert();
@@ -216,7 +222,7 @@ namespace Kursovaya
                 button6.Text = "Выбрать";
                 button3.Text = "Выбрать";
                 button5.Text = "Выбрать";
-                photo = 0;
+                photo = "0";
                 lang = null;
                 style = null;
                 binding = null;
