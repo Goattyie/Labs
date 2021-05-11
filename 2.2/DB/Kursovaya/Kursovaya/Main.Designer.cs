@@ -31,6 +31,8 @@ namespace Kursovaya
         {
             this.tagPage1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -72,13 +74,15 @@ namespace Kursovaya
             this.tagPage1.Location = new System.Drawing.Point(12, 53);
             this.tagPage1.Name = "tagPage1";
             this.tagPage1.SelectedIndex = 0;
-            this.tagPage1.Size = new System.Drawing.Size(1326, 664);
+            this.tagPage1.Size = new System.Drawing.Size(1326, 710);
             this.tagPage1.TabIndex = 1;
             this.tagPage1.SelectedIndexChanged += new System.EventHandler(this.tagPage1_SelectedIndexChanged);
             this.tagPage1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tagPage1_Selecting);
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button9);
+            this.tabPage1.Controls.Add(this.button8);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.label6);
@@ -90,11 +94,35 @@ namespace Kursovaya
             this.tabPage1.Location = new System.Drawing.Point(4, 30);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1318, 630);
+            this.tabPage1.Size = new System.Drawing.Size(1318, 676);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.White;
+            this.button9.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button9.Location = new System.Drawing.Point(754, 607);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(545, 38);
+            this.button9.TabIndex = 8;
+            this.button9.Text = "Редактировать";
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.White;
+            this.button8.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button8.Location = new System.Drawing.Point(188, 607);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(560, 38);
+            this.button8.TabIndex = 7;
+            this.button8.Text = "Просмотреть фото";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // label1
             // 
@@ -139,7 +167,7 @@ namespace Kursovaya
             this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button2.Location = new System.Drawing.Point(754, 565);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(545, 47);
+            this.button2.Size = new System.Drawing.Size(545, 36);
             this.button2.TabIndex = 3;
             this.button2.Text = "Добавить";
             this.button2.UseVisualStyleBackColor = false;
@@ -151,7 +179,7 @@ namespace Kursovaya
             this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button1.Location = new System.Drawing.Point(188, 565);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(560, 47);
+            this.button1.Size = new System.Drawing.Size(560, 36);
             this.button1.TabIndex = 2;
             this.button1.Text = "Удалить";
             this.button1.UseVisualStyleBackColor = false;
@@ -163,7 +191,7 @@ namespace Kursovaya
             this.listBox1.ItemHeight = 21;
             this.listBox1.Location = new System.Drawing.Point(14, 41);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(168, 571);
+            this.listBox1.Size = new System.Drawing.Size(168, 592);
             this.listBox1.TabIndex = 1;
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
             // 
@@ -193,7 +221,7 @@ namespace Kursovaya
             this.tabPage2.Location = new System.Drawing.Point(4, 30);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1318, 630);
+            this.tabPage2.Size = new System.Drawing.Size(1318, 676);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -284,7 +312,7 @@ namespace Kursovaya
             this.tabPage3.Location = new System.Drawing.Point(4, 30);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1318, 630);
+            this.tabPage3.Size = new System.Drawing.Size(1318, 676);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -363,7 +391,7 @@ namespace Kursovaya
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.ClientSize = new System.Drawing.Size(1351, 763);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.tagPage1);
@@ -411,5 +439,7 @@ namespace Kursovaya
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button8;
     }
 }

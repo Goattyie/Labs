@@ -25,6 +25,9 @@
     <Compile Update="Main.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="PictureViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="RequersResult.cs">
       <SubType>Form</SubType>
     </Compile>

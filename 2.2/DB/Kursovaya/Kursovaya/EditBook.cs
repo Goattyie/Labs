@@ -17,14 +17,14 @@ namespace Kursovaya
         {
             InitializeComponent();
         }
-        private string name = "NULL";
+        private string name;
         private string photo;
-        private string description = "NULL";
-        private string lang = "NULL";
+        private string description;
+        private string lang;
         private int date;
-        private string style = "NULL";
-        private string publisher = "NULL";
-        private string binding = "NULL";
+        private string style;
+        private string publisher;
+        private string binding;
         private int publish_date;
 
         //Обложка
@@ -40,133 +40,8 @@ namespace Kursovaya
 
             if (state == DialogResult.OK)
             {
-                photo = "0";
+                photo = ofd.FileName;
                 button1.Text = ofd.FileName;
-            }
-        }
-
-        //Издательство
-        private void button4_Click(object sender, EventArgs e)
-        {
-            using (NpgsqlConnection connect = SQL.GetConnection())
-            {
-                contextMenuStrip4.Items.Clear();
-                contextMenuStrip4.Items.Add("Добавить");
-                connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT publisher_name FROM publisher;", connect);
-                NpgsqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    contextMenuStrip4.Items.Add(reader.GetString(0));
-                }
-                contextMenuStrip4.Show(this, new Point(button4.Location.X + button4.Size.Width / 1, button4.Location.Y));
-
-                connect.Close();
-            }
-        }
-
-        //Тип переплета
-        private void button6_Click(object sender, EventArgs e)
-        {
-            using (NpgsqlConnection connect = SQL.GetConnection())
-            {
-                contextMenuStrip6.Items.Clear();
-                contextMenuStrip6.Items.Add("Добавить");
-                connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name_binding FROM binding;", connect);
-                NpgsqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    contextMenuStrip6.Items.Add(reader.GetString(0));
-                }
-                contextMenuStrip6.Show(this, new Point(button6.Location.X + button6.Size.Width / 1, button6.Location.Y));
-
-                connect.Close();
-            }
-        }
-
-        //Авторы
-        private void button2_Click(object sender, EventArgs e)
-        {
-            using (NpgsqlConnection connect = SQL.GetConnection())
-            {
-                contextMenuStrip2.Items.Clear();
-                contextMenuStrip2.Items.Add("Добавить");
-                connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT second_name_author, name_author, last_name_author FROM author;", connect);
-                NpgsqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    contextMenuStrip2.Items.Add(reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetString(2));
-                }
-                contextMenuStrip2.Show(this, new Point(button2.Location.X + button2.Size.Width / 1, button2.Location.Y));
-
-                connect.Close();
-            }
-        }
-
-        //Язык
-        private void button3_Click(object sender, EventArgs e)
-        {
-            using (NpgsqlConnection connect = SQL.GetConnection())
-            {
-                contextMenuStrip3.Items.Clear();
-                contextMenuStrip3.Items.Add("Добавить");
-                connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name_lang FROM lang;", connect);
-                NpgsqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    contextMenuStrip3.Items.Add(reader.GetString(0));
-                }
-                contextMenuStrip3.Show(this, new Point(button3.Location.X + button3.Size.Width / 1, button3.Location.Y));
-
-                connect.Close();
-            }
-        }
-
-        //Жанр
-        private void button5_Click(object sender, EventArgs e)
-        {
-            using (NpgsqlConnection connect = SQL.GetConnection())
-            {
-                contextMenuStrip5.Items.Clear();
-                contextMenuStrip5.Items.Add("Добавить");
-                connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name_style FROM style;", connect);
-                NpgsqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    contextMenuStrip5.Items.Add(reader.GetString(0));
-                }
-                contextMenuStrip5.Show(this, new Point(button5.Location.X + button5.Size.Width / 1, button5.Location.Y));
-
-                connect.Close();
-            }
-        }
-
-        private void contextMenuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            if (e.ClickedItem.Text == "Добавить")
-            {
-                EditAuthor editauthor = new EditAuthor();
-                editauthor.ShowDialog(this);
-                /*area = editauthor.GetResult();
-                if (area == "")
-                    area = null;
-                */
-            }
-            else
-            {
-                foreach(string item in listBox1.Items)
-                {
-                    if (item == e.ClickedItem.Text)
-                    {
-                        MessageBox.Show("Данный автор уже добавлен в список!", "Ошибка013", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-                listBox1.Items.Add(e.ClickedItem.Text);
             }
         }
 
@@ -183,7 +58,11 @@ namespace Kursovaya
         private void button7_Click(object sender, EventArgs e)
         {
             name = InputData.CheckString(textBox1.Text);
-            photo = "0";
+            publisher = InputData.CheckString(comboBox1.Text);
+            binding = InputData.CheckString(comboBox2.Text);
+            lang = InputData.CheckString(comboBox4.Text);
+            style = InputData.CheckString(comboBox5.Text);
+            InputData.CheckString(photo);
             description = InputData.CheckString(textBox2.Text);
             if (!InputData.CheckInt(textBox3.Text, "\"Год создания(автором)\""))
                 return;
@@ -213,89 +92,126 @@ namespace Kursovaya
 
             if (!success_authors) Message.ErrorShow("Не все авторы были добавлены в базу данных.");
 
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
-                textBox4.Text = "";//14635
-                button1.Text = "Выбрать";
-                button4.Text = "Выбрать";
-                button6.Text = "Выбрать";
-                button3.Text = "Выбрать";
-                button5.Text = "Выбрать";
-                photo = "0";
-                lang = null;
-                style = null;
-                binding = null;
-                publisher = null;
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";//14635
+            comboBox1.Text = null;
+            comboBox2.Text = null;
+            comboBox3.Text = null;
+            comboBox4.Text = null;
+            comboBox5.Text = null;
+            button1.Text = "Выбрать";
+            photo = "0";
+            lang = null;
+            style = null;
+            binding = null;
+            publisher = null;
         }
 
-
-        private void contextMenuStrip5_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (e.ClickedItem.Text == "Добавить")
-            {
-                EditSup editsup = new EditSup("Жанр");
-                editsup.ShowDialog(this);
-                style = editsup.GetResult();
-                if (style == "")
-                    style = null;
-            }
-            else
-            {
-                button5.Text = e.ClickedItem.Text;
-                style = InputData.CheckString(button5.Text);
-            }
+            
         }
 
-        private void contextMenuStrip3_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void comboBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.ClickedItem.Text == "Добавить")
+            using (NpgsqlConnection connect = SQL.GetConnection())
             {
-                EditSup editsup = new EditSup("Язык");
-                editsup.ShowDialog(this);
-                lang = editsup.GetResult();
-                if (lang == "")
-                    lang = null;
-            }
-            else
-            {
-                button3.Text = e.ClickedItem.Text;
-                lang = InputData.CheckString(button3.Text);
+                comboBox1.Items.Clear();
+                comboBox1.Items.Add("Добавить");
+                connect.Open();
+                NpgsqlCommand command = new NpgsqlCommand("SELECT publisher_name FROM publisher;", connect);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBox1.Items.Add(reader.GetString(0));
+                }
+
+                connect.Close();
             }
         }
 
-        private void contextMenuStrip4_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void comboBox2_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.ClickedItem.Text == "Добавить")
+            using (NpgsqlConnection connect = SQL.GetConnection())
             {
-                EditPublisher editPublisher = new EditPublisher();
-                editPublisher.ShowDialog(this);
-                publisher = editPublisher.GetResult();
-                if (publisher == "")
-                    publisher = null;
-            }
-            else
-            {
-                button4.Text = e.ClickedItem.Text;
-                publisher = InputData.CheckString(button4.Text);
+                comboBox2.Items.Clear();
+                comboBox2.Items.Add("Добавить");
+                connect.Open();
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name_binding FROM binding;", connect);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBox2.Items.Add(reader.GetString(0));
+                }
+                connect.Close();
             }
         }
 
-        private void contextMenuStrip6_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void comboBox3_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.ClickedItem.Text == "Добавить")
+            using (NpgsqlConnection connect = SQL.GetConnection())
             {
-                EditSup editsup = new EditSup("Тип переплета");
-                editsup.ShowDialog(this);
-                binding = editsup.GetResult();
-                if (binding == "")
-                    binding = null;
+                comboBox3.Items.Clear();
+                comboBox3.Items.Add("Добавить");
+                connect.Open();
+                NpgsqlCommand command = new NpgsqlCommand("SELECT second_name_author, name_author, last_name_author FROM author;", connect);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBox3.Items.Add(reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetString(2));
+                }
+                connect.Close();
             }
-            else
+        }
+
+        private void comboBox4_MouseClick(object sender, MouseEventArgs e)
+        {
+            using (NpgsqlConnection connect = SQL.GetConnection())
             {
-                button6.Text = e.ClickedItem.Text;
-                binding = InputData.CheckString(button6.Text);
+                comboBox4.Items.Clear();
+                comboBox4.Items.Add("Добавить");
+                connect.Open();
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name_lang FROM lang;", connect);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBox4.Items.Add(reader.GetString(0));
+                }
+                connect.Close();
             }
+        }
+
+        private void comboBox5_MouseClick(object sender, MouseEventArgs e)
+        {
+            using (NpgsqlConnection connect = SQL.GetConnection())
+            {
+                comboBox5.Items.Clear();
+                comboBox5.Items.Add("Добавить");
+                connect.Open();
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name_style FROM style;", connect);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBox5.Items.Add(reader.GetString(0));
+                }
+                connect.Close();
+            }
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (string item in listBox1.Items)
+            {
+                if (item == comboBox3.Text)
+                {
+                    MessageBox.Show("Данный автор уже добавлен в список!", "Ошибка013", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            listBox1.Items.Add(comboBox3.Text);
         }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kursovaya
 {
@@ -22,7 +19,7 @@ namespace Kursovaya
         protected override string InsertQuery => $"INSERT INTO {ClassName} (name_{ClassName}, second_name_{ClassName}, last_name_{ClassName}) VALUES ({Name}, {SecondName}, {LastName})";
 
         protected override string SelectQuery => $"SELECT id_{ClassName} AS ID, second_name_{ClassName} AS Фамилия, name_{ClassName} AS Имя," +
-            $" last_name_{ClassName} AS Отчество FROM {ClassName}";
+            $" last_name_{ClassName} AS Отчество FROM {ClassName} ORDER BY publisher_id ASC";
 
         protected override string UpdateQuery => throw new NotImplementedException();
 

@@ -12,43 +12,62 @@ namespace Kursovaya
             InitializeComponent();
 
         }
-        string Shop = "NULL", Book = "NULL", Lang = "NULL", Date = "NULL";
+        string Shop, Book, Lang, Date;
         int Count;
         double Cost, FirstCost, Volume;
+
+        private void comboBox3_MouseClick(object sender, MouseEventArgs e)
+        {
+            using (NpgsqlConnection connect = SQL.GetConnection())
+            {
+                comboBox3.Items.Clear();
+                connect.Open();
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name_lang FROM lang", connect);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBox3.Items.Add($"{reader.GetString(0)}");
+                }
+                connect.Close();
+            }
+        }
+
+        private void comboBox2_MouseClick(object sender, MouseEventArgs e)
+        {
+            using (NpgsqlConnection connect = SQL.GetConnection())
+            {
+                comboBox2.Items.Clear();
+                connect.Open();
+                NpgsqlCommand command = new NpgsqlCommand("SELECT book_name FROM book", connect);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBox2.Items.Add($"{reader.GetString(0)}");
+                }
+                connect.Close();
+            }
+        }
         bool PreOder = false;
 
-        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+       
+
+        private void comboBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.ClickedItem.Text == "Добавить")
-                new EditShop().ShowDialog(this);
-            else
+            using (NpgsqlConnection connect = SQL.GetConnection())
             {
-                button1.Text = e.ClickedItem.Text;
-                Shop = InputData.CheckString(button1.Text);
+                comboBox1.Items.Clear();
+                connect.Open();
+                NpgsqlCommand command = new NpgsqlCommand("SELECT shop_name FROM shop", connect);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBox1.Items.Add($"{reader.GetString(0)}");
+                }
+                connect.Close();
             }
         }
 
-        private void contextMenuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            if (e.ClickedItem.Text == "Добавить")
-                new EditBook().ShowDialog(this);
-            else
-            {
-                button2.Text = e.ClickedItem.Text;
-                Book = InputData.CheckString(button2.Text);
-            }
-        }
-
-        private void contextMenuStrip3_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            if (e.ClickedItem.Text == "Добавить")
-                new EditSup("Язык").ShowDialog(this);
-            else
-            {
-                button3.Text = e.ClickedItem.Text;
-                Lang = InputData.CheckString(button3.Text);
-            }
-        }
+ 
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -61,6 +80,10 @@ namespace Kursovaya
             if (radioButton1.Checked == true)
                 PreOder = true;
             else PreOder = false;
+
+            Shop = InputData.CheckString(comboBox1.Text);
+            Book = InputData.CheckString(comboBox2.Text);
+            Lang = InputData.CheckString(comboBox3.Text);
 
             Cost = Convert.ToDouble(textBox1.Text);
             FirstCost = Convert.ToDouble(textBox2.Text);
@@ -76,68 +99,11 @@ namespace Kursovaya
                 textBox1.Text = "";
                 textBox2.Text = "";
                 textBox3.Text = "";
-                button1.Text = "Выбрать";
-                button2.Text = "Выбрать";
-                button3.Text = "Выбрать";
+                comboBox1.Text = null;
+                comboBox2.Text = null;
+                comboBox3.Text = null;
             }
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            contextMenuStrip1.Items.Clear();
-            contextMenuStrip1.Items.Add("Добавить");
-            using (NpgsqlConnection connect = SQL.GetConnection())
-            {
-                connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT shop_name FROM shop", connect);
-                NpgsqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    contextMenuStrip1.Items.Add($"{reader.GetString(0)}");
-                }
-                contextMenuStrip1.Show(this, new Point(button1.Location.X + button1.Size.Width / 2, button1.Location.Y));
-
-                connect.Close();
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            contextMenuStrip2.Items.Clear();
-            contextMenuStrip2.Items.Add("Добавить");
-            using (NpgsqlConnection connect = SQL.GetConnection())
-            {
-                connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT book_name FROM book", connect);
-                NpgsqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    contextMenuStrip2.Items.Add($"{reader.GetString(0)}");
-                }
-                contextMenuStrip2.Show(this, new Point(button2.Location.X + button2.Size.Width / 2, button2.Location.Y));
-
-                connect.Close();
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            contextMenuStrip3.Items.Clear();
-            contextMenuStrip3.Items.Add("Добавить");
-            using (NpgsqlConnection connect = SQL.GetConnection())
-            {
-                connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name_lang FROM lang", connect);
-                NpgsqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    contextMenuStrip3.Items.Add($"{reader.GetString(0)}");
-                }
-                contextMenuStrip3.Show(this, new Point(button3.Location.X + button3.Size.Width / 2, button3.Location.Y));
-
-                connect.Close();
-            }
         }
     }
 }

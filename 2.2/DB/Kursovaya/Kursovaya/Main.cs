@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using Npgsql;
@@ -23,6 +24,8 @@ namespace Kursovaya
 
             dataGridView1.ReadOnly = true;
             dataGridView2.ReadOnly = true;
+
+            button8.Enabled = false;
         }
         private void SetTagPage2()
         {
@@ -187,8 +190,14 @@ namespace Kursovaya
         private void listBox1_MouseClick(object sender, MouseEventArgs e)
         {
             if (listBox1.SelectedItem.ToString() == "Книги-авторы")
+            {
                 button2.Enabled = false;
-            else button2.Enabled = true;
+                button9.Enabled = false;
+            }
+            else { button2.Enabled = true; button9.Enabled = true; }
+                if (listBox1.SelectedItem.ToString() == "Книги")
+                button8.Enabled = true;
+            else button8.Enabled = false;
             UpdateDatagrid(dataGridView1, listBox1, label1);
         }
         private void AreaCreateColumns()
@@ -245,6 +254,37 @@ namespace Kursovaya
         {
             Table.TruncateAll();
             UpdateDatagrid(dataGridView2, listBox2, label9);
+            UpdateDatagrid(dataGridView1, listBox1, label1);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+                return;
+            string image = "images/" + dataGridView1[2, dataGridView1.SelectedRows[0].Index].Value.ToString();
+            if (!File.Exists(image))
+            {
+                Message.ErrorShow("Картинка была удалена из каталога");
+                return;
+            }
+            new PictureViewer(image).Show();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem == null || dataGridView1.SelectedRows.Count == 0)
+                return;
+
+
+            if (listBox1.SelectedItem.ToString() == "Магазины")
+                new EditShop().ShowDialog(this);
+            else if (listBox1.SelectedItem.ToString() == "Поставки")
+                new EditDeliveries().ShowDialog(this);
+            else if (listBox1.SelectedItem.ToString() == "Книги")
+                new EditBook().ShowDialog(this);
+            else if (listBox1.SelectedItem.ToString() == "Издательства")
+                new EditPublisher(Convert.ToInt32(dataGridView1[0, dataGridView1.SelectedRows[0].Index].Value.ToString()), dataGridView1[1, dataGridView1.SelectedRows[0].Index].Value.ToString(), dataGridView1[2, dataGridView1.SelectedRows[0].Index].Value.ToString(), Convert.ToInt32(dataGridView1[4, dataGridView1.SelectedRows[0].Index].Value.ToString()), dataGridView1[3, dataGridView1.SelectedRows[0].Index].Value.ToString()).ShowDialog(this);
+
             UpdateDatagrid(dataGridView1, listBox1, label1);
         }
     }

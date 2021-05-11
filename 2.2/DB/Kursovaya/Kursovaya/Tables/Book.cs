@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,6 @@ namespace Kursovaya
         public Book(string name, string photo, string description, string lang, int date, string publisher, string style, string binding, int pub_date)
         {
             Name = name;
-            Photo = photo;
             Description = description;
             Lang = lang;
             Date = date;
@@ -26,6 +26,28 @@ namespace Kursovaya
             Style = style;
             Binding = binding;
             PublishDate = pub_date;
+            if (photo == null || photo == "NULL")
+            {
+                Photo = photo;
+                return;
+            }
+            string[] filename = photo.Split("\\");
+            string newName = null;
+            try
+            {
+                newName = filename[filename.Length - 1];
+                File.Copy(photo, $"images/{newName}");
+            }
+            catch 
+            {
+                //newName = $"images/{filename[filename.Length - 1]}{new Random().NextDouble()}";
+                //File.Copy(photo, newName); 
+            }
+            Photo = newName;
+
+
+
+
         }
         protected override string InsertQuery => $"INSERT INTO book (book_name, book_photo, book_description, book_lang_id, book_date, book_publisher_id, book_style_id, book_binding_id, book_date_public) VALUES " +
                         $"({Name}, '{Photo}', {Description}, " +

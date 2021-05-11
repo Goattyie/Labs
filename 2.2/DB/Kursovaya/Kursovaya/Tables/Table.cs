@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
-using System;
-using System.Threading;
 
 namespace Kursovaya
 {
@@ -83,7 +81,25 @@ namespace Kursovaya
                 return result;
             }
         }
-        public void  Update() { }
+        public void  Update() 
+        {
+            using (NpgsqlConnection connect = SQL.GetConnection())
+            {
+                connect.Open();
+                try
+                {
+                    NpgsqlCommand command = new NpgsqlCommand(UpdateQuery, connect);
+                    command.ExecuteNonQuery();
+                    Message.Success();
+   
+                }
+                catch (Npgsql.PostgresException ex)
+                {
+                    SQLError(ex);
+                }
+                connect.Close();
+            }
+        }
         public void  Delete(int[] id) 
         {
             using (NpgsqlConnection connect = SQL.GetConnection())

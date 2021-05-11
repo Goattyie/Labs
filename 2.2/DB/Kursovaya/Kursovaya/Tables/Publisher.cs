@@ -12,10 +12,18 @@ namespace Kursovaya
         protected override string PrimaryKey => "publisher_id";
 
         string Name, Telephone, City;
-        int Date;
+        int Date, Id;
         public Publisher() { }
         public Publisher(string name, string city, string telephone, int date)
         {
+            Name = name;
+            City = city;
+            Telephone = telephone;
+            Date = date;
+        }
+        public Publisher(int id, string name, string city, string telephone, int date)
+        {
+            Id = id;
             Name = name;
             City = city;
             Telephone = telephone;
@@ -29,7 +37,7 @@ namespace Kursovaya
             $"{ClassName}.phone AS Телефон, {ClassName}.create_date AS \"Дата создания\" " +
             $"FROM {ClassName}, city WHERE {ClassName}.city_id = city.id_city";
 
-        protected override string UpdateQuery => throw new NotImplementedException();
+        protected override string UpdateQuery => $"UPDATE {ClassName} SET publisher_name = {Name}, city_id = (SELECT id_city FROM city WHERE name_city = {City}), phone = {Telephone}, create_date = {Date} WHERE publisher_id = {Id}";
 
         protected override List<string[]> Constraint => new List<string[]> {
             new string[]{"ck_create_date","\"Дата создания\""},
