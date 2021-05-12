@@ -11,7 +11,25 @@ namespace Kursovaya
         {
             InitializeComponent();
         }
-
+        public EditShop(int id, string name, int date, string area, string address, string own)
+        {
+            InitializeComponent();
+            Id = id;
+            Title = name;
+            Date = date;
+            Area = area;
+            Address = address;
+            Own = own;
+            State = false;
+            textBox1.Text = Title;
+            textBox2.Text = Address;
+            textBox3.Text = Date.ToString();
+            comboBox1.Text = Area;
+            comboBox2.Text = Own;
+        }
+        string Area, Own, Title, Address;
+        int Id, Date;
+        bool State = true;
 
         private void Clear()
         {
@@ -20,35 +38,37 @@ namespace Kursovaya
             this.textBox3.Clear();
             this.comboBox2.Items.Clear();
             this.comboBox1.Items.Clear();
-            own = null;
-            address = null;
-            name = null;
-            area = null;
             
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            area = InputData.CheckString(comboBox1.Text);
-            own = InputData.CheckString(comboBox2.Text);
-
-            bool success;
             if (!InputData.CheckInt(textBox3.Text, "\"Дата открытия\""))
                 return;
 
-            name = InputData.CheckString(textBox1.Text);
-            address = InputData.CheckString(textBox2.Text);
+            Area = InputData.CheckString(comboBox1.Text);
+            Own = InputData.CheckString(comboBox2.Text);
 
-            success = new Shop(name, Convert.ToInt32(textBox3.Text), area, address, own).Insert();
-            if(success)this.Clear();
+            Date = Convert.ToInt32(textBox3.Text);
+            Title = InputData.CheckString(textBox1.Text);
+            Address = InputData.CheckString(textBox2.Text);
+
+            bool success = false;
+            if (State)
+            {
+                success = new Shop(Title, Date, Area, Address, Own).Insert();
+                if (success) this.Clear();
+            }
+            else
+                new Shop(Id, Title, Date, Area, Address, Own).Update();
         }
-        string area = "NULL", own = "NULL", name, address;
+        
 
         private void comboBox2_MouseClick(object sender, MouseEventArgs e)
         {
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 comboBox2.Items.Clear();
-                comboBox2.Items.Add("Добавить");
+                //comboBox2.Items.Add("Добавить");
                 connect.Open();
                 NpgsqlCommand command = new NpgsqlCommand("SELECT name_own FROM own;", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
@@ -65,7 +85,7 @@ namespace Kursovaya
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 comboBox1.Items.Clear();
-                comboBox1.Items.Add("Добавить");
+                //comboBox1.Items.Add("Добавить");
                 connect.Open();
                 NpgsqlCommand command = new NpgsqlCommand("SELECT name_area FROM area;", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();

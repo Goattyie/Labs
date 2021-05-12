@@ -13,7 +13,7 @@ namespace Kursovaya
         protected override string ClassName => "book";
         protected override string PrimaryKey => "book_id";
         string Name, Description, Lang, Publisher, Style, Binding;
-        int PublishDate, Date;
+        int PublishDate, Date, Id;
         string Photo;
         public Book() { }
         public Book(string name, string photo, string description, string lang, int date, string publisher, string style, string binding, int pub_date)
@@ -44,13 +44,39 @@ namespace Kursovaya
                 //File.Copy(photo, newName); 
             }
             Photo = newName;
-
-
-
-
+        }
+        public Book(int id, string name, string photo, string description, string lang, int date, string publisher, string style, string binding, int pub_date)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            Lang = lang;
+            Date = date;
+            Publisher = publisher;
+            Style = style;
+            Binding = binding;
+            PublishDate = pub_date;
+            if (photo == null || photo == "NULL")
+            {
+                Photo = photo;
+                return;
+            }
+            string[] filename = photo.Split("\\");
+            string newName = null;
+            try
+            {
+                newName = filename[filename.Length - 1];
+                File.Copy(photo, $"images/{newName}");
+            }
+            catch
+            {
+                //newName = $"images/{filename[filename.Length - 1]}{new Random().NextDouble()}";
+                //File.Copy(photo, newName); 
+            }
+            Photo = newName;
         }
         protected override string InsertQuery => $"INSERT INTO book (book_name, book_photo, book_description, book_lang_id, book_date, book_publisher_id, book_style_id, book_binding_id, book_date_public) VALUES " +
-                        $"({Name}, '{Photo}', {Description}, " +
+                        $"({Name}, {Photo}, {Description}, " +
                         $"(SELECT id_lang FROM lang WHERE name_lang = {this.Lang}), {Date}, " +
                         $"(SELECT publisher_id FROM publisher WHERE publisher_name = {this.Publisher} LIMIT 1)," +
                         $"(SELECT id_style FROM style WHERE name_style = {this.Style})," +
@@ -72,7 +98,7 @@ namespace Kursovaya
             $"{ClassName}.{ClassName}_style_id = style.id_style AND " +
             $"{ClassName}.{ClassName}_binding_id = binding.id_binding  ORDER BY book.book_id";
 
-        protected override string UpdateQuery => throw new NotImplementedException();
+        protected override string UpdateQuery => $"UPDATE book SET book_name = {Name},book_description = {Description}, book_lang_id = (SELECT id_lang FROM lang WHERE name_lang = {Lang}), book_publisher_id = (SELECT publisher_id FROM publisher WHERE publisher_name = {Publisher} LIMIT 1), book_style_id = (SELECT id_style FROM style WHERE name_style = {Style}), book_binding_id = (SELECT id_binding FROM binding WHERE name_binding = {Binding}), book_date_public = {PublishDate}, book_date = {Date}, book_photo = {Photo} WHERE book_id = {Id} ";
 
         protected override List<string[]> Constraint => new List<string[]> {
             new string[]{"UQ_book", "\"Название, Фото (Уникальность)\""},

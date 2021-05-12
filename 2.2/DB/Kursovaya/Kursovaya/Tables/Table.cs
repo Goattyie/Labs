@@ -81,7 +81,7 @@ namespace Kursovaya
                 return result;
             }
         }
-        public void  Update() 
+        public virtual void  Update() 
         {
             using (NpgsqlConnection connect = SQL.GetConnection())
             {

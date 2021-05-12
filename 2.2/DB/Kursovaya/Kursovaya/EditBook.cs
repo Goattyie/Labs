@@ -17,6 +17,24 @@ namespace Kursovaya
         {
             InitializeComponent();
         }
+        public EditBook(string id, string name, string photo, string description, string lang, string publisher, string style, string binding, string date, string publishDate)
+        {
+            InitializeComponent();
+            this.id = Convert.ToInt32(id);
+            textBox1.Text = name;
+            textBox2.Text = description;
+            textBox3.Text = publishDate.ToString();
+            textBox4.Text = date.ToString();
+            comboBox1.Text = publisher;
+            comboBox2.Text = binding;
+            comboBox4.Text = lang;
+            comboBox5.Text = style;
+            button1.Text = photo;
+            this.photo = button1.Text;
+            State = false;
+        }
+        private bool State = true;
+        private int id;
         private string name;
         private string photo;
         private string description;
@@ -40,7 +58,6 @@ namespace Kursovaya
 
             if (state == DialogResult.OK)
             {
-                photo = ofd.FileName;
                 button1.Text = ofd.FileName;
             }
         }
@@ -55,6 +72,7 @@ namespace Kursovaya
         //Добавление записи
         private void button7_Click(object sender, EventArgs e)
         {
+            photo = InputData.CheckString(button1.Text);
             name = InputData.CheckString(textBox1.Text);
             publisher = InputData.CheckString(comboBox1.Text);
             binding = InputData.CheckString(comboBox2.Text);
@@ -81,30 +99,38 @@ namespace Kursovaya
                 return;
             }
 
-            bool success_authors = false;
-            bool success_book = new Book(name, photo, description, lang, date, publisher, style, binding, publish_date).Insert();
-            if (!success_book)
-                return;
+            if (State)
+            {
+                bool success_authors = false;
+                bool success_book = new Book(name, photo, description, lang, date, publisher, style, binding, publish_date).Insert();
+                if (!success_book)
+                    return;
 
-            success_authors = new BookAuthor(name, listBox1.Items.Cast<String>().ToArray()).Insert();
+                success_authors = new BookAuthor(name, listBox1.Items.Cast<String>().ToArray()).Insert();
 
-            if (!success_authors) Message.ErrorShow("Не все авторы были добавлены в базу данных.");
+                if (!success_authors) Message.ErrorShow("Не все авторы были добавлены в базу данных.");
 
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";//14635
-            comboBox1.Text = null;
-            comboBox2.Text = null;
-            comboBox3.Text = null;
-            comboBox4.Text = null;
-            comboBox5.Text = null;
-            button1.Text = "Выбрать";
-            photo = "0";
-            lang = null;
-            style = null;
-            binding = null;
-            publisher = null;
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";//14635
+                comboBox1.Text = null;
+                comboBox2.Text = null;
+                comboBox3.Text = null;
+                comboBox4.Text = null;
+                comboBox5.Text = null;
+                button1.Text = "Выбрать";
+                photo = "0";
+                lang = null;
+                style = null;
+                binding = null;
+                publisher = null;
+            }
+            else
+            {
+                new Book(id, name, photo, description, lang, date, publisher, style, binding, publish_date).Update();
+                new BookAuthor(id, listBox1.Items.Cast<String>().ToArray()).Update();
+            }
         }
         private void comboBox1_MouseClick(object sender, MouseEventArgs e)
         {

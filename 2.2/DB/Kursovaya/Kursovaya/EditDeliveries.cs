@@ -10,11 +10,28 @@ namespace Kursovaya
         public EditDeliveries()
         {
             InitializeComponent();
-
+        }
+        public EditDeliveries(string id, string shop, string book, string count, string date, string cost, string firstCost, string lang, string volume, string preOrder)
+        {
+            InitializeComponent();
+            Id = Convert.ToInt32(id);
+            textBox1.Text = cost.ToString();
+            textBox2.Text = firstCost.ToString();
+            dateTimePicker1.Value = Convert.ToDateTime(date);
+            numericUpDown1.Value = Convert.ToInt32(count);
+            textBox3.Text = volume.ToString();
+            comboBox1.Text = shop;
+            comboBox2.Text = book;
+            comboBox3.Text = lang;
+            if (Convert.ToBoolean(preOrder))
+                radioButton1.Checked = true;
+            else radioButton2.Checked = true;
+            State = false;
         }
         string Shop, Book, Lang, Date;
-        int Count;
+        int Count, Id;
         double Cost, FirstCost, Volume;
+        bool State = true;
 
         private void comboBox3_MouseClick(object sender, MouseEventArgs e)
         {
@@ -66,9 +83,6 @@ namespace Kursovaya
                 connect.Close();
             }
         }
-
- 
-
         private void button4_Click(object sender, EventArgs e)
         {
             if(!InputData.CheckDouble(textBox1.Text, "Цена книги(для магазина)"))
@@ -91,17 +105,22 @@ namespace Kursovaya
             Count = Convert.ToInt32(numericUpDown1.Value);
             Volume = Convert.ToDouble(textBox3.Text);
 
-            bool success = new Deliveries(Shop, Book, Lang, Count, Date, Cost, Volume, FirstCost, PreOder).Insert();
-
-
-            if (success)
+            if (State)
             {
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
-                comboBox1.Text = null;
-                comboBox2.Text = null;
-                comboBox3.Text = null;
+                bool success = new Deliveries(Shop, Book, Lang, Count, Date, Cost, Volume, FirstCost, PreOder).Insert();
+                if (success)
+                {
+                    textBox1.Text = "";
+                    textBox2.Text = "";
+                    textBox3.Text = "";
+                    comboBox1.Text = null;
+                    comboBox2.Text = null;
+                    comboBox3.Text = null;
+                }
+            }
+            else
+            {
+                new Deliveries(Id,Shop, Book, Lang, Count, Date, Cost, Volume, FirstCost, PreOder).Update();
             }
 
         }
