@@ -6,15 +6,15 @@ namespace Template
     {
         public void Start()
         {
-			Console.WriteLine("Введите H:");
-			float H = InputFloat();
-			Console.WriteLine("Введите S1:");
-			float S1 = InputFloat();
-			Console.WriteLine("Введите S2:");
-			float S2 = InputFloat();
-			float V = 0;
-			V=(float)1/3*H*(S1+S2+(float)Math.Sqrt(S1*S2));
-			Console.WriteLine("V:"+ V);
+			Console.WriteLine("Введите P1:");
+			float P1 = InputFloat();
+			Console.WriteLine("Введите P2:");
+			float P2 = InputFloat();
+			Console.WriteLine("Введите L:");
+			float L = InputFloat();
+			float S3 = 0;
+			S3=(float)0.5*(P1+P2)/L;
+			Console.WriteLine("S3:"+ S3);
 
         }
 

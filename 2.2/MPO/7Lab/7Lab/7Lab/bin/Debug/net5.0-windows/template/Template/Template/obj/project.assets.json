@@ -8,7 +8,7 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Goattyie\\.nuget\\packages\\": {}
+    "C:\\Users\\goattye\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -16,11 +16,11 @@
       "projectUniqueName": "D:\\Labs\\2.2\\MPO\\7Lab\\7Lab\\7Lab\\bin\\Debug\\net5.0-windows\\template\\Template\\Template\\Template.csproj",
       "projectName": "Template",
       "projectPath": "D:\\Labs\\2.2\\MPO\\7Lab\\7Lab\\7Lab\\bin\\Debug\\net5.0-windows\\template\\Template\\Template\\Template.csproj",
-      "packagesPath": "C:\\Users\\Goattyie\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\goattye\\.nuget\\packages\\",
       "outputPath": "D:\\Labs\\2.2\\MPO\\7Lab\\7Lab\\7Lab\\bin\\Debug\\net5.0-windows\\template\\Template\\Template\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Goattyie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\goattye\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
