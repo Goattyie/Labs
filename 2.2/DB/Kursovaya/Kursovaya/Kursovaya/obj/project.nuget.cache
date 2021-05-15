@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "T15nws8ZxU/QuZDMih5Mf4V+/5baV2+Yr4L5aPdIjE9kmrqZsBehEPVZGpFg+pwX6Mpx2nVjcsAertxHoNV7cQ==",
+  "success": true,
+  "projectFilePath": "D:\\Labs\\2.2\\DB\\Kursovaya\\Kursovaya\\Kursovaya\\Kursovaya.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Goattyie\\.nuget\\packages\\npgsql\\5.0.3\\npgsql.5.0.3.nupkg.sha512",
+    "C:\\Users\\Goattyie\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+  ],
+  "logs": []
+}
