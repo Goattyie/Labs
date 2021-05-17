@@ -61,22 +61,9 @@ namespace Kursovaya
         }
         private void SetTagPage3()
         {
-            listBox3.Size = listBox1.Size;
-            listBox3.Location = listBox1.Location;
 
-            label4.Text = label2.Text;
-            label4.Location = label2.Location;
-            label4.Size = label2.Size;
-            label4.Font = label2.Font;
-
-            label5.Location = label6.Location;
             label5.Size = label2.Size;
             label5.Font = label2.Font;
-
-            listBox4.Size = dataGridView1.Size;
-            listBox4.Location = dataGridView1.Location;
-
-            button5.Location = button1.Location;
             button5.Font = button1.Font;
 
         }
@@ -95,6 +82,17 @@ namespace Kursovaya
             listBox2.Items.Add("Жанр");
             listBox2.Items.Add("Тип переплета");
             listBox2.Items.Add("Автор");
+
+            listBox3.Items.Add("Вывести все магазины с заданным типом собственности.");
+            listBox3.Items.Add("Вывести все района по вводимому названию маназина.");
+            listBox3.Items.Add("Вывести информацию о магазинах, поставках о них по вводимому году открытия магазина.");
+            listBox3.Items.Add("Вывести все книги с датой публикации издательством в период с - по");
+            listBox3.Items.Add("Вывести информацию о всех магазинах и поставках в них.");
+            listBox3.Items.Add("Вывести все книги и их язык оригинала.");
+            listBox3.Items.Add("Вывести города и издательства в них.");
+            listBox3.Items.Add("Вывести информацию о городах, в которых нет издательств.");
+            listBox3.Items.Add("Выбрать все книги, но показать только книги данног автора.");
+            listBox3.Items.Add("Вывести информацию о городах, в которых нет издательств за указанный год создания");
 
             dataGridView2.ColumnHeadersHeight = 30;
             label1.Location = label9.Location;
@@ -155,6 +153,122 @@ namespace Kursovaya
         }
         private void button5_Click(object sender, EventArgs e)
         {
+            if (listBox3.SelectedItem == null)
+                return;
+            string Query = null;
+            InputText it = new InputText();
+            if (listBox3.SelectedIndex == 0)
+            {
+                it.ShowDialog(this);
+                Query = $"SELECT s.name Магазин, a.name Район, s.address Адрес, s.date_open \"Дата открытия\" FROM shop s " +
+                    $"JOIN own o ON s.id_own = o.id " +
+                    $"JOIN area a ON s.id_area = a.id " +
+                    $"WHERE o.name = '{it.GetResult()}' " +
+                    $"ORDER BY s.name, a.name";
+            }
+            else if (listBox3.SelectedIndex == 1)
+            {
+                it.ShowDialog(this);
+                Query = $"SELECT a.id id, a.name Район FROM area a " +
+                    $"JOIN shop s ON a.id = s.id_area WHERE s.name = '{it.GetResult()}' " +
+                    $"ORDER BY a.name";
+            }
+            else if (listBox3.SelectedIndex == 2)
+            {
+                it.ShowDialog(this);
+                int Year;
+                try
+                {
+                    Year = Convert.ToInt32(it.GetResult());
+                }
+                catch { Message.ErrorShow("Значение указано неверно."); return; }
+                Query = "SELECT d.id \"id Поставки\", s.name Магазин, a.name Район, s.address Адрес, o.name Собственность, b.name Книга, d.count_book Количество, d.date_come \"Дата поступления\"," +
+                    " d.cost \"Цена для магазина\", d.def_cost \"Цена для поставщика\", l.name Язык, d.size Объем, d.pre_order Предзаказ " +
+                    "FROM deliveries d " +
+                    "JOIN book b ON d.id_book = b.id " +
+                    "JOIN shop s ON d.id_shop = s.id " +
+                    "JOIN area a ON s.id_area = a.id " +
+                    "JOIN lang l ON d.id_lang = l.id " +
+                    "JOIN own o ON s.id_own = o.id " +
+                    $"WHERE s.date_open = {Year} " +
+                    "ORDER BY s.name, a.name, d.date_come";
+            }
+            else if (listBox3.SelectedIndex == 3)
+            {
+                it.ShowDialog(this);
+                int FirstYear, SecondYear;
+                try
+                {
+                    FirstYear = Convert.ToInt32(it.GetResult());
+                    it.ShowDialog(this);
+                    SecondYear = Convert.ToInt32(it.GetResult());
+                    if (FirstYear > SecondYear)
+                        throw new Exception();
+                }
+                catch { Message.ErrorShow("Значение указано неверно."); return; }
+                Query = "SELECT b.name Книга, b.description Описание, l.name Язык, p.name Издательство, bind.name Переплет, b.date_public \"Дата публикации\", b.date_create \"Дата создания\"," +
+                    " b.photo Фото FROM book b " +
+                    "JOIN lang l ON b.id_lang = l.id " +
+                    "JOIN publisher p ON p.id = b.id_publisher " +
+                    "JOIN binding bind ON bind.id = b.id_binding " +
+                    $"WHERE b.date_public >= {FirstYear} AND b.date_public <= {SecondYear} " +
+                    $"ORDER BY b.name, b.date_public";
+            }
+            else if (listBox3.SelectedIndex == 4)
+            {
+                Query = "SELECT d.id \"id Поставки\", s.name Магазин, a.name Район, s.address Адрес, o.name Собственность, b.name Книга, d.count_book Количество, d.date_come \"Дата поступления\"," +
+                    " d.cost \"Цена для магазина\", d.def_cost \"Цена для поставщика\", l.name Язык, d.size Объем, d.pre_order Предзаказ " +
+                    "FROM deliveries d " +
+                    "JOIN book b ON d.id_book = b.id " +
+                    "JOIN shop s ON d.id_shop = s.id " +
+                    "JOIN area a ON s.id_area = a.id " +
+                    "JOIN lang l ON d.id_lang = l.id " +
+                    "JOIN own o ON s.id_own = o.id " +
+                    "ORDER BY s.name, a.name, d.date_come";
+            }
+            else if (listBox3.SelectedIndex == 5)
+                Query = "SELECT b.id id, b.name Название, b.photo Фото, p.name Издательство, l.name Язык FROM book b JOIN publisher p ON b.id_publisher = p.id JOIN lang l ON b.id_lang = l.id ORDER BY b.name, l.name";
+            else if (listBox3.SelectedIndex == 6)
+                Query = "SELECT c.name Город, p.name Издательство FROM publisher p JOIN city c ON c.id = p.id_city ORDER BY c.name, p.name";
+            else if (listBox3.SelectedIndex == 7)
+                Query = "SELECT c.id id, c.name Город FROM city c LEFT JOIN publisher p ON p.id_city = c.id WHERE p.name IS NULL ORDER BY c.name";
+            else if (listBox3.SelectedIndex == 8)
+            {
+                InputAuthor ia = new InputAuthor();
+                ia.ShowDialog(this);
+                if (ia.GetResult() == null)
+                    return;
+                string[] Author = ia.GetResult().Split(' ');
+                Query = "SELECT b.name Книга, b.photo Фото " +
+                    "FROM book_author ba " +
+                    "RIGHT JOIN book b ON b.id = ba.id_book WHERE ba.id_author = " +
+                    $"(SELECT id FROM author WHERE second_name = '{Author[0]}' AND name = '{Author[1]}' AND last_name = '{Author[2]}') " +
+                    "ORDER BY b.name";
+            }
+            else if (listBox3.SelectedIndex == 9) 
+            {
+                it.ShowDialog(this);
+                int Year;
+                try
+                {
+                    Year = Convert.ToInt32(it.GetResult());
+                }
+                catch { Message.ErrorShow("Значение указано неверно."); return; }
+                Query = $"SELECT DISTINCT c.id id, c.name Город FROM city c LEFT JOIN publisher p ON p.id_city = c.id WHERE (SELECT Count(p.name) FROM publisher p WHERE p.date_create = {Year}) = 0 ORDER BY c.name";
+            }
+            if (Query == null)
+                return;
+            using (NpgsqlConnection connect = SQL.GetConnection())
+            {
+                connect.Open();
+                NpgsqlDataAdapter nda = new NpgsqlDataAdapter(Query, SQL.GetConnection());
+                DataTable dt = new DataTable();
+                nda.Fill(dt);
+                dataGridView3.DataSource = dt;
+                connect.Close();
+            }
+            label4.Text = "Количество записей: " + dataGridView3.Rows.Count.ToString();
+
         }
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {

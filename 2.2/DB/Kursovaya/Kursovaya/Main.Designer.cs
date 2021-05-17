@@ -31,6 +31,7 @@ namespace Kursovaya
         {
             this.tagPage1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -52,20 +53,20 @@ namespace Kursovaya
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.listBox4 = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.button5 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
             this.tagPage1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // tagPage1
@@ -105,6 +106,18 @@ namespace Kursovaya
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.White;
+            this.button12.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button12.Location = new System.Drawing.Point(438, 8);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(112, 30);
+            this.button12.TabIndex = 11;
+            this.button12.Text = "Просмотр";
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button11
             // 
@@ -334,10 +347,10 @@ namespace Kursovaya
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.listBox4);
+            this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Controls.Add(this.dataGridView3);
             this.tabPage3.Controls.Add(this.button5);
             this.tabPage3.Controls.Add(this.label5);
-            this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Controls.Add(this.listBox3);
             this.tabPage3.Location = new System.Drawing.Point(4, 30);
             this.tabPage3.Name = "tabPage3";
@@ -347,19 +360,33 @@ namespace Kursovaya
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // listBox4
+            // label4
             // 
-            this.listBox4.FormattingEnabled = true;
-            this.listBox4.ItemHeight = 21;
-            this.listBox4.Location = new System.Drawing.Point(179, 35);
-            this.listBox4.Name = "listBox4";
-            this.listBox4.Size = new System.Drawing.Size(1118, 508);
-            this.listBox4.TabIndex = 5;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(913, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 25);
+            this.label4.TabIndex = 6;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(93, 109);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowTemplate.Height = 25;
+            this.dataGridView3.Size = new System.Drawing.Size(1118, 497);
+            this.dataGridView3.TabIndex = 5;
             // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(179, 562);
+            this.button5.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button5.Location = new System.Drawing.Point(93, 612);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(1118, 44);
             this.button5.TabIndex = 4;
@@ -370,28 +397,20 @@ namespace Kursovaya
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(716, 4);
+            this.label5.Location = new System.Drawing.Point(597, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 21);
             this.label5.TabIndex = 2;
             this.label5.Text = "Запросы";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(45, 4);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 21);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Таблицы";
-            // 
             // listBox3
             // 
+            this.listBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.listBox3.FormattingEnabled = true;
             this.listBox3.ItemHeight = 21;
-            this.listBox3.Location = new System.Drawing.Point(14, 35);
+            this.listBox3.Location = new System.Drawing.Point(93, 36);
             this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(147, 571);
+            this.listBox3.Size = new System.Drawing.Size(1118, 67);
             this.listBox3.TabIndex = 0;
             // 
             // button6
@@ -416,18 +435,6 @@ namespace Kursovaya
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // button12
-            // 
-            this.button12.BackColor = System.Drawing.Color.White;
-            this.button12.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button12.Location = new System.Drawing.Point(438, 8);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(112, 30);
-            this.button12.TabIndex = 11;
-            this.button12.Text = "Просмотр";
-            this.button12.UseVisualStyleBackColor = false;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -450,6 +457,7 @@ namespace Kursovaya
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -470,10 +478,8 @@ namespace Kursovaya
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ListBox listBox4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
@@ -486,5 +492,7 @@ namespace Kursovaya
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.Label label4;
     }
 }

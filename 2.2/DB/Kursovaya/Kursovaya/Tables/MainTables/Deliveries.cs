@@ -42,8 +42,7 @@ namespace Kursovaya
             $"(SELECT shop.id FROM shop WHERE shop.name = {Shop} LIMIT 1), (SELECT book.id FROM book WHERE book.name = {Book} LIMIT 1)," +
             $"{Count}, {Date}, {Cost}, (SELECT lang.id FROM lang WHERE lang.name = {Lang}), {Size}, {PreOrder}, {DefCost})";
 
-        protected override string SelectQuery => "SELECT d.id id, s.name Магазин, b.name Книга, d.count_book Количество, d.date_come \"Дата поступления\", d.cost \"Цена для магазина\"," +
-            " d.def_cost \"Цена для поставщика\", l.name Язык, d.size Объем, d.pre_order Предзаказ FROM deliveries d " +
+        protected override string SelectQuery => "SELECT d.id id, s.name Магазин, b.name Книга, d.count_book Количество, d.date_come \"Дата поступления\", d.cost \"Цена для магазина\", d.def_cost \"Цена для поставщика\", l.name Язык, d.size Объем, d.pre_order Предзаказ FROM deliveries d " +
         "JOIN shop s ON d.id_shop = s.id " +
         "JOIN book b ON d.id_book = b.id " +
         "JOIN lang l ON d.id_lang = l.id;";
