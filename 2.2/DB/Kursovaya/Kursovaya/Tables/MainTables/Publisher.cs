@@ -8,7 +8,7 @@ namespace Kursovaya
 {
     class Publisher : MainTable
     {
-        protected override string ClassName => "publisher";
+        public override string ClassName => "publisher";
         string Name, Telephone, City;
         int Date, Id;
         public Publisher() { }

@@ -28,6 +28,17 @@ namespace Kursovaya
                 connect.Close();
             }
         }//+
+        public string ConvertColumnName(string ColumnName)
+        {
+            if (ColumnName == "id")
+                return null;
+            foreach(string[] item in TableNames)
+            {
+                if (ColumnName == item[0] && item[1].Contains("id"))
+                    return item[1].Split('_')[1];
+            }
+            return null;
+        }
         private string ConvertIdToQuery(string column, string value)
         {
             string TableName = column.Split('_')[1];

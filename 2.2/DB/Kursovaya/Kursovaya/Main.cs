@@ -26,6 +26,7 @@ namespace Kursovaya
             dataGridView2.ReadOnly = true;
 
             button8.Enabled = false;
+            button12.Enabled = false;
         }
         private void SetTagPage2()
         {
@@ -154,8 +155,6 @@ namespace Kursovaya
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            RequersResult RR = new RequersResult();
-            RR.Show();
         }
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -197,6 +196,10 @@ namespace Kursovaya
                 if (listBox1.SelectedItem.ToString() == "Книги")
                 button8.Enabled = true;
             else button8.Enabled = false;
+
+            if (listBox1.SelectedItem.ToString() == "Магазины" || listBox1.SelectedItem.ToString() == "Издательства")
+                button12.Enabled = true;
+            else button12.Enabled = false;
             UpdateDatagrid(dataGridView1, listBox1, label1);
         }
         private void AreaCreateColumns()
@@ -330,6 +333,20 @@ namespace Kursovaya
 
             if(index != -1 && text != "")
                  MainTable.ReturnMainTable(listBox1.SelectedItem.ToString()).ColumnDelete(dataGridView1.Columns[index].HeaderText, text);
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            string Column = null;
+            foreach (DataGridViewColumn DataCol in dataGridView1.Columns)
+            {
+                Column = MainTable.ReturnMainTable(listBox1.SelectedItem.ToString()).ConvertColumnName(DataCol.HeaderText);
+                if (Column != null)
+                    break;
+            }
+            if (Column == null)
+                return;
+            new Viewer(Column, MainTable.ReturnMainTable(listBox1.SelectedItem.ToString()).ClassName).Show();
         }
     }
 }

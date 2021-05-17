@@ -18,5 +18,10 @@ namespace Kursovaya
             pictureBox1.Size = pictureBox1.Image.Size;
             this.Size = pictureBox1.Size;
         }
+
+        private void pictureBox1_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

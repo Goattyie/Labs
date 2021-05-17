@@ -8,7 +8,7 @@ namespace Kursovaya
 {
     class Binding : SupTable
     {
-        protected override string ClassName => "binding";
+        public override string ClassName => "binding";
         public Binding() { }
         public Binding(string value) { Value = value; }
     }

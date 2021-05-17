@@ -8,7 +8,7 @@ namespace Kursovaya
 {
     class Style : SupTable
     {
-        protected override string ClassName => "style";
+        public override string ClassName => "style";
         public Style() { }
         public Style(string value) { Value = value; }
     }

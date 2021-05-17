@@ -59,6 +59,7 @@ namespace Kursovaya
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.tagPage1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -83,6 +84,7 @@ namespace Kursovaya
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button12);
             this.tabPage1.Controls.Add(this.button11);
             this.tabPage1.Controls.Add(this.button10);
             this.tabPage1.Controls.Add(this.button9);
@@ -108,9 +110,9 @@ namespace Kursovaya
             // 
             this.button11.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button11.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button11.Location = new System.Drawing.Point(424, 7);
+            this.button11.Location = new System.Drawing.Point(319, 8);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(215, 30);
+            this.button11.Size = new System.Drawing.Size(113, 30);
             this.button11.TabIndex = 10;
             this.button11.Text = "Удаление по полю";
             this.button11.UseVisualStyleBackColor = false;
@@ -122,7 +124,7 @@ namespace Kursovaya
             this.button10.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button10.Location = new System.Drawing.Point(188, 7);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(230, 30);
+            this.button10.Size = new System.Drawing.Size(125, 30);
             this.button10.TabIndex = 9;
             this.button10.Text = "Поиск";
             this.button10.UseVisualStyleBackColor = false;
@@ -414,6 +416,18 @@ namespace Kursovaya
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.White;
+            this.button12.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button12.Location = new System.Drawing.Point(438, 8);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(112, 30);
+            this.button12.TabIndex = 11;
+            this.button12.Text = "Просмотр";
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -471,5 +485,6 @@ namespace Kursovaya
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
     }
 }

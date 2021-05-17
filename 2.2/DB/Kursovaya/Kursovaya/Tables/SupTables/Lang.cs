@@ -8,7 +8,7 @@ namespace Kursovaya
 {
     class Lang : SupTable
     {
-        protected override string ClassName => "lang";
+        public override string ClassName => "lang";
         public Lang() { }
         public Lang(string value) { Value = value; }
     }

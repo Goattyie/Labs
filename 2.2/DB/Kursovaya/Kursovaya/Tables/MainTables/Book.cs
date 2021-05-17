@@ -9,8 +9,8 @@ namespace Kursovaya
 {
     class Book : MainTable
     {
-        
-        protected override string ClassName => "book";
+
+        public override string ClassName => "book";
         string Name, Description, Lang, Publisher, Style, Binding;
         int PublishDate, Date, Id;
         string Photo;

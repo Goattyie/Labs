@@ -9,7 +9,7 @@ namespace Kursovaya
 {
     class Shop : MainTable
     {
-        protected override string ClassName => "shop";
+        public override string ClassName => "shop";
         private int Id, Date;
         private string Name, Area, Address, Own;
         public Shop() { }
@@ -39,11 +39,9 @@ namespace Kursovaya
                         $"(SELECT area.id FROM area WHERE area.name = {Area}), " +
                         $"{Address}, (SELECT own.id FROM own WHERE own.name = {Own}))";
         protected override string UpdateQuery => $"UPDATE {ClassName} SET name = {Name}, id_area = (SELECT id FROM area WHERE name = {Area}), address = {Address}, id_own = (SELECT id FROM own WHERE name = {Own}), date_open = {Date} WHERE id = {Id}";
-
         protected override List<string[]> Constraint => new List<string[]> {
             new string[]{"date_open","\"Дата открытия\""},
         };
-
         protected override List<string[]> ColumnError => new List<string[]> {
             new string[]{"name","\"Название\""},
             new string[]{"date_open","\"Дата открытия\""},
@@ -52,7 +50,6 @@ namespace Kursovaya
             new string[]{"area","\"Район\""},
             new string[]{ "UQ_shop", "\"Уникальность\"" }
         };
-
         protected override string[][] TableNames => new string[][] 
         { 
             new string[]{ "id", "id"},

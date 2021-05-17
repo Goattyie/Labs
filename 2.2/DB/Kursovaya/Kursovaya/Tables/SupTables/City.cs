@@ -8,7 +8,7 @@ namespace Kursovaya
 {
     class City : SupTable
     {
-        protected override string ClassName => "city";
+        public override string ClassName => "city";
         public City() { }
         public City(string value) { Value = value; }
     }

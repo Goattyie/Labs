@@ -37,7 +37,7 @@ namespace Kursovaya
             PreOrder = preorder;
         }
 
-        protected override string ClassName => "deliveries";
+        public override string ClassName => "deliveries";
         protected override string InsertQuery => $"INSERT INTO deliveries (id_shop, id_book, count_book, date_come, cost, id_lang, size, pre_order, def_cost) VALUES (" +
             $"(SELECT shop.id FROM shop WHERE shop.name = {Shop} LIMIT 1), (SELECT book.id FROM book WHERE book.name = {Book} LIMIT 1)," +
             $"{Count}, {Date}, {Cost}, (SELECT lang.id FROM lang WHERE lang.name = {Lang}), {Size}, {PreOrder}, {DefCost})";

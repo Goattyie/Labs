@@ -9,7 +9,7 @@ namespace Kursovaya
     {
         protected string TruncateQuery => $"TRUNCATE TABLE {ClassName} RESTART IDENTITY CASCADE"; //+
         protected string FileGeneratorPath => $"sql/{ClassName}.sql";
-        protected abstract string ClassName { get; }//+
+        public abstract string ClassName { get; }//+
         protected string PrimaryKey => "id";//+
         protected abstract string InsertQuery { get;}  //+
         protected abstract string SelectQuery { get; }//+

@@ -6,8 +6,7 @@ namespace Kursovaya
 {
     class Area : SupTable
     {
-
-        protected override string ClassName => "area";
+        public override string ClassName => "area";
         public Area() { }
         public Area(string value){  Value = value;  }
     }
