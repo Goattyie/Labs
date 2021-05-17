@@ -6,7 +6,7 @@ def GenerateSup(filename):
     fr = open(filename + ".txt", "r", encoding='utf-8', newline='')
     fw = open("sql/" + filename + ".sql", "w", encoding='utf-8')
     for line in fr:
-        fw.write("INSERT INTO {0} (name_{0}) VALUES (\'{1}\');\n".format(filename, line.rstrip()))
+        fw.write("INSERT INTO {0} (name) VALUES (\'{1}\');\n".format(filename, line.rstrip()))
     fw.close()
     fr.close()
 
@@ -22,7 +22,7 @@ fr = open("author.txt", "r", encoding='utf-8')
 fw = open("sql/author.sql", "w", encoding='utf-8')
 for line in fr:
     author = line.split(" ")
-    fw.write("INSERT INTO author (second_name_author, name_author, last_name_author) VALUES ('{0}', '{1}', '{2}');\n".format(author[0], author[1], author[2].rstrip()))
+    fw.write("INSERT INTO author (second_name, name, last_name) VALUES ('{0}', '{1}', '{2}');\n".format(author[0], author[1], author[2].rstrip()))
 fw.close()
 fr.close()
 
@@ -71,7 +71,7 @@ while(count < 2000):
     if CheckUniq(UniqPublisher, line):
         UniqPublisher.append(line)
         publisher = line.split("|") #1- Имя,2-Город,3-Телефон
-        QueryFw.write("INSERT INTO publisher (publisher_name, city_id, phone, create_date) VALUES('{0}', {1}, '{2}', {3});\n".format(publisher[0], publisher[1], publisher[2], random.randint(1901,2021)))
+        QueryFw.write("INSERT INTO publisher (name, id_city, phone, date_create) VALUES('{0}', {1}, '{2}', {3});\n".format(publisher[0], publisher[1], publisher[2], random.randint(1901,2021)))
         QueryFw.close()
         QueryFw = open("sql/publisher.sql", "a", encoding='utf-8')
         count = count + 1
@@ -105,7 +105,7 @@ while(count < 2000):
     if CheckUniq(UniqShop, line):
             UniqShop.append(line)
             shop = line.split("|") #1- Имя,2-Город,3-Телефон
-            QueryFw.write("INSERT INTO shop (shop_name, id_area, address, id_own, date_open) VALUES('{0}', {1}, '{2}', {3}, {4});\n".format(shop[0], shop[1], shop[2], Own, str(random.randint(2001,2021))))
+            QueryFw.write("INSERT INTO shop (name, id_area, address, id_own, date_open) VALUES('{0}', {1}, '{2}', {3}, {4});\n".format(shop[0], shop[1], shop[2], Own, str(random.randint(2001,2021))))
             QueryFw.close()
             QueryFw = open("sql/shop.sql", "a", encoding='utf-8')
             count = count + 1
@@ -154,7 +154,7 @@ while(count < 2000):
     if CheckUniq(UniqBook, line):
             UniqBook.append(line)
             book = line.split("|") #1- Имя,2-Город,3-Телефон
-            QueryFw.write("INSERT INTO book (book_name, book_photo, book_description, book_lang_id, book_date, book_publisher_id, book_style_id, book_binding_id, book_date_public) VALUES('{0}', '{1}', '{2}', {3}, {4}, {5}, {6}, {7}, {8});\n".format(book[0], book[1], Desc, LangIndex, Date, PublisherIndex, StyleIndex, BindIndex, PubDate))
+            QueryFw.write("INSERT INTO book (name, photo, description, id_lang, date_create, id_publisher, id_style, id_binding, date_public) VALUES('{0}', '{1}', '{2}', {3}, {4}, {5}, {6}, {7}, {8});\n".format(book[0], book[1], Desc, LangIndex, Date, PublisherIndex, StyleIndex, BindIndex, PubDate))
             QueryFw.close()
             QueryFw = open("sql/book.sql", "a", encoding='utf-8')
             count = count + 1
@@ -191,7 +191,7 @@ while(count < 2000):
     ShopIndex = random.randint(1,2000)
     BookIndex = random.randint(1,2000)
     Count = random.randint(1,99)
-    Day = random.randint(1,28)
+    Day = random.randint(2,28)
     Month = random.randint(1,12)
     Year = random.randint(2005,2021)
 
@@ -214,7 +214,7 @@ while(count < 2000):
 
     if CheckUniq(UniqDeliveries, line):
                 UniqDeliveries.append(line)
-                QueryFw.write("INSERT INTO deliveries (shop_id, book_id, book_count, date_come, cost, lang_id, size, pre_order, def_cost) VALUES({0}, {1}, {2}, '{3}', {4}, {5}, {6}, {7}, {8});\n".format(ShopIndex, BookIndex, Count, Date, ShopPrice, LangIndex, Size, PreOrder, Price))
+                QueryFw.write("INSERT INTO deliveries (id_shop, id_book, count_book, date_come, cost, id_lang, size, pre_order, def_cost) VALUES({0}, {1}, {2}, '{3}', {4}, {5}, {6}, {7}, {8});\n".format(ShopIndex, BookIndex, Count, Date, ShopPrice, LangIndex, Size, PreOrder, Price))
                 QueryFw.close()
                 QueryFw = open("sql/deliveries.sql", "a", encoding='utf-8')
                 count = count + 1

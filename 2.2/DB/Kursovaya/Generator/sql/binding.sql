@@ -1,3 +1,3 @@
-INSERT INTO binding (name_binding) VALUES ('Твердый');
-INSERT INTO binding (name_binding) VALUES ('Мягкий');
-INSERT INTO binding (name_binding) VALUES ('С вставками (метал.)');
+INSERT INTO binding (name) VALUES ('Твердый');
+INSERT INTO binding (name) VALUES ('Мягкий');
+INSERT INTO binding (name) VALUES ('С вставками (метал.)');

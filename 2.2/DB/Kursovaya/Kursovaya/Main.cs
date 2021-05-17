@@ -230,9 +230,7 @@ namespace Kursovaya
                         Id.Add(Convert.ToInt32(dataGridView2[0, row.Index].Value.ToString()));
                     }
                     Table.ReturnTable(listBox2.SelectedItem.ToString()).Delete(Id.ToArray());
-
                     UpdateDatagrid(dataGridView2, listBox2, label9);
-                Message.Success();
             }
         }
         private void button6_Click(object sender, EventArgs e)
@@ -317,6 +315,21 @@ namespace Kursovaya
                     n[i] = node.Cells[i].Value.ToString();
                 return n;
             }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem == null)
+                return;
+
+            Deleter delete = new Deleter(dataGridView1);
+            delete.ShowDialog(this);
+
+            int index = delete.GetIndex();
+            string text = delete.GetText();
+
+            if(index != -1 && text != "")
+                 MainTable.ReturnMainTable(listBox1.SelectedItem.ToString()).ColumnDelete(dataGridView1.Columns[index].HeaderText, text);
         }
     }
 }

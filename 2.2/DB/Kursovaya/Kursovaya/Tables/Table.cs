@@ -7,28 +7,15 @@ namespace Kursovaya
 {
     abstract class Table
     {
-        protected static string[] RandomNodeQuery => new string[]
-            {"SELECT name_area FROM area ORDER BY RANDOM() LIMIT 1",
-            "SELECT name_own FROM own ORDER BY RANDOM() LIMIT 1",
-            "SELECT name_city FROM city ORDER BY RANDOM() LIMIT 1",
-            "SELECT name_lang FROM lang ORDER BY RANDOM() LIMIT 1",
-            "SELECT publisher_name FROM publisher ORDER BY RANDOM() LIMIT 1",
-            "SELECT name_style FROM style ORDER BY RANDOM() LIMIT 1",
-            "SELECT name_binding FROM binding ORDER BY RANDOM() LIMIT 1",
-            "SELECT name_author, second_name_author, last_name_author FROM author ORDER BY RANDOM() LIMIT 1",
-            "SELECT book_name FROM book ORDER BY RANDOM() LIMIT 1",
-            "SELECT shop_name FROM shop ORDER BY RANDOM() LIMIT 1",
-            };
-        protected string TruncateQuery => $"TRUNCATE TABLE {ClassName} RESTART IDENTITY CASCADE";
+        protected string TruncateQuery => $"TRUNCATE TABLE {ClassName} RESTART IDENTITY CASCADE"; //+
         protected string FileGeneratorPath => $"sql/{ClassName}.sql";
-        protected abstract string ClassName { get; }
-        protected abstract string PrimaryKey { get; }
-        protected abstract string InsertQuery { get; }
-        protected abstract string SelectQuery { get; }
-        protected abstract string UpdateQuery { get; }
-        protected  string DeleteQuery => $"DELETE FROM {ClassName} WHERE {PrimaryKey} = ";
-        protected abstract List<string[]> Constraint { get; }
-        protected abstract List<string[]> ColumnError { get; }
+        protected abstract string ClassName { get; }//+
+        protected string PrimaryKey => "id";//+
+        protected abstract string InsertQuery { get;}  //+
+        protected abstract string SelectQuery { get; }//+
+        protected string DeleteQuery => $"DELETE FROM {ClassName} WHERE {PrimaryKey} = ";//+
+        protected abstract List<string[]> Constraint { get; }//+
+        protected abstract List<string[]> ColumnError { get; } //+
         protected void Truncate()
         {
             using (NpgsqlConnection connect = SQL.GetConnection())
@@ -39,11 +26,11 @@ namespace Kursovaya
                     NpgsqlCommand command = new NpgsqlCommand(TruncateQuery, connect);
                     command.ExecuteNonQuery();
                 }
-                catch{}
+                catch { }
                 connect.Close();
             }
-        }
-        public static void TruncateAll()
+        }//+
+        public static void TruncateAll()//+
         {
             new Area().Truncate();
             new Own().Truncate();
@@ -62,8 +49,9 @@ namespace Kursovaya
                 connect.Close();
                 return nda;
             }
-        }
-        public virtual bool Insert() {
+        }//+
+        public bool Insert()
+        {
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 bool result;
@@ -72,40 +60,23 @@ namespace Kursovaya
                 {
                     NpgsqlCommand command = new NpgsqlCommand(InsertQuery, connect);
                     command.ExecuteNonQuery();
-                    Message.Success();
                     result = true;
-                }
-                catch (Npgsql.PostgresException ex) { 
-                    SQLError(ex); result = false; }
-                connect.Close();
-                return result;
-            }
-        }
-        public virtual void  Update() 
-        {
-            using (NpgsqlConnection connect = SQL.GetConnection())
-            {
-                connect.Open();
-                try
-                {
-                    NpgsqlCommand command = new NpgsqlCommand(UpdateQuery, connect);
-                    command.ExecuteNonQuery();
-                    Message.Success();
-   
                 }
                 catch (Npgsql.PostgresException ex)
                 {
-                    SQLError(ex);
+                    SQLError(ex); result = false;
                 }
                 connect.Close();
+                return result;
             }
-        }
-        public void  Delete(int[] id) 
+        }//+
+        public void Delete(int[] id)
         {
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 connect.Open();
-                foreach (int ID in id) {
+                foreach (int ID in id)
+                {
                     try
                     {
                         NpgsqlCommand command = new NpgsqlCommand(DeleteQuery + ID, connect);
@@ -116,9 +87,8 @@ namespace Kursovaya
                 connect.Close();
                 Message.Success();
             }
-        }
-        protected void ValidateError(Npgsql.PostgresException ex) { }
-        protected void ValidateConstraint(string error) 
+        }//+
+        protected void ValidateConstraint(string error)
         {
             foreach (string[] temp in Constraint)
             {
@@ -128,7 +98,7 @@ namespace Kursovaya
                     break;
                 }
             }
-        }
+        }//+
         protected void ValidateColumn(string error)
         {
             foreach (string[] temp in ColumnError)
@@ -139,7 +109,7 @@ namespace Kursovaya
                     break;
                 }
             }
-        }
+        }//+
         public void SQLError(Npgsql.PostgresException ex)
         {
             if (ex.ConstraintName != null)
@@ -148,8 +118,8 @@ namespace Kursovaya
                 ValidateColumn(ex.ColumnName);
             else ErrorShow("Не все поля заполнены верно.");
 
-        }
-        public static void ErrorShow(string msg) { MessageBox.Show(msg, "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }//+
+        public static void ErrorShow(string msg) { MessageBox.Show(msg, "Ошибка 010", MessageBoxButtons.OK, MessageBoxIcon.Error); }//+
         public static Table ReturnTable(string name)
         {
             //Основные таблицы
@@ -161,10 +131,10 @@ namespace Kursovaya
                 return new Deliveries();
             else if (name == "Книги")
                 return new Book();
-            else if (name == "Книги-авторы")
+            else if(name == "Книги-авторы")
                 return new BookAuthor();
             //Справочники
-            else if (name == "Район")
+                else if (name == "Район")
                 return new Area();
             else if (name == "Автор")
                 return new Author();
@@ -180,7 +150,6 @@ namespace Kursovaya
                 return new Binding();
             else return new Author();
         }
-
         public static void Generate()
         {
             if (Message.Warning("Для генерации данных все записи будут удалены. Продолжить?") == DialogResult.Cancel)
@@ -200,8 +169,8 @@ namespace Kursovaya
             new BookAuthor().GenerateTable();
             new Deliveries().GenerateTable();
             Message.Success();
-            
-        }
+
+        }//+
         protected bool GenerateTable()
         {
             if (!File.Exists(FileGeneratorPath))
@@ -211,7 +180,7 @@ namespace Kursovaya
             }
             string GenerateQuery = File.ReadAllText(FileGeneratorPath);
 
-            if(GenerateQuery == null)
+            if (GenerateQuery == null)
             {
                 Message.ErrorShow("Один из файлов генерации пуст.");
                 return false;
@@ -229,8 +198,6 @@ namespace Kursovaya
                 connect.Close();
             }
             return true;
-        }
-
-
+        }//+
     }
 }

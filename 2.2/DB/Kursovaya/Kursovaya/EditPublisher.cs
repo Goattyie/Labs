@@ -41,6 +41,7 @@ namespace Kursovaya
                 bool success = new Publisher(name, city, telephone, date).Insert();
                 if (success)
                 {
+                    Message.Success();
                     textBox1.Text = "";
                     textBox2.Text = "";
                     textBox3.Text = "";
@@ -62,7 +63,7 @@ namespace Kursovaya
             {
                 comboBox1.Items.Clear();
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name_city FROM city;", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name FROM city;", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {

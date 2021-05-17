@@ -56,7 +56,10 @@ namespace Kursovaya
             if (State)
             {
                 success = new Shop(Title, Date, Area, Address, Own).Insert();
-                if (success) this.Clear();
+                if (success)
+                {
+                    Message.Success(); this.Clear();
+                }
             }
             else
                 new Shop(Id, Title, Date, Area, Address, Own).Update();
@@ -70,7 +73,7 @@ namespace Kursovaya
                 comboBox2.Items.Clear();
                 //comboBox2.Items.Add("Добавить");
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name_own FROM own;", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name FROM own;", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -87,7 +90,7 @@ namespace Kursovaya
                 comboBox1.Items.Clear();
                 //comboBox1.Items.Add("Добавить");
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name_area FROM area;", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name FROM area;", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {

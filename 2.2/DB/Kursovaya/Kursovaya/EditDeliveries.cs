@@ -39,7 +39,7 @@ namespace Kursovaya
             {
                 comboBox3.Items.Clear();
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name_lang FROM lang", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name FROM lang", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -55,7 +55,7 @@ namespace Kursovaya
             {
                 comboBox2.Items.Clear();
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT book_name FROM book", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name FROM book", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -74,7 +74,7 @@ namespace Kursovaya
             {
                 comboBox1.Items.Clear();
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT shop_name FROM shop", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name FROM shop", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -110,6 +110,7 @@ namespace Kursovaya
                 bool success = new Deliveries(Shop, Book, Lang, Count, Date, Cost, Volume, FirstCost, PreOder).Insert();
                 if (success)
                 {
+                    Message.Success();
                     textBox1.Text = "";
                     textBox2.Text = "";
                     textBox3.Text = "";

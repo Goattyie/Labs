@@ -44,7 +44,10 @@ namespace Kursovaya
                 sup = new Binding(text);
 
             if (sup.Insert())
+            {
                 textBox1.Text = "";
+                Message.Success();
+            }
         }     
         private void EditSup_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -53,7 +56,6 @@ namespace Kursovaya
                 textBox1.Text = null;
             }
         }
-
         public string GetResult() { return textBox1.Text; }
     }
 }

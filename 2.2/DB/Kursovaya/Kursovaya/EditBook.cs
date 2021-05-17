@@ -32,6 +32,10 @@ namespace Kursovaya
             button1.Text = photo;
             this.photo = button1.Text;
             State = false;
+            comboBox3.Visible = false;
+            label4.Visible = false;
+            button8.Visible = false;
+            listBox1.Visible = false;
         }
         private bool State = true;
         private int id;
@@ -72,7 +76,7 @@ namespace Kursovaya
         //Добавление записи
         private void button7_Click(object sender, EventArgs e)
         {
-            photo = InputData.CheckString(button1.Text);
+            photo = button1.Text;
             name = InputData.CheckString(textBox1.Text);
             publisher = InputData.CheckString(comboBox1.Text);
             binding = InputData.CheckString(comboBox2.Text);
@@ -84,13 +88,7 @@ namespace Kursovaya
                 return;
             if (!InputData.CheckInt(textBox4.Text, "\"Дата публикации(издательством)\""))
                 return;
-            else if (listBox1.Items.Count == 0)
-            {
-                Message.ErrorShow("У книги должны быть авторы");
-                return;
-            }
-            
-
+           
             date = Convert.ToInt32(textBox4.Text);
             publish_date = Convert.ToInt32(textBox3.Text);
             if (date > publish_date)
@@ -101,15 +99,20 @@ namespace Kursovaya
 
             if (State)
             {
+                if (listBox1.Items.Count == 0)
+                {
+                    Message.ErrorShow("У книги должны быть авторы");
+                    return;
+                }
                 bool success_authors = false;
                 bool success_book = new Book(name, photo, description, lang, date, publisher, style, binding, publish_date).Insert();
                 if (!success_book)
                     return;
 
-                success_authors = new BookAuthor(name, listBox1.Items.Cast<String>().ToArray()).Insert();
+                new BookAuthor(name, listBox1.Items.Cast<String>().ToArray()).InsertAllAuthors();
 
-                if (!success_authors) Message.ErrorShow("Не все авторы были добавлены в базу данных.");
-
+                Message.Success();
+                listBox1.Items.Clear();
                 textBox1.Text = "";
                 textBox2.Text = "";
                 textBox3.Text = "";
@@ -129,7 +132,7 @@ namespace Kursovaya
             else
             {
                 new Book(id, name, photo, description, lang, date, publisher, style, binding, publish_date).Update();
-                new BookAuthor(id, listBox1.Items.Cast<String>().ToArray()).Update();
+                //new BookAuthor(id, listBox1.Items.Cast<String>().ToArray()).Update();
             }
         }
         private void comboBox1_MouseClick(object sender, MouseEventArgs e)
@@ -139,7 +142,7 @@ namespace Kursovaya
                 comboBox1.Items.Clear();
                 comboBox1.Items.Add("Добавить");
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT publisher_name FROM publisher;", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name FROM publisher;", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -156,7 +159,7 @@ namespace Kursovaya
                 comboBox2.Items.Clear();
                 comboBox2.Items.Add("Добавить");
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name_binding FROM binding;", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name FROM binding;", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -170,9 +173,8 @@ namespace Kursovaya
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 comboBox3.Items.Clear();
-                comboBox3.Items.Add("Добавить");
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT second_name_author, name_author, last_name_author FROM author;", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT second_name, name, last_name FROM author;", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -186,9 +188,8 @@ namespace Kursovaya
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 comboBox4.Items.Clear();
-                comboBox4.Items.Add("Добавить");
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name_lang FROM lang;", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name FROM lang;", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -202,9 +203,8 @@ namespace Kursovaya
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 comboBox5.Items.Clear();
-                comboBox5.Items.Add("Добавить");
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name_style FROM style;", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT name FROM style;", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -223,7 +223,8 @@ namespace Kursovaya
                     return;
                 }
             }
-            listBox1.Items.Add(comboBox3.Text);
+            if(comboBox3.Text != null || comboBox3.Text != "")
+                listBox1.Items.Add(comboBox3.Text);
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Kursovaya
 
             if (new Author(Name, SecondName, LastName).Insert())
             {
+                Message.Success();
                 textBox1.Text = "";
                 textBox2.Text = "";
                 textBox3.Text = "";
