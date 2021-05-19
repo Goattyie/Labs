@@ -1,0 +1,16 @@
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\bin\Debug\net5.0\Template.exe
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\bin\Debug\net5.0\Template.deps.json
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\bin\Debug\net5.0\Template.runtimeconfig.json
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\bin\Debug\net5.0\Template.runtimeconfig.dev.json
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\bin\Debug\net5.0\Template.dll
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\bin\Debug\net5.0\ref\Template.dll
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\bin\Debug\net5.0\Template.pdb
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\obj\Debug\net5.0\Template.csprojAssemblyReference.cache
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\obj\Debug\net5.0\Template.GeneratedMSBuildEditorConfig.editorconfig
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\obj\Debug\net5.0\Template.AssemblyInfoInputs.cache
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\obj\Debug\net5.0\Template.AssemblyInfo.cs
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\obj\Debug\net5.0\Template.csproj.CoreCompileInputs.cache
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\obj\Debug\net5.0\Template.dll
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\obj\Debug\net5.0\ref\Template.dll
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\obj\Debug\net5.0\Template.pdb
+D:\Labs\2.2\MPO\7Lab\7Lab\7Lab\bin\Debug\net5.0-windows\template\Template\Template\obj\Debug\net5.0\Template.genruntimeconfig.cache

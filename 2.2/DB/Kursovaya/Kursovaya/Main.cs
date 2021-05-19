@@ -157,14 +157,16 @@ namespace Kursovaya
                 return;
             string Query = null;
             InputText it = new InputText();
+            dataGridView3.DataSource = new DataTable();
             if (listBox3.SelectedIndex == 0)
             {
                 it.ShowDialog(this);
-                Query = $"SELECT s.name Магазин, a.name Район, s.address Адрес, s.date_open \"Дата открытия\" FROM shop s " +
+                Query = $"SELECT a.name Район, s.name Магазин, s.address Адрес, s.date_open \"Год открытия\" FROM shop s " +
                     $"JOIN own o ON s.id_own = o.id " +
                     $"JOIN area a ON s.id_area = a.id " +
                     $"WHERE o.name = '{it.GetResult()}' " +
-                    $"ORDER BY s.name, a.name";
+                    $"ORDER BY a.name, s.name";
+                label10.Text = "Собственность: " + it.GetResult();
             }
             else if (listBox3.SelectedIndex == 1)
             {
@@ -172,6 +174,7 @@ namespace Kursovaya
                 Query = $"SELECT a.id id, a.name Район FROM area a " +
                     $"JOIN shop s ON a.id = s.id_area WHERE s.name = '{it.GetResult()}' " +
                     $"ORDER BY a.name";
+                label10.Text = "Магазин: " + it.GetResult();
             }
             else if (listBox3.SelectedIndex == 2)
             {
@@ -182,26 +185,23 @@ namespace Kursovaya
                     Year = Convert.ToInt32(it.GetResult());
                 }
                 catch { Message.ErrorShow("Значение указано неверно."); return; }
-                Query = "SELECT d.id \"id Поставки\", s.name Магазин, a.name Район, s.address Адрес, o.name Собственность, b.name Книга, d.count_book Количество, d.date_come \"Дата поступления\"," +
-                    " d.cost \"Цена для магазина\", d.def_cost \"Цена для поставщика\", l.name Язык, d.size Объем, d.pre_order Предзаказ " +
-                    "FROM deliveries d " +
-                    "JOIN book b ON d.id_book = b.id " +
-                    "JOIN shop s ON d.id_shop = s.id " +
+                Query = "SELECT a.name Район, s.name Магазин, s.address Адрес, o.name Собственность " +
+                    "FROM shop s " +
                     "JOIN area a ON s.id_area = a.id " +
-                    "JOIN lang l ON d.id_lang = l.id " +
                     "JOIN own o ON s.id_own = o.id " +
                     $"WHERE s.date_open = {Year} " +
-                    "ORDER BY s.name, a.name, d.date_come";
+                    "ORDER BY  a.name, s.name";
+                label10.Text = "Год открытия: " + it.GetResult();
             }
             else if (listBox3.SelectedIndex == 3)
             {
-                it.ShowDialog(this);
+                InputPeriod ip = new InputPeriod();
+                ip.ShowDialog(this);
                 int FirstYear, SecondYear;
                 try
                 {
-                    FirstYear = Convert.ToInt32(it.GetResult());
-                    it.ShowDialog(this);
-                    SecondYear = Convert.ToInt32(it.GetResult());
+                    FirstYear = Convert.ToInt32(ip.GetResult()[0]);
+                    SecondYear = Convert.ToInt32(ip.GetResult()[1]);
                     if (FirstYear > SecondYear)
                         throw new Exception();
                 }
@@ -213,25 +213,35 @@ namespace Kursovaya
                     "JOIN binding bind ON bind.id = b.id_binding " +
                     $"WHERE b.date_public >= {FirstYear} AND b.date_public <= {SecondYear} " +
                     $"ORDER BY b.name, b.date_public";
+                label10.Text = "Период: " + FirstYear.ToString() + "-" + SecondYear.ToString();
             }
             else if (listBox3.SelectedIndex == 4)
             {
                 Query = "SELECT d.id \"id Поставки\", s.name Магазин, a.name Район, s.address Адрес, o.name Собственность, b.name Книга, d.count_book Количество, d.date_come \"Дата поступления\"," +
-                    " d.cost \"Цена для магазина\", d.def_cost \"Цена для поставщика\", l.name Язык, d.size Объем, d.pre_order Предзаказ " +
+                    " d.cost \"Цена для магазина\", d.def_cost \"Цена для поставщика\", d.size Объем, d.pre_order Предзаказ " +
                     "FROM deliveries d " +
                     "JOIN book b ON d.id_book = b.id " +
                     "JOIN shop s ON d.id_shop = s.id " +
                     "JOIN area a ON s.id_area = a.id " +
-                    "JOIN lang l ON d.id_lang = l.id " +
                     "JOIN own o ON s.id_own = o.id " +
                     "ORDER BY s.name, a.name, d.date_come";
+                label10.Text = null;
             }
             else if (listBox3.SelectedIndex == 5)
-                Query = "SELECT b.id id, b.name Название, b.photo Фото, p.name Издательство, l.name Язык FROM book b JOIN publisher p ON b.id_publisher = p.id JOIN lang l ON b.id_lang = l.id ORDER BY b.name, l.name";
+            {
+                label10.Text = null;
+                Query = "SELECT b.id id, b.name Название, b.photo Фото, p.name Издательство, l.name \"Язык оригинала\" FROM book b JOIN publisher p ON b.id_publisher = p.id JOIN lang l ON b.id_lang = l.id ORDER BY b.name, l.name";
+            }
             else if (listBox3.SelectedIndex == 6)
+            {
+                label10.Text = null;
                 Query = "SELECT c.name Город, p.name Издательство FROM publisher p JOIN city c ON c.id = p.id_city ORDER BY c.name, p.name";
+            }
             else if (listBox3.SelectedIndex == 7)
+            {
+                label10.Text = null;
                 Query = "SELECT c.id id, c.name Город FROM city c LEFT JOIN publisher p ON p.id_city = c.id WHERE p.name IS NULL ORDER BY c.name";
+            }
             else if (listBox3.SelectedIndex == 8)
             {
                 InputAuthor ia = new InputAuthor();
@@ -244,8 +254,9 @@ namespace Kursovaya
                     "RIGHT JOIN book b ON b.id = ba.id_book WHERE ba.id_author = " +
                     $"(SELECT id FROM author WHERE second_name = '{Author[0]}' AND name = '{Author[1]}' AND last_name = '{Author[2]}') " +
                     "ORDER BY b.name";
+                label10.Text = "Автор: " + Author[0] + " " + Author[1] + " " + Author[2];
             }
-            else if (listBox3.SelectedIndex == 9) 
+            else if (listBox3.SelectedIndex == 9)
             {
                 it.ShowDialog(this);
                 int Year;
@@ -258,6 +269,7 @@ namespace Kursovaya
                     $"LEFT JOIN publisher p ON p.id_city = c.id " +
                     $"WHERE c.id NOT IN (SELECT c.id FROM publisher p " +
                     $"JOIN city c ON p.id_city = c.id WHERE p.date_create = {Year}) ORDER BY c.name; ";
+                label10.Text = "Дата создания: " + Year.ToString();
             }
             if (Query == null)
                 return;

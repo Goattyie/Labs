@@ -31,7 +31,7 @@ namespace Kursovaya
             Own = own;
         }
 
-        protected override string SelectQuery => "SELECT s.id id, s.name Название, s.date_open \"Дата открытия\", s.address Адресс, a.name Район, o.name Собственность FROM shop s " +
+        protected override string SelectQuery => "SELECT s.id id, s.name Название, s.date_open \"Год открытия\", s.address Адрес, a.name Район, o.name Собственность FROM shop s " +
             "JOIN area a ON s.id_area = a.id " +
             "JOIN own o ON s.id_own = o.id";
         protected override string InsertQuery => $"INSERT INTO shop (name, date_open, id_area, address, id_own) VALUES " +
@@ -44,7 +44,7 @@ namespace Kursovaya
         };
         protected override List<string[]> ColumnError => new List<string[]> {
             new string[]{"name","\"Название\""},
-            new string[]{"date_open","\"Дата открытия\""},
+            new string[]{"date_open","\"Год открытия\""},
             new string[]{"own", "\"Тип собственности\""},
             new string[]{"address", "\"Адресс\""},
             new string[]{"area","\"Район\""},
@@ -54,9 +54,9 @@ namespace Kursovaya
         { 
             new string[]{ "id", "id"},
             new string[]{ "Название", "name"},
-            new string[]{ "Дата открытия", "date_open"},
+            new string[]{ "Год открытия", "date_open"},
             new string[]{ "Район", "id_area"},
-            new string[]{ "Адресс", "address"},
+            new string[]{ "Адрес", "address"},
             new string[]{ "Собственность", "id_own"}
         };
     }

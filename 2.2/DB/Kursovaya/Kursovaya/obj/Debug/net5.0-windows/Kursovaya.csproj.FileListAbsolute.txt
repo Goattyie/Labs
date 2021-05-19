@@ -61,3 +61,4 @@ D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.Deleter.re
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.Viewer.resources
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.InputText.resources
 D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.InputAuthor.resources
+D:\Labs\2.2\DB\Kursovaya\Kursovaya\obj\Debug\net5.0-windows\Kursovaya.InputPeriod.resources
