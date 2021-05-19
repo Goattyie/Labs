@@ -254,7 +254,10 @@ namespace Kursovaya
                     Year = Convert.ToInt32(it.GetResult());
                 }
                 catch { Message.ErrorShow("Значение указано неверно."); return; }
-                Query = $"SELECT DISTINCT c.id id, c.name Город FROM city c LEFT JOIN publisher p ON p.id_city = c.id WHERE (SELECT Count(p.name) FROM publisher p WHERE p.date_create = {Year}) = 0 ORDER BY c.name";
+                Query = $"SELECT DISTINCT c.id id, c.name Город FROM city c " +
+                    $"LEFT JOIN publisher p ON p.id_city = c.id " +
+                    $"WHERE c.id NOT IN (SELECT c.id FROM publisher p " +
+                    $"JOIN city c ON p.id_city = c.id WHERE p.date_create = {Year}) ORDER BY c.name; ";
             }
             if (Query == null)
                 return;
