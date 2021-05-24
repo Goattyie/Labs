@@ -211,6 +211,8 @@ while(count < 2000):
     Size = random.randint(10,1000)
     PreOrder = (random.randint(1,10) % 2 == 0)
     line = str(str(ShopIndex) + "|" + Date)
+    if ShopPrice <= Price:
+        continue
 
     if CheckUniq(UniqDeliveries, line):
                 UniqDeliveries.append(line)

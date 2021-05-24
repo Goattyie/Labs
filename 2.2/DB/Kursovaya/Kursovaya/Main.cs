@@ -84,15 +84,22 @@ namespace Kursovaya
             listBox2.Items.Add("Автор");
 
             listBox3.Items.Add("Вывести все магазины с заданным типом собственности.");
-            listBox3.Items.Add("Вывести все района по вводимому названию маназина.");
-            listBox3.Items.Add("Вывести информацию о магазинах, поставках о них по вводимому году открытия магазина.");
+            listBox3.Items.Add("Вывести все районы по вводимому названию магазина.");
+            listBox3.Items.Add("Вывести информацию о магазинах по вводимому году открытия магазина.");
             listBox3.Items.Add("Вывести все книги с датой публикации издательством в период с - по");
             listBox3.Items.Add("Вывести информацию о всех магазинах и поставках в них.");
             listBox3.Items.Add("Вывести все книги и их язык оригинала.");
             listBox3.Items.Add("Вывести города и издательства в них.");
             listBox3.Items.Add("Вывести информацию о городах, в которых нет издательств.");
-            listBox3.Items.Add("Выбрать все книги, но показать только книги данног автора.");
+            listBox3.Items.Add("Выбрать все книги, но показать только книги данного автора.");
             listBox3.Items.Add("Вывести информацию о городах, в которых нет издательств за указанный год создания");
+
+            listBox3.Items.Add("Выдать количество издательств в каждом городе");
+            listBox3.Items.Add("Вывести название и тираж книг с датой публикации издательством в период с-по.");
+            listBox3.Items.Add("Выбрать названия магазинов с максимальной ценой закупки книг, но больше заданного числа.");
+            listBox3.Items.Add("Выбрать названия магазинов с максимальной ценой закупки книг, но больше заданного числа c указанным годом открытия");
+            listBox3.Items.Add("Выдать название магазинной сети и общую сумму закупок для неё и для её поставщика");
+            listBox3.Items.Add("Выдать информацию об издательствах у которых год создания больше среднего года создания всех издательств");
 
             dataGridView2.ColumnHeadersHeight = 30;
             label1.Location = label9.Location;
@@ -206,31 +213,32 @@ namespace Kursovaya
                         throw new Exception();
                 }
                 catch { Message.ErrorShow("Значение указано неверно."); return; }
-                Query = "SELECT b.name Книга, b.description Описание, l.name Язык, p.name Издательство, bind.name Переплет, b.date_public \"Дата публикации\", b.date_create \"Дата создания\"," +
+                Query = "SELECT b.date_public \"Дата публикации\" , p.name Издательство ,b.name Книга, b.description Описание, l.name Язык, bind.name Переплет, b.date_create \"Дата создания\"," +
                     " b.photo Фото FROM book b " +
                     "JOIN lang l ON b.id_lang = l.id " +
                     "JOIN publisher p ON p.id = b.id_publisher " +
                     "JOIN binding bind ON bind.id = b.id_binding " +
                     $"WHERE b.date_public >= {FirstYear} AND b.date_public <= {SecondYear} " +
-                    $"ORDER BY b.name, b.date_public";
+                    $"ORDER BY  b.date_public, p.name, b.name";
                 label10.Text = "Период: " + FirstYear.ToString() + "-" + SecondYear.ToString();
             }
             else if (listBox3.SelectedIndex == 4)
             {
                 Query = "SELECT d.id \"id Поставки\", s.name Магазин, a.name Район, s.address Адрес, o.name Собственность, b.name Книга, d.count_book Количество, d.date_come \"Дата поступления\"," +
-                    " d.cost \"Цена для магазина\", d.def_cost \"Цена для поставщика\", d.size Объем, d.pre_order Предзаказ " +
+                    " d.cost \"Цена для магазина\", d.def_cost \"Цена для поставщика\", l.name Язык, d.size Объем, d.pre_order Предзаказ " +
                     "FROM deliveries d " +
                     "JOIN book b ON d.id_book = b.id " +
                     "JOIN shop s ON d.id_shop = s.id " +
                     "JOIN area a ON s.id_area = a.id " +
+                    "JOIN lang l ON l.id = b.id_lang " +
                     "JOIN own o ON s.id_own = o.id " +
-                    "ORDER BY s.name, a.name, d.date_come";
+                    "ORDER BY a.name, s.name, d.date_come";
                 label10.Text = null;
             }
             else if (listBox3.SelectedIndex == 5)
             {
                 label10.Text = null;
-                Query = "SELECT b.id id, b.name Название, b.photo Фото, p.name Издательство, l.name \"Язык оригинала\" FROM book b JOIN publisher p ON b.id_publisher = p.id JOIN lang l ON b.id_lang = l.id ORDER BY b.name, l.name";
+                Query = "SELECT b.id id, p.name Издательство, b.name Название, b.photo Фото, l.name \"Язык оригинала\" FROM book b JOIN publisher p ON b.id_publisher = p.id JOIN lang l ON b.id_lang = l.id ORDER BY p.name, b.name, l.name";
             }
             else if (listBox3.SelectedIndex == 6)
             {
@@ -240,7 +248,7 @@ namespace Kursovaya
             else if (listBox3.SelectedIndex == 7)
             {
                 label10.Text = null;
-                Query = "SELECT c.id id, c.name Город FROM city c LEFT JOIN publisher p ON p.id_city = c.id WHERE p.name IS NULL ORDER BY c.name";
+                Query = "SELECT c.id id, c.name Город FROM city c LEFT JOIN publisher p ON p.id_city = c.id ORDER BY c.name";
             }
             else if (listBox3.SelectedIndex == 8)
             {
@@ -258,21 +266,77 @@ namespace Kursovaya
             }
             else if (listBox3.SelectedIndex == 9)
             {
-                it.ShowDialog(this);
-                int Year;
+                InputPeriod ip = new InputPeriod();
+                ip.ShowDialog(this);
+                int FirstYear, SecondYear;
                 try
                 {
-                    Year = Convert.ToInt32(it.GetResult());
+                    FirstYear = Convert.ToInt32(ip.GetResult()[0]);
+                    SecondYear = Convert.ToInt32(ip.GetResult()[1]);
+                    if (FirstYear > SecondYear)
+                        throw new Exception();
                 }
                 catch { Message.ErrorShow("Значение указано неверно."); return; }
                 Query = $"SELECT DISTINCT c.id id, c.name Город FROM city c " +
                     $"LEFT JOIN publisher p ON p.id_city = c.id " +
                     $"WHERE c.id NOT IN (SELECT c.id FROM publisher p " +
-                    $"JOIN city c ON p.id_city = c.id WHERE p.date_create = {Year}) ORDER BY c.name; ";
-                label10.Text = "Дата создания: " + Year.ToString();
+                    $"JOIN city c ON p.id_city = c.id WHERE p.date_create >= {FirstYear} AND p.date_create <= {SecondYear}) ORDER BY c.name; ";
+            }
+            else if (listBox3.SelectedIndex == 10)
+            {
+                Query = $"SELECT c.name Город, COUNT(p.id) \"Количество издательств\" FROM city c JOIN publisher p ON p.id_city = c.id GROUP BY (c.name) ORDER BY c.name";
+            }
+            else if (listBox3.SelectedIndex == 11)
+            {
+                InputPeriod ip = new InputPeriod();
+                ip.ShowDialog(this);
+                int FirstYear, SecondYear;
+                try
+                {
+                    FirstYear = Convert.ToInt32(ip.GetResult()[0]);
+                    SecondYear = Convert.ToInt32(ip.GetResult()[1]);
+                    if (FirstYear > SecondYear)
+                        throw new Exception();
+                }
+                catch { Message.ErrorShow("Значение указано неверно."); return; }
+                Query = $"SELECT b.name Книга, COUNT(b.id) Тираж FROM book b WHERE b.date_public >= {FirstYear} AND b.date_public <= {SecondYear} GROUP BY (b.name) ORDER BY b.name";
+                label10.Text = "Период: " + FirstYear.ToString() + "-" + SecondYear.ToString();
+            }
+            else if (listBox3.SelectedIndex == 12)
+            {
+                it.ShowDialog(this);
+                int Value;
+                try
+                {
+                    Value = Convert.ToInt32(it.GetResult());
+                }
+                catch { Message.ErrorShow("Значение указано неверно."); return; }
+                Query = $"SELECT s.name Магазин, MAX(d.cost) Цена FROM deliveries d JOIN shop s ON d.id_shop = s.id GROUP BY(s.name) HAVING MAX(d.cost) > {Value}";
+                label10.Text = "Значение: " + Value.ToString();
+            }
+            else if (listBox3.SelectedIndex == 13)
+            {
+                InputPeriod ip = new InputPeriod("Год создания", "Цена");
+                ip.ShowDialog(this);
+                int val1, val2;
+                try
+                {
+                    val1 = Convert.ToInt32(ip.GetResult()[0]);
+                    val2 = Convert.ToInt32(ip.GetResult()[1]);
+                }
+                catch { Message.ErrorShow("Значение указано неверно."); return; }
+                Query = $"SELECT s.name Магазин, MAX(d.cost) Цена FROM deliveries d JOIN shop s ON d.id_shop = s.id WHERE s.date_open = {val1} GROUP BY(s.name) HAVING MAX(d.cost) > {val2}";
+            }
+            else if (listBox3.SelectedIndex == 14)
+            {
+                Query = "SELECT s.name Магазин, SUM(d.cost) \"Цена для магазина\", SUM(d.def_cost) \"Цена для поставщика\" FROM deliveries d JOIN shop s ON d.id_shop = s.id GROUP BY(s.name)";
+            }
+            else if (listBox3.SelectedIndex == 15)
+            {
+                Query = "SELECT  p.name Название, c.name Город, p.phone Телефон, p.date_create \"Дата создания\" FROM publisher p JOIN city c ON p.id_city = c.id WHERE p.date_create > (SELECT AVG(p.date_create) FROM publisher p)";
             }
             if (Query == null)
-                return;
+            return;
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 connect.Open();
@@ -367,11 +431,7 @@ namespace Kursovaya
         }
         private void button6_Click(object sender, EventArgs e)
         {
-            new Thread(() =>
-            {
-                Table.Generate();
-               
-            }).Start();
+            Table.Generate();
             UpdateDatagrid(dataGridView2, listBox2, label9);
             UpdateDatagrid(dataGridView1, listBox1, label1);
         }
@@ -432,7 +492,7 @@ namespace Kursovaya
                 bool find = true;
                 foreach (int index in indexes)
                 {
-                    if (!node.Cells[index].Value.ToString().Contains(text))
+                    if (!(node.Cells[index].Value.ToString() == text))
                         find = false;
                 }
                 if (find)
