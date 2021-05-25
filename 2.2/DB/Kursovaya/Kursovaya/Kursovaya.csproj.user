@@ -28,6 +28,9 @@
     <Compile Update="InputAuthor.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="InputDates.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="InputPeriod.cs">
       <SubType>Form</SubType>
     </Compile>

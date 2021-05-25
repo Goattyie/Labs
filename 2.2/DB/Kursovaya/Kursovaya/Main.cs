@@ -96,9 +96,9 @@ namespace Kursovaya
 
             listBox3.Items.Add("Выдать количество издательств в каждом городе");
             listBox3.Items.Add("Вывести название и тираж книг с датой публикации издательством в период с-по.");
-            listBox3.Items.Add("Выбрать названия магазинов с максимальной ценой закупки книг, но больше заданного числа.");
-            listBox3.Items.Add("Выбрать названия магазинов с максимальной ценой закупки книг, но больше заданного числа c указанным годом открытия");
-            listBox3.Items.Add("Выдать название магазинной сети и общую сумму закупок для неё и для её поставщика");
+            listBox3.Items.Add("Выбрать названия магазинов с общей стоимостью закупок, превышающей заданное значение и определить количество поставленных партий.");
+            listBox3.Items.Add("Выбрать названия магазинов с общей стоимостью закупок, превышающей заданное значение и определить количество поставленных партий в период поставок с (дата) – по (дата)");
+            listBox3.Items.Add("Определить количество магазинов каждой магазинной сети и количество поставок для каждой сети.");
             listBox3.Items.Add("Выдать информацию об издательствах у которых год создания больше среднего года создания всех издательств");
 
             dataGridView2.ColumnHeadersHeight = 30;
@@ -257,11 +257,11 @@ namespace Kursovaya
                 if (ia.GetResult() == null)
                     return;
                 string[] Author = ia.GetResult().Split(' ');
-                Query = "SELECT b.name Книга, b.photo Фото " +
-                    "FROM book_author ba " +
-                    "RIGHT JOIN book b ON b.id = ba.id_book WHERE ba.id_author = " +
-                    $"(SELECT id FROM author WHERE second_name = '{Author[0]}' AND name = '{Author[1]}' AND last_name = '{Author[2]}') " +
-                    "ORDER BY b.name";
+                Query = "SELECT b.name Книга, b.photo Фото "+
+                        "FROM book_author ba "+
+                        "RIGHT JOIN book b ON b.id = ba.id_book "+
+                        "JOIN author a ON a.id = ba.id_author " +
+                        $"WHERE a.name = '{Author[1]}' AND a.second_name = '{Author[0]}' AND a.last_name = '{Author[2]}'ORDER BY b.name";
                 label10.Text = "Автор: " + Author[0] + " " + Author[1] + " " + Author[2];
             }
             else if (listBox3.SelectedIndex == 9)
@@ -305,31 +305,45 @@ namespace Kursovaya
             else if (listBox3.SelectedIndex == 12)
             {
                 it.ShowDialog(this);
-                int Value;
+                int Cost;
                 try
                 {
-                    Value = Convert.ToInt32(it.GetResult());
+                    Cost = Convert.ToInt32(it.GetResult());
                 }
-                catch { Message.ErrorShow("Значение указано неверно."); return; }
-                Query = $"SELECT s.name Магазин, MAX(d.cost) Цена FROM deliveries d JOIN shop s ON d.id_shop = s.id GROUP BY(s.name) HAVING MAX(d.cost) > {Value}";
-                label10.Text = "Значение: " + Value.ToString();
+                catch { return; }
+
+                Query = $"SELECT s.id, s.name Магазин, SUM(d.cost*d.count_book) \"Стоимость закупок\", COUNT(d.id) \"Количество поставок\" FROM deliveries d " +
+                        "JOIN shop s ON s.id = d.id_shop " +
+                        "GROUP BY(s.id) " +
+                        $"HAVING SUM(d.cost* d.count_book) > {Cost} " +
+                        "ORDER BY(s.name)";
+                label10.Text = "Общая стоимость превышает: " + Cost.ToString();
             }
             else if (listBox3.SelectedIndex == 13)
             {
-                InputPeriod ip = new InputPeriod("Год создания", "Цена");
-                ip.ShowDialog(this);
-                int val1, val2;
+                it.ShowDialog(this);
+                int Cost;
                 try
                 {
-                    val1 = Convert.ToInt32(ip.GetResult()[0]);
-                    val2 = Convert.ToInt32(ip.GetResult()[1]);
+                    Cost = Convert.ToInt32(it.GetResult());
                 }
-                catch { Message.ErrorShow("Значение указано неверно."); return; }
-                Query = $"SELECT s.name Магазин, MAX(d.cost) Цена FROM deliveries d JOIN shop s ON d.id_shop = s.id WHERE s.date_open = {val1} GROUP BY(s.name) HAVING MAX(d.cost) > {val2}";
+                catch { return; }
+                InputDates id = new InputDates();
+                id.ShowDialog(this);
+                string[] date = id.GetResult();
+                Query = $"SELECT s.id, s.name Магазин, SUM(d.cost*d.count_book) \"Стоимость закупок\", COUNT(d.id) \"Количество поставок\" FROM deliveries d " +
+                        "JOIN shop s ON s.id = d.id_shop " +
+                        $"WHERE d.date_come >= '{date[0]}' AND d.date_come <= '{date[1]}' " +
+                        "GROUP BY(s.id) " +
+                        $"HAVING SUM(d.cost* d.count_book) > {Cost} " +
+                        "ORDER BY(s.name)";
+                label10.Text = "Общая стоимость превышает: " + Cost.ToString();
             }
             else if (listBox3.SelectedIndex == 14)
             {
-                Query = "SELECT s.name Магазин, SUM(d.cost) \"Цена для магазина\", SUM(d.def_cost) \"Цена для поставщика\" FROM deliveries d JOIN shop s ON d.id_shop = s.id GROUP BY(s.name)";
+                Query = "SELECT s.name, COUNT(s.id) \"Количество магазинов\", MAX(dc.count) \"Количество поставок\" FROM shop s "+
+                        "JOIN(SELECT s.name, COUNT(d.id) FROM deliveries d JOIN shop s ON s.id = " +
+                        "d.id_shop GROUP BY(s.name)) dc ON s.name = dc.name GROUP BY (s.name)";
             }
             else if (listBox3.SelectedIndex == 15)
             {

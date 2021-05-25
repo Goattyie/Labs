@@ -10,11 +10,11 @@
         "projectUniqueName": "D:\\Labs\\2.2\\DB\\Kursovaya\\Kursovaya\\Kursovaya.csproj",
         "projectName": "Kursovaya",
         "projectPath": "D:\\Labs\\2.2\\DB\\Kursovaya\\Kursovaya\\Kursovaya.csproj",
-        "packagesPath": "C:\\Users\\goattye\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Goattyie\\.nuget\\packages\\",
         "outputPath": "D:\\Labs\\2.2\\DB\\Kursovaya\\Kursovaya\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\goattye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Goattyie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -63,7 +63,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
