@@ -179,7 +179,11 @@ namespace Kursovaya
                     $"WHERE o.name = '{it.GetResult()}' " +
                     $"ORDER BY a.name, s.name";
                 label10.Text = "Собственность: " + it.GetResult();
-                new HtmlReport("1.html", new string[] { "Район", "Магазин", "Адрес", "Год открытия" }).Parse(Query);
+                new Thread(() =>
+                {
+                    new HtmlReport("1.html", new string[] { "Район", "Магазин", "Адрес", "Год открытия" }).Parse(Query);
+                    new ExcelReport("1", new string[] { "Район", "Магазин", "Адрес", "Год открытия" }).Parse(Query);
+                }).Start();
             }
             else if (listBox3.SelectedIndex == 1)
             {
@@ -188,7 +192,11 @@ namespace Kursovaya
                     $"JOIN shop s ON a.id = s.id_area WHERE s.name = '{it.GetResult()}' " +
                     $"ORDER BY a.name";
                 label10.Text = "Магазин: " + it.GetResult();
-                new HtmlReport("2.html", new string[] { "id", "Район"}).Parse(Query);
+                new Thread(() =>
+                {
+                    new HtmlReport("2.html", new string[] { "id", "Район" }).Parse(Query);
+                    new ExcelReport("2", new string[] { "id", "Район" }).Parse(Query);
+                }).Start();
             }
             else if (listBox3.SelectedIndex == 2)
             {
@@ -206,7 +214,11 @@ namespace Kursovaya
                     $"WHERE s.date_open = {Year} " +
                     "ORDER BY  a.name, s.name";
                 label10.Text = "Год открытия: " + it.GetResult();
-                new HtmlReport("3.html", new string[] { "Район", "Магазин", "Адрес", "Собственность"}).Parse(Query);
+                new Thread(() =>
+                {
+                    new HtmlReport("3.html", new string[] { "Район", "Магазин", "Адрес", "Собственность" }).Parse(Query);
+                    new ExcelReport("3", new string[] { "Район", "Магазин", "Адрес", "Собственность" }).Parse(Query);
+                }).Start();
             }
             else if (listBox3.SelectedIndex == 3)
             {
@@ -229,7 +241,8 @@ namespace Kursovaya
                     $"WHERE b.date_public >= {FirstYear} AND b.date_public <= {SecondYear} " +
                     $"ORDER BY  b.date_public, p.name, b.name";
                 label10.Text = "Период: " + FirstYear.ToString() + "-" + SecondYear.ToString();
-                new HtmlReport("4.html", new string[] { "Дата публикации", "Издательство", "Книга", "Описание", "Язык", "Переплет", "Дата создания", "Фото" }).Parse(Query);
+                //new HtmlReport("4.html", new string[] { "Дата публикации", "Издательство", "Книга", "Описание", "Язык", "Переплет", "Дата создания", "Фото" }).Parse(Query);
+                //new ExcelReport("4", new string[] { "Дата публикации", "Издательство", "Книга", "Описание", "Язык", "Переплет", "Дата создания", "Фото" }).Parse(Query);
             }
             else if (listBox3.SelectedIndex == 4)
             {
@@ -243,25 +256,25 @@ namespace Kursovaya
                     "JOIN own o ON s.id_own = o.id " +
                     "ORDER BY a.name, s.name, d.date_come";
                 label10.Text = null;
-                new HtmlReport("5.html", new string[] { "id", "Магазин", "Район", "Адрес", "Собственность", "Книга", "Тираж", "Дата поступления", "Цена для магазина", "Цена для поставщика", "Язык", "Объем", "Предзаказ" }).Parse(Query);
+                //new HtmlReport("5.html", new string[] { "id", "Магазин", "Район", "Адрес", "Собственность", "Книга", "Тираж", "Дата поступления", "Цена для магазина", "Цена для поставщика", "Язык", "Объем", "Предзаказ" }).Parse(Query);
             }
             else if (listBox3.SelectedIndex == 5)
             {
                 label10.Text = null;
                 Query = "SELECT b.id id, p.name Издательство, b.name Название, b.photo Фото, l.name \"Язык оригинала\" FROM book b JOIN publisher p ON b.id_publisher = p.id JOIN lang l ON b.id_lang = l.id ORDER BY p.name, b.name, l.name";
-                new HtmlReport("6.html", new string[] { "id", "Издательство", "Название", "Фото", "Язык оригинала" }).Parse(Query);
+                //new HtmlReport("6.html", new string[] { "id", "Издательство", "Название", "Фото", "Язык оригинала" }).Parse(Query);
             }
             else if (listBox3.SelectedIndex == 6)
             {
                 label10.Text = null;
                 Query = "SELECT c.name Город, p.name Издательство FROM publisher p JOIN city c ON c.id = p.id_city ORDER BY c.name, p.name";
-                new HtmlReport("7.html", new string[] { "Город", "Издательство" }).Parse(Query);
+                //new HtmlReport("7.html", new string[] { "Город", "Издательство" }).Parse(Query);
             }
             else if (listBox3.SelectedIndex == 7)
             {
                 label10.Text = null;
                 Query = "SELECT c.id id, c.name Город FROM city c LEFT JOIN publisher p ON p.id_city = c.id ORDER BY c.name";
-                new HtmlReport("8.html", new string[] { "id", "Город" }).Parse(Query);
+                //new HtmlReport("8.html", new string[] { "id", "Город" }).Parse(Query);
             }
             else if (listBox3.SelectedIndex == 8)
             {
@@ -276,7 +289,7 @@ namespace Kursovaya
                         "JOIN author a ON a.id = ba.id_author " +
                         $"WHERE a.name = '{Author[1]}' AND a.second_name = '{Author[0]}' AND a.last_name = '{Author[2]}'ORDER BY b.name";
                 label10.Text = "Автор: " + Author[0] + " " + Author[1] + " " + Author[2];
-                new HtmlReport("9.html", new string[] { "Книга", "Фото" }).Parse(Query);
+                //new HtmlReport("9.html", new string[] { "Книга", "Фото" }).Parse(Query);
             }
             else if (listBox3.SelectedIndex == 9)
             {
