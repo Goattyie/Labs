@@ -35,18 +35,18 @@ namespace Kursovaya
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(13, 13);
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.textBox1.Location = new System.Drawing.Point(11, 11);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(246, 33);
+            this.textBox1.Size = new System.Drawing.Size(211, 33);
             this.textBox1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(265, 13);
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.button1.Location = new System.Drawing.Point(227, 11);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 33);
+            this.button1.Size = new System.Drawing.Size(116, 29);
             this.button1.TabIndex = 1;
             this.button1.Text = "Принять";
             this.button1.UseVisualStyleBackColor = true;
@@ -54,14 +54,13 @@ namespace Kursovaya
             // 
             // InputText
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(383, 51);
+            this.ClientSize = new System.Drawing.Size(355, 46);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "InputText";
-            this.Text = "Ввод поля";
             this.ResumeLayout(false);
             this.PerformLayout();
 

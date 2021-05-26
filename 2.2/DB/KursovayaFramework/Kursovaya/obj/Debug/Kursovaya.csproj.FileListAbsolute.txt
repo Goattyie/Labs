@@ -67,3 +67,6 @@ D:\Labs\2.2\DB\KursovayaFramework\Kursovaya\obj\Debug\Kursovaya.csproj.CoreCompi
 D:\Labs\2.2\DB\KursovayaFramework\Kursovaya\obj\Debug\Kursovaya.csproj.CopyComplete
 D:\Labs\2.2\DB\KursovayaFramework\Kursovaya\obj\Debug\Kursovaya.exe
 D:\Labs\2.2\DB\KursovayaFramework\Kursovaya\obj\Debug\Kursovaya.pdb
+D:\Labs\2.2\DB\KursovayaFramework\Kursovaya\obj\Debug\Kursovaya.Form1.resources
+D:\Labs\2.2\DB\KursovayaFramework\Kursovaya\obj\Debug\Kursovaya.InputPeriod.resources
+D:\Labs\2.2\DB\KursovayaFramework\Kursovaya\obj\Debug\Kursovaya.InputText.resources

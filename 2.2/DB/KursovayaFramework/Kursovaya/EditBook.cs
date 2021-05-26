@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
 
@@ -20,6 +15,17 @@ namespace Kursovaya
         public EditBook(string id, string name, string photo, string description, string lang, string publisher, string style, string binding, string date, string publishDate)
         {
             InitializeComponent();
+            using (NpgsqlConnection connect = SQL.GetConnection())
+            {
+                connect.Open();
+                NpgsqlCommand command = new NpgsqlCommand($"SELECT p.id FROM book b JOIN publisher p ON p.id = b.id_publisher WHERE b.id = {id}", connect);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    publisher = reader.GetValue(0) + " " + publisher;
+                }
+                connect.Close();
+            }
             this.id = Convert.ToInt32(id);
             textBox1.Text = name;
             textBox2.Text = description;
@@ -45,7 +51,7 @@ namespace Kursovaya
         private string lang;
         private int date;
         private string style;
-        private string publisher;
+        private int publisher;
         private string binding;
         private int publish_date;
 
@@ -78,7 +84,8 @@ namespace Kursovaya
         {
             photo = button1.Text;
             name = InputData.CheckString(textBox1.Text);
-            publisher = InputData.CheckString(comboBox1.Text);
+            if (InputData.CheckInt(comboBox1.Text.Split(' ')[0], "Издательство"))
+                publisher = Convert.ToInt32(comboBox1.Text.Split(' ')[0]);
             binding = InputData.CheckString(comboBox2.Text);
             lang = InputData.CheckString(comboBox4.Text);
             style = InputData.CheckString(comboBox5.Text);
@@ -127,7 +134,6 @@ namespace Kursovaya
                 lang = null;
                 style = null;
                 binding = null;
-                publisher = null;
             }
             else
             {
@@ -140,15 +146,13 @@ namespace Kursovaya
             using (NpgsqlConnection connect = SQL.GetConnection())
             {
                 comboBox1.Items.Clear();
-                comboBox1.Items.Add("Добавить");
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name FROM publisher;", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT id, name FROM publisher;", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    comboBox1.Items.Add(reader.GetString(0));
+                    comboBox1.Items.Add($"{reader.GetValue(0)} {reader.GetValue(1)}");
                 }
-
                 connect.Close();
             }
         }

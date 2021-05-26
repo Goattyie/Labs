@@ -14,6 +14,28 @@ namespace Kursovaya
         public EditDeliveries(string id, string shop, string book, string count, string date, string cost, string firstCost, string lang, string volume, string preOrder)
         {
             InitializeComponent();
+            using (NpgsqlConnection connect = SQL.GetConnection())
+            {
+                connect.Open();
+                NpgsqlCommand command = new NpgsqlCommand($"SELECT s.id FROM deliveries d JOIN shop s ON s.id = d.id_shop WHERE d.id = {id}", connect);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    shop = reader.GetValue(0) + " " + shop;
+                }
+                connect.Close();
+            }
+            using (NpgsqlConnection connect = SQL.GetConnection())
+            {
+                connect.Open();
+                NpgsqlCommand command = new NpgsqlCommand($"SELECT b.id FROM deliveries d JOIN book b ON b.id = d.id_book WHERE d.id = {id}", connect);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    book = reader.GetValue(0) + " " + book;
+                }
+                connect.Close();
+            }
             Id = Convert.ToInt32(id);
             textBox1.Text = cost.ToString();
             textBox2.Text = firstCost.ToString();
@@ -28,8 +50,8 @@ namespace Kursovaya
             else radioButton2.Checked = true;
             State = false;
         }
-        string Shop, Book, Lang, Date;
-        int Count, Id;
+        string Lang, Date;
+        int Count, Id, Shop, Book;
         double Cost, FirstCost, Volume;
         bool State = true;
 
@@ -55,11 +77,11 @@ namespace Kursovaya
             {
                 comboBox2.Items.Clear();
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name FROM book", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT id, name FROM book", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    comboBox2.Items.Add($"{reader.GetString(0)}");
+                    comboBox2.Items.Add($"{reader.GetValue(0)} {reader.GetValue(1)}");
                 }
                 connect.Close();
             }
@@ -74,11 +96,11 @@ namespace Kursovaya
             {
                 comboBox1.Items.Clear();
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand("SELECT name FROM shop", connect);
+                NpgsqlCommand command = new NpgsqlCommand("SELECT id, name FROM shop", connect);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    comboBox1.Items.Add($"{reader.GetString(0)}");
+                    comboBox1.Items.Add($"{reader.GetValue(0)} {reader.GetValue(1)}");
                 }
                 connect.Close();
             }
@@ -95,8 +117,8 @@ namespace Kursovaya
                 PreOder = true;
             else PreOder = false;
 
-            Shop = InputData.CheckString(comboBox1.Text);
-            Book = InputData.CheckString(comboBox2.Text);
+            Shop = Convert.ToInt32(comboBox1.Text.Split(' ')[0]);
+            Book = Convert.ToInt32(comboBox2.Text.Split(' ')[0]);
             Lang = InputData.CheckString(comboBox3.Text);
 
             Cost = Convert.ToDouble(textBox1.Text);
@@ -105,6 +127,11 @@ namespace Kursovaya
             Count = Convert.ToInt32(numericUpDown1.Value);
             Volume = Convert.ToDouble(textBox3.Text);
 
+            if(Cost < FirstCost)
+            {
+                Message.ErrorShow("Цена для магазина не может быть меньше цены для поставщика.");
+                return;
+            }
             if (State)
             {
                 bool success = new Deliveries(Shop, Book, Lang, Count, Date, Cost, Volume, FirstCost, PreOder).Insert();

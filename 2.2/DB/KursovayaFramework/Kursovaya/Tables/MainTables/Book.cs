@@ -11,17 +11,17 @@ namespace Kursovaya
     {
 
         public override string ClassName => "book";
-        string Name, Description, Lang, Publisher, Style, Binding;
-        int PublishDate, Date, Id;
+        string Name, Description, Lang, Style, Binding;
+        int PublishDate, Date, Id, PublisherId;
         string Photo;
         public Book() { }
-        public Book(string name, string photo, string description, string lang, int date, string publisher, string style, string binding, int pub_date)
+        public Book(string name, string photo, string description, string lang, int date, int publisher_id, string style, string binding, int pub_date)
         {
             Name = name;
             Description = description;
             Lang = lang;
             Date = date;
-            Publisher = publisher;
+            PublisherId = publisher_id;
             Style = style;
             Binding = binding;
             PublishDate = pub_date;
@@ -44,14 +44,14 @@ namespace Kursovaya
             }
             Photo = InputData.CheckString(newName);
         }
-        public Book(int id, string name, string photo, string description, string lang, int date, string publisher, string style, string binding, int pub_date)
+        public Book(int id, string name, string photo, string description, string lang, int date, int publisher_id, string style, string binding, int pub_date)
         {
             Id = id;
             Name = name;
             Description = description;
             Lang = lang;
             Date = date;
-            Publisher = publisher;
+            PublisherId = publisher_id;
             Style = style;
             Binding = binding;
             PublishDate = pub_date;
@@ -77,7 +77,7 @@ namespace Kursovaya
         protected override string InsertQuery => $"INSERT INTO book (name, photo, description, id_lang, date_create, id_publisher, id_style, id_binding, date_public) VALUES " +
                         $"({Name}, {Photo}, {Description}, " +
                         $"(SELECT id FROM lang WHERE name = {this.Lang}), {Date}, " +
-                        $"(SELECT id FROM publisher WHERE name = {this.Publisher} LIMIT 1)," +
+                        $"{PublisherId}, " +
                         $"(SELECT id FROM style WHERE name = {this.Style})," +
                         $"(SELECT id FROM binding WHERE name = {this.Binding}), {PublishDate})";
 
@@ -88,7 +88,7 @@ namespace Kursovaya
                     "JOIN style s ON b.id_style = s.id "+
                     "JOIN binding bind ON b.id_binding = bind.id";
 
-        protected override string UpdateQuery => $"UPDATE book SET name = {Name},description = {Description}, id_lang = (SELECT id FROM lang WHERE name = {Lang}), id_publisher = (SELECT id FROM publisher WHERE name = {Publisher} LIMIT 1), id_style = (SELECT id FROM style WHERE name = {Style}), id_binding = (SELECT id FROM binding WHERE name = {Binding}), date_public = {PublishDate}, date_create = {Date}, photo = {Photo} WHERE id = {Id} ";
+        protected override string UpdateQuery => $"UPDATE book SET name = {Name},description = {Description}, id_lang = (SELECT id FROM lang WHERE name = {Lang}), id_publisher = {PublisherId}, id_style = (SELECT id FROM style WHERE name = {Style}), id_binding = (SELECT id FROM binding WHERE name = {Binding}), date_public = {PublishDate}, date_create = {Date}, photo = {Photo} WHERE id = {Id} ";
 
         protected override List<string[]> Constraint => new List<string[]> {
             new string[]{"UQ_book", "\"Название, Фото (Уникальность)\""},

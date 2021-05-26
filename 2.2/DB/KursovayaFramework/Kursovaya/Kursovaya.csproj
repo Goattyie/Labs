@@ -208,8 +208,17 @@
     <EmbeddedResource Include="EditDeliveries.resx">
       <DependentUpon>EditDeliveries.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputDates.resx">
       <DependentUpon>InputDates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputPeriod.resx">
+      <DependentUpon>InputPeriod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputText.resx">
+      <DependentUpon>InputText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

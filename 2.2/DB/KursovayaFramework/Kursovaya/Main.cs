@@ -173,6 +173,8 @@ namespace Kursovaya
             if (listBox3.SelectedIndex == 0)
             {
                 it.ShowDialog(this);
+                if (it.GetResult() == null)
+                    return;
                 Query = $"SELECT a.name Район, s.name Магазин, s.address Адрес, s.date_open \"Год открытия\" FROM shop s " +
                     $"JOIN own o ON s.id_own = o.id " +
                     $"JOIN area a ON s.id_area = a.id " +
@@ -188,6 +190,8 @@ namespace Kursovaya
             else if (listBox3.SelectedIndex == 1)
             {
                 it.ShowDialog(this);
+                if (it.GetResult() == null)
+                    return;
                 Query = $"SELECT a.id id, a.name Район FROM area a " +
                     $"JOIN shop s ON a.id = s.id_area WHERE s.name = '{it.GetResult()}' " +
                     $"ORDER BY a.name";
@@ -202,6 +206,8 @@ namespace Kursovaya
             {
                 it.ShowDialog(this);
                 int Year;
+                if (it.GetResult() == null)
+                    return;
                 try
                 {
                     Year = Convert.ToInt32(it.GetResult());
@@ -224,6 +230,8 @@ namespace Kursovaya
             {
                 InputPeriod ip = new InputPeriod();
                 ip.ShowDialog(this);
+                if (ip.GetResult() == null)
+                    return;
                 int FirstYear, SecondYear;
                 try
                 {
@@ -246,7 +254,7 @@ namespace Kursovaya
             }
             else if (listBox3.SelectedIndex == 4)
             {
-                Query = "SELECT d.id \"id Поставки\", s.name Магазин, a.name Район, s.address Адрес, o.name Собственность, b.name Книга, d.count_book Количество, d.date_come \"Дата поступления\"," +
+                Query = "SELECT d.id \"id Поставки\", a.name Район, s.name Магазин, s.address Адрес, o.name Собственность, b.name Книга, d.count_book Количество, d.date_come \"Дата поступления\"," +
                     " d.cost \"Цена для магазина\", d.def_cost \"Цена для поставщика\", l.name Язык, d.size Объем, d.pre_order Предзаказ " +
                     "FROM deliveries d " +
                     "JOIN book b ON d.id_book = b.id " +
@@ -282,6 +290,7 @@ namespace Kursovaya
                 ia.ShowDialog(this);
                 if (ia.GetResult() == null)
                     return;
+
                 string[] Author = ia.GetResult().Split(' ');
                 Query = "SELECT b.name Книга, b.photo Фото "+
                         "FROM book_author ba "+
@@ -295,6 +304,8 @@ namespace Kursovaya
             {
                 InputPeriod ip = new InputPeriod();
                 ip.ShowDialog(this);
+                if (ip.GetResult() == null)
+                    return;
                 int FirstYear, SecondYear;
                 try
                 {
@@ -317,6 +328,8 @@ namespace Kursovaya
             {
                 InputPeriod ip = new InputPeriod();
                 ip.ShowDialog(this);
+                if (ip.GetResult() == null)
+                    return;
                 int FirstYear, SecondYear;
                 try
                 {
@@ -332,6 +345,8 @@ namespace Kursovaya
             else if (listBox3.SelectedIndex == 12)
             {
                 it.ShowDialog(this);
+                if (it.GetResult() == null)
+                    return;
                 int Cost;
                 try
                 {
@@ -349,6 +364,8 @@ namespace Kursovaya
             else if (listBox3.SelectedIndex == 13)
             {
                 it.ShowDialog(this);
+                if (it.GetResult() == null)
+                    return;
                 int Cost;
                 try
                 {
@@ -357,6 +374,8 @@ namespace Kursovaya
                 catch { return; }
                 InputDates id = new InputDates();
                 id.ShowDialog(this);
+                if (id.GetResult() == null)
+                    return;
                 string[] date = id.GetResult();
                 Query = $"SELECT s.id, s.name Магазин, SUM(d.cost*d.count_book) \"Стоимость закупок\", COUNT(d.id) \"Количество поставок\" FROM deliveries d " +
                         "JOIN shop s ON s.id = d.id_shop " +
@@ -472,9 +491,14 @@ namespace Kursovaya
         }
         private void button6_Click(object sender, EventArgs e)
         {
-            Table.Generate();
-            UpdateDatagrid(dataGridView2, listBox2, label9);
-            UpdateDatagrid(dataGridView1, listBox1, label1);
+            new Thread(() =>
+            {
+                Table.Generate();
+                Action action = () => { UpdateDatagrid(dataGridView2, listBox2, label9); UpdateDatagrid(dataGridView1, listBox1, label1); };
+                Invoke(action);
+                
+            }).Start();
+            
         }
         private void button7_Click(object sender, EventArgs e)
         {
