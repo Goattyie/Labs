@@ -106,6 +106,12 @@ namespace Kursovaya
             listBox3.Items.Add("Определить количество магазинов каждой магазинной сети и количество поставок для каждой сети.");
             listBox3.Items.Add("Выдать информацию об издательствах у которых год создания больше среднего года создания всех издательств");
 
+            listBox3.Items.Add("Определить процент изданий поступивших в магазины после 2019 года по каждому магазину района");
+            listBox3.Items.Add("Определить процент изданий поступивших в магазины после 2019 года по каждому району в целом");
+            listBox3.Items.Add("Определить среднее количество изданий каждого издательства");
+            listBox3.Items.Add("Определить среднее количество изданий по всем издательствам в целом");
+            listBox3.Items.Add("Определить стоимость и количество книг каждого магазина за указанный период (по месяцам)");
+
             dataGridView2.ColumnHeadersHeight = 30;
             label1.Location = label9.Location;
             label1.Font = label9.Font;
@@ -394,6 +400,64 @@ namespace Kursovaya
             else if (listBox3.SelectedIndex == 15)
             {
                 Query = "SELECT  p.name Название, c.name Город, p.phone Телефон, p.date_create \"Дата создания\" FROM publisher p JOIN city c ON p.id_city = c.id WHERE p.date_create > (SELECT AVG(p.date_create) FROM publisher p)";
+            }
+            else if (listBox3.SelectedIndex == 16)
+            {
+                it.ShowDialog(this);
+                if (it.GetResult() == null)
+                    return;
+                string Value;
+                try
+                {
+                    Value = InputData.CheckString(it.GetResult());
+                }
+                catch { return; }
+                Query = "SELECT d.id_shop, s.name Магазин, ROUND(COUNT(DISTINCT d.id_book)/ "+
+                    "(SELECT COUNT(DISTINCT d.id_book) FROM deliveries d "+
+                    "JOIN shop s ON s.id = d.id_shop "+
+                    "JOIN area a ON a.id = s.id_area "+
+                    $"WHERE EXTRACT(YEAR FROM d.date_come) >= 2019 AND a.name = {Value})::numeric*100, 2) Процент " +
+                    "FROM deliveries d "+
+                    "JOIN shop s ON s.id = d.id_shop "+
+                    "JOIN area a ON a.id = s.id_area "+
+                    $"WHERE EXTRACT(YEAR FROM d.date_come) >= 2019 AND a.name = {Value} "+
+                    "GROUP BY(d.id_shop, s.name, a.id)";
+
+                label10.Text = "Район: " + Value;
+            }
+            else if(listBox3.SelectedIndex == 17)
+            {
+                Query = "SELECT a.name Район, ROUND(COUNT(DISTINCT d.id_book)/" +
+                "(SELECT COUNT (DISTINCT d.id_book) FROM deliveries d WHERE EXTRACT(YEAR FROM d.date_come) >= 2019)::numeric*100, 2) Процент " +
+                "FROM deliveries d " +
+                "JOIN shop s ON s.id=d.id_shop " +
+                "JOIN area a ON a.id=s.id_area " +
+                "WHERE EXTRACT(YEAR FROM d.date_come) >= 2019 " +
+                "GROUP BY(a.name)";
+            }
+            else if(listBox3.SelectedIndex == 18)
+            {
+                Query = "SELECT p.name Издательство, ROUND(COUNT(DISTINCT b.id)/COUNT(p.id)::numeric, 2) Количество " +
+                    "FROM deliveries d " +
+                    "JOIN book b ON b.id = d.id_book " +
+                    "JOIN publisher p ON p.id = b.id_publisher " +
+                    "GROUP BY(p.name) " +
+                    "ORDER BY(p.name)";
+            }
+            else if(listBox3.SelectedIndex == 19)
+            {
+                Query = "SELECT COUNT(DISTINCT b.id)/COUNT(DISTINCT p.id) Количество "+
+                "FROM deliveries d "+
+                "JOIN book b ON b.id = d.id_book "+
+                "JOIN publisher p ON p.id = b.id_publisher";
+            }
+            else if(listBox3.SelectedIndex == 20)
+            {
+                Query = "SELECT s.id, s.name Магазин, EXTRACT(YEAR from d.date_come) Год, EXTRACT(MONTH from d.date_come) Месяц, SUM(d.count_book) Количество, SUM(d.count_book*d.cost) Стоимость FROM deliveries d "+
+                    "JOIN shop s ON s.id = d.id_shop "+
+                    "WHERE EXTRACT(YEAR from d.date_come) >= 2018 AND EXTRACT(YEAR from d.date_come) <= 2018 "+
+                    "GROUP BY(s.id, EXTRACT(YEAR from d.date_come), EXTRACT(MONTH from d.date_come)) "+
+                    "ORDER BY(s.id, EXTRACT(YEAR from d.date_come), EXTRACT(MONTH from d.date_come))";
             }
             if (Query == null)
             return;
