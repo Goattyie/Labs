@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="#aa0000"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="@string/red"
+        />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#00aa00"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="@string/green"/>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#0000aa"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="@string/blue"/>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#aaaa00"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="@string/yellow"/>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="#aa0000"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="@string/red"/>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#00aa00"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="@string/green"/>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#0000aa"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="@string/blue"/>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#aaaa00"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="@string/yellow"/>
+</LinearLayout>
