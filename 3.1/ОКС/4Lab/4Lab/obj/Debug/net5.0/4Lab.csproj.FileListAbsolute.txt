@@ -1,0 +1,16 @@
+D:\Labs\3.1\ОКС\4Lab\4Lab\bin\Debug\net5.0\4Lab.exe
+D:\Labs\3.1\ОКС\4Lab\4Lab\bin\Debug\net5.0\4Lab.deps.json
+D:\Labs\3.1\ОКС\4Lab\4Lab\bin\Debug\net5.0\4Lab.runtimeconfig.json
+D:\Labs\3.1\ОКС\4Lab\4Lab\bin\Debug\net5.0\4Lab.runtimeconfig.dev.json
+D:\Labs\3.1\ОКС\4Lab\4Lab\bin\Debug\net5.0\4Lab.dll
+D:\Labs\3.1\ОКС\4Lab\4Lab\bin\Debug\net5.0\ref\4Lab.dll
+D:\Labs\3.1\ОКС\4Lab\4Lab\bin\Debug\net5.0\4Lab.pdb
+D:\Labs\3.1\ОКС\4Lab\4Lab\obj\Debug\net5.0\4Lab.csproj.AssemblyReference.cache
+D:\Labs\3.1\ОКС\4Lab\4Lab\obj\Debug\net5.0\4Lab.GeneratedMSBuildEditorConfig.editorconfig
+D:\Labs\3.1\ОКС\4Lab\4Lab\obj\Debug\net5.0\4Lab.AssemblyInfoInputs.cache
+D:\Labs\3.1\ОКС\4Lab\4Lab\obj\Debug\net5.0\4Lab.AssemblyInfo.cs
+D:\Labs\3.1\ОКС\4Lab\4Lab\obj\Debug\net5.0\4Lab.csproj.CoreCompileInputs.cache
+D:\Labs\3.1\ОКС\4Lab\4Lab\obj\Debug\net5.0\4Lab.dll
+D:\Labs\3.1\ОКС\4Lab\4Lab\obj\Debug\net5.0\ref\4Lab.dll
+D:\Labs\3.1\ОКС\4Lab\4Lab\obj\Debug\net5.0\4Lab.pdb
+D:\Labs\3.1\ОКС\4Lab\4Lab\obj\Debug\net5.0\4Lab.genruntimeconfig.cache
