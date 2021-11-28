@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DotOS"
         mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource VMLocator}, Path=MainWindowViewModel}"
         Title="DotOS" Height="450" Width="800">
-    <Grid>
-
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="385*"/>
+        </Grid.RowDefinitions>
+        <Button Content="&lt;-" HorizontalAlignment="Left" Width="40" Command="{Binding GoToBack}"/>
+        <Frame Grid.Row="1"
+            NavigationUIVisibility="Hidden"
+            Content="{Binding CurrentPage}"/>
     </Grid>
 </Window>

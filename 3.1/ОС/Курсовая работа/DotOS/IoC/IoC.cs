@@ -1,4 +1,7 @@
-﻿using DotOS.Utils;
+﻿using DotOS.Services;
+using DotOS.Services.SystemCall;
+using DotOS.Utils;
+using DotOS.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -16,9 +19,16 @@ namespace DotOS.IoC
         {
             ServiceCollection serivces = new ServiceCollection();
 
-            serivces.AddSingleton<SystemSettings>();
-            serivces.AddSingleton<SuperBlockInfo>();
-            serivces.AddSingleton<Formatter>();
+            serivces.AddSingleton<DiskWorker>();
+            serivces.AddSingleton<FileSystem>();
+            serivces.AddTransient<ISystemCall, CreateFileCall>();
+            serivces.AddTransient<ISystemCall, ReadDirectoryCall>();
+
+            //wpf register
+            serivces.AddSingleton<MainWindowViewModel>();
+            serivces.AddSingleton<FilesPageViewModel>();
+            serivces.AddSingleton<PageService>();
+            serivces.AddSingleton<EventBus>();
 
             _provider = serivces.BuildServiceProvider();
         }

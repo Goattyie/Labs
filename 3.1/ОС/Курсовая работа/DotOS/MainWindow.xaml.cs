@@ -1,4 +1,6 @@
-﻿using DotOS.Utils;
+﻿using DotOS.Models;
+using DotOS.Services;
+using DotOS.Utils;
 using System.Windows;
 
 namespace DotOS
@@ -11,8 +13,6 @@ namespace DotOS
         public MainWindow()
         {
             InitializeComponent();
-            var form = IoC.IoC.Resolve<Formatter>();
-            form.Formatting();
         }
     }
 }

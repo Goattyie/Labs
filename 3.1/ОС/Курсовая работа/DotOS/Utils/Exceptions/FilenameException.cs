@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DotOS.Utils
+namespace DotOS.Utils.Exceptions
 {
-    class SuperBlockInfo
+    class FilenameException : Exception
     {
-        public string OsName => "DotOS";
     }
 }

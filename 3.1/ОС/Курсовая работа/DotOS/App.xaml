@@ -1,9 +1,9 @@
 ﻿<Application x:Class="DotOS.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:DotOS"
+             xmlns:local="clr-namespace:DotOS" xmlns:wpfservice="clr-namespace:DotOS.WpfService"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <wpfservice:ViewModelLocator x:Key="VMLocator"/>
     </Application.Resources>
 </Application>
