@@ -14,13 +14,15 @@ namespace DotOS.Services.SystemCall
         private readonly Session _session;
         private readonly FileSystem _fileSystem;
         private readonly DiskWorker _diskWorker;
+        private readonly MessageBus _eventBus;
         private FileInfo _fileInfo;
 
-        public CreateDirCall(DiskWorker diskworker, FileSystem fileSystem, Session session)
+        public CreateDirCall(DiskWorker diskworker, FileSystem fileSystem, Session session, MessageBus eventBus)
         {
             _session = session;
             _fileSystem = fileSystem;
             _diskWorker = diskworker;
+            _eventBus = eventBus;
         }
 
 
@@ -34,7 +36,7 @@ namespace DotOS.Services.SystemCall
             return false;
         }
 
-        public Task Execute()
+        public Task Execute(string command)
         {
             return Task.CompletedTask;
         }

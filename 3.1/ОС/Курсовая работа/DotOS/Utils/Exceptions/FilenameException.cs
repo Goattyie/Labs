@@ -8,5 +8,6 @@ namespace DotOS.Utils.Exceptions
 {
     class FilenameException : Exception
     {
+        public override string Message => "Название файла не должно превышать 5 символов";
     }
 }

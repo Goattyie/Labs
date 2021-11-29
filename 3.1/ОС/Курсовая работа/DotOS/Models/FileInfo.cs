@@ -10,6 +10,12 @@ namespace DotOS.Models
     class FileInfo
     {
         private string _stringName;
+        public FileInfo() { }
+        public FileInfo(string name, int firstClusterNumber)
+        {
+            Name = name;
+            FirstClusterNumber = firstClusterNumber;
+        }
         public string Name
         {
             get { return _stringName; }
@@ -48,5 +54,15 @@ namespace DotOS.Models
     class DirectoryAttr : IAttribute
     {
         public byte Code => 16;
+    }
+
+    class FilesMessage : IMessage
+    {
+        public List<FileInfo> FilesInfo { get; set; }
+    }
+
+    class AddFileMessage : IMessage
+    {
+        public FileInfo File { get; set; }
     }
 }

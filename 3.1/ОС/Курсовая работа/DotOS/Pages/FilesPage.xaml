@@ -11,7 +11,12 @@
       DataContext="{Binding Source={StaticResource VMLocator}, Path=FilesPageViewModel}">
 
 
-    <Grid>
-        
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="14*"/>
+        </Grid.RowDefinitions>
+        <Button Content="+ Файл" Command="{Binding CreateFile}"/>
+        <ListBox Grid.Row="1" ItemsSource="{Binding FilesInfo}" DisplayMemberPath="Name"/>
     </Grid>
 </Page>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DotOS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,10 @@ namespace DotOS.Services
 {
     class Session
     {
-        public string CurrentDirectory { get; set; } = "/";
+        public FileInfo CurrentDirectory { get; set; }
+        public Session()
+        {
+            CurrentDirectory = new FileInfo();
+        }
     }
 }

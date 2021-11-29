@@ -11,5 +11,6 @@ namespace DotOS.WpfService
     {
         public MainWindowViewModel MainWindowViewModel => IoC.IoC.Resolve<MainWindowViewModel>();
         public FilesPageViewModel FilesPageViewModel => IoC.IoC.Resolve<FilesPageViewModel>();
+        public CreateFileViewModel CreateFileViewModel => IoC.IoC.Resolve<CreateFileViewModel>();
     }
 }

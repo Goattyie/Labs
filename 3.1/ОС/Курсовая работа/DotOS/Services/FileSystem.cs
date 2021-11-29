@@ -14,6 +14,7 @@ namespace DotOS.Services
     {
 
         public static readonly string DiskName = "disk";
+        private readonly Session _session;
         private readonly DiskWorker _diskWorker;
         /// <summary>
         /// Название ОС.
@@ -71,11 +72,12 @@ namespace DotOS.Services
         /// Начальный сектор области данных
         /// </summary>
         public int BeginSectorDataArea { get; private set; }
-        public FileSystem(DiskWorker diskWorker)
+        public FileSystem(DiskWorker diskWorker, Session session)
         {
+            _session = session;
             _diskWorker = diskWorker;
         }
-        private int GetPositionOfClearBytesInRootDirectory(int bytesCapacity)
+        public int GetPositionOfClearBytesInRootDirectory(int bytesCapacity)
         {
             bool isClear;
             for (int i = BeginSectorRootDirectory * BytesInSector; i < BeginSectorDataArea * BytesInSector; i+= bytesCapacity)
@@ -95,7 +97,7 @@ namespace DotOS.Services
             }
             throw new FreeBytesException();
         }
-        private int GetPositionOfClearByteInFatTable()
+        public int GetPositionOfClearByteInFatTable()
         {
             for(int i = BeginSectorFatTable * BytesInSector; i < (BeginSectorFatTable + TableSectorsCount) * BytesInSector; i++)
             {
@@ -127,8 +129,8 @@ namespace DotOS.Services
             var tableSectorsCount = 62.ToByteArray();
             _diskWorker.Write(tableSectorsCount);
 
-            var usersInfoSectorCount = 5.ToByteArray();
-            _diskWorker.Write(usersInfoSectorCount);
+            var usersInfoSectorsCount = 5.ToByteArray();
+            _diskWorker.Write(usersInfoSectorsCount);
 
             var rootDirectorySizeSectors = 2.ToByteArray();
             _diskWorker.Write(rootDirectorySizeSectors);
@@ -157,49 +159,6 @@ namespace DotOS.Services
             BeginSectorUsersInfo = BeginSectorFatTable + 2 * TableSectorsCount;
             BeginSectorRootDirectory = BeginSectorUsersInfo + UsersInfoSectorCount;
             BeginSectorDataArea = BeginSectorRootDirectory + RootDirectorySize;
-        }
-        public Task CreateFile(Models.FileInfo file, string data)
-        {
-            var rootIndex = GetPositionOfClearBytesInRootDirectory(16);
-            var fatIndex = GetPositionOfClearByteInFatTable();
-            _diskWorker.Write(file.Name.ToByteArray(), rootIndex);
-            rootIndex += file.Name.Length;
-            _diskWorker.Write(new byte[1] { file.Attribute.Code }, rootIndex);
-            rootIndex += 1;
-            _diskWorker.Write(file.Reserved, rootIndex);
-            rootIndex += file.Reserved.Length;
-            _diskWorker.Write(file.Date.ToByteArray(), rootIndex);
-            rootIndex += 2;
-            _diskWorker.Write(file.Time.ToByteArray(), rootIndex);
-            rootIndex += 2;
-            _diskWorker.Write((fatIndex - BeginSectorFatTable * BytesInSector).ToByteArray(), rootIndex);
-            rootIndex += 4;
-            _diskWorker.Write(data.Length.ToByteArray(), rootIndex);
-
-            //Определяем, вместятся ли данные в кластер
-            if (data.Length < ClasterSize)
-            {
-                //Записываем в Fat таблицы значение 
-                _diskWorker.Write(ClusterStatus.End.ToByteArray(), fatIndex);
-                _diskWorker.Write(ClusterStatus.End.ToByteArray(), fatIndex + TableSectorsCount * BytesInSector);
-                _diskWorker.Write(data.ToByteArray(), BeginSectorDataArea * BytesInSector + (fatIndex - BeginSectorFatTable * BytesInSector) * ClasterSize);
-                //Записываем данные в кластер в индексом fatIndex; BeginSectorDataArea * BytesInSector + (fatIndex - BeginSectorFatTable * BytesInSector) * ClasterSize
-
-            }
-            else
-            {
-                var diff = data.Length / ClasterSize;
-                for (int j = 0; j < diff; j++) 
-                {
-                    var partOfData = data.Substring(j, ClasterSize);
-                    _diskWorker.Write(ClusterStatus.Busy.ToByteArray(), fatIndex);
-                    _diskWorker.Write(ClusterStatus.Busy.ToByteArray(), fatIndex + TableSectorsCount);
-
-                    _diskWorker.Write(partOfData.ToByteArray(), BeginSectorDataArea + (fatIndex - BeginSectorFatTable * BytesInSector) * ClasterSize);
-                }
-            }
-
-            return Task.CompletedTask;
         }
     }
     class ClusterStatus

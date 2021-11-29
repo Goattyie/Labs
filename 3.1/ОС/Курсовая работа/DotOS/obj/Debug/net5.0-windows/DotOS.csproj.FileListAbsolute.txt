@@ -31,3 +31,5 @@ D:\Labs\3.1\ОС\Курсовая работа\DotOS\obj\Debug\net5.0-windows\Ap
 D:\Labs\3.1\ОС\Курсовая работа\DotOS\obj\Debug\net5.0-windows\Pages\FilesPage.g.cs
 D:\Labs\3.1\ОС\Курсовая работа\DotOS\obj\Debug\net5.0-windows\Pages\FilesPage.baml
 D:\Labs\3.1\ОС\Курсовая работа\DotOS\obj\Debug\net5.0-windows\DotOS.csproj.AssemblyReference.cache
+D:\Labs\3.1\ОС\Курсовая работа\DotOS\obj\Debug\net5.0-windows\CreateFileWindow.g.cs
+D:\Labs\3.1\ОС\Курсовая работа\DotOS\obj\Debug\net5.0-windows\CreateFileWindow.baml

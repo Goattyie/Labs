@@ -9,6 +9,6 @@ namespace DotOS.Services.SystemCall
     interface ISystemCall
     {
         public bool CanExecute(string command);
-        public Task Execute();
+        public Task Execute(string command);
     }
 }

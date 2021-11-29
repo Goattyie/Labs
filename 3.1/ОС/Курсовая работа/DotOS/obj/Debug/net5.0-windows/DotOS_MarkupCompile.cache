@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 D:\Labs\3.1\ОС\Курсовая работа\DotOS\App.xaml
-2153233279
+3687011258
 
-221816768777
+251104284732
 199-1854716538
-MainWindow.xaml;Pages\FilesPage.xaml;
+CreateFileWindow.xaml;MainWindow.xaml;Pages\FilesPage.xaml;
 
 False
 
