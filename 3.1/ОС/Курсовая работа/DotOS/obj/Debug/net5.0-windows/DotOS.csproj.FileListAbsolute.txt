@@ -30,3 +30,4 @@ D:\Labs\3.1\ОС\Курсовая работа\DotOS\obj\Debug\net5.0-windows\Ge
 D:\Labs\3.1\ОС\Курсовая работа\DotOS\obj\Debug\net5.0-windows\App.baml
 D:\Labs\3.1\ОС\Курсовая работа\DotOS\obj\Debug\net5.0-windows\Pages\FilesPage.g.cs
 D:\Labs\3.1\ОС\Курсовая работа\DotOS\obj\Debug\net5.0-windows\Pages\FilesPage.baml
+D:\Labs\3.1\ОС\Курсовая работа\DotOS\obj\Debug\net5.0-windows\DotOS.csproj.AssemblyReference.cache

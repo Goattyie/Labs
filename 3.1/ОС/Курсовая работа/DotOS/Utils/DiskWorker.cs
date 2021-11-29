@@ -39,6 +39,7 @@ namespace DotOS.Utils
                 _streamer.Seek(seek, seekOrigin);
 
             _streamer.Write(buffer, 0, buffer.Length);
+            _streamer.Flush();
         }
 
         public async Task WriteAsync(byte[] buffer, long seek = 0, SeekOrigin seekOrigin = SeekOrigin.Begin)

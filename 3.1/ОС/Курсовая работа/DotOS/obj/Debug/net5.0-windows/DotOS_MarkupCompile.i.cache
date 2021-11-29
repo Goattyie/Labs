@@ -1,5 +1,5 @@
 ﻿DotOS
-
+1.0.0.0
 
 winexe
 C#
@@ -12,7 +12,7 @@ TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 D:\Labs\3.1\ОС\Курсовая работа\DotOS\App.xaml
 2153233279
 
-221816768777
+241179652492
 199-1854716538
 MainWindow.xaml;Pages\FilesPage.xaml;
 

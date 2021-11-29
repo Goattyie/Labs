@@ -21,8 +21,10 @@ namespace DotOS.IoC
 
             serivces.AddSingleton<DiskWorker>();
             serivces.AddSingleton<FileSystem>();
+            serivces.AddSingleton<Session>();
             serivces.AddTransient<ISystemCall, CreateFileCall>();
             serivces.AddTransient<ISystemCall, ReadDirectoryCall>();
+            serivces.AddTransient<ISystemCall, CreateDirCall>();
 
             //wpf register
             serivces.AddSingleton<MainWindowViewModel>();

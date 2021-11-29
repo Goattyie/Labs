@@ -1,4 +1,5 @@
-﻿using DotOS.Utils;
+﻿using DotOS.Models;
+using DotOS.Utils;
 using DotOS.Utils.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,13 @@ namespace DotOS.Services
     {
 
         public static readonly string DiskName = "disk";
-
+        private readonly DiskWorker _diskWorker;
         /// <summary>
         /// Название ОС.
         /// </summary>
         public string SystemName { get; private set; }
         /// <summary>
-        /// Количество секторов на кластер.
+        /// Количество байтор в кластере.
         /// </summary>
         public int ClasterSize { get; private set; }
         /// <summary>
@@ -35,10 +36,6 @@ namespace DotOS.Services
         /// </summary>
         public int SuperBlockSectorsCount { get; private set; }
         /// <summary>
-        /// Сектор, с которого начинается первая таблица.
-        /// </summary>
-        public int TablesBeginSector { get; private set; }
-        /// <summary>
         /// Количество Fat таблиц.
         /// </summary>
         public short CountTables { get; private set; } 
@@ -47,18 +44,65 @@ namespace DotOS.Services
         /// </summary>
         public int TableSectorsCount { get; private set; }
         /// <summary>
-        /// Начальный сектор корневого каталога
+        /// Количество секторов корневого каталога
+        /// </summary>
+        public int RootDirectorySize { get; private set; }
+        /// <summary>
+        /// Размер области информации пользователей в секторах
+        /// </summary>
+        public int UsersInfoSectorCount { get; private set; }
+        /// <summary>
+        /// Размер области данных
+        /// </summary>
+        public int DataAreaSectorSize { get; private set; }
+        /// <summary>
+        /// Начальный сектор таблицы FAT #1
+        /// </summary>
+        public int BeginSectorFatTable { get; private set; }
+        /// <summary>
+        /// Начальный сектор корневой директории
         /// </summary>
         public int BeginSectorRootDirectory { get; private set; }
         /// <summary>
-        /// Размер корневого каталога в секторах
+        /// Начальный сектор области с пользователями
         /// </summary>
-        public int RootDirectorySize { get; private set; }
-
-        private readonly DiskWorker _diskWorker;
+        public int BeginSectorUsersInfo { get; private set; }
+        /// <summary>
+        /// Начальный сектор области данных
+        /// </summary>
+        public int BeginSectorDataArea { get; private set; }
         public FileSystem(DiskWorker diskWorker)
         {
             _diskWorker = diskWorker;
+        }
+        private int GetPositionOfClearBytesInRootDirectory(int bytesCapacity)
+        {
+            bool isClear;
+            for (int i = BeginSectorRootDirectory * BytesInSector; i < BeginSectorDataArea * BytesInSector; i+= bytesCapacity)
+            {
+                isClear = true;
+                var data = _diskWorker.Read(new byte[bytesCapacity], i);
+                for(int j = 0; j < data.Length; j++)
+                {
+                    if (data[j] != 0)
+                    {
+                        isClear = false;
+                        break;
+                    }
+                }
+                if (isClear)
+                    return i;
+            }
+            throw new FreeBytesException();
+        }
+        private int GetPositionOfClearByteInFatTable()
+        {
+            for(int i = BeginSectorFatTable * BytesInSector; i < (BeginSectorFatTable + TableSectorsCount) * BytesInSector; i++)
+            {
+                if (_diskWorker.Read(new byte[1], i)[0] == 0)
+                    return i;
+            }
+            throw new FreeBytesException();
         }
         public void Formating()
         {
@@ -68,32 +112,31 @@ namespace DotOS.Services
             var systemNameBytes = "DotOS".ToByteArray();
             _diskWorker.Write(systemNameBytes);
 
-            var blockSizeBytes = ((short)32).ToByteArray();
-            _diskWorker.Write(blockSizeBytes);
+            var clusterSectorsCount = ((short)32).ToByteArray();
+            _diskWorker.Write(clusterSectorsCount);
 
             var bytesInSector = 512.ToByteArray();
             _diskWorker.Write(bytesInSector);
 
-            var superBlockSectorsCountBytes = 6332.ToByteArray();
-            _diskWorker.Write(superBlockSectorsCountBytes);
+            var superBlockSectorsCount = 1000.ToByteArray();
+            _diskWorker.Write(superBlockSectorsCount);
 
-            var countTablesBytes = ((short)2).ToByteArray();
-            _diskWorker.Write(countTablesBytes);
+            var countTables = ((short)2).ToByteArray();
+            _diskWorker.Write(countTables);
 
-            var tableSectorsCount = 500.ToByteArray();
+            var tableSectorsCount = 62.ToByteArray();
             _diskWorker.Write(tableSectorsCount);
 
-            var rootDirectorySizeSectors = 4000.ToByteArray();
+            var usersInfoSectorCount = 5.ToByteArray();
+            _diskWorker.Write(usersInfoSectorCount);
+
+            var rootDirectorySizeSectors = 2.ToByteArray();
             _diskWorker.Write(rootDirectorySizeSectors);
 
-            int i = 25;
-            int maxSectors = 6332 + (500*2);
-            while (i <= maxSectors)
-            {
-                _diskWorker.Write(0.ToByteArray(), i);
-                i += 4;
-            }
+            var dataAreaSectorSize = 1984.ToByteArray();
+            _diskWorker.Write(dataAreaSectorSize);
 
+            Boot();
         }
         public void Boot()
         {
@@ -104,34 +147,65 @@ namespace DotOS.Services
             BytesInSector = _diskWorker.Read(new byte[4], 7).ArrayToInt();
             ClasterSize = ClasterSectorsCount * BytesInSector;
             SuperBlockSectorsCount = _diskWorker.Read(new byte[4], 11).ArrayToInt();
-            TablesBeginSector = BytesInSector * SuperBlockSectorsCount;
             CountTables = _diskWorker.Read(new byte[2], 15).ArrayToShort();
             TableSectorsCount = _diskWorker.Read(new byte[4], 17).ArrayToInt();
-            RootDirectorySize = _diskWorker.Read(new byte[4], 21).ArrayToInt();
-            BeginSectorRootDirectory = SuperBlockSectorsCount + CountTables * TableSectorsCount;
-            
+            UsersInfoSectorCount = _diskWorker.Read(new byte[4], 21).ArrayToInt();
+            RootDirectorySize = _diskWorker.Read(new byte[4], 25).ArrayToInt();
+            DataAreaSectorSize = _diskWorker.Read(new byte[4], 29).ArrayToInt();
+            //Расчеты начальных значений данных
+            BeginSectorFatTable = SuperBlockSectorsCount;
+            BeginSectorUsersInfo = BeginSectorFatTable + 2 * TableSectorsCount;
+            BeginSectorRootDirectory = BeginSectorUsersInfo + UsersInfoSectorCount;
+            BeginSectorDataArea = BeginSectorRootDirectory + RootDirectorySize;
         }
-        /// <summary>
-        /// Возвращает начальный индекс байта, после которого расположены size свободных байтов
-        /// </summary>
-        /// <param name="size">Количество свободных байтов</param>
-        /// <returns></returns>
-        public int FindFreeBytesInRoot(int size)
+        public Task CreateFile(Models.FileInfo file, string data)
         {
-            var startByte = BeginSectorRootDirectory * BytesInSector;
-            var endByte = (BeginSectorRootDirectory + RootDirectorySize) * BytesInSector;
-            for (int i = startByte; i < endByte; i++)
-            {
-                bool isFree = true;
-                var buffer = new byte[size];
-                buffer = _diskWorker.Read(new byte[size], i);
-                buffer.ToList().ForEach(x => { if (x != 0) { isFree = false; return; } });
-                if (isFree)
-                    return i;
+            var rootIndex = GetPositionOfClearBytesInRootDirectory(16);
+            var fatIndex = GetPositionOfClearByteInFatTable();
+            _diskWorker.Write(file.Name.ToByteArray(), rootIndex);
+            rootIndex += file.Name.Length;
+            _diskWorker.Write(new byte[1] { file.Attribute.Code }, rootIndex);
+            rootIndex += 1;
+            _diskWorker.Write(file.Reserved, rootIndex);
+            rootIndex += file.Reserved.Length;
+            _diskWorker.Write(file.Date.ToByteArray(), rootIndex);
+            rootIndex += 2;
+            _diskWorker.Write(file.Time.ToByteArray(), rootIndex);
+            rootIndex += 2;
+            _diskWorker.Write((fatIndex - BeginSectorFatTable * BytesInSector).ToByteArray(), rootIndex);
+            rootIndex += 4;
+            _diskWorker.Write(data.Length.ToByteArray(), rootIndex);
 
-                i += size;
+            //Определяем, вместятся ли данные в кластер
+            if (data.Length < ClasterSize)
+            {
+                //Записываем в Fat таблицы значение 
+                _diskWorker.Write(ClusterStatus.End.ToByteArray(), fatIndex);
+                _diskWorker.Write(ClusterStatus.End.ToByteArray(), fatIndex + TableSectorsCount * BytesInSector);
+                _diskWorker.Write(data.ToByteArray(), BeginSectorDataArea * BytesInSector + (fatIndex - BeginSectorFatTable * BytesInSector) * ClasterSize);
+                //Записываем данные в кластер в индексом fatIndex; BeginSectorDataArea * BytesInSector + (fatIndex - BeginSectorFatTable * BytesInSector) * ClasterSize
+
             }
-            throw new FreeBytesException();
+            else
+            {
+                var diff = data.Length / ClasterSize;
+                for (int j = 0; j < diff; j++) 
+                {
+                    var partOfData = data.Substring(j, ClasterSize);
+                    _diskWorker.Write(ClusterStatus.Busy.ToByteArray(), fatIndex);
+                    _diskWorker.Write(ClusterStatus.Busy.ToByteArray(), fatIndex + TableSectorsCount);
+
+                    _diskWorker.Write(partOfData.ToByteArray(), BeginSectorDataArea + (fatIndex - BeginSectorFatTable * BytesInSector) * ClasterSize);
+                }
+            }
+
+            return Task.CompletedTask;
         }
+    }
+    class ClusterStatus
+    {
+        public static int Free = 1;
+        public static int Busy = 2;
+        public static int End = 3;
     }
 }

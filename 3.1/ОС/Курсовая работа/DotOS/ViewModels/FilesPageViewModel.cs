@@ -17,7 +17,7 @@ namespace DotOS.ViewModels
         public FilesPageViewModel(IEnumerable<ISystemCall> systemCalls) 
         {
             _systemCalls = systemCalls;
-            var call = _systemCalls.FirstOrDefault(x => x.CanExecute("create file1.dot"));
+            var call = _systemCalls.FirstOrDefault(x => x.CanExecute("create file1.tt"));
             call?.Execute();
         }
       

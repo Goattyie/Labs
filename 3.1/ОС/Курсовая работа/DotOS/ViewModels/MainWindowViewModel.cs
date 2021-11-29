@@ -16,7 +16,6 @@ namespace DotOS.ViewModels
         private readonly PageService _navigator;
         public MainWindowViewModel(PageService navigator, FileSystem fileSystem)
         {
-            fileSystem.Formating();
             fileSystem.Boot();
             _navigator = navigator;
             _navigator.OnPageChanged += page => CurrentPage = page;

@@ -9,32 +9,34 @@ using System.Threading.Tasks;
 
 namespace DotOS.Services.SystemCall
 {
-    class ReadDirectoryCall : ISystemCall
+    class CreateDirCall : ISystemCall
     {
+        private readonly Session _session;
         private readonly FileSystem _fileSystem;
         private readonly DiskWorker _diskWorker;
-        private string _directoryPath;
+        private FileInfo _fileInfo;
 
-        public ReadDirectoryCall(DiskWorker diskworker, FileSystem fileSystem)
+        public CreateDirCall(DiskWorker diskworker, FileSystem fileSystem, Session session)
         {
+            _session = session;
             _fileSystem = fileSystem;
             _diskWorker = diskworker;
         }
+
+
         public bool CanExecute(string command)
         {
-            if (Regex.IsMatch(command, @"go [A-Za-z0-9]*.dir"))
+            if (Regex.IsMatch(command, @"create.dir [A-Za-z0-9]*"))
             {
-                _directoryPath = command.Split(' ')[1];
+                _fileInfo = new FileInfo() { Name = command.Split(' ')[1] + ".dir", Attribute = new DirectoryAttr() };
                 return true;
             }
-
             return false;
         }
 
-
         public Task Execute()
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }

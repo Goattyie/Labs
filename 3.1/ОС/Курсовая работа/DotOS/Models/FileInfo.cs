@@ -21,7 +21,7 @@ namespace DotOS.Models
                 _stringName = value;
             }
         }
-        public byte Attribute { get; set; }
+        public IAttribute Attribute { get; set; }
         public byte[] Reserved { get; set; } = new byte[10];
         public short Time { get; set; }
         public short Date { get; set; }
