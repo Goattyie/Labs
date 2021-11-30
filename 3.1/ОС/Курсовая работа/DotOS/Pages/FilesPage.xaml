@@ -17,6 +17,13 @@
             <RowDefinition Height="14*"/>
         </Grid.RowDefinitions>
         <Button Content="+ Файл" Command="{Binding CreateFile}"/>
-        <ListBox Grid.Row="1" ItemsSource="{Binding FilesInfo}" DisplayMemberPath="Name"/>
+        <ListBox Grid.Row="1" ItemsSource="{Binding FilesInfo}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedFile}">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Открыть" Command="{Binding OpenFile}"/>
+                    <MenuItem Header="Удалить" Command="{Binding RemoveFile}"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
     </Grid>
 </Page>

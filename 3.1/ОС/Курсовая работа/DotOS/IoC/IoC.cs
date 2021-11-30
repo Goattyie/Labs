@@ -3,11 +3,6 @@ using DotOS.Services.SystemCall;
 using DotOS.Utils;
 using DotOS.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DotOS.IoC
 {
@@ -26,6 +21,7 @@ namespace DotOS.IoC
             serivces.AddTransient<ISystemCall, CreateFileCall>();
             serivces.AddTransient<ISystemCall, ReadDirectoryCall>();
             serivces.AddTransient<ISystemCall, CreateDirCall>();
+            serivces.AddTransient<ISystemCall, ReadFileCall>();
 
             //wpf register
             serivces.AddSingleton<MainWindowViewModel>();

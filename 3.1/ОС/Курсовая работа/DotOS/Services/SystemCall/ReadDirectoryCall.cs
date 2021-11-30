@@ -26,20 +26,6 @@ namespace DotOS.Services.SystemCall
             _fileSystem = fileSystem;
             _diskWorker = diskworker;
         }
-        private List<FileInfo> ReadRootDirectory()
-        {
-            var list = new List<FileInfo>();
-            var data = _diskWorker.Read(new byte[_fileSystem.RootDirectorySize * _fileSystem.BytesInSector], _fileSystem.BeginSectorRootDirectory * _fileSystem.BytesInSector).ArrayToString();
-            for (int i = 0; i < data.Length; i += 32)
-            {
-                if (data[i] != '\0') 
-                {
-                    var file = new FileInfo() { Name = data.Substring(i, 9) };
-                    list.Add(file);
-                }
-            }
-            return list;
-        }
         public bool CanExecute(string command) => Regex.IsMatch(command, @"show .dir");
 
         public Task Execute(string command)
@@ -55,7 +41,7 @@ namespace DotOS.Services.SystemCall
             }
             else
             {
-                list.FilesInfo = ReadRootDirectory();
+                list.FilesInfo = _fileSystem.ReadRootDirectory();
             }
             _ =_messageBus.SendTo<FilesPageViewModel>(list);
             return Task.CompletedTask;

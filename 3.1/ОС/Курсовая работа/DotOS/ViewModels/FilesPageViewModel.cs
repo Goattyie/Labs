@@ -2,12 +2,9 @@
 using DotOS.Models;
 using DotOS.Services.SystemCall;
 using DotOS.Utils;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace DotOS.ViewModels
@@ -35,11 +32,25 @@ namespace DotOS.ViewModels
                 FilesInfo.Add(msg.File);
                 return Task.CompletedTask;
             });
+
+            _messageBus.Receive<FileText>(this, msg => { MessageBox.Show(msg.Text); return Task.CompletedTask; });
             _commandHandler.Handle("show .dir");
 
         }
-
         public ObservableCollection<FileInfo> FilesInfo { get; set; }
+        public FileInfo SelectedFile { get; set; }
         public ICommand CreateFile => new DelegateCommand(() => { _navigator.Navigate(new CreateFileWindow()); });
+        public ICommand OpenFile => new DelegateCommand(() => 
+        {
+            if (SelectedFile == null)
+                return;
+
+            _commandHandler.Handle($"read {SelectedFile.Name}");
+        });
+        public ICommand RemoveFile => new DelegateCommand(() => 
+        {
+            if (SelectedFile == null)
+                return;
+        });
     }
 }

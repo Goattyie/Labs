@@ -160,6 +160,20 @@ namespace DotOS.Services
             BeginSectorRootDirectory = BeginSectorUsersInfo + UsersInfoSectorCount;
             BeginSectorDataArea = BeginSectorRootDirectory + RootDirectorySize;
         }
+        public List<Models.FileInfo> ReadRootDirectory()
+        {
+            var list = new List<Models.FileInfo>();
+            var data = _diskWorker.Read(new byte[RootDirectorySize * BytesInSector], BeginSectorRootDirectory * BytesInSector).ArrayToString();
+            for (int i = 0; i < data.Length; i += 32)
+            {
+                if (data[i] != '\0')
+                {
+                    var file = new Models.FileInfo() { Name = data.Substring(i, 9) };
+                    list.Add(file);
+                }
+            }
+            return list;
+        }
     }
     class ClusterStatus
     {
