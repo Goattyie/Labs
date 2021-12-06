@@ -1,0 +1,29 @@
+﻿<Page x:Class="DotOS.Pages.FilesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DotOS.Pages"
+      xmlns:local1="clr-namespace:DotOS"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="FilesPage"
+      DataContext="{Binding Source={StaticResource VMLocator}, Path=FilesPageViewModel}">
+
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="14*"/>
+        </Grid.RowDefinitions>
+        <Button Content="+ Файл" Command="{Binding CreateFile}"/>
+        <ListBox Grid.Row="1" ItemsSource="{Binding FilesInfo}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedFile}">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Открыть" Command="{Binding OpenFile}"/>
+                    <MenuItem Header="Удалить" Command="{Binding RemoveFile}"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
+    </Grid>
+</Page>

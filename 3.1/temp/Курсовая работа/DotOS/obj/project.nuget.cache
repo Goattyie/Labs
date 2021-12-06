@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "XT2QJ59+9FXRa4VxX9bojltVQC9Yl5FF+kCN7WMMJ4/UZi99RZ2xBKAVS7/p7gy5cio3lgL0iiGTgnJhAQ1gOQ==",
+  "success": true,
+  "projectFilePath": "F:\\Курсовая работа\\DotOS\\DotOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\goattye\\.nuget\\packages\\devexpressmvvm\\21.1.5\\devexpressmvvm.21.1.5.nupkg.sha512",
+    "C:\\Users\\goattye\\.nuget\\packages\\fody\\6.5.1\\fody.6.5.1.nupkg.sha512",
+    "C:\\Users\\goattye\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\goattye\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\goattye\\.nuget\\packages\\propertychanged.fody\\3.4.0\\propertychanged.fody.3.4.0.nupkg.sha512",
+    "C:\\Users\\goattye\\.nuget\\packages\\serilog\\2.10.0\\serilog.2.10.0.nupkg.sha512",
+    "C:\\Users\\goattye\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
