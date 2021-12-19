@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Labs\\3.1\\Архитектура\\6lab\\6lab\\6lab.csproj",
+      "projectUniqueName": "D:\\Labs\\3.1\\Архитектура\\6lab\\6lab\\6lab.csproj",
       "projectName": "6lab",
-      "projectPath": "E:\\Labs\\3.1\\Архитектура\\6lab\\6lab\\6lab.csproj",
+      "projectPath": "D:\\Labs\\3.1\\Архитектура\\6lab\\6lab\\6lab.csproj",
       "packagesPath": "C:\\Users\\chiar\\.nuget\\packages\\",
-      "outputPath": "E:\\Labs\\3.1\\Архитектура\\6lab\\6lab\\obj\\",
+      "outputPath": "D:\\Labs\\3.1\\Архитектура\\6lab\\6lab\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\chiar\\AppData\\Roaming\\NuGet\\NuGet.Config",

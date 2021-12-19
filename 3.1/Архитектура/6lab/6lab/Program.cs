@@ -6,6 +6,35 @@ var middleware = new HandleDataMiddleware(new SearchClientDatabaseMiddleware(new
 
 while (true)
 {
+    Menu();
+    switch (Console.ReadKey().Key)
+    {
+        case ConsoleKey.D1:
+            AddUser();
+            break;
+        case ConsoleKey.D2:
+            Authorization();
+            break;
+        case ConsoleKey.D3:
+            break;
+    }
+}
+
+void Menu()
+{
+    Console.Clear();
+    Console.WriteLine("1. Добавить пользователя в БД");
+    Console.WriteLine("2. Список пользователей");
+    Console.WriteLine("3. Пройти авторизацию");
+}
+
+void AddUser()
+{
+
+}
+
+void Authorization()
+{
     Console.Clear();
     Console.WriteLine("В качестве авторизации разрешены клиенты с именем длиннее 3 и короче 14.");
     Console.WriteLine("Пароль может содержать только цифры в количестве от 5 до 10.");
@@ -16,6 +45,6 @@ while (true)
     var password = Console.ReadLine() ?? string.Empty;
     var client = new Client(name, password);
 
-    try { middleware.Execute(client); }catch (Exception ex){ Console.WriteLine(ex.Message); }
+    try { middleware.Execute(client); } catch (Exception ex) { Console.WriteLine(ex.Message); }
     Console.ReadKey();
 }
