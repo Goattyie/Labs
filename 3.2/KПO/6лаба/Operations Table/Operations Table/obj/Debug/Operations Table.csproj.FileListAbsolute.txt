@@ -1,0 +1,51 @@
+D:\YandexDisk\Учеба\Семестр 6\КПО\ЛР6\Operations Table\Operations Table\bin\Debug\Operations Table.exe.config
+D:\YandexDisk\Учеба\Семестр 6\КПО\ЛР6\Operations Table\Operations Table\bin\Debug\Operations Table.exe
+D:\YandexDisk\Учеба\Семестр 6\КПО\ЛР6\Operations Table\Operations Table\bin\Debug\Operations Table.pdb
+D:\YandexDisk\Учеба\Семестр 6\КПО\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.csprojAssemblyReference.cache
+D:\YandexDisk\Учеба\Семестр 6\КПО\ЛР6\Operations Table\Operations Table\obj\Debug\Operations_Table.MainForm.resources
+D:\YandexDisk\Учеба\Семестр 6\КПО\ЛР6\Operations Table\Operations Table\obj\Debug\Operations_Table.Properties.Resources.resources
+D:\YandexDisk\Учеба\Семестр 6\КПО\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.csproj.GenerateResource.cache
+D:\YandexDisk\Учеба\Семестр 6\КПО\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.csproj.CoreCompileInputs.cache
+D:\YandexDisk\Учеба\Семестр 6\КПО\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.exe
+D:\YandexDisk\Учеба\Семестр 6\КПО\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.pdb
+C:\Users\Nikita\Desktop\3 курс 2 семстр методы\мое кпо\6 лаба\ЛР6\Operations Table\Operations Table\bin\Debug\Operations Table.exe.config
+C:\Users\Nikita\Desktop\3 курс 2 семстр методы\мое кпо\6 лаба\ЛР6\Operations Table\Operations Table\bin\Debug\Operations Table.exe
+C:\Users\Nikita\Desktop\3 курс 2 семстр методы\мое кпо\6 лаба\ЛР6\Operations Table\Operations Table\bin\Debug\Operations Table.pdb
+C:\Users\Nikita\Desktop\3 курс 2 семстр методы\мое кпо\6 лаба\ЛР6\Operations Table\Operations Table\obj\Debug\Operations_Table.MainForm.resources
+C:\Users\Nikita\Desktop\3 курс 2 семстр методы\мое кпо\6 лаба\ЛР6\Operations Table\Operations Table\obj\Debug\Operations_Table.Properties.Resources.resources
+C:\Users\Nikita\Desktop\3 курс 2 семстр методы\мое кпо\6 лаба\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.csproj.GenerateResource.cache
+C:\Users\Nikita\Desktop\3 курс 2 семстр методы\мое кпо\6 лаба\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.csproj.CoreCompileInputs.cache
+C:\Users\Nikita\Desktop\3 курс 2 семстр методы\мое кпо\6 лаба\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.exe
+C:\Users\Nikita\Desktop\3 курс 2 семстр методы\мое кпо\6 лаба\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.pdb
+C:\Users\Nikita\Desktop\3 курс 2 семстр методы\мое кпо\6 лаба\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.csprojAssemblyReference.cache
+C:\Users\PiyPiyKiller\Downloads\ЛР6\Operations Table\Operations Table\bin\Debug\Operations Table.exe.config
+C:\Users\PiyPiyKiller\Downloads\ЛР6\Operations Table\Operations Table\bin\Debug\Operations Table.exe
+C:\Users\PiyPiyKiller\Downloads\ЛР6\Operations Table\Operations Table\bin\Debug\Operations Table.pdb
+C:\Users\PiyPiyKiller\Downloads\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.csprojAssemblyReference.cache
+C:\Users\PiyPiyKiller\Downloads\ЛР6\Operations Table\Operations Table\obj\Debug\Operations_Table.MainForm.resources
+C:\Users\PiyPiyKiller\Downloads\ЛР6\Operations Table\Operations Table\obj\Debug\Operations_Table.Properties.Resources.resources
+C:\Users\PiyPiyKiller\Downloads\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.csproj.GenerateResource.cache
+C:\Users\PiyPiyKiller\Downloads\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.csproj.CoreCompileInputs.cache
+C:\Users\PiyPiyKiller\Downloads\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.exe
+C:\Users\PiyPiyKiller\Downloads\ЛР6\Operations Table\Operations Table\obj\Debug\Operations Table.pdb
+C:\Users\PiyPiyKiller\Desktop\Саевский\6лаба\Operations Table\Operations Table\bin\Debug\Operations Table.exe.config
+C:\Users\PiyPiyKiller\Desktop\Саевский\6лаба\Operations Table\Operations Table\bin\Debug\Operations Table.exe
+C:\Users\PiyPiyKiller\Desktop\Саевский\6лаба\Operations Table\Operations Table\bin\Debug\Operations Table.pdb
+C:\Users\PiyPiyKiller\Desktop\Саевский\6лаба\Operations Table\Operations Table\obj\Debug\Operations Table.csprojAssemblyReference.cache
+C:\Users\PiyPiyKiller\Desktop\Саевский\6лаба\Operations Table\Operations Table\obj\Debug\Operations_Table.MainForm.resources
+C:\Users\PiyPiyKiller\Desktop\Саевский\6лаба\Operations Table\Operations Table\obj\Debug\Operations_Table.Properties.Resources.resources
+C:\Users\PiyPiyKiller\Desktop\Саевский\6лаба\Operations Table\Operations Table\obj\Debug\Operations Table.csproj.GenerateResource.cache
+C:\Users\PiyPiyKiller\Desktop\Саевский\6лаба\Operations Table\Operations Table\obj\Debug\Operations Table.csproj.CoreCompileInputs.cache
+C:\Users\PiyPiyKiller\Desktop\Саевский\6лаба\Operations Table\Operations Table\obj\Debug\Operations Table.exe
+C:\Users\PiyPiyKiller\Desktop\Саевский\6лаба\Operations Table\Operations Table\obj\Debug\Operations Table.pdb
+E:\Labs\3.2\KПO\6лаба\Operations Table\Operations Table\bin\Debug\Operations Table.exe.config
+E:\Labs\3.2\KПO\6лаба\Operations Table\Operations Table\bin\Debug\Operations Table.exe
+E:\Labs\3.2\KПO\6лаба\Operations Table\Operations Table\bin\Debug\Operations Table.pdb
+E:\Labs\3.2\KПO\6лаба\Operations Table\Operations Table\obj\Debug\Operations Table.csproj.AssemblyReference.cache
+E:\Labs\3.2\KПO\6лаба\Operations Table\Operations Table\obj\Debug\Operations Table.csproj.SuggestedBindingRedirects.cache
+E:\Labs\3.2\KПO\6лаба\Operations Table\Operations Table\obj\Debug\Operations_Table.MainForm.resources
+E:\Labs\3.2\KПO\6лаба\Operations Table\Operations Table\obj\Debug\Operations_Table.Properties.Resources.resources
+E:\Labs\3.2\KПO\6лаба\Operations Table\Operations Table\obj\Debug\Operations Table.csproj.GenerateResource.cache
+E:\Labs\3.2\KПO\6лаба\Operations Table\Operations Table\obj\Debug\Operations Table.csproj.CoreCompileInputs.cache
+E:\Labs\3.2\KПO\6лаба\Operations Table\Operations Table\obj\Debug\Operations Table.exe
+E:\Labs\3.2\KПO\6лаба\Operations Table\Operations Table\obj\Debug\Operations Table.pdb

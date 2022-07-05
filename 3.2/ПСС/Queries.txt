@@ -1,0 +1,327 @@
+--Почты абонентов с указанным типом
+CREATE OR REPLACE FUNCTION get_abonents_by_abonent_type(abonent_type TEXT)
+RETURNS TABLE("Имя" TEXT, "Почта" TEXT)
+AS $$
+BEGIN
+	RETURN QUERY
+		SELECT a.name, a.email
+		FROM abonents a
+		INNER JOIN abonent_types abt ON abt.id = a.abonent_type_id
+		WHERE abt.name = abonent_type
+		ORDER BY a.name;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_abonents_by_abonent_type('Рабочий')
+
+--Фирмы с указанным типом собственности
+CREATE OR REPLACE FUNCTION get_firms_by_own_type(own_type TEXT)
+RETURNS TABLE("Название фирмы" VARCHAR(40))
+AS $$
+BEGIN
+	RETURN QUERY
+		SELECT f.name
+		FROM firms f
+		INNER JOIN own_types ot ON ot.id = f.own_type_id
+		WHERE ot.name = own_type
+		ORDER BY f.name;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_firms_by_own_type('Частная');
+
+--Фирмы, предоставляющие услуги в указанную дату
+CREATE OR REPLACE FUNCTION get_firms_by_service_recieving_date(recieve_date date)
+RETURNS TABLE("Название фирмы" VARCHAR(40), "Объем сообщения" DOUBLE PRECISION)
+AS $$
+BEGIN
+	RETURN QUERY
+		SELECT f.name, s.size
+		FROM firms f
+		INNER JOIN services s ON s.firm_id = f.id
+		WHERE s.recieving_date = recieve_date
+		ORDER BY f.name;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_firms_by_service_recieving_date('2022-06-20');
+
+--Абоненты, преобревшие услуги в указанную дату
+CREATE OR REPLACE FUNCTION get_abonents_by_service_recieving_date(recieve_date date)
+RETURNS TABLE("Имя" TEXT, "Объем сообщения" DOUBLE PRECISION)
+AS $$
+BEGIN
+	RETURN QUERY
+		SELECT a.name, s.size
+		FROM abonents a
+		INNER JOIN services s ON s.abonent_id = a.id
+		WHERE s.recieving_date = recieve_date
+		ORDER BY a.name;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_abonents_by_service_recieving_date('2022-06-20');
+
+--Вывести стоимость контрактов и абонентов, с которыми они заключены
+CREATE OR REPLACE VIEW get_contracts_info AS
+SELECT c.connection_cost, a.name
+FROM contracts c
+INNER JOIN abonents a ON a.id = c.abonent_id;
+
+SELECT * FROM get_contracts_info
+
+--Вывести объем сообщения (Мб) услуг и абонентов, которые подключены к этим услугам
+CREATE OR REPLACE VIEW get_service_info AS
+SELECT s.size, a.name
+FROM services s
+INNER JOIN abonents a ON a.id = s.abonent_id;
+
+SELECT * FROM get_service_info
+
+--Вывести абонентов и их типы
+CREATE OR REPLACE VIEW get_abonent_info AS
+SELECT a.name AS "Абонент", atp.name AS "Тип"
+FROM abonents a
+INNER JOIN abonent_types atp ON atp.id = a.abonent_type_id;
+
+SELECT * FROM get_abonent_info
+
+--Вывести информацию о контрактах с пользователями, у которых указана почта
+CREATE OR REPLACE VIEW get_contract_abonents_email_not_null AS
+SELECT c.connection_cost, a.name, a.email
+FROM contracts c
+LEFT OUTER JOIN abonents a ON a.id = c.abonent_id
+WHERE a.email IS NOT NULL;
+
+SELECT * FROM get_contract_abonents_email_not_null
+
+--Вывести информацию о фирмах, которые хоть раз предоставляли услуги
+CREATE OR REPLACE VIEW get_firms_have_services AS
+SELECT f.name AS "Название компании", s.recieving_date "Дата предоставления услуги" 
+FROM services s
+RIGHT OUTER JOIN firms f ON f.id = s.firm_id
+WHERE s.id IS NOT NULL;
+
+SELECT * FROM get_firms_have_services
+
+-- Вывести информацию о фирмах, открывшихся в указанный период, и уже предоставлявших услуги пользователям
+CREATE OR REPLACE FUNCTION get_firms_by_start_date_with_services(start_date INTEGER, end_date INTEGER)
+RETURNS TABLE("Название фирмы" VARCHAR(40), "Дата предоставления услуги" DATE, "Год открытия" SMALLINT)
+AS $$
+BEGIN
+	RETURN QUERY
+		SELECT f.name, s.recieving_date, f.start_working_year
+		FROM firms f
+		LEFT JOIN services s ON s.firm_id = f.id
+		WHERE f.start_working_year BETWEEN start_date AND end_date AND s.id IS NOT NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_firms_by_start_date_with_services(2000, 2010)
+
+================================================ГРУППИРОВКИ==============================================
+
+-- Вывести общее число предоставленных мегабайт фирм
+CREATE OR REPLACE VIEW get_sum_size_firms AS
+SELECT f.name, sum(s.size)
+FROM firms f
+JOIN services s ON s.firm_id = f.id
+GROUP BY f.name;
+
+SELECT * FROM get_sum_size_firms
+
+-- Вывести количество фирм с указанным типом собственности
+CREATE OR REPLACE FUNCTION get_firms_count_by_own_type(own_type_name TEXT)
+RETURNS TABLE("Количество" BIGINT)
+AS $$
+BEGIN
+	RETURN QUERY
+		SELECT COUNT(f.name)
+		FROM firms f
+		JOIN own_types ot ON f.own_type_id = ot.id
+		WHERE ot.name = own_type_name
+		GROUP BY ot.name;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_firms_count_by_own_type('Частная')
+
+-- Вывести абонентов, которые составили контрактов на подключение в сумме на цену более указанного числа
+CREATE OR REPLACE FUNCTION get_abonents_by_contracts_sum(sum_value DOUBLE PRECISION)
+RETURNS TABLE("Имя" TEXT, "Сумма" NUMERIC)
+AS $$
+BEGIN
+	RETURN QUERY
+		SELECT a.name, SUM(c.connection_cost)
+		FROM contracts c
+		JOIN abonents a ON a.id = c.abonent_id
+		GROUP BY a.name
+		HAVING SUM(c.connection_cost) > sum_value;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_abonents_by_contracts_sum(100)
+
+-- Вывести абонентов, которые составили контрактов на подключение в сумме на цену более указанного числа и которые начинаются в указанную дату
+CREATE OR REPLACE FUNCTION get_abonents_by_contracts_sum_and_date(sum_value DOUBLE PRECISION, con_date DATE)
+RETURNS TABLE("Имя" TEXT, "Сумма" NUMERIC)
+AS $$
+BEGIN
+	RETURN QUERY
+		SELECT a.name, SUM(c.connection_cost)
+		FROM contracts c
+		JOIN abonents a ON a.id = c.abonent_id
+		WHERE c.connection_date=con_date
+		GROUP BY a.name
+		HAVING SUM(c.connection_cost) > sum_value;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_abonents_by_contracts_sum_and_date(100, '2022-06-20')
+
+
+-- Вывести фирмы и их общую прибыль за подключение до и после инфляции (уменьшение на 30%), в период за между двумя датами
+CREATE OR REPLACE FUNCTION get_firms_sum_connection_cost_inflation(first_date DATE, second_date DATE)
+RETURNS TABLE("Название" VARCHAR(40), "До инфляции" NUMERIC, "После инфляции" NUMERIC)
+AS $$
+BEGIN
+	RETURN QUERY
+	SELECT f.name, SUM(c.connection_cost), 0.7 * SUM(c.connection_cost) :: NUMERIC
+	FROM (SELECT c.connection_cost, c.firm_id FROM contracts c 
+		 WHERE c.connection_date BETWEEN first_date AND second_date) c
+	LEFT JOIN firms f ON f.id = c.firm_id
+	GROUP BY f.name;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_firms_sum_connection_cost_inflation('2022-05-20', '2022-06-20')
+
+-- Вывести фирмы и их общую прибыль за подключения, сумма которой больше средней прибыли за подключения
+CREATE OR REPLACE VIEW get_firms_sum_connection_cost_more_avg AS
+SELECT f.name, SUM(c.connection_cost)
+FROM firms f
+JOIN contracts c ON c.firm_id = f.id
+WHERE c.connection_cost > (SELECT AVG(contracts.connection_cost) FROM contracts)
+GROUP BY f.name;
+
+SELECT * FROM get_firms_sum_connection_cost_more_avg
+
+-- вывести типы собственности и количество компаний, в названии которых встречается введенная подстрока
+CREATE OR REPLACE FUNCTION mask_query(f_name TEXT)
+	RETURNS TABLE("Тип собственности" VARCHAR(20), "Количество фирм" BIGINT) AS $$
+BEGIN
+	RETURN QUERY
+		SELECT ot.name, COUNT(f.name)
+		FROM firms f
+		JOIN own_types ot ON ot.id = f.own_type_id
+		WHERE f.name LIKE '%' || f_name || '%'
+		GROUP BY ot.name;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM mask_query('Tr')
+
+-- вывести среднюю стоимость подключения указанной фирмы
+CREATE OR REPLACE FUNCTION case_query(f_name TEXT)
+	RETURNS TABLE("Средняя стоимость" FLOAT8) AS $$
+BEGIN
+	RETURN QUERY
+		SELECT avg(CASE WHEN f.name = f_name THEN c.connection_cost END)::FLOAT8
+		FROM contracts c 
+		JOIN firms f ON f.id = c.firm_id
+		WHERE f.name = f_name
+		GROUP BY f.name;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM case_query('Matrix')
+
+-- вывести количество контрактов и предоставляемых услуг
+CREATE OR REPLACE VIEW union_query AS
+(SELECT 'Контракты' "Тип", COUNT(s.id) "Количество" FROM services s)
+UNION
+(SELECT 'Услуги' "Тип", COUNT(c.id) "Количество" FROM contracts c);
+
+SELECT * FROM union_query
+
+-- вывести все контракты, фирмы которых имеют указанный тип собственности
+CREATE OR REPLACE FUNCTION in_query(own_type TEXT)
+	RETURNS TABLE("#" INTEGER, "Дата подключения" DATE, "Абонент" TEXT, "Email" TEXT)
+AS $$
+BEGIN
+	RETURN QUERY
+		SELECT c.id, c.connection_date, a.name, a.email
+		FROM contracts c
+		JOIN abonents a ON a.id = c.abonent_id
+		WHERE c.firm_id IN
+		(SELECT f.id FROM firms f JOIN own_types ot ON ot.id = f.own_type_id WHERE ot.name = own_type);
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM in_query('Частная')
+
+-- вывести все контракты, фирмы которых не имеют указанный тип собственности
+CREATE OR REPLACE FUNCTION in_query(own_type TEXT)
+	RETURNS TABLE("#" INTEGER, "Дата подключения" DATE, "Абонент" TEXT, "Email" TEXT)
+AS $$
+BEGIN
+	RETURN QUERY
+		SELECT c.id, c.connection_date, a.name, a.email
+		FROM contracts c
+		JOIN abonents a ON a.id = c.abonent_id
+		WHERE c.firm_id NOT IN
+		(SELECT f.id FROM firms f JOIN own_types ot ON ot.id = f.own_type_id WHERE ot.name = own_type);
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM in_query('Частная')
+
+===================================
+CREATE OR REPLACE VIEW firms_view AS
+	SELECT f.id, f.name, f.address, ot.name "own_type"
+	FROM firms f
+	JOIN own_types ot ON ot.id = f.own_type_id;
+	
+SELECT * FROM firms_view
+
+==UPDATE==
+CREATE FUNCTION firms_view_update() RETURNS trigger AS $$
+BEGIN
+	UPDATE firms SET
+		name=NEW.name,
+		address = NEW.address,
+		own_type_id=(SELECT id FROM own_types WHERE name=NEW.own_type)
+		WHERE id = NEW.id;
+	RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER firms_view_update_trigger INSTEAD OF UPDATE ON firms_view
+FOR EACH ROW EXECUTE PROCEDURE firms_view_update();
+
+==DELETE==
+CREATE FUNCTION firms_view_delete() RETURNS trigger AS $$
+BEGIN
+	DELETE FROM firms WHERE id = OLD.id;
+	RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER firms_view_delete_trigger INSTEAD OF DELETE ON firms_view
+FOR EACH ROW EXECUTE PROCEDURE firms_view_delete();
+
+==INSERT==
+CREATE FUNCTION firms_view_insert() RETURNS trigger AS $$
+BEGIN
+	INSERT INTO firms VALUES (
+	0,
+	NEW.name,
+	NEW.address,
+	(SELECT id FROM own_types WHERE name = NEW.own_type)
+	);
+	RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER firms_view_insert_trigger INSTEAD OF INSERT ON firms_view
+FOR EACH ROW EXECUTE PROCEDURE firms_view_insert();

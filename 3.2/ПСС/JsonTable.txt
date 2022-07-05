@@ -1,0 +1,68 @@
+CREATE TABLE json_table (
+  id serial primary key,
+  data_jsonb jsonb
+);
+
+{
+    "abonent":{
+        "name" : "Сергеева А.В.",
+        "email" : "Sergeeva@pic.com",
+        "address" : "ул. Панфилова 11 кв. 16"
+    },
+    "abonent_type": "Частное лицо",
+    "services": [
+        {
+            "recieving_date": "2022-06-08",
+            "size": 300,
+            "firm": "Trinity"
+        },
+        {
+            "recieving_date": "2022-06-21",
+            "size": 450,
+            "firm": "Matrix"
+        },
+        {
+            "recieving_date": "2022-04-11",
+            "size": 300,
+            "firm": "Matrix"
+        },
+        {
+            "recieving_date": "2022-02-13",
+            "size": 111,
+            "firm": "Trinity"
+        }
+    ]
+}
+
+
+INSERT INTO json_table (data) VALUES 
+  ('{
+    "abonent":{
+        "name" : "Сергеева А.В.",
+        "email" : "Sergeeva@pic.com",
+        "address" : "ул. Панфилова 11 кв. 16"
+    },
+    "abonent_type": "Частное лицо",
+    "services": [
+        {
+            "recieving_date": "2022-06-08",
+            "size": 300,
+            "firm": "Trinity"
+        },
+        {
+            "recieving_date": "2022-06-21",
+            "size": 450,
+            "firm": "Matrix"
+        },
+        {
+            "recieving_date": "2022-04-11",
+            "size": 300,
+            "firm": "Matrix"
+        },
+        {
+            "recieving_date": "2022-02-13",
+            "size": 111,
+            "firm": "Trinity"
+        }
+    ]
+}')

@@ -1,0 +1,164 @@
+BEFORE INSERT - генерируют идентификаторы новых записей
+AFTER UPDATE (табл. пользователи) - удаляет пользователя из старой группы и добавляет в новую (если администратор поменял его роль)
+AFTER INSERT (табл. пользователи)- создает нового пользователя в субд
+AFTER DELETE (табл. пользователи) - удаляет пользователей из субд
+BEFORE DELETE (табл. фирмы) - удаляет всех пользователей, которые пользовались услугами только этой фирмы
+BEFORE UPDATE (табл. фирмы) - проверяет есть ли уже фирмы с таким названием и номером телефона.
+BEFORE INSERT (табл. фирмы) - проверяет есть ли уже фирмы с таким названием и номером телефона.
+
+=======DOMAIN=========
+CREATE DOMAIN phone AS VARCHAR(13)
+CHECK(
+	VALUE ~ '^\d{13}$'
+)
+
+=======INDEXES========
+CREATE INDEX abonents_idx ON abonents(id, name, email, address, abonent_type_id)
+CREATE INDEX contracts_idx ON contracts(id, firm_id, abonent_id, connection_date, connection_cost)
+CREATE INDEX firms_idx ON firms(id, name, telephone, address, start_working_year, own_type_id)
+CREATE INDEX services_idx ON services(id, abonent_id, recieving_date, size, firm_id)
+
+======SEQUENCES=======
+CREATE SEQUENCE abonents_seq
+CREATE SEQUENCE abonent_types_seq
+CREATE SEQUENCE contracts_seq
+CREATE SEQUENCE firms_seq
+CREATE SEQUENCE own_types_seq
+CREATE SEQUENCE services_seq
+
+======TRIGGERS========
+
+==BEFORE INSERT==
+CREATE FUNCTION firms_before_insert_increment() RETURNS trigger AS $$
+BEGIN
+	NEW.id := nextval('firms_seq');
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+CREATE TRIGGER firms_before_insert_increment_trigger BEFORE INSERT ON firms
+FOR EACH ROW EXECUTE PROCEDURE firms_before_insert_increment();
+===========================================================================================
+==AFTER UPDATE==
+CREATE FUNCTION users_after_update() RETURNS trigger AS $$
+BEGIN
+	IF OLD.role <> NEW.role THEN
+		IF OLD.role = 1 THEN
+			EXECUTE 'ALTER GROUP operator DROP USER ' || NEW.login;
+			EXECUTE 'GRANT abonent TO ' || NEW.login;
+		END IF;
+		IF OLD.role = 2 THEN
+			EXECUTE 'ALTER GROUP abonent DROP USER ' || NEW.login;
+			EXECUTE 'GRANT operator TO ' || NEW.login;
+		END IF;
+		IF OLD.role = 0 THEN
+			RAISE EXCEPTION 'Администаторов нельзя понижать в должности'
+		END IF;
+	END IF;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+CREATE TRIGGER users_after_update_trigger AFTER UPDATE ON users
+FOR EACH ROW EXECUTE PROCEDURE users_after_update();
+===========================================================================================
+==AFTER INSERT==
+CREATE FUNCTION users_after_insert() RETURNS trigger AS $$
+BEGIN
+	IF NEW.role = 0 THEN
+		EXECUTE 'GRANT admin TO ' || NEW.login;
+	END IF;
+	IF NEW.role = 1 THEN
+		EXECUTE 'GRANT operator TO ' || NEW.login;
+	END IF;
+	IF NEW.role = 2 THEN
+		EXECUTE 'GRANT abonent TO ' || NEW.login;
+	END IF;
+	RETURN NULL;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+CREATE TRIGGER users_after_insert_trigger AFTER INSERT ON users
+FOR EACH ROW EXECUTE PROCEDURE users_after_insert();
+==========================================================================================
+==AFTER DELETE==
+CREATE OR REPLACE FUNCTION users_after_delete() RETURNS trigger AS $$
+BEGIN
+	EXECUTE 'DROP USER ' || OLD.login;
+	RETURN NULL;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+CREATE TRIGGER users_after_delete_trigger AFTER DELETE ON users
+FOR EACH ROW EXECUTE PROCEDURE users_after_delete();
+=========================================================================================
+==BEFORE DELETE==
+CREATE OR REPLACE FUNCTION firms_before_delete() RETURNS trigger AS $$
+BEGIN
+	IF (SELECT COUNT(*) FROM (SELECT FROM contracts WHERE firm_id=OLD.id) p) <> 0 THEN
+		RAISE EXCEPTION 'У данной фирмы еще есть контракты с пользователями';
+	END IF;
+	RETURN NULL;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+CREATE TRIGGER firms_before_delete_trigger BEFORE DELETE ON firms
+FOR EACH ROW EXECUTE PROCEDURE firms_before_delete();
+=========================================================================================
+==BEFORE INSERT==
+CREATE OR REPLACE FUNCTION firms_before_insert() RETURNS trigger AS $$
+BEGIN
+	IF (SELECT COUNT(*) FROM (SELECT FROM firms WHERE name=NEW.name AND telephone=NEW.telephone) p) <> 0 THEN
+		RAISE EXCEPTION 'Фирма с таким названием и номером уже существует';
+	END IF;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+CREATE TRIGGER firms_before_insert_trigger BEFORE INSERT ON firms
+FOR EACH ROW EXECUTE PROCEDURE firms_before_insert();
+========================================================================================
+==BEFORE UPDATE==
+CREATE OR REPLACE FUNCTION firms_before_update() RETURNS trigger AS $$
+BEGIN
+	IF (SELECT COUNT(*) FROM (SELECT FROM firms WHERE name=NEW.name AND telephone=NEW.telephone) p) <> 0 THEN
+		RAISE EXCEPTION 'Фирма с таким названием и номером уже существует';
+	END IF;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+CREATE TRIGGER firms_before_update_trigger BEFORE UPDATE ON firms
+FOR EACH ROW EXECUTE PROCEDURE firms_before_update();
+============================================РАЗГРАНИЧЕНИЕ=========================================
+
+ALTER TABLE firms ENABLE ROW LEVEL SECURITY;
+ALTER TABLE abonents ENABLE ROW LEVEL SECURITY;
+ALTER TABLE contracts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE services ENABLE ROW LEVEL SECURITY;
+
+================================================РОЛИ==============================================
+
+CREATE ROLE operator;
+CREATE ROLE abonent;
+CREATE ROLE admin WITH CREATEROLE;
+
+!!!ДОСТУП К РОЛЯМ!!!
+===Operator===
+
+GRANT SELECT ON firms TO operator;
+GRANT SELECT, DELETE, UPDATE, INSERT ON services TO operator;
+GRANT SELECT, DELETE, UPDATE, INSERT ON contracts TO operator;
+GRANT SELECT, DELETE, UPDATE, INSERT ON abonents TO operator;
+GRANT SELECT ON abonent_types TO operator;
+GRANT SELECT ON own_types TO operator;
+GRANT SELECT ON users TO operator;
+
+============================================ПОЛИТИКИ (Кто?)=========================================
+
+CREATE POLICY firms_operator ON firms TO operator USING (id = (SELECT id FROM users WHERE login = CURRENT_USER));
+CREATE POLICY contracts_operator ON contracts TO operator USING (firm_id = (SELECT id FROM users WHERE login = CURRENT_USER));
+CREATE POLICY services_operator ON services TO operator USING (firm_id = (SELECT id FROM users WHERE login = CURRENT_USER));
+CREATE POLICY abonents_operator ON abonents TO operator USING (TRUE);");
+CREATE POLICY abonent_types_operator ON abonent_types TO operator USING (TRUE);
+CREATE POLICY own_types_operator ON own_types TO operator USING (TRUE);
